@@ -1,0 +1,35 @@
+/*
+@media all and  (min-width: 768px) and (max-width:950px)
+{
+  #navMenu{ display:none }
+  #navMenu1{ display:inline-block }
+  #navMenu2{ display:none }
+
+}
+*/
+
+@media all and (min-width:992px)
+{
+  #leftMenu{ display:inline-block }
+  #navMenu { display:none }
+  #navMenu1 { display:inline-block }
+}
+@media all and (max-width:991px)
+{
+  #navMenu{ display:inline-block }
+  #navMenu1{ display:none }
+  #leftMenu{ display:none }
+
+}
+
+#topMenu .item{
+  color: white;
+}
+
+#leftMenu{
+  margin-top: 55px;
+  width: 20%;
+}
+#leftMenu .item{
+  padding: 20px;
+}

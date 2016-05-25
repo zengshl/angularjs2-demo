@@ -1,0 +1,96 @@
+<form class="ui form" style="padding: 5px 20px;" >
+  <div class="ui segment" style="padding: 20px 50px;">
+    <div class="ui top attached label" style="background-color: lightskyblue">
+      <h3 style="color: white" >登录信息（必填）</h3>
+    </div>
+    <div class="field" style="padding-top: 20px;">
+      <div class="three fields">
+        <div class="field">
+          <label>账号  </label>
+          <input  placeholder="账号" type="text" required>
+        </div>
+        <div class="field">
+          <label>密码  </label>
+          <input  placeholder="密码" type="text" required>
+        </div>
+        <div class="field">
+          <label>确认密码  </label>
+          <input  placeholder="确认密码" type="text" required>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui segment" style="padding: 20px 50px;">
+    <div class="ui top attached label" style="background-color: lightskyblue">
+      <h3 style="color: white">基本信息</h3>
+    </div>
+    <div class="field" style="padding-top: 20px;">
+      <div class="three fields">
+        <div class="field">
+          <label>手机  </label>
+          <input placeholder="手机" type="text">
+        </div>
+        <div class="field">
+          <label>昵称  </label>
+          <input  placeholder="昵称" type="text">
+        </div>
+        <div class="field">
+          <label>性别 </label>
+          <select class="ui dropdown" id="gender">
+            <option value="1">男性</option>
+            <option value="0">女性</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="three fields">
+        <div class="field">
+          <label>状态  </label>
+          <input  placeholder="状态"  type="text">
+        </div>
+        <div class="field">
+          <label>生日  </label>
+          <input type="text" value="2015-02-15" id="datetimepicker" class="am-form-field">
+          <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
+        </div>
+        <div class="field">
+          <label>邮箱  </label>
+          <input  placeholder="邮箱" type="text">
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>备注  </label>
+      <input  placeholder="备注" type="text">
+    </div>
+  </div>
+  <!--<div class="field" *ngIf="isInsert">-->
+  <!--<div class="three fields">-->
+  <!--<div class="field">-->
+  <!--<label>密码  </label>-->
+  <!--<input [(ngModel)]="curUser.password" placeholder="密码" type="text">-->
+  <!--</div>-->
+  <!--<div class="field">-->
+  <!--<label>确认密码  </label>-->
+  <!--<input [(ngModel)]="sendPSD" placeholder="确认密码" type="text">-->
+  <!--</div>-->
+  <!--</div>-->
+  <br><br>
+  <div class="three fields">
+    <div class="field">
+      <div class="ui right floated button" tabindex="0" >返回</div>
+    </div>
+    <div class="field"></div>
+    <div class="field">
+      <button type="submit" class="ui teal labeled icon submit button">
+        添加用户
+        <i class="checkmark box icon"></i>
+      </button>
+    </div>
+    <!--<div class="ui button" tabindex="0" (click)="updataAdmin()">更新</div>-->
+    <!--<div class="ui button" tabindex="0" (click)="resetAdmin()">重置</div>-->
+  </div>
+
+</form>

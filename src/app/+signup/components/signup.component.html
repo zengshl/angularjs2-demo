@@ -1,0 +1,93 @@
+<div class="ui stackable grid" style="margin-top:20px;">
+  <div class="row">
+    <div class="five wide column"></div>
+    <div class="six wide column">
+      <h2 class="ui center aligned header">
+        <div class="content" style="margin: 10px auto;">
+          用户注册信息
+        </div>
+      </h2>
+      <div class="ui form segment">
+        <form accept-charset="UTF-8" #f="ngForm" (ngSubmit)="register(f.value)">
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <div class="field">
+            <label for="user_username">手机号</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="text" id="user_username"  pattern="^1[0-9]{10}$"  ngControl="phone" [(ngModel)]="mobile"/>
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <!--添加EMAIL的注册信息-->
+          <div class="field">
+            <label for="user_email">邮箱</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="text" id="user_email"  pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"  ngControl="email" />
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+
+          </div>
+          <div class="field">
+            <label for="user_code">验证码</label>
+            <div class="ui action input">
+              <input required="required" type="text" id="user_code"  ngControl="validCode"/>
+              <button class="ui teal button" (click)="getCode()"  [disabled]="isDisabled">
+                {{message}}
+              </button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="user_password">密码</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="password" id="user_password"  ngControl="password"/>
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="user_password_confirmation">密码确认</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="password" id="user_password_confirmation"  ngControl="passwordConfirm"/>
+              <div class="ui corner label">
+                <i class="icon asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="ui red message" style="font-size: 12px" *ngIf="error">{{errorMsg}} </div>
+          <br>
+          <div class="ui two column stackable grid">
+            <div class="column">
+              <div class="ui toggle checkbox">
+                <input type="checkbox"  [(ngModel)]="agree">
+                <label>
+                  我同意该<a>用户条款</a>
+								</label>
+              </div>
+            </div>
+            <div class="center aligned column">
+              <button type="submit" class="ui teal labeled icon submit button" [disabled]="!agree">
+                注册
+                <i class="checkmark box icon"></i>
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="ui horizontal divider" style="margin: 40px 0;">
+        Or
+      </div>
+      <div style="text-align: center;">
+        <a class="ui black large labeled icon button" (click)="toLogin()">
+          返回登陆页面
+          <i class="signup icon"></i>
+        </a>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
+</div>

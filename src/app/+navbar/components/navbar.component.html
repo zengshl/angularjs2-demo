@@ -1,0 +1,55 @@
+<div class="ui large stackable top fixed menu" id="top-menu">
+
+  <a class="item" (click)="navSelf('./Shouye')"> <i class="large home icon"></i>首页</a>
+  <a class="item" (click)="navSelf('./Advice')"><i class="large mail outline icon"></i>法律咨询</a>
+  <a class="item"><i class="large find icon"></i>找律师</a>
+  <a class="item"><i class="large trophy icon"></i>服务保障</a>
+  <a class="item"><i class="large phone icon"></i>联系我们</a>
+  <div class="right menu" >
+    <div class="ui dropdown item" *ngIf="!isLogin">
+      <i class="large add user icon"></i>
+      游客<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="nav('Login')"><i class="user icon"></i>登陆</a>
+        <a class="item" (click)="nav('Signup')"><i class="add user icon"></i>注册</a>
+        <a class="item" (click)="nav('Admin')"><i class="user icon"></i>管理员测试</a>
+      </div>
+    </div>
+    <div class="ui dropdown item" *ngIf="isLogin">
+      <i class="large user icon"></i>
+      <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="navSelf('./Personal')" >个人中心</a>
+        <a class="item" (click)="navSelf('./Blank')">我的免费法律咨询</a>
+        <a class="item">我的VIP法律咨询</a>
+        <a class="item">我的讼诉案件</a>
+        <a class="item">消息中心</a>
+        <a class="item">我的优惠券</a>
+        <a class="item">账号设置</a>
+        <a class="item" (click)="logout()">退出登陆</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- top-nav -->
+<nav class="top-nav">
+  <div class="shell">
+    <!--
+    <a  class="nav-btn">主页<span></span></a>
+    <span class="top-nav-shadow"></span>
+    <ul>
+      <li class="active"><span><a >主页</a></span></li>
+      <li><span><a >关于我们</a></span></li>
+      <li><span><a >法律咨询</a></span></li>
+      <li><span><a >找律师</a></span></li>
+      <li><span><a >服务保障</a></span></li>
+      <li><span><a >联系我们</a></span></li>
+      <li><span><a >个人中心</a></span></li>
+    </ul>
+    -->
+  </div>
+</nav>
+<!-- end of top-nav -->
+<!-- header -->

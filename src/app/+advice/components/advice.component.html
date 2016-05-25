@@ -1,0 +1,96 @@
+<div class="ui segment" style="height: 400px;border: 1px solid grey;padding-top: 100px;">
+  <div class="ui stackable relaxed grid">
+    <div class="eight wide right aligned column">
+      <a class="button button-3d button-primary button-rounded" (click)="freeAdvice()">
+        <i class="large send outline icon"></i>&nbsp;免费法律咨询</a>
+    </div>
+    <div class="eight wide left aligned column">
+      <a class="button button-3d button-primary button-rounded"  (click)="vipAdvice()">
+      <i class="large send icon"></i>&nbsp;VIP法律咨询</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="ui modal" id="free">
+  <div class="header">免费咨询</div>
+  <div class="content">
+    <div class="ui form">
+      <div class="field">
+        <label>请先描述事件，再提出法律问题</label>
+        <textarea></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui teal approve button">提交</div>
+    <div class="ui cancel button">取消</div>
+  </div>
+</div>
+
+<div class="ui coupled modal">
+<div class="ui first modal" id="free1">
+    <div class="ui segment">
+      <div class="ui grid">
+        <div class="row">
+          <div class="three wide column"></div>
+          <div class="ten wide column">
+            <div style="text-align: left;margin: 50px auto;">
+              <h2 class="ui center aligned header" style="margin: 50px auto">VIP法律咨询</h2>
+              <form class="ui form">
+                <div class="fields" align="center">
+                  <div class="eight wide field">
+                    <div class="ui labeled input">
+                      <div class="ui label">案件类别</div>
+                      <select class="ui dropdown" id="selected" required ="required" >
+                      <option value="1">案件类别</option>
+
+                    </select>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <div class="ui right labeled left icon input">
+                      <i class="tags icon"></i>
+                      <input required="required" type="text" id="title"/>
+                      <label for="title" class="teal ui tag label">所在地</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui raised segment">
+                    <label class="ui ribbon label" for="newsContent">咨询内容</label>
+                    <textarea id="newsContent" ></textarea>
+                  </div>
+                </div>
+                <br>
+                <div class="ui hidden divider"></div>
+                <div class="five fields">
+                  <div class="field"></div>
+                  <input type="reset" value="重写" class="field ui reset button"/>
+                  <div class="field"></div>
+                  <input type="submit" value="提交咨询" class="field ui teal submit button"/>
+                  <div class="field"></div>
+                </div>
+              </form>
+            </div>
+            <div class="ui horizontal divider" style="margin: 40px 0;">
+              END
+            </div>
+          </div>
+          <div class="three wide column"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="ui second modal" id="free2">
+  <div class="header">VIP法律咨询提交成功</div>
+  <div class="content">
+      谢谢您的支持，我们将尽快与您取得联系！
+  </div>
+  <div class="actions">
+    <div class="ui teal approve button">确定</div>
+    <div class="ui cancel button">取消</div>
+  </div>
+</div>
+</div>
+

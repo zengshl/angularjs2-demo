@@ -1,0 +1,29 @@
+[{
+  "id":1,
+  "mobile":"13712345678",
+  "password":"123",
+  "name":"alex",
+  "age":"20",
+  "address":"xxyy",
+  "email":"eee"
+},
+  {
+    "id":2,
+    "mobile":"13812345678",
+    "password":"123",
+    "name":"b",
+    "age":"22",
+    "address":"xxyy",
+    "email":"eee"
+  },
+  {
+    "id":3,
+    "mobile":"18012345678",
+    "password":"123",
+    "name":"c",
+    "age":"25",
+    "address":"xxyy",
+    "email":"eee"
+  }
+
+]

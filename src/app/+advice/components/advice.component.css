@@ -1,0 +1,10 @@
+.button.button-rounded{
+  height: 200px;
+  padding-top: 80px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Ubuntu', LiSu;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 2px;
+
+}
