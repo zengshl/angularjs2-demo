@@ -54,4 +54,16 @@ var UserContact = (function () {
     return UserContact;
 })();
 exports.UserContact = UserContact;
+var Folder = (function () {
+    function Folder() {
+    }
+    return Folder;
+})();
+exports.Folder = Folder;
+var File = (function () {
+    function File() {
+    }
+    return File;
+})();
+exports.File = File;
 //# sourceMappingURL=entity.service.js.map

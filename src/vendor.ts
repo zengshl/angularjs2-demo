@@ -13,6 +13,7 @@ import '@angular/router-deprecated';
 
 //插入组件
 import 'angular2-datatable/datatable';
+import 'ng2-dragula/ng2-dragula';
 
 
 // RxJS

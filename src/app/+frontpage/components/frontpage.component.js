@@ -7,6 +7,7 @@ var index_3 = require("../../+main/index");
 var router_deprecated_1 = require('@angular/router-deprecated');
 var index_4 = require("../../+blank/index");
 var index_5 = require("../../+advice/index");
+var index_6 = require("../../+file/index");
 var FrontPageComponent = (function () {
     function FrontPageComponent(router) {
         this.router = router;
@@ -39,9 +40,9 @@ var FrontPageComponent = (function () {
                 useAsDefault: true
             },
             {
-                path: '/shouye',
-                name: 'Shouye',
-                component: index_3.MainComponent
+                path: '/file',
+                name: 'File',
+                component: index_6.FileComponent
             },
             {
                 path: '/advice',

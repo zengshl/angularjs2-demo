@@ -1,0 +1,93 @@
+<div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:50px;background-color:ghostwhite">
+<div class="ui stackable relaxed grid">
+    <div class="eight wide column" *ngIf = "!showMyFiles">
+      <div class="ui segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
+          <div class="ui top attached label" style="background-color: lightskyblue">
+            <h3 style="color: white" >我的文件夹</h3>
+          </div>
+
+          <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'myFiles'>
+            <div class="drag item" *ngFor = "let fd of folders" >
+              <a class="ui tiny image" (click)="openFolder(fd)">
+                <img src="assets/images/fileimg.png">
+              </a>
+              <div class="content">
+                <div class="header">{{fd.fileName}}</div>
+                <div class="meta">
+                  <span>{{fd.createTime}}</span>
+                </div>
+                <div class="description">
+                  <p></p>
+                </div>
+                <div class="extra">
+                  <a>修改</a>   <a (click)="deleteFolder(fd)">删除</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+      <!--点击打开指定的文件夹-->
+  <div class="eight wide column"  *ngIf = "showMyFiles">
+    <div class="ui top attached button" style="background-color: lightskyblue" (click)="showMyFiles = !showMyFiles">
+      <h3 style="color: white" >文件夹：{{myFolder.fileName}}（ 双击返回文件夹列表 ）</h3>
+    </div>
+      <div class="ui bottom attached segment" style="padding: 20px 50px;min-height: 500px;_height:500px;">
+        <div class="folderId" style="display: none">{{myFolder.id}}</div>
+        <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'myFiles'>
+
+          <div class="item"  *ngFor = "let mf of myFiles">
+            <a class="ui tiny image">
+              <img src="assets/images/fileimg2.png">
+            </a>
+            <div class="content">
+              <div class="fileId" style="display: none">{{mf.id}}</div>
+              <div class="header">{{mf.docName}}</div>
+              <div class="meta">
+                <span>{{mf.createTime}}</span>
+              </div>
+              <div class="description">
+                <p></p>
+              </div>
+              <div class="extra">
+                <a>修改</a>   <a>删除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="eight wide column">
+  <div class="ui  segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
+    <div class="ui top attached label" style="background-color: lightskyblue">
+      <h3 style="color: white" >未归类的文件</h3>
+    </div>
+    <div class="folderId" style="display: none">0</div>
+    <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'files'>
+
+      <div class="item"  *ngFor = "let fl of files">
+        <a class="ui tiny image">
+          <img src="assets/images/fileimg2.png">
+        </a>
+        <div class="content">
+          <div class="fileId" style="display: none">{{fl.id}}</div>
+          <div class="header">{{fl.docName}}</div>
+          <div class="meta">
+            <span>{{fl.createTime}}</span>
+          </div>
+          <div class="description">
+            <p></p>
+          </div>
+          <div class="extra">
+            <a>修改</a>   <a>删除</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+</div>
+</div>

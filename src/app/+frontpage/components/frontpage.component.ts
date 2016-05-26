@@ -9,6 +9,7 @@ import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {BlankComponent} from "../../+blank/index";
 import {AdviceComponent} from "../../+advice/index";
 import {AdminComponent} from "../../+admin/index";
+import {FileComponent} from "../../+file/index";
 
 @Component({
   selector: 'front-page',
@@ -29,9 +30,9 @@ import {AdminComponent} from "../../+admin/index";
     useAsDefault: true
   },
   {
-    path: '/shouye',
-    name: 'Shouye',
-    component: MainComponent
+    path: '/file',
+    name: 'File',
+    component: FileComponent
   },
   {
     path: '/advice',

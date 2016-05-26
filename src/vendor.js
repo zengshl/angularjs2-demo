@@ -11,6 +11,7 @@ require('@angular/http');
 require('@angular/router-deprecated');
 //插入组件
 require('angular2-datatable/datatable');
+require('ng2-dragula/ng2-dragula');
 // RxJS
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/mergeMap');

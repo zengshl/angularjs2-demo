@@ -67,3 +67,25 @@ export class UserContact {
   createTime:string;
   lastContactTime:string;
 }
+
+export class Folder {
+  id:number;
+  userId: number;
+  fileName: string;
+  fileType :string;
+  createTime:string;
+  remark:string;
+  files: File[];
+}
+
+export class File {
+  id:number;
+  userId: number;
+  folderId: number;
+  docName :string;
+  docContext :string;
+  docPath :string;
+  docType :string;
+  createTime:string;
+  remark:string;
+}

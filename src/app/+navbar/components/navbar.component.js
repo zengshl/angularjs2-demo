@@ -14,7 +14,8 @@ var NavbarComponent = (function () {
         if (sessionStorage.getItem('user')) {
             this.isLogin = true;
             this.user = JSON.parse(sessionStorage.getItem('user'));
-            if (this.user.userName === '') {
+            // console.log(this.user)
+            if (this.user.userName === '' || this.user.userName === '  ') {
                 this.user.userName = this.user.phone;
             }
         }

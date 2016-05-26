@@ -14,7 +14,7 @@ var UtilService = (function () {
         //    });
         //});
         this.http = http;
-        this.url = 'http://192.168.1.102:9000/';
+        this.url = 'http://192.168.1.104:9000/';
     }
     ;
     //将构造器解析出来的存储于components中的json数据，转为原始数据流，并存储于_promise中，并返回；
@@ -25,37 +25,37 @@ var UtilService = (function () {
     //  };
     //获取验证码
     UtilService.prototype.getValidCode = function (phone) {
-        var str = this.url + 'law/cus/smsValid/' + phone;
+        var str = this.url + 'law/user/smsValid/' + phone;
         return this.http.get(str);
     };
     ;
     //获取验证码
     UtilService.prototype.getValidCodeForgot = function (phone) {
-        var str = this.url + 'law/cus/smsValidMdPassword/' + phone;
+        var str = this.url + 'law/user/smsValidMdPassword/' + phone;
         return this.http.get(str);
     };
     ;
     //注册表单提交
     UtilService.prototype.signUp = function (data) {
-        var str = this.url + 'law/cus/register';
+        var str = this.url + 'law/user/register';
         return this.http.post(str, data);
     };
     ;
     //登陆
     UtilService.prototype.logIn = function (data) {
-        var str = this.url + 'law/cus/login';
+        var str = this.url + 'law/user/login';
         return this.http.post(str, data);
     };
     ;
     //修改密码
     UtilService.prototype.mdfPassword = function (data) {
-        var str = this.url + 'law/cus/forgetPassword';
+        var str = this.url + 'law/user/forgetPassword';
         return this.http.post(str, data);
     };
     ;
     //获取管理用户信息
     UtilService.prototype.getAdmin = function (pageData) {
-        var str = this.url + 'law/user/pageListPost';
+        var str = this.url + 'law/sysuser/pageListPost';
         return this.http.post(str, pageData);
     };
     ;
@@ -66,7 +66,7 @@ var UtilService = (function () {
     };
     //删除管理用户信息
     UtilService.prototype.deleteAdmin = function (data) {
-        var str = this.url + 'law/user/userDelect';
+        var str = this.url + 'law/sysuser/userDelect';
         return this.http.post(str, data);
     };
     ;
@@ -85,6 +85,36 @@ var UtilService = (function () {
         return this.http.post(str, data);
     };
     ;
+    //通过客户id获取文件夹
+    UtilService.prototype.getFolder = function (userId) {
+        var str = this.url + "law/doc/queryFolderByUserId/" + userId;
+        return this.http.get(str);
+    };
+    //通过客户id和文件夹id获取文件
+    UtilService.prototype.getFile = function (folderId, userId) {
+        var str = this.url + "law/doc/queryDocByUserIdFoldId/" + folderId + "/" + userId;
+        return this.http.get(str);
+    };
+    //删除文件夹
+    UtilService.prototype.deleteFolder = function (folderId, userId) {
+        var str = this.url + "law/doc/removeFolder/" + userId + "/" + folderId;
+        return this.http.get(str);
+    };
+    //更新文件夹
+    UtilService.prototype.updateFolder = function (folder) {
+        var str = this.url + '/law/doc/updataFolder';
+        return this.http.post(str, folder);
+    };
+    //更新文件
+    UtilService.prototype.updateFile = function (file) {
+        var str = this.url + '/law/doc/updataDocument';
+        return this.http.post(str, file);
+    };
+    //更新文件的文件夹id
+    UtilService.prototype.updateFileFolder = function (data) {
+        var str = this.url + '/law/doc/updataDocumentWithFolderId';
+        return this.http.post(str, data);
+    };
     UtilService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -3,6 +3,7 @@ import {AfterViewInit} from '@angular/core';
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {SysUserComponent} from '../../+sysuser/components/sysuser';
 import {CustmanagerComponent} from '../../+custmanager/components/custmanager.component';
+import {FileComponent} from "../../+file/index";
 declare var jQuery:JQueryStatic;
 
 @Component({
@@ -27,6 +28,11 @@ declare var jQuery:JQueryStatic;
     path: '/user',  //用这种方法，可以默认一个路由为开始路由
     name: 'User',
     component: SysUserComponent
+  },
+  {
+    path: '/file',  //用这种方法，可以默认一个路由为开始路由
+    name: 'File',
+    component: FileComponent
   }
 ])
 
