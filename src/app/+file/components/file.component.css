@@ -16,3 +16,10 @@ table th{
 table td {
   height: 80%;
 }
+
+h3{
+  font-family: 'Ubuntu', Microsoft YaHei;
+  font-size: 20px;
+  font-weight: bolder;
+  text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 1px;
+}

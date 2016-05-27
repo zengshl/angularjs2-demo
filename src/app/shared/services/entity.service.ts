@@ -75,7 +75,6 @@ export class Folder {
   fileType :string;
   createTime:string;
   remark:string;
-  files: File[];
 }
 
 export class File {

@@ -14,7 +14,7 @@ var UtilService = (function () {
         //    });
         //});
         this.http = http;
-        this.url = 'http://192.168.1.104:9000/';
+        this.url = 'http://localhost:9000/';
     }
     ;
     //将构造器解析出来的存储于components中的json数据，转为原始数据流，并存储于_promise中，并返回；
@@ -100,19 +100,20 @@ var UtilService = (function () {
         var str = this.url + "law/doc/removeFolder/" + userId + "/" + folderId;
         return this.http.get(str);
     };
-    //更新文件夹
-    UtilService.prototype.updateFolder = function (folder) {
-        var str = this.url + '/law/doc/updataFolder';
-        return this.http.post(str, folder);
-    };
-    //更新文件
-    UtilService.prototype.updateFile = function (file) {
-        var str = this.url + '/law/doc/updataDocument';
-        return this.http.post(str, file);
-    };
+    ////更新文件夹
+    //updateFolder(folder:Folder){
+    //  var str = this.url + '/law/doc/updataFolder';
+    //  return this.http.post(str,folder)
+    //}
+    //
+    ////更新文件
+    //updateFile(file:File){
+    //  var str = this.url + '/law/doc/updataDocument';
+    //  return this.http.post(str,file)
+    //}
     //更新文件的文件夹id
     UtilService.prototype.updateFileFolder = function (data) {
-        var str = this.url + '/law/doc/updataDocumentWithFolderId';
+        var str = this.url + 'law/doc/updataDocumentWithFolderId';
         return this.http.post(str, data);
     };
     UtilService = __decorate([

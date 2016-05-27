@@ -32,16 +32,15 @@ export class FileComponent implements DoCheck {
       dragulaService.setOptions('bag', {
         revertOnSpill: true,
         moves: function (el, container, handle) {
-          return handle.className != 'drag item';  //其中term是class里面完整的类名，返回false时该指定对象无法拖拽
+          //console.log(el, container, handle);
+          return container.className !== 'item' ;  //其中term是class里面完整的类名，返回false时该指定对象无法拖拽
         }
       });
 
-      dragulaService.dropModel.subscribe((value) => {
-        this.onDropModel(value.slice(1));
-      });
-      dragulaService.removeModel.subscribe((value) => {
-        this.onRemoveModel(value.slice(1));
-      });
+    dragulaService.drop.subscribe((value) => {
+      this.onDrop(value.slice(1));
+    });
+
 
   }
 
@@ -54,28 +53,37 @@ export class FileComponent implements DoCheck {
   }
 
   //拖拽功能 2
+  private onDrop(args) {
+    let [el, target] = args;
 
-  private onDropModel(args) {
-    let [el, target, source] = args;
-    setTimeout(()=>{
       var fileId = jQuery(el).find('.fileId').text();
+
+    if(target.className === 'item'){
+      var folderId = jQuery(target).find('.folderId').text();
+      var data = '{"folderId":'+ folderId+ ', "docId":'+fileId+' }'
+      this._util.updateFileFolder(data).subscribe((res)=>{
+        this._util.getFile(0,this.user.id).subscribe((res)=>{
+          this.files = <File[]> res.json().data;
+        });
+      });
+    }else{
       var folderId = jQuery(target).parent().find('.folderId').text();
       var data = '{"folderId":'+ folderId+ ', "docId":'+fileId+' }'
       this._util.updateFileFolder(data).subscribe((res)=>{
         //console.log(res);
-        this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
+        //this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
+        console.log(fileId,"msg",folderId,this.myFiles);
+        //重新刷新两个文件夹列表
+        this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
+          this.myFiles = <File[]> res.json().data;
+        });
+        this._util.getFile(0,this.user.id).subscribe((res)=>{
+          this.files = <File[]> res.json().data;
+          //console.log(this.files);
+        });
       });
-      console.log(fileId,"msg",folderId,this.myFiles);
-      //重新刷新两个文件夹列表
-      this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
-        this.myFiles = <File[]> res.json().data;
-      });
-      this._util.getFile(0,this.user.id).subscribe((res)=>{
-        this.files = <File[]> res.json().data;
-        //console.log(this.files);
-      });
+    }
 
-    },1);
 
   }
   private onRemoveModel(args) {
@@ -117,6 +125,10 @@ export class FileComponent implements DoCheck {
     this.showMyFiles = true;
   }
 
+//test
+  bagFiles(e:any){
+    console.log(e);
+  }
 
 
 

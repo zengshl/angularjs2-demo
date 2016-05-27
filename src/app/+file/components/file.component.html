@@ -6,12 +6,13 @@
             <h3 style="color: white" >我的文件夹</h3>
           </div>
 
-          <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'myFiles'>
-            <div class="drag item" *ngFor = "let fd of folders" >
+          <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;">
+            <div class="item" *ngFor = "let fd of folders" [dragula]='"bag"'>
               <a class="ui tiny image" (click)="openFolder(fd)">
                 <img src="assets/images/fileimg.png">
               </a>
               <div class="content">
+                <div class="folderId" style="display: none">{{fd.id}}</div>
                 <div class="header">{{fd.fileName}}</div>
                 <div class="meta">
                   <span>{{fd.createTime}}</span>
@@ -33,9 +34,9 @@
     <div class="ui top attached button" style="background-color: lightskyblue" (click)="showMyFiles = !showMyFiles">
       <h3 style="color: white" >文件夹：{{myFolder.fileName}}（ 双击返回文件夹列表 ）</h3>
     </div>
-      <div class="ui bottom attached segment" style="padding: 20px 50px;min-height: 500px;_height:500px;">
+      <div class="ui bottom attached segment" style="padding: 10px 50px;min-height: 500px;_height:500px;">
         <div class="folderId" style="display: none">{{myFolder.id}}</div>
-        <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'myFiles'>
+        <div class="ui divided items" style="min-height: 500px;_height:500px;" [dragula]='"bag"'>
 
           <div class="item"  *ngFor = "let mf of myFiles">
             <a class="ui tiny image">
@@ -64,7 +65,7 @@
       <h3 style="color: white" >未归类的文件</h3>
     </div>
     <div class="folderId" style="display: none">0</div>
-    <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"' [dragulaModel]= 'files'>
+    <div class="ui divided items" style="padding-top: 20px;min-height: 500px;_height:500px;" [dragula]='"bag"'>
 
       <div class="item"  *ngFor = "let fl of files">
         <a class="ui tiny image">

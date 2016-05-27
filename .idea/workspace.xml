@@ -3,37 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="739ec793-d4c0-4184-9a7b-c99ec3db4aaa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+admin/components/admin.component.html" afterPath="$PROJECT_DIR$/src/app/+admin/components/admin.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+admin/components/admin.component.js" afterPath="$PROJECT_DIR$/src/app/+admin/components/admin.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+admin/components/admin.component.js.map" afterPath="$PROJECT_DIR$/src/app/+admin/components/admin.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+admin/components/admin.component.ts" afterPath="$PROJECT_DIR$/src/app/+admin/components/admin.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+demo/components/demo.component.css" afterPath="$PROJECT_DIR$/src/app/+demo/components/demo.component.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+demo/components/demo.component.html" afterPath="$PROJECT_DIR$/src/app/+demo/components/demo.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+demo/components/demo.component.js" afterPath="$PROJECT_DIR$/src/app/+demo/components/demo.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+demo/components/demo.component.js.map" afterPath="$PROJECT_DIR$/src/app/+demo/components/demo.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+demo/components/demo.component.ts" afterPath="$PROJECT_DIR$/src/app/+demo/components/demo.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.js" afterPath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.js.map" afterPath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.ts" afterPath="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.html" afterPath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.js" afterPath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.js.map" afterPath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.ts" afterPath="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.html" afterPath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.js" afterPath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.js.map" afterPath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.ts" afterPath="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/entity.service.js" afterPath="$PROJECT_DIR$/src/app/shared/services/entity.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+file/components/file.component.css" afterPath="$PROJECT_DIR$/src/app/+file/components/file.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+file/components/file.component.html" afterPath="$PROJECT_DIR$/src/app/+file/components/file.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+file/components/file.component.js" afterPath="$PROJECT_DIR$/src/app/+file/components/file.component.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+file/components/file.component.js.map" afterPath="$PROJECT_DIR$/src/app/+file/components/file.component.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/+file/components/file.component.ts" afterPath="$PROJECT_DIR$/src/app/+file/components/file.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/entity.service.js.map" afterPath="$PROJECT_DIR$/src/app/shared/services/entity.service.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/entity.service.ts" afterPath="$PROJECT_DIR$/src/app/shared/services/entity.service.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/util.service.js" afterPath="$PROJECT_DIR$/src/app/shared/services/util.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/util.service.js.map" afterPath="$PROJECT_DIR$/src/app/shared/services/util.service.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/shared/services/util.service.ts" afterPath="$PROJECT_DIR$/src/app/shared/services/util.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vendor.js" afterPath="$PROJECT_DIR$/src/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vendor.js.map" afterPath="$PROJECT_DIR$/src/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vendor.ts" afterPath="$PROJECT_DIR$/src/vendor.ts" />
     </list>
     <ignored path="angular2-webpack-starter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,16 +33,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="file.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="demo.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/+demo/components/demo.component.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,21 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/+demo/components/demo.component.html">
+      <file leaf-file-name="util.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/shared/services/util.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.071429">
-              <caret line="6" column="46" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="util.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/shared/services/util.service.ts">
+      <file leaf-file-name="demo.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/+demo/components/demo.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="116" column="3" selection-start-line="116" selection-start-column="3" selection-end-line="116" selection-end-column="3" />
+              <caret line="6" column="46" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -98,26 +67,26 @@
         <entry file="file://$PROJECT_DIR$/src/app/shared/services/entity.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
+              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.component.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="file.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32928944">
-              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state vertical-scroll-proportion="-6.285714">
+              <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -128,6 +97,26 @@
                 <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file.component.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7573657">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,7 +167,6 @@
         <option value="$PROJECT_DIR$/src/app/+admin/components/admin.component.ts" />
         <option value="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.html" />
         <option value="$PROJECT_DIR$/src/app/+sysuser/components/sysuser.ts" />
-        <option value="$PROJECT_DIR$/src/app/+file/components/file.component.css" />
         <option value="$PROJECT_DIR$/src/app/+frontpage/components/frontpage.component.ts" />
         <option value="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.html" />
         <option value="$PROJECT_DIR$/src/app/+navbar/components/navbar.component.ts" />
@@ -191,6 +179,7 @@
         <option value="$PROJECT_DIR$/src/app/shared/services/util.service.ts" />
         <option value="$PROJECT_DIR$/src/app/+file/components/file.component.ts" />
         <option value="$PROJECT_DIR$/src/app/+file/components/file.component.html" />
+        <option value="$PROJECT_DIR$/src/app/+file/components/file.component.css" />
       </list>
     </option>
   </component>
@@ -832,64 +821,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng2-dragula" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="angular2-webpack-starter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng2-dragula" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -971,8 +906,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1296" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1112,13 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="73.10226">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#41987#42310#1" expanded="false" />
-            <element signature="e#170725#171840#2" expanded="false" />
-            <element signature="e#172619#174742#2" expanded="false" />
-            <element signature="e#174889#177096#2" expanded="false" />
-            <element signature="e#177248#177639#2" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,7 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6048527">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1198,14 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.2391682">
           <caret line="68" column="18" selection-start-line="36" selection-start-column="10" selection-end-line="68" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.592721">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,7 +1162,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6785714">
           <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,7 +1169,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.031404957">
           <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1259,7 +1176,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,7 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1275,7 +1190,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.7900827">
           <caret line="87" column="35" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1299,7 +1213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1307,7 +1220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.2661157">
           <caret line="104" column="86" selection-start-line="104" selection-start-column="86" selection-end-line="104" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.9514732">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1323,7 +1234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12561983">
           <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1331,7 +1241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.28760332">
           <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1339,7 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43471074">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="48" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,14 +1255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74049586">
           <caret line="2963" column="0" selection-start-line="2963" selection-start-column="0" selection-end-line="2963" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/services/entity.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1369,7 +1269,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/+demo/components/demo.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.071429">
+        <state vertical-scroll-proportion="0.0">
           <caret line="6" column="46" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="46" />
           <folding />
         </state>
@@ -1378,7 +1278,15 @@
     <entry file="file://$PROJECT_DIR$/src/app/shared/services/util.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="116" column="3" selection-start-line="116" selection-start-column="3" selection-end-line="116" selection-end-column="3" />
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/services/entity.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1386,24 +1294,24 @@
     <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32928944">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        <state vertical-scroll-proportion="-6.285714">
+          <caret line="36" column="63" selection-start-line="36" selection-start-column="63" selection-end-line="36" selection-end-column="63" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -1414,6 +1322,14 @@
             <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/+file/components/file.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7573657">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,7 +6,7 @@ import {Folder,File} from "./entity.service";
  */
   @Injectable()
 export class UtilService  {
-  private url = 'http://192.168.1.104:9000/';
+  private url = 'http://localhost:9000/';
 
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；
@@ -99,20 +99,20 @@ export class UtilService  {
     var str = this.url + "law/doc/removeFolder/"+userId+"/"+folderId;
     return this.http.get(str);
   }
-  //更新文件夹
-  updateFolder(folder:Folder){
-    var str = this.url + '/law/doc/updataFolder';
-    return this.http.post(str,folder)
-  }
-
-  //更新文件
-  updateFile(file:File){
-    var str = this.url + '/law/doc/updataDocument';
-    return this.http.post(str,file)
-  }
+  ////更新文件夹
+  //updateFolder(folder:Folder){
+  //  var str = this.url + '/law/doc/updataFolder';
+  //  return this.http.post(str,folder)
+  //}
+  //
+  ////更新文件
+  //updateFile(file:File){
+  //  var str = this.url + '/law/doc/updataDocument';
+  //  return this.http.post(str,file)
+  //}
   //更新文件的文件夹id
   updateFileFolder(data:string){
-    var str = this.url + '/law/doc/updataDocumentWithFolderId';
+    var str = this.url + 'law/doc/updataDocumentWithFolderId';
     return this.http.post(str,data)
   }
 

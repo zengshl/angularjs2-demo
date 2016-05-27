@@ -21,14 +21,12 @@ var FileComponent = (function () {
         dragulaService.setOptions('bag', {
             revertOnSpill: true,
             moves: function (el, container, handle) {
-                return handle.className != 'drag item'; //其中term是class里面完整的类名，返回false时该指定对象无法拖拽
+                //console.log(el, container, handle);
+                return container.className !== 'item'; //其中term是class里面完整的类名，返回false时该指定对象无法拖拽
             }
         });
-        dragulaService.dropModel.subscribe(function (value) {
-            _this.onDropModel(value.slice(1));
-        });
-        dragulaService.removeModel.subscribe(function (value) {
-            _this.onRemoveModel(value.slice(1));
+        dragulaService.drop.subscribe(function (value) {
+            _this.onDrop(value.slice(1));
         });
     }
     FileComponent.prototype.ngDoCheck = function () {
@@ -38,27 +36,36 @@ var FileComponent = (function () {
         }
     };
     //拖拽功能 2
-    FileComponent.prototype.onDropModel = function (args) {
+    FileComponent.prototype.onDrop = function (args) {
         var _this = this;
-        var el = args[0], target = args[1], source = args[2];
-        setTimeout(function () {
-            var fileId = jQuery(el).find('.fileId').text();
+        var el = args[0], target = args[1];
+        var fileId = jQuery(el).find('.fileId').text();
+        if (target.className === 'item') {
+            var folderId = jQuery(target).find('.folderId').text();
+            var data = '{"folderId":' + folderId + ', "docId":' + fileId + ' }';
+            this._util.updateFileFolder(data).subscribe(function (res) {
+                _this._util.getFile(0, _this.user.id).subscribe(function (res) {
+                    _this.files = res.json().data;
+                });
+            });
+        }
+        else {
             var folderId = jQuery(target).parent().find('.folderId').text();
             var data = '{"folderId":' + folderId + ', "docId":' + fileId + ' }';
-            _this._util.updateFileFolder(data).subscribe(function (res) {
+            this._util.updateFileFolder(data).subscribe(function (res) {
                 //console.log(res);
-                _this.getFile(); //刷新文件列表（将原来的文件夹中的文件释放）
+                //this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
+                console.log(fileId, "msg", folderId, _this.myFiles);
+                //重新刷新两个文件夹列表
+                _this._util.getFile(_this.myFolder.id, _this.user.id).subscribe(function (res) {
+                    _this.myFiles = res.json().data;
+                });
+                _this._util.getFile(0, _this.user.id).subscribe(function (res) {
+                    _this.files = res.json().data;
+                    //console.log(this.files);
+                });
             });
-            console.log(fileId, "msg", folderId, _this.myFiles);
-            //重新刷新两个文件夹列表
-            _this._util.getFile(_this.myFolder.id, _this.user.id).subscribe(function (res) {
-                _this.myFiles = res.json().data;
-            });
-            _this._util.getFile(0, _this.user.id).subscribe(function (res) {
-                _this.files = res.json().data;
-                //console.log(this.files);
-            });
-        }, 1);
+        }
     };
     FileComponent.prototype.onRemoveModel = function (args) {
         var el = args[0], source = args[1];
@@ -96,6 +103,10 @@ var FileComponent = (function () {
             _this.myFiles = res.json().data;
         });
         this.showMyFiles = true;
+    };
+    //test
+    FileComponent.prototype.bagFiles = function (e) {
+        console.log(e);
     };
     FileComponent = __decorate([
         core_1.Component({
