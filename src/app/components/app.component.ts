@@ -32,7 +32,7 @@ import {AdminComponent} from "../+admin/index";
 })
 @RouteConfig([
   {
-    path: '/login',  //用这种方法，可以默认一个路由为开始路由
+    path: '/login/...',  //用这种方法，可以默认一个路由为开始路由
     name: 'Login',
     component: LoginComponent
   },

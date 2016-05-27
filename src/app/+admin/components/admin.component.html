@@ -8,7 +8,7 @@
     </a>
     <div class="active content">
       <a class="item" (click)="navSelf('./User')" ><i class="user icon"></i>用户管理</a>
-      <a class="item"><i class="student icon"></i>角色管理</a>
+      <a class="item" (click)="navSelf('./SysRole')"><i class="student icon"></i>角色管理</a>
     </div>
   </div>
 
@@ -32,8 +32,9 @@
     </a>
     <div class="content">
       <a class="item" (click)="navSelf('./Custmanager')"><i class="user icon"></i>客户管理</a>
-      <a class="item"><i class="student icon"></i>角色管理</a>
+      <a class="item" (click)="navSelf('./Folder')"><i class="folder open icon"></i>文件夹管理</a>
     </div>
+
   </div>
 
   <div class="item">

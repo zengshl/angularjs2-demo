@@ -101,7 +101,7 @@ var AppComponent = (function () {
         }),
         router_deprecated_1.RouteConfig([
             {
-                path: '/login',
+                path: '/login/...',
                 name: 'Login',
                 component: index_1.LoginComponent
             },

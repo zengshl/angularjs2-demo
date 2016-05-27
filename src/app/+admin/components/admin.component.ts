@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {AfterViewInit} from '@angular/core';
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {SysUserComponent} from '../../+sysuser/components/sysuser';
+import {SysRoleComponent} from "../../+sysrole/components/sysrole";
+import {DocumentComponent} from "../../+document/components/document";
+import {FolderComponent} from "../../+folder/components/folder";
 import {CustmanagerComponent} from '../../+custmanager/components/custmanager.component';
 import {FileComponent} from "../../+file/index";
 declare var jQuery:JQueryStatic;
@@ -33,6 +36,21 @@ declare var jQuery:JQueryStatic;
     path: '/file',  //用这种方法，可以默认一个路由为开始路由
     name: 'File',
     component: FileComponent
+  },
+  {
+    path: '/sysRole',  //角色管理路由
+    name: 'SysRole',
+    component: SysRoleComponent,
+  },
+  {
+    path: '/folder',  //文件夹管理路由
+    name: 'Folder',
+    component: FolderComponent,
+  },
+  {
+    path: '/document/:userId/:folderId',  //文件管理路由
+    name: 'Document',
+    component: DocumentComponent,
   }
 ])
 
