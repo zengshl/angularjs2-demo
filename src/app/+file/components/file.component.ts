@@ -1,4 +1,4 @@
-import {Component,  DoCheck,KeyValueDiffers} from '@angular/core';
+import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
 import {User,Folder,File} from "../../shared/index";
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
@@ -11,14 +11,16 @@ declare var jQuery:JQueryStatic;
   styles: [ require('app/+file/components/file.component.css') ],
   template: require('app/+file/components/file.component.html')
 })
-export class FileComponent implements DoCheck {
+export class FileComponent implements AfterViewInit, DoCheck {
   user:User;
   folders:Folder[];
   files:File[] = new Array<File>(); //这个必须要用，否则无法拖拽
   showMyFiles:boolean = false;
   myFolder: Folder;
   myFiles:File[] = new Array<File>();
-  bagFiles:File[] = new Array<File>();
+  showCreateFolder:boolean = false;
+  showModifyFolder:boolean = false;
+  forModify:string; //用于修改
 
   constructor(private _util:UtilService,private dragulaService:DragulaService,private differs: KeyValueDiffers){
     this.user = new User();
@@ -43,21 +45,21 @@ export class FileComponent implements DoCheck {
 
 
   }
+  ngAfterViewInit() {
 
+  };
 
   public ngDoCheck():any {  //藏检查
-    var changes = this.differ.diff(this.myFiles);
-    if(changes){
-      console.log("change",this.myFiles);
-    }
+    //var changes = this.differ.diff(this.myFiles);
+    //if(changes){
+    //  console.log("change",this.myFiles);
+    //}
   }
 
   //拖拽功能 2
   private onDrop(args) {
     let [el, target] = args;
-
       var fileId = jQuery(el).find('.fileId').text();
-
     if(target.className === 'item'){
       var folderId = jQuery(target).find('.folderId').text();
       var data = '{"folderId":'+ folderId+ ', "docId":'+fileId+' }'
@@ -83,13 +85,8 @@ export class FileComponent implements DoCheck {
         });
       });
     }
-
-
   }
-  private onRemoveModel(args) {
-    let [el, source] = args;
 
-  }
 
 
 
@@ -125,9 +122,38 @@ export class FileComponent implements DoCheck {
     this.showMyFiles = true;
   }
 
-//test
-  bagFiles(e:any){
-    console.log(e);
+//新建文件夹
+  create(fn: string){
+    console.log(fn);
+    if(fn){ //不为空的话
+      this._util.createFolder(fn,this.user.id).subscribe((res)=>{
+        this.showCreateFolder = false;
+        this.getFolder(); //刷新文件夹列表
+
+      });
+
+    }else{
+      alert("不能为空");
+    }
+  }
+//修改文件夹
+  modifyFolder(fd:Folder){
+    this.myFolder = fd;
+    this.forModify = this.myFolder.fileName;
+    this.showModifyFolder = true;
+
+  }
+  modify(forModify:string){
+    if(forModify){
+      this.myFolder.fileName = forModify;
+      this._util.updateFolder(JSON.stringify(this.myFolder)).subscribe((res)=>{
+        this.showModifyFolder = false;
+        this.getFolder(); //刷新文件夹列表
+
+      });
+    }else{
+      alert("不能为空");
+    }
   }
 
 

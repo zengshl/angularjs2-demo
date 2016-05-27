@@ -1,6 +1,5 @@
 import  {Http} from '@angular/http';
 import  {Injectable} from '@angular/core';
-import {Folder,File} from "./entity.service";
 /**
  * Created by Ping on 2016/5/10.
  */
@@ -101,17 +100,17 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/doc/removeFolder/"+userId+"/"+folderId;
     return this.http.get(str);
   }
-  ////更新文件夹
-  //updateFolder(folder:Folder){
-  //  var str = this.url + '/law/doc/updataFolder';
-  //  return this.http.post(str,folder)
-  //}
-  //
-  ////更新文件
-  //updateFile(file:File){
-  //  var str = this.url + '/law/doc/updataDocument';
-  //  return this.http.post(str,file)
-  //}
+  //更新文件夹
+  updateFolder(data:string){
+    var str = this.url + 'law/doc/updataFolder';
+    return this.http.post(str,data);
+  }
+
+  //更新文件
+  updateFile(data:string){
+    var str = this.url + 'law/doc/updataDocument';
+    return this.http.post(str,data);
+  }
   //更新文件的文件夹id
   updateFileFolder(data:string){
     var str = this.url + 'law/doc/updataDocumentWithFolderId';
@@ -177,5 +176,13 @@ private url = 'http://localhost:9000/';
   getUser(data:string){
     var str = this.url + "law/user/pagelist";
     return this.http.post(str,data);
+  }
+  //创建文件夹
+  createFolder(folderName:string,userId:number){
+    var str = this.url + "law/doc/createFolde";
+    var data = '{"folderName":"'+folderName+'", "userId":'+userId+'}'
+    return this.http.post(str,data);
+
+
   }
 };
