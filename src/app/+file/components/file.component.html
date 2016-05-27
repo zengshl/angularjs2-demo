@@ -1,6 +1,7 @@
 <div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:50px;background-color:ghostwhite">
 <div class="ui stackable relaxed grid">
-    <div class="eight wide column" *ngIf = "!showMyFiles">
+  <!--我的文件夹列表-->
+    <div class="eight wide column" *ngIf = "!showMyFiles && !showCreateFolder && !showModifyFolder">
       <div class="ui segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
           <div class="ui top attached label" style="background-color: lightskyblue">
             <h3 style="color: white" >我的文件夹</h3>
@@ -21,13 +22,51 @@
                   <p></p>
                 </div>
                 <div class="extra">
-                  <a>修改</a>   <a (click)="deleteFolder(fd)">删除</a>
+                  <a (click)="modifyFolder(fd)">修改</a>   <a (click)="deleteFolder(fd)">删除</a>
                 </div>
               </div>
             </div>
+            <a class="blue-btn" style="margin:5px auto;" (click)="showCreateFolder = !showCreateFolder">创建文件夹</a>
+
           </div>
         </div>
     </div>
+
+
+  <!--创建文件夹-->
+  <div class="eight wide column"  *ngIf = "showCreateFolder">
+    <div class="ui top attached button" style="background-color: lightskyblue" (click)="showCreateFolder = !showCreateFolder">
+      <h3 style="color: white" >创建文件夹 （ 双击返回文件夹列表 ）</h3>
+    </div>
+    <div class="ui bottom attached form segment" style="padding: 50px 80px;min-height: 500px;_height:500px;">
+      <div class="field">
+        <div class="ui right labeled left icon input">
+          <i class="tags icon"></i>
+          <input placeholder="输入文件夹名..." type="text" #fn>
+          <a class="ui teal tag label" (click)="create(fn.value)">
+            创建
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--修改文件夹-->
+  <div class="eight wide column"  *ngIf = "showModifyFolder">
+    <div class="ui top attached button" style="background-color: lightskyblue" (click)="showModifyFolder = !showModifyFolder">
+      <h3 style="color: white" >修改文件夹 （ 双击返回文件夹列表 ）</h3>
+    </div>
+    <div class="ui bottom attached form segment" style="padding: 50px 80px;min-height: 500px;_height:500px;">
+      <div class="field">
+        <div class="ui right labeled left icon input">
+          <i class="tags icon"></i>
+          <input placeholder="输入文件夹名..." type="text" [(ngModel)]="forModify">
+          <a class="ui teal tag label" (click)="modify(forModify)">
+            修改
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <!--点击打开指定的文件夹-->
   <div class="eight wide column"  *ngIf = "showMyFiles">
@@ -59,6 +98,8 @@
         </div>
       </div>
     </div>
+
+  <!-- 未归类文档-->
   <div class="eight wide column">
   <div class="ui  segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
     <div class="ui top attached label" style="background-color: lightskyblue">
@@ -92,3 +133,4 @@
 
 </div>
 </div>
+

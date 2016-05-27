@@ -11,7 +11,8 @@ var FileComponent = (function () {
         this.files = new Array(); //这个必须要用，否则无法拖拽
         this.showMyFiles = false;
         this.myFiles = new Array();
-        this.bagFiles = new Array();
+        this.showCreateFolder = false;
+        this.showModifyFolder = false;
         this.user = new index_2.User();
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.differ = differs.find([]).create(null);
@@ -29,11 +30,14 @@ var FileComponent = (function () {
             _this.onDrop(value.slice(1));
         });
     }
+    FileComponent.prototype.ngAfterViewInit = function () {
+    };
+    ;
     FileComponent.prototype.ngDoCheck = function () {
-        var changes = this.differ.diff(this.myFiles);
-        if (changes) {
-            console.log("change", this.myFiles);
-        }
+        //var changes = this.differ.diff(this.myFiles);
+        //if(changes){
+        //  console.log("change",this.myFiles);
+        //}
     };
     //拖拽功能 2
     FileComponent.prototype.onDrop = function (args) {
@@ -66,9 +70,6 @@ var FileComponent = (function () {
                 });
             });
         }
-    };
-    FileComponent.prototype.onRemoveModel = function (args) {
-        var el = args[0], source = args[1];
     };
     //获取该用户的文件夹
     FileComponent.prototype.getFolder = function () {
@@ -104,9 +105,38 @@ var FileComponent = (function () {
         });
         this.showMyFiles = true;
     };
-    //test
-    FileComponent.prototype.bagFiles = function (e) {
-        console.log(e);
+    //新建文件夹
+    FileComponent.prototype.create = function (fn) {
+        var _this = this;
+        console.log(fn);
+        if (fn) {
+            this._util.createFolder(fn, this.user.id).subscribe(function (res) {
+                _this.showCreateFolder = false;
+                _this.getFolder(); //刷新文件夹列表
+            });
+        }
+        else {
+            alert("不能为空");
+        }
+    };
+    //修改文件夹
+    FileComponent.prototype.modifyFolder = function (fd) {
+        this.myFolder = fd;
+        this.forModify = this.myFolder.fileName;
+        this.showModifyFolder = true;
+    };
+    FileComponent.prototype.modify = function (forModify) {
+        var _this = this;
+        if (forModify) {
+            this.myFolder.fileName = forModify;
+            this._util.updateFolder(JSON.stringify(this.myFolder)).subscribe(function (res) {
+                _this.showModifyFolder = false;
+                _this.getFolder(); //刷新文件夹列表
+            });
+        }
+        else {
+            alert("不能为空");
+        }
     };
     FileComponent = __decorate([
         core_1.Component({
