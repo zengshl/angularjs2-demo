@@ -1,6 +1,6 @@
 <div class="ui large stackable top fixed menu" id="top-menu">
 
-  <a class="item" (click)="navSelf('./Shouye')"> <i class="large home icon"></i>首页</a>
+  <a class="item"  href="#"> <i class="large home icon"></i>首页</a>
   <a class="item" (click)="navSelf('./Advice')"><i class="large mail outline icon"></i>法律咨询</a>
   <a class="item"><i class="large find icon"></i>找律师</a>
   <a class="item"><i class="large trophy icon"></i>服务保障</a>
@@ -19,7 +19,7 @@
       <i class="large user icon"></i>
       <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
       <div class="menu">
-        <a class="item" >个人中心</a>
+        <a class="item" (click)="navSelf('./Personal')" >个人中心</a>
         <a class="item" (click)="navSelf('./File')">我的文件管理</a>
         <a class="item" (click)="navSelf('./Blank')">我的免费法律咨询</a>
         <a class="item">我的VIP法律咨询</a>
