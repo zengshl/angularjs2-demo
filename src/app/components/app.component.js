@@ -96,7 +96,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'sd-app',
-            templateUrl: 'app/components/app.component.html',
+            template: require('app/components/app.component.html'),
             directives: [router_deprecated_1.ROUTER_DIRECTIVES]
         }),
         router_deprecated_1.RouteConfig([
