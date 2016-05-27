@@ -8,6 +8,7 @@ var router_deprecated_1 = require('@angular/router-deprecated');
 var index_4 = require("../../+blank/index");
 var index_5 = require("../../+advice/index");
 var index_6 = require("../../+file/index");
+var personal_component_1 = require("../../+personal/components/personal.component");
 var FrontPageComponent = (function () {
     function FrontPageComponent(router) {
         this.router = router;
@@ -48,6 +49,11 @@ var FrontPageComponent = (function () {
                 path: '/advice',
                 name: 'Advice',
                 component: index_5.AdviceComponent
+            },
+            {
+                path: '/personal',
+                name: 'Personal',
+                component: personal_component_1.PersonalComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
