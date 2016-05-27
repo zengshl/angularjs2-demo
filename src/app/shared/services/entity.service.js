@@ -66,4 +66,51 @@ var File = (function () {
     return File;
 })();
 exports.File = File;
+var Role = (function () {
+    function Role() {
+        this.id = 0;
+        this.roleName = "";
+        this.roleNo = "";
+        this.roleDes = "";
+        this.flag = false;
+    }
+    return Role;
+})();
+exports.Role = Role;
+var Menu = (function () {
+    function Menu() {
+        this.id = 0;
+        this.menuName = "";
+        this.menuNo = "";
+        this.menuDes = "";
+        this.menuPath = "";
+        this.menuValue = "";
+        this.routerName = "";
+        this.pid = 0;
+        this.flag = false;
+    }
+    return Menu;
+})();
+exports.Menu = Menu;
+var Power = (function () {
+    function Power() {
+        this.id = 0;
+        this.roleId = 0;
+        this.powerId = 0;
+        this.powerType = "";
+        this.remark = "";
+    }
+    return Power;
+})();
+exports.Power = Power;
+var UserRole = (function () {
+    function UserRole() {
+        this.id = 0;
+        this.userId = 0;
+        this.roleId = 0;
+        this.remark = "";
+    }
+    return UserRole;
+})();
+exports.UserRole = UserRole;
 //# sourceMappingURL=entity.service.js.map

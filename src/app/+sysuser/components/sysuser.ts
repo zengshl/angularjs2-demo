@@ -4,9 +4,10 @@
 import {Component} from '@angular/core';
 import {AfterViewInit} from '@angular/core';
 import {DataTableDirectives} from 'angular2-datatable/datatable';
+import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 import {UtilService} from '../../shared/index';
 import {Response} from '@angular/http';
-import {PageData,Admin,UserBase,UserMember,UserContact} from '../../shared/services/entity.service';
+import {PageData,Admin,UserBase,UserRole,Role} from '../../shared/services/entity.service';
 import {FORM_DIRECTIVES} from '@angular/common';
 import {AddSysUserComponent} from "../../+addsysuser/index";
 declare var jQuery:JQueryStatic;
@@ -27,7 +28,13 @@ export class SysUserComponent implements AfterViewInit{
       alert('11')
 
     });
-
+    //jQuery('#datetimepicker').datetimepicker({
+    //  format: 'yyyy-mm-dd',
+    //  language:  'zh-CN',
+    //  autoclose: true,
+    //  minView:1,
+    //  todayBtn: true
+    //});
 
   }
   private data: any ;
@@ -35,12 +42,20 @@ export class SysUserComponent implements AfterViewInit{
   private tableShow:boolean = true
   curUser:Admin;
   userBase:UserBase;
-  secondPSD:string;
+
+  userRole: Array<UserRole>;  //发送到后台的角色数组数据
+
+  arrayRole:Array<Array<Role>>;//用来决定每行有几列角色数据
+
+  secondPSD:string = "";
   isInsert:boolean = false;
   accountSearch:string = '';
   phoneSearch:string = '';
   modalContent:string = '';
   modalHeader:string = '';
+
+  private getRole : Array<Role>;//所有的角色
+  private getUserRole : any;//某个用户获取的角色
 
 
   constructor(private _util:UtilService){
@@ -48,17 +63,41 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 10;
+    this.pdata.iDisplayLength = 2;
     this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
     //实例化用户对象
     this.curUser = new Admin();
     this.userBase = new UserBase();
+    this.getRole = new Array<Role>();
+    this.userRole = new Array<UserRole>();
+    this.arrayRole = new Array<Array<Role>>();
 
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
     });
 
+    //获取全部角色
+    _util.getAllRole().subscribe((res:Response)=>{
+      this.getRole = res.json();
+      let roleArr = new  Array<Role>();
+      //将角色重构成每行4列
+      for(var i=0;i<this.getRole.length;i++){
+        if(i%3 == 0 && i == this.getRole.length-1){
+          roleArr = new  Array<Role>();
+          roleArr.push(this.getRole[i]);
+          this.arrayRole.push(roleArr)
+        }else if(i%3 == 0){
+          roleArr = new  Array<Role>();
+          roleArr.push(this.getRole[i]);
+        }else if(i%3 == 2 || i == this.getRole.length-1){
+          roleArr.push(this.getRole[i]);
+          this.arrayRole.push(roleArr)
+        }else{
+          roleArr.push(this.getRole[i]);
+        }
+      }
+    });
   }
 
 
@@ -84,10 +123,28 @@ export class SysUserComponent implements AfterViewInit{
   updataData(user:any){
     this._util.getAdminInfo(JSON.stringify(user)).subscribe((res:Response)=>{
       let getdata = res.json();
-      console.log(this.curUser+'，'+getdata.data)
+
       this.curUser = getdata.data;
       for(var i=0;i<getdata.base.length;i++){
         this.userBase = getdata.base[i]
+      }
+
+      this.getUserRole = getdata.role;
+
+      //有权限的角色打勾
+      for(var j=0;j<this.getRole.length;j++){
+        this.getRole[j].flag = false;
+        for(var i=0;i<this.getUserRole.length;i++){
+          if(this.getUserRole[i].id == this.getRole[j].id){
+            //该菜单选中
+            this.getRole[j].flag = true;
+            //将已有的权限保存，以便更新时使用
+            let userrole = new UserRole();
+            userrole.userId = this.curUser.id;
+            userrole.roleId = this.getRole[j].id;
+            this.userRole.push(userrole);
+          }
+        }
       }
       this.tableShow = false;
       this.isInsert = false;
@@ -98,13 +155,15 @@ export class SysUserComponent implements AfterViewInit{
   backTo(){
     this.curUser = new Admin();
     this.userBase = new UserBase();
+    this.userRole = new Array<UserRole>();
     this.tableShow = true;
   }
 
 
   //更新用户信息
   updataAdmin(){
-    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase};
+    //var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase};
+    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
     this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
       let data = res.json();
       this.updataTable();
@@ -116,6 +175,10 @@ export class SysUserComponent implements AfterViewInit{
   resetAdmin(){
     this.curUser = new Admin();
     this.userBase = new UserBase();
+    this.userRole = new Array<UserRole>();
+    //for(var j=0;j<this.getRole.length;j++){
+    //  this.getRole[j].flag = false;
+    //}
   }
 
   //查询
@@ -132,12 +195,12 @@ export class SysUserComponent implements AfterViewInit{
     this.curUser = new Admin();
 
     this.userBase = new UserBase();
-
   }
   //新增用户信息
   insertAdmin(){
-    if(this.curUser.password != '' && this.curUser.password != this.secondPSD){
-      var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase};
+    if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
+      //var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase};
+      var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
       this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
         let data = res.json();
         this.updataTable();
@@ -149,18 +212,26 @@ export class SysUserComponent implements AfterViewInit{
 
   //表格刷新
   updataTable(){
-      this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch};
-      this._util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+    this.userRole = new Array<UserRole>();
+    this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch};
+    this._util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
-        this.tableShow = true;
+      this.tableShow = true;
     });
   }
-  ////弹窗
-  //modelshow(head:string,content:string){
-  //  this.modalHeader = head;
-  //  this.modalContent = content;
-  //    setTimeout(function(){
-  //    jQuery('#insert').modal('show');
-  //  },1);
-  //}
+  //角色选中与取消
+  onSelect(event:any,role:any){
+    if(event.checked){
+      let addrole = new UserRole();
+      addrole.userId = this.curUser.id;
+      addrole.roleId = role.id;
+      this.userRole.push(addrole);
+    }else{
+      for(var i=0;i<this.userRole.length;i++){
+        if(this.userRole[i].roleId == role.id){
+          this.userRole.splice(i,1);
+        }
+      }
+    }
+  }
 }

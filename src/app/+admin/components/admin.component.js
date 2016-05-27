@@ -1,6 +1,9 @@
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var sysuser_1 = require('../../+sysuser/components/sysuser');
+var sysrole_1 = require("../../+sysrole/components/sysrole");
+var document_1 = require("../../+document/components/document");
+var folder_1 = require("../../+folder/components/folder");
 var custmanager_component_1 = require('../../+custmanager/components/custmanager.component');
 var index_1 = require("../../+file/index");
 var AdminComponent = (function () {
@@ -48,6 +51,21 @@ var AdminComponent = (function () {
                 path: '/file',
                 name: 'File',
                 component: index_1.FileComponent
+            },
+            {
+                path: '/sysRole',
+                name: 'SysRole',
+                component: sysrole_1.SysRoleComponent,
+            },
+            {
+                path: '/folder',
+                name: 'Folder',
+                component: folder_1.FolderComponent,
+            },
+            {
+                path: '/document/:userId/:folderId',
+                name: 'Document',
+                component: document_1.DocumentComponent,
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

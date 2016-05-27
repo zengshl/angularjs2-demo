@@ -88,3 +88,38 @@ export class File {
   createTime:string;
   remark:string;
 }
+
+export class Role{
+  id:number = 0;
+  roleName:string = "";
+  roleNo:string = "";
+  roleDes:string = "";
+  flag:boolean = false;
+}
+
+export class Menu{
+  id:number = 0;
+  menuName:string = "";
+  menuNo:string = "";
+  menuDes:string = "";
+  menuPath:string = "";
+  menuValue:string = "";
+  routerName:string = "";
+  pid:number = 0;
+  flag:boolean = false;
+}
+
+export class Power{
+  id : number = 0;
+  roleId : number = 0;
+  powerId : number = 0;
+  powerType : string = "";
+  remark : string = "";
+}
+
+export class UserRole{
+  id : number = 0;
+  userId : number = 0;
+  roleId : number = 0;
+  remark : string = "";
+}
