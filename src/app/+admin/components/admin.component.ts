@@ -5,6 +5,8 @@ import {SysUserComponent} from '../../+sysuser/components/sysuser';
 import {SysRoleComponent} from "../../+sysrole/components/sysrole";
 import {DocumentComponent} from "../../+document/components/document";
 import {FolderComponent} from "../../+folder/components/folder";
+import {SysMoudleComponent} from "../../+sysmoudle/components/sysmoudle";
+import {SysDocTemplateComponent} from "../../+sysdoctemplate/components/sysdoctemplate";
 import {CustmanagerComponent} from '../../+custmanager/components/custmanager.component';
 import {FileComponent} from "../../+file/index";
 declare var jQuery:JQueryStatic;
@@ -51,6 +53,16 @@ declare var jQuery:JQueryStatic;
     path: '/document/:userId/:folderId',  //文件管理路由
     name: 'Document',
     component: DocumentComponent,
+  },
+  {
+    path: '/moudle', //模板管理路由
+    name: 'Moudle',
+    component: SysMoudleComponent,
+  },
+  {
+    path: '/template/:typeId', //文件模板管理路由
+    name: 'Template',
+    component: SysDocTemplateComponent,
   }
 ])
 
