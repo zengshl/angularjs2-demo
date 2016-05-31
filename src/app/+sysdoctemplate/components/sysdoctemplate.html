@@ -29,6 +29,7 @@
           </div>
         </div>
         <div class="ten wide field">
+          <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加资源模板</button>
           <button class="right floated ui teal icon button" (click)="back()"><i class="reply icon"></i>返回</button>
         </div>
       </div>
@@ -44,6 +45,7 @@
         <th>          文档内容          </th>
         <th>          创建时间          </th>
         <th>          文档类型ID        </th>
+        <th>             操作           </th>
       </tr>
       </thead>
       <tbody>
@@ -54,6 +56,11 @@
         <td>{{item.resouceContext}}</td>
         <td>{{item.createTime}}</td>
         <td>{{item.docTypeId}}</td>
+        <td style="text-align: center">
+          <a (click)="deleteData(item)">删除</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a (click)="updataData(item)">修改</a>
+        </td>
       </tr>
       </tbody>
       <tfoot *ngIf="mf.data.page>0">
@@ -65,4 +72,62 @@
       </tfoot>
     </table>
   </div>
+
+  <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow">
+    <div class="ui segment" style="padding: 20px 50px;">
+      <div class="ui top attached label" style="background-color: lightskyblue">
+        <h3 style="color: white">资源模板信息</h3>
+      </div>
+      <div class="field" style="padding-top: 20px;">
+        <div class="three fields">
+          <div class="field">
+            <label>文档名称  </label>
+            <input placeholder="文档名称" [(ngModel)]="curDoc.resourceName" type="text">
+          </div>
+          <div class="field">
+            <label>文档路径  </label>
+            <input  placeholder="文档路径" [(ngModel)]="curDoc.resourcePath" type="text">
+          </div>
+          <div class="field">
+            <label>文档标题 </label>
+            <input  placeholder="文档标题" [(ngModel)]="curDoc.resourceTitle" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <div class="three fields">
+          <div class="field">
+            <label>文档内容  </label>
+            <input  placeholder="文档内容"  [(ngModel)]="curDoc.resouceContext" type="text">
+          </div>
+          <div class="field">
+            <label>创建时间  </label>
+            <input  placeholder="创建时间" [(ngModel)]="curDoc.createTime" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="three fields">
+      <div class="field">
+        <div class="ui right floated button" tabindex="0" (click)="backTo()"><i class="reply icon"></i>返回</div>
+      </div>
+      <div class="field">
+        <button type="submit" class="ui teal labeled icon submit button" (click)="resetDoc()">
+          重置
+          <i class="refresh icon"></i>
+        </button></div>
+      <div class="field" *ngIf="isInsert">
+        <button type="submit" class="ui teal labeled icon submit button" (click)="insertDoc()">
+          添加资源模板
+          <i class="checkmark box icon"></i>
+        </button>
+      </div>
+      <div class="field" *ngIf="!isInsert">
+        <button type="submit" class="ui teal labeled icon submit button" (click)="updataDoc()">
+          更新资源模板
+          <i class="check circle outline icon"></i>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

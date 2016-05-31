@@ -35,6 +35,7 @@ export class SysMoudleComponent implements AfterViewInit{
 
 
   isInsert:boolean = false;
+  isAttrInsert:boolean = false;
   addAttr:boolean = false;
   nameSearch:string = "";
 
@@ -153,6 +154,7 @@ export class SysMoudleComponent implements AfterViewInit{
   insertType(){
     this.addAttr = true;
     this.addType = new Doctype();
+    this.isAttrInsert = true;
   }
   //返回模板信息界面
   goback(){
@@ -173,7 +175,21 @@ export class SysMoudleComponent implements AfterViewInit{
 
   //点击每一行表格
   clickItem(item:any){
-    console.log(item);
+    //console.log(item);
     this.router.parent.navigate(['Template',{"typeId":item.id}]);
+  }
+
+  updataAttr(item:any){
+    this.addAttr = true;
+    this.addType = item;
+    this.isAttrInsert = false;
+  }
+
+  updataAttrData(){
+    //this.types.push(this.addType);
+    this.attrData.data = this.types;
+    this.attrData.page = 1;
+    this.attrData.size = this.types.length;
+    this.addAttr = false;
   }
 }

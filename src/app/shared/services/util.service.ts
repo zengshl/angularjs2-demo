@@ -216,4 +216,24 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/moudle/getDocTemplate";
     return this.http.post(str,data);
   }
+  //后台文件资源模板
+  deleteTemplate(data:string){
+    var str = this.url + "law/template/deleteTemplate";
+    return this.http.post(str,data);
+  }
+
+  getTemplateInfo(data:string){
+    var str = this.url + "law/template/getTemplateInfo";
+    return this.http.post(str,data);
+  }
+
+  updataTemplateInfo(data:string){
+    var str = this.url + "law/template/updataTemplateInfo";
+    return this.http.post(str,data);
+  }
+
+  insertTemplateInfo(data:string){
+    var str = this.url + "law/template/insertTemplateInfo";
+    return this.http.post(str,data);
+  }
 };
