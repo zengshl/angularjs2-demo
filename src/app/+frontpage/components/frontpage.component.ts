@@ -11,10 +11,11 @@ import {AdviceComponent} from "../../+advice/index";
 import {AdminComponent} from "../../+admin/index";
 import {FileComponent} from "../../+file/index";
 import {PersonalComponent} from "../../+personal/components/personal.component";
+import {ChatComponent} from "../../+chat/components/chat.component";
 
 @Component({
   selector: 'front-page',
-  directives:[ROUTER_DIRECTIVES,NavbarComponent,HeaderComponent],
+  directives:[ROUTER_DIRECTIVES,NavbarComponent,HeaderComponent,ChatComponent],
   styles: [ require('app/+frontpage/components/frontpage.component.css') ],
   template: require('app/+frontpage/components/frontpage.component.html')
 })
