@@ -87,6 +87,7 @@ export class File {
   docType :string;
   createTime:string;
   remark:string;
+  templateId:number;
 }
 
 export class Role{
