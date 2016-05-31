@@ -23,13 +23,13 @@ export class UserLoginComponent implements AfterViewInit {
   }
   message:string; //提示信息
   error:boolean; //是否有错
-  phone:string; //手机号输入框
+  account:string; //手机号输入框
   password:string; //密码输入框
   user:User;
   constructor(private router:Router,private http:Http,private _util:UtilService) {
     this.user = new User();
     //记住密码
-    this.phone = localStorage.getItem('phone');
+    this.account = localStorage.getItem('account');
     this.password = localStorage.getItem('password');
     //如果用户已经登陆，自动跳转
     if(sessionStorage.getItem('user')) {
@@ -61,7 +61,7 @@ export class UserLoginComponent implements AfterViewInit {
       }else if(data.status === '1'){ //登陆成功
         sessionStorage.setItem('user', JSON.stringify(data.reuslt));
         if (form.rmbCtrl)  { //是否记住密码
-          localStorage.setItem('phone', form.accountCtrl);
+          localStorage.setItem('account', form.accountCtrl);
           localStorage.setItem('password', form.pwdCtrl);
         } else  {
           localStorage.clear();

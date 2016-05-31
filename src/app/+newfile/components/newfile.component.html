@@ -1,0 +1,197 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100px;padding: 40px;background-color: #e9e9e5">
+    <h2>创建法律文档</h2>
+  </div>
+
+  <div class="row" style="min-height: 400px;_height:400px;padding:20px 50px 10px 50px;background-color: #F2F2F0">
+    <div *ngIf = "showList">
+      <!-- 标题 -->
+      <div class="row" style="margin:20px 0 20px 2px; ">
+        <h3>免费创建新的文档</h3>
+      </div>
+      <!-- 文件列表 -->
+      <div class="row">
+        <div class="ui fluid vertical menu">
+          <a class="item" (click)="showList = !showList;showPro = !showPro">
+            <h4 class="ui header">保密协议</h4>
+            <p>一种法律协议，也叫非公开协议。用于保护利益双方的商业机密文件免受泄露。</p>
+          </a>
+          <a class="item">
+            <h4 class="ui header">Coupons</h4>
+            <p>Check out our collection of coupons</p>
+          </a>
+          <a class="item">
+            <h4 class="ui header">Rebates</h4>
+            <p>Visit our rebate forum for information on claiming rebates</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- 保密协议简介 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;" *ngIf = "showPro">
+      <h3>保密协议简介</h3>
+      <hr>
+      <p style="text-indent : 20px;line-height:200%">
+        在洽谈商业合作、进行投融资安排或着手准备并购时，一方往往需要向另一方披露专属于目标公司或项目安排的信息，
+        这些信息往往都是具有商业价值的具体信息，包括目标公司或项目的财务信息、销售数据、客户清单、
+        产品和技术方面的参数等，在此情况下，披露方应与接收方签订保密协议，就信息的保管与处理作出约定。
+      </p>
+      <br><br><br>
+      <div class="ui grid">
+        <div class="four wide column">
+          <i class="reply icon"></i>
+          <a (click)="showList = !showList;showPro = !showPro">返回文档列表</a>
+        </div>
+        <div class="right floated two wide column">
+          <a class="button button-glow button-border button-rounded button-primary"
+             (click)="showPro = !showPro;showQ1 = !showQ1">开始</a>
+        </div>
+      </div>
+    </div>
+    <!-- 前置问题1 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;" *ngIf = "showQ1">
+      <h3>贵司是否会向对方披露关于公司或项目的信息？ </h3>
+      <hr>
+      <br><br>
+      <div class="ui four column grid">
+        <div class="column"></div>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ1 = !showQ1;discloseToB = true;">
+          <i class="big green checkmark icon"></i>是
+        </a>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ1 = !showQ1;discloseToB = false;">
+          <i class="big red remove icon"></i>否
+        </a>
+        <div class="column"></div>
+      </div>
+      <br><br><br>
+      <div class="row" style="margin-left:20px; ">
+        <i class="reply icon"></i>
+        <a (click)="showPro = !showPro;showQ1 = !showQ1">返回上一步</a>
+      </div>
+    </div>
+    <!-- 前置问题2 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;" *ngIf ="showQ2">
+      <h3>贵司是否会接收对方披露的信息？ </h3>
+      <hr>
+      <br><br>
+      <div class="ui four column grid">
+        <div class="column"></div>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ3 = !showQ3;discloseToA = true;">
+          <i class="big green checkmark icon"></i>是
+        </a>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ3 = !showQ3;discloseToA = false;">
+          <i class="big red remove icon"></i>否
+        </a>
+        <div class="column"></div>
+      </div>
+      <br><br><br>
+      <div class="row" style="margin-left:20px; ">
+        <i class="reply icon"></i>
+        <a (click)="showQ2 = !showQ2;showQ1 = !showQ1">返回上一步</a>
+      </div>
+    </div>
+    <!-- 前置问题3 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;" *ngIf = "showQ3">
+      <h3>签订协议双方是企业还是自然人？ </h3>
+      <hr>
+      <br><br>
+      <div class="ui four column grid">
+        <div class="column"></div>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ3 = !showQ3;showQ41 = !showQ41">
+          <i class="large green university icon"></i>企业
+        </a>
+        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ3 = !showQ3;showQ4 = !showQ4">
+          <i class="large green male icon"></i>自然人
+        </a>
+        <div class="column"></div>
+      </div>
+      <br><br><br>
+      <div class="row" style="margin-left:20px; ">
+        <i class="reply icon"></i>
+        <a (click)="showQ2 = !showQ2;showQ3 = !showQ3">返回上一步</a>
+      </div>
+    </div>
+    <!-- 前置问题4 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px" *ngIf="showQ4">
+      <h3>请输入甲乙双方自然人的姓名： </h3>
+      <hr>
+      <form class="ui form" style="padding:10px 200px;" (ngSubmit)="showQ5 = !showQ5;showQ4 = !showQ4">
+        <div class="field">
+          <label>甲方姓氏</label>
+          <input name="last-name" placeholder="甲方姓氏" type="text" [(ngModel)]="aLastName" required>
+        </div>
+        <div class="field">
+          <label>甲方名字</label>
+          <input name="first-name" placeholder="甲方名字" type="text" [(ngModel)]="aFirstName" required>
+        </div>
+        <hr>
+        <div class="field">
+          <label>乙方姓氏</label>
+          <input name="last-name" placeholder="乙方姓氏" type="text" [(ngModel)]="bLastName" required>
+        </div>
+        <div class="field">
+          <label>乙方名字</label>
+          <input name="first-name" placeholder="乙方名字" type="text" [(ngModel)]="bFirstName" required>
+        </div>
+        <br><br>
+        <div class="two fields">
+          <div class="field">
+            <i class="reply icon"></i>
+            <a (click)="showPro = !showPro;showQ4 = !showQ4">从头开始填写</a>
+          </div>
+          <div class="field">
+            <button class="ui teal right floated  button" type="submit">确定</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- 前置问题4.1 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px" *ngIf="showQ41">
+      <h3>请输入双方企业的名称： </h3>
+      <hr>
+      <form class="ui form" style="padding:10px 200px;" (ngSubmit)="showQ5 = !showQ5;showQ41 = !showQ41">
+        <div class="field">
+          <label>甲方公司名称</label>
+          <input name="first-name" placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required>
+        </div>
+        <div class="field">
+          <label>乙方公司名称</label>
+          <input name="first-name" placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required>
+        </div>
+        <br><br>
+        <div class="two fields">
+          <div class="field">
+            <i class="reply icon"></i>
+            <a (click)="showPro = !showPro;showQ41 = !showQ41">从头开始填写</a>
+          </div>
+          <div class="field">
+            <button class="ui teal right floated  button" type="submit">确定</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <!-- 总结 5 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;" *ngIf = "showQ5">
+      <h3>核对信息是否正确</h3>
+      <hr>
+      <p style="text-indent : 20px;line-height:200%">
+        {{discloseToB}},{{discloseToA}},{{aLastName}},{{aFirstName}},{{bLastName}},{{bFirstName}},
+        {{aCompanyName}},{{bCompanyName}}
+      </p>
+      <br><br><br>
+      <div class="ui grid">
+        <div class="four wide column">
+          <i class="reply icon"></i>
+          <a (click)="showQ5 = !showQ5;showPro = !showPro">返回文档列表</a>
+        </div>
+        <div class="right floated two wide column">
+          <a class="button button-glow button-border button-rounded button-primary"
+             (click)="showPro = !showPro;showQ5 = !showQ5">创建</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
