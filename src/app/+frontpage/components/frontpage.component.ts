@@ -11,6 +11,7 @@ import {AdviceComponent} from "../../+advice/index";
 import {AdminComponent} from "../../+admin/index";
 import {FileComponent} from "../../+file/index";
 import {PersonalComponent} from "../../+personal/components/personal.component";
+import {NewFileComponent} from "../../+newfile/index";
 
 @Component({
   selector: 'front-page',
@@ -31,9 +32,14 @@ import {PersonalComponent} from "../../+personal/components/personal.component";
     useAsDefault: true
   },
   {
-    path: '/file',
+    path: '/file', //我的文件
     name: 'File',
     component: FileComponent
+  },
+  {
+    path: '/newfile', //创建法律文档
+    name: 'NewFile',
+    component: NewFileComponent
   },
   {
     path: '/advice',
