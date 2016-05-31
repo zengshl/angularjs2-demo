@@ -123,3 +123,31 @@ export class UserRole{
   roleId : number = 0;
   remark : string = "";
 }
+
+export class Moudle{
+  id : number = 0;
+  moudleName : string = "";
+  createTime : string = "";
+  remark : string = "";
+}
+
+export class Doctype{
+  id : number = 0;
+  preId : number = 0;
+  typeName : string = "";
+  moudleId : number = 0;
+  status : string = "";
+  remark : string = "";
+}
+
+export class DocTemplate{
+  id: number = 0;
+  typeId: number = 0;
+  resourceName : string = "";
+  resourcePath : string = "";
+  resourceTitle : string = "";
+  resouceContext : string = "";
+  createTime : string = "";
+  docTypeId: number = 0;
+}
+
