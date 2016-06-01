@@ -59,7 +59,7 @@ var FileComponent = (function () {
             this._util.updateFileFolder(data).subscribe(function (res) {
                 //console.log(res);
                 //this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
-                console.log(fileId, "msg", folderId, _this.myFiles);
+                // console.log(fileId,"msg",folderId,this.myFiles);
                 //重新刷新两个文件夹列表
                 _this._util.getFile(_this.myFolder.id, _this.user.id).subscribe(function (res) {
                     _this.myFiles = res.json().data;
@@ -89,7 +89,7 @@ var FileComponent = (function () {
     //删除文件夹
     FileComponent.prototype.deleteFolder = function (fd) {
         var _this = this;
-        console.log(fd);
+        //console.log(fd);
         this._util.deleteFolder(fd.id, fd.userId).subscribe(function (res) {
             // console.log(res);
             _this.getFolder(); //刷新文件夹列表
@@ -108,7 +108,7 @@ var FileComponent = (function () {
     //新建文件夹
     FileComponent.prototype.create = function (fn) {
         var _this = this;
-        console.log(fn);
+        //console.log(fn);
         if (fn) {
             this._util.createFolder(fn, this.user.id).subscribe(function (res) {
                 _this.showCreateFolder = false;

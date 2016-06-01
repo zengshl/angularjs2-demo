@@ -1,0 +1,199 @@
+      <div class="row" style="background-color: #F5F5F5;padding-left:6%; height: 40px;" >
+        <div class="ui breadcrumb">
+          <a class="section">主页</a>
+          <i class="right angle icon divider"></i>
+          <a class="section">模块管理</a>
+          <i class="right angle icon divider"></i>
+          <div class="active section">模板管理</div>
+        </div>
+      </div>
+      <div  class="row" style=" margin-left: 5%; margin-right: 1%; padding-top: 30px;" *ngIf="!addAttr">
+        <div *ngIf="tableShow" class="ui fluid container">
+          <form class="ui form" *ngIf="tableShow">
+            <div class="fields">
+              <div class="six wide field">
+                <div class="ui icon input">
+                  <input placeholder="模板名称..." type="text" [(ngModel)]="nameSearch">
+                  <i class="search link icon" (click)="filter()"></i>
+                </div>
+              </div>
+              <div class="ten wide field">
+                <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加模板</button>
+              </div>
+            </div>
+          </form>
+
+          <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="3"
+                 (fpage) = "getPageData($event)">
+            <thead>
+            <tr>
+              <th>                模块名称           </th>
+              <th>                创建时间           </th>
+              <th>                备注               </th>
+              <th>                操作               </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data.data" (mouseenter)="mouseenter($event.target,item)" >
+              <td>{{item.moudleName}}</td>
+              <td>{{item.createTime}}</td>
+              <td>{{item.remark}}</td>
+              <td style="text-align: center">
+                <a (click)="deleteData(item)">删除</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a (click)="updataData(item)">修改</a>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot *ngIf="mf.data.page>0">
+            <tr>
+              <th colspan="6">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              </th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!--<add_sys_moudle></add_sys_moudle>-->
+        <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow">
+          <div class="ui segment" style="padding: 20px 50px;">
+            <div class="ui top attached label" style="background-color: lightskyblue">
+              <h3 style="color: white" >模板信息</h3>
+            </div>
+            <div class="field" style="padding-top: 20px;">
+              <div class="three fields">
+                <div class="field">
+                  <label>模板名称  </label>
+                  <input  placeholder="模板名称" type="text" [(ngModel)]="curMoudle.moudleName" required>
+                </div>
+                <div class="field" >
+                  <label>创建时间  </label>
+                  <input  placeholder="创建时间" [(ngModel)]="curMoudle.createTime" type="text" required>
+                </div>
+                <div class="field" >
+                  <label>备注  </label>
+                  <input  placeholder="备注" [(ngModel)]="curMoudle.remark" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui segment" style="padding: 20px 50px;">
+            <div class="ui top attached label" style="background-color: lightskyblue">
+              <h3 style="color: white" >文档类型</h3>
+            </div>
+            <div class="field" style="padding-top: 20px;">
+              <button class="right floated ui teal icon button" (click)="insertType()"><i class="plus icon"></i>添加类型</button>
+              <table class="ui teal celled table" [mfData]="attrData" #mf="mfDataTable" [mfRowsOnPage]="3" (fpage) = "getPageData($event)">
+
+                <thead>
+                <tr>
+                  <th>                父亲ID               </th>
+                  <th>                类型名称             </th>
+                  <th>                文档模块ID               </th>
+                  <th>                状态               </th>
+                  <th>                备注信息               </th>
+                  <th>                操作                   </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of mf.data.data" (click)="clickItem(item)" (mouseenter)="mouseenter($event.target,item)" >
+                  <td>{{item.preId}}</td>
+                  <td>{{item.typeName}}</td>
+                  <td>{{item.moudleId}}</td>
+                  <td>{{item.status}}</td>
+                  <td>{{item.remark}}</td>
+                  <td style="text-align: center">
+                    <!--<a (click)="deleteData(item)">删除</a>-->
+                    <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <a (click)="updataAttr(item)">修改</a>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot *ngIf="mf.data.page>0">
+                <tr>
+                  <th colspan="6">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                  </th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+          <br><br>
+          <div class="three fields">
+            <div class="field">
+              <div class="ui right floated button" tabindex="0" (click)="backTo()"><i class="reply icon"></i>返回</div>
+            </div>
+            <div class="field">
+              <button type="submit" class="ui teal labeled icon submit button" (click)="resetMoudle()">
+                重置
+                <i class="refresh icon"></i>
+              </button></div>
+            <div class="field" *ngIf="isInsert">
+              <button type="submit" class="ui teal labeled icon submit button" (click)="insertMoudle()">
+                添加模板
+                <i class="checkmark box icon"></i>
+              </button>
+            </div>
+            <div class="field" *ngIf="!isInsert">
+              <button type="submit" class="ui teal labeled icon submit button" (click)="updataMoudle()">
+                更新模板
+                <i class="check circle outline icon"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--添加模板属性-->
+      <form class="ui form" style=" margin-left: 5%; margin-right: 1%; padding-top: 30px;" *ngIf="addAttr">
+        <div class="ui segment" style="padding: 20px 50px;">
+          <div class="ui top attached label" style="background-color: lightskyblue">
+            <h3 style="color: white" >文档类型信息</h3>
+          </div>
+          <div class="field" style="padding-top: 20px;">
+            <div class="three fields">
+              <div class="field">
+                <label>类型名称  </label>
+                <input  placeholder="类型名称" type="text" [(ngModel)]="addType.typeName" required>
+              </div>
+              <div class="field">
+                <label>父亲ID  </label>
+                <input  placeholder="父亲ID" [(ngModel)]="addType.preId" type="text" required>
+              </div>
+              <div class="field">
+                <label>状态  </label>
+                <input  placeholder="状态" [(ngModel)]="addType.status" type="text">
+              </div>
+            </div>
+            <div class="three fields">
+              <div class="field" >
+                <label>备注信息  </label>
+                <input  placeholder="备注信息" [(ngModel)]="addType.remark" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="three fields">
+          <div class="field">
+            <div class="ui right floated button" tabindex="0" (click)="goback()"><i class="reply icon"></i>返回</div>
+          </div>
+          <div class="field">
+            <button type="submit" class="ui teal labeled icon submit button" (click)="resetAttr()">
+              重置
+              <i class="refresh icon"></i>
+            </button></div>
+          <div class="field">
+            <button type="submit" class="ui teal labeled icon submit button" *ngIf="!isAttrInsert" (click)="updataAttrData()">
+              更新模板属性
+              <i class="refresh icon"></i>
+            </button></div>
+
+          <div class="field" >
+            <button type="submit" class="ui teal labeled icon submit button" *ngIf="isAttrInsert" (click)="insertAttrData()">
+              添加模板属性
+              <i class="checkmark box icon"></i>
+            </button>
+          </div>
+        </div>
+      </form>

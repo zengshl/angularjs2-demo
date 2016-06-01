@@ -1,11 +1,9 @@
 .button.button-rounded{
-  height: 200px;
-  padding-top: 80px;
-  font-size: 30px;
   font-weight: bold;
-  font-family: 'Ubuntu', LiSu;
+  font-family: 'Ubuntu', Microsoft YaHei;
   color: white;
   text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 2px;
+  margin: 30px auto;
 
 }
 
@@ -24,5 +22,3 @@ h3{
   text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 1px;
 }
 
-.blue-btn { background: url(assets/images/blue-btn.png) no-repeat 0 -75px; position: relative; bottom: -30px; z-index: 100; width: 198px; height: 70px; text-align: center; line-height: 56px; display: block; color: #fff; text-shadow: rgba(0,0,0,0.5) 0px 1px 1px; font-size: 16px; font-family: 'Ubuntu', sans-serif; font-weight: 700;   }
-.blue-btn:hover  { text-decoration: none; background-position: 0 0px; }

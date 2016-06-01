@@ -27,7 +27,7 @@ import {AdminComponent} from "../+admin/index";
 
 @Component({
   selector: 'sd-app',
-  templateUrl: 'app/components/app.component.html',
+  template: require('app/components/app.component.html'),
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([

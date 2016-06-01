@@ -21,6 +21,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
   showCreateFolder:boolean = false;
   showModifyFolder:boolean = false;
   forModify:string; //用于修改
+  differ:any;
 
   constructor(private _util:UtilService,private dragulaService:DragulaService,private differs: KeyValueDiffers){
     this.user = new User();
@@ -74,7 +75,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
       this._util.updateFileFolder(data).subscribe((res)=>{
         //console.log(res);
         //this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
-        console.log(fileId,"msg",folderId,this.myFiles);
+       // console.log(fileId,"msg",folderId,this.myFiles);
         //重新刷新两个文件夹列表
         this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
           this.myFiles = <File[]> res.json().data;
@@ -106,7 +107,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
 
   //删除文件夹
   deleteFolder(fd:Folder){
-    console.log(fd);
+    //console.log(fd);
     this._util.deleteFolder(fd.id,fd.userId).subscribe((res)=>{
      // console.log(res);
       this.getFolder(); //刷新文件夹列表
@@ -115,16 +116,18 @@ export class FileComponent implements AfterViewInit, DoCheck {
   }
   //打开文件夹
   openFolder(fd:Folder){
+    this.myFiles = []; //保证打开文件夹后，没有先前的文件夹的文件列表
     this.myFolder = fd;
     this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
       this.myFiles = <File[]> res.json().data;
+      this.showMyFiles = true;
     });
-    this.showMyFiles = true;
+
   }
 
 //新建文件夹
   create(fn: string){
-    console.log(fn);
+    //console.log(fn);
     if(fn){ //不为空的话
       this._util.createFolder(fn,this.user.id).subscribe((res)=>{
         this.showCreateFolder = false;

@@ -11,8 +11,7 @@ import {AdviceComponent} from "../../+advice/index";
 import {AdminComponent} from "../../+admin/index";
 import {FileComponent} from "../../+file/index";
 import {PersonalComponent} from "../../+personal/components/personal.component";
-import {ChatComponent} from "../../+chat/components/chat.component";
-
+import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} from "../../+chat/components/chat.component";
 @Component({
   selector: 'front-page',
   directives:[ROUTER_DIRECTIVES,NavbarComponent,HeaderComponent,ChatComponent],
@@ -32,9 +31,14 @@ import {ChatComponent} from "../../+chat/components/chat.component";
     useAsDefault: true
   },
   {
-    path: '/file',
+    path: '/file', //我的文件
     name: 'File',
     component: FileComponent
+  },
+  {
+    path: '/newfile', //创建法律文档
+    name: 'NewFile',
+    component: NewFileComponent
   },
   {
     path: '/advice',

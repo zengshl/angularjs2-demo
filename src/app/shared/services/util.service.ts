@@ -185,4 +185,55 @@ private url = 'http://localhost:9000/';
 
 
   }
+
+  //后台模板部分
+  getMoudle(data:string){
+    var str = this.url + "law/moudle/pageList";
+    return this.http.post(str,data);
+  }
+
+  deleteMoudle(data:string){
+    var str = this.url + "law/moudle/moudleDelect";
+    return this.http.post(str,data);
+  }
+
+  getMoudleInfo(data:string){
+    var str = this.url + "law/moudle/getInfo";
+    return this.http.post(str,data);
+  }
+
+  updataMoudleInfo(data:string){
+    var str = this.url + "law/moudle/updataInfo";
+    return this.http.post(str,data);
+  }
+
+  insertMoudleInfo(data:string){
+    var str = this.url + "law/moudle/insertInfo";
+    return this.http.post(str,data);
+  }
+
+  getDocTemplate(data:string){
+    var str = this.url + "law/moudle/getDocTemplate";
+    return this.http.post(str,data);
+  }
+  //后台文件资源模板
+  deleteTemplate(data:string){
+    var str = this.url + "law/template/deleteTemplate";
+    return this.http.post(str,data);
+  }
+
+  getTemplateInfo(data:string){
+    var str = this.url + "law/template/getTemplateInfo";
+    return this.http.post(str,data);
+  }
+
+  updataTemplateInfo(data:string){
+    var str = this.url + "law/template/updataTemplateInfo";
+    return this.http.post(str,data);
+  }
+
+  insertTemplateInfo(data:string){
+    var str = this.url + "law/template/insertTemplateInfo";
+    return this.http.post(str,data);
+  }
 };

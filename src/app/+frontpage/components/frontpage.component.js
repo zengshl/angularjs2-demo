@@ -9,6 +9,7 @@ var index_4 = require("../../+blank/index");
 var index_5 = require("../../+advice/index");
 var index_6 = require("../../+file/index");
 var personal_component_1 = require("../../+personal/components/personal.component");
+var chat_component_1 = require("../../+chat/components/chat.component");
 var FrontPageComponent = (function () {
     function FrontPageComponent(router) {
         this.router = router;
@@ -24,7 +25,7 @@ var FrontPageComponent = (function () {
     FrontPageComponent = __decorate([
         core_1.Component({
             selector: 'front-page',
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, index_1.NavbarComponent, index_2.HeaderComponent],
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, index_1.NavbarComponent, index_2.HeaderComponent, chat_component_1.ChatComponent],
             styles: [require('app/+frontpage/components/frontpage.component.css')],
             template: require('app/+frontpage/components/frontpage.component.html')
         }),
