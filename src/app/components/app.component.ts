@@ -9,6 +9,7 @@ import {MainComponent} from "../+main/index";
 import {ModifyPasswordComponent} from "../+modifypassword/components/modifypwd.component";
 import {FrontPageComponent} from "../+frontpage/index";
 import {DemoComponent} from "../+demo/index";
+import {AdminLoginComponent} from '../+adminlogin/index';
 declare var jQuery:JQueryStatic;
 
 //import {servicesInjectables} from '../+chat/ts/services/services';
@@ -61,7 +62,13 @@ import {AdminComponent} from "../+admin/index";
     path: '/admin/...',
     name: 'Admin',
     component: AdminComponent
+  },
+  {
+    path: '/adminlogin',
+    name: 'AdminLogin',
+    component: AdminLoginComponent
   }
+
 ])
 export class AppComponent {
 

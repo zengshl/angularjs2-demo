@@ -149,7 +149,6 @@ export class DocTemplate{
   resourceTitle : string = "";
   resouceContext : string = "";
   createTime : string = "";
-  docTypeId: string = "";
 }
 
 export class ConfidentAgreement{
