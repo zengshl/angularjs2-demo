@@ -2,16 +2,16 @@
  * Created by Ping on 2016/5/10.
  */
 export class User {
-  id:number;
-  account:string;
-  phone:string;
-  password:string;
-  email:string;
-  userName:string;
-  status:string;
-  address:string;
-  createTime:string;
-  remark:string;
+  id:number = 0;
+  account:string = "";
+  phone:string = "";
+  password:string = "";
+  email:string = "";
+  userName:string = "";
+  status:string = "";
+  address:string = "";
+  createTime:string = "";
+  remark:string = "";
 }
 //对象必须赋初值，否则scala后台转对象时会报错
 export class Admin {
@@ -27,12 +27,12 @@ export class Admin {
 
 export class PageData {
   data:any;
-  page: number;
-  size: number;
-  total :number;
+  page:number = 0;
+  size:number = 0;
+  total :number = 0;
   searchData:any;
-  iDisplayStart:number;
-  iDisplayLength:number;
+  iDisplayStart:number = 0;
+  iDisplayLength:number = 0;
 }
 
 export class UserBase {
@@ -48,45 +48,45 @@ export class UserBase {
 
 
 export class UserMember {
-  id:number;
-  userId: number;
-  memberGrade: number;
-  remark :string;
-  description:string;
-  status:string;
-  createTime:string;
-  expireTime:string;
+  id:number = 0;
+  userId:number = 0;
+  memberGrade:number = 0;
+  remark :string = "";
+  description:string = "";
+  status:string = "";
+  createTime:string = "";
+  expireTime:string = "";
 }
 
 export class UserContact {
-  id:number;
-  userId: number;
-  remark: number;
-  contactPhone :string;
-  contactName:string;
-  createTime:string;
-  lastContactTime:string;
+  id:number = 0;
+  userId:number = 0;
+  remark:number = 0;
+  contactPhone :string = "";
+  contactName:string = "";
+  createTime:string = "";
+  lastContactTime:string = "";
 }
 
 export class Folder {
-  id:number;
-  userId: number;
-  fileName: string;
-  fileType :string;
-  createTime:string;
-  remark:string;
+  id:number = 0;
+  userId:number = 0;
+  fileName:string = "";
+  fileType :string = "";
+  createTime:string = "";
+  remark:string = "";
 }
 
 export class File {
-  id:number;
-  userId: number;
-  folderId: number;
-  docName :string;
-  docContext :string;
-  docPath :string;
-  docType :string;
-  createTime:string;
-  remark:string;
+  id:number = 0;
+  userId:number = 0;
+  folderId:number = 0;
+  docName :string = "";
+  docContext :string = "";
+  docPath :string = "";
+  docType :string = "";
+  createTime:string = "";
+  remark:string = "";
 }
 
 export class Role{
@@ -151,3 +151,39 @@ export class DocTemplate{
   docTypeId: number = 0;
 }
 
+export class ConfidentAgreement{
+  id:number = 0;
+  mouldId:number = 0;
+  mouldName : string = "Confidentiallity Agreement";
+  version :number = 0;
+  organizationType:string = "";
+  aName :string = "";
+  aIdNo : string ;
+  aAdress :string = "";
+  bName :string = "";
+  bIdNo : string ;
+  bAdress :string = "";
+  projectName:string = "";
+  confDefination:string = "";
+  contractPeriod:number = 0;
+  secrecy:number = 0;
+  aContactName:string = "";
+  aContactPhone:string = "";
+  aContactEmail:string = "";
+  aContactFax:string = "";
+  aContactAdress:string = "";
+  bContactName:string = "";
+  bContactPhone:string = "";
+  bContactEmail:string = "";
+  bContactFax:string = "";
+  bContactAdress:string = "";
+  recievers:string = "";
+  dispute:number = 0;
+  liability:number = 0;
+  aSiger:string = "";
+  bSiger:string = "";
+  userId: number = 0;
+  createTime:string = "";
+  remark:string = "";
+
+}
