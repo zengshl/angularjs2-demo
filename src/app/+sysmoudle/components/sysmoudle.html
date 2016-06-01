@@ -104,9 +104,9 @@
                   <td>{{item.status}}</td>
                   <td>{{item.remark}}</td>
                   <td style="text-align: center">
-                    <a (click)="deleteData(item)">删除</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a (click)="updataData(item)">修改</a>
+                    <!--<a (click)="deleteData(item)">删除</a>-->
+                    <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <a (click)="updataAttr(item)">修改</a>
                   </td>
                 </tr>
                 </tbody>
@@ -138,7 +138,7 @@
             </div>
             <div class="field" *ngIf="!isInsert">
               <button type="submit" class="ui teal labeled icon submit button" (click)="updataMoudle()">
-                更新用户
+                更新模板
                 <i class="check circle outline icon"></i>
               </button>
             </div>
@@ -157,11 +157,11 @@
                 <label>类型名称  </label>
                 <input  placeholder="类型名称" type="text" [(ngModel)]="addType.typeName" required>
               </div>
-              <div class="field" *ngIf="isInsert">
+              <div class="field">
                 <label>父亲ID  </label>
                 <input  placeholder="父亲ID" [(ngModel)]="addType.preId" type="text" required>
               </div>
-              <div class="field" *ngIf="isInsert">
+              <div class="field">
                 <label>状态  </label>
                 <input  placeholder="状态" [(ngModel)]="addType.status" type="text">
               </div>
@@ -183,8 +183,14 @@
               重置
               <i class="refresh icon"></i>
             </button></div>
+          <div class="field">
+            <button type="submit" class="ui teal labeled icon submit button" *ngIf="!isAttrInsert" (click)="updataAttrData()">
+              更新模板属性
+              <i class="refresh icon"></i>
+            </button></div>
+
           <div class="field" >
-            <button type="submit" class="ui teal labeled icon submit button" (click)="insertAttrData()">
+            <button type="submit" class="ui teal labeled icon submit button" *ngIf="isAttrInsert" (click)="insertAttrData()">
               添加模板属性
               <i class="checkmark box icon"></i>
             </button>

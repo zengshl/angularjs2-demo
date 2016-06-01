@@ -85,4 +85,7 @@ export class AdminComponent implements AfterViewInit {
     this.router.navigate([name]);
   };
 
+  navFile(){
+    this.router.navigate(['Document',{"userId":"0","folderId":"0"},]);
+  }
 }

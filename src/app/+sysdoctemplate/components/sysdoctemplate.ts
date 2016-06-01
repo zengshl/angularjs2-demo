@@ -32,7 +32,9 @@ export class SysDocTemplateComponent implements AfterViewInit{
   isInsert:boolean = false;
   nameSearch:string = "";
   pathSearch:string = "";
-  typeId = "";
+  typeId:number = 0;
+
+  private curDoc :DocTemplate;
 
   constructor(private _util:UtilService,private rooteParmas:RouteParams,private router:Router){
     //实例化分页对象
@@ -43,7 +45,9 @@ export class SysDocTemplateComponent implements AfterViewInit{
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 0;
     this.pdata.iDisplayLength = 10;
-    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId};
+
+    this.curDoc = new DocTemplate();
+    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId+""};
     _util.getDocTemplate(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
 
@@ -52,7 +56,7 @@ export class SysDocTemplateComponent implements AfterViewInit{
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId};
+    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId+""};
     this._util.getDocTemplate(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
     });
@@ -65,7 +69,7 @@ export class SysDocTemplateComponent implements AfterViewInit{
 
   //表格刷新
   updataTable(){
-    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId};
+    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId+""};
     this._util.getDocTemplate(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
       this.tableShow = true;
@@ -74,5 +78,61 @@ export class SysDocTemplateComponent implements AfterViewInit{
 
   back(){
     this.router.parent.navigate(['Moudle']);
+  }
+//跳转到新增界面
+  insert(){
+    this.isInsert = true;
+    this.tableShow = false;
+    this.curDoc = new DocTemplate();
+  }
+
+  //新增资源模板信息
+  insertDoc(){
+      this.curDoc.typeId = this.typeId;
+      var data = {'isInsert':this.isInsert,'temp':this.curDoc};
+      this._util.insertTemplateInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        let data = res.json();
+        this.updataTable();
+      });
+  }
+
+  //重置表单
+  resetDoc(){
+    this.curDoc = new DocTemplate();
+  }
+
+  //更新资源模板信息
+  updataDoc(){
+    var data = {'isInsert':this.isInsert,'temp':this.curDoc};
+    this._util.updataTemplateInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+      let data = res.json();
+      this.updataTable();
+
+    });
+  }
+
+  //获取详细信息
+  updataData(user:any){
+    this._util.getTemplateInfo(JSON.stringify(user)).subscribe((res:Response)=>{
+      let getdata = res.json();
+      this.curDoc = getdata.data;
+      this.tableShow = false;
+      this.isInsert = false;
+    });
+  }
+
+  //删除资源模板信息
+  deleteData(temp:any){
+    this._util.deleteTemplate(JSON.stringify(temp)).subscribe((res:Response)=>{
+
+      let getdata = res.json();
+      this.updataTable();
+    });
+  }
+
+  //返回列表界面
+  backTo(){
+    this.curDoc = new DocTemplate();
+    this.tableShow = true;
   }
 }

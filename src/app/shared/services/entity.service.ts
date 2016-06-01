@@ -87,6 +87,7 @@ export class File {
   docType :string = "";
   createTime:string = "";
   remark:string = "";
+  templateId:number;
 }
 
 export class Role{
@@ -148,7 +149,7 @@ export class DocTemplate{
   resourceTitle : string = "";
   resouceContext : string = "";
   createTime : string = "";
-  docTypeId: number = 0;
+  docTypeId: string = "";
 }
 
 export class ConfidentAgreement{
