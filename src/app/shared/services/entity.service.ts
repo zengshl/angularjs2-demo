@@ -149,7 +149,6 @@ export class DocTemplate{
   resourceTitle : string = "";
   resouceContext : string = "";
   createTime : string = "";
-  docTypeId: string = "";
 }
 
 export class ConfidentAgreement{
@@ -160,10 +159,10 @@ export class ConfidentAgreement{
   organizationType:string = "";
   aName :string = "";
   aIdNo : string ;
-  aAdress :string = "";
+  aAddress :string = "";
   bName :string = "";
   bIdNo : string ;
-  bAdress :string = "";
+  bAddress :string = "";
   projectName:string = "";
   confDefination:string = "";
   contractPeriod:number = 0;
@@ -172,12 +171,12 @@ export class ConfidentAgreement{
   aContactPhone:string = "";
   aContactEmail:string = "";
   aContactFax:string = "";
-  aContactAdress:string = "";
+  aContactAddress:string = "";
   bContactName:string = "";
   bContactPhone:string = "";
   bContactEmail:string = "";
   bContactFax:string = "";
-  bContactAdress:string = "";
+  bContactAddress:string = "";
   recievers:string = "";
   dispute:number = 0;
   liability:number = 0;
@@ -188,3 +187,10 @@ export class ConfidentAgreement{
   remark:string = "";
 
 }
+
+export class CheckBox{
+  flag:boolean = false;
+  value:string ="";
+}
+
+

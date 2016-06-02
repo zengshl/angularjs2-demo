@@ -1,0 +1,46 @@
+[
+  { "flag":false,
+    "value":"背景资料"
+  },
+  { "flag":false,
+    "value":"商业计划"
+  },
+  {
+    "flag": false,
+    "value": "财务数据"
+  },
+  { "flag":false,
+    "value":"技术参数"
+  },
+  {
+    "flag": false,
+    "value": "客户信息"
+  },
+  {
+    "flag": false,
+    "value": "专有技术"
+  }, {
+  "flag": false,
+  "value": "法律文件"
+},
+  {
+    "flag": false,
+    "value": "研究成果"
+  },
+  {
+    "flag": false,
+    "value": "图纸"
+  },
+  {
+    "flag": false,
+    "value": "照片"
+  },
+  {
+    "flag": false,
+    "value": "草图"
+  },
+  {
+    "flag": false,
+    "value": "设计或性能说明书等资料和信息"
+  }
+]

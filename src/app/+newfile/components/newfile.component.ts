@@ -1,9 +1,13 @@
 import {Component,AfterViewInit } from '@angular/core';
-import {ConfidentAgreement} from "../../shared/index";
+import {ConfidentAgreement,UtilService,Moudle,Doctype} from "../../shared/index";
+import {CheckBox} from "../../shared/services/entity.service";
+import  {FORM_DIRECTIVES} from '@angular/common';
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'newfile-box',
+  providers: [UtilService],
+  directives:[FORM_DIRECTIVES],
   styles: [ require('app/+newfile/components/newfile.component.css') ],
   template: require('app/+newfile/components/newfile.component.html')
 })
@@ -25,16 +29,6 @@ export class NewFileComponent implements AfterViewInit {
     showQ9:boolean = false;
     showQ10:boolean = false;
 
-constructor(){
-  if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
-    this.showList = false;
-    this.showQ6 = true;
-    this.step1 = 'completed';
-    this.step2 = 'active';
-    this.step3 = 'disabled';
-  }
-}
-
   //问题的数据
   agreement: ConfidentAgreement = new ConfidentAgreement();
   business:boolean = false; //是否是企业 / 个人
@@ -47,27 +41,54 @@ constructor(){
   conclusion:string; //总结信息
   aIdNo:string;
   bIdNo:string;
-  test:string ="";
+  confinfo:CheckBox[]; //保密信息列表
+  confreciever:CheckBox[]; //保密人员列表
+  dispute:boolean = true; //争议版本切换
+  liability:boolean = true;
+  moulds:Array<Moudle> = new Array<Moudle>();
+  docType:Array<Doctype> = new Array<Doctype>();
+  mds:Moudle;
+
   //步骤
   step1:string = 'active';
   step2:string = 'disabled';
   step3:string = 'disabled';
 
-
-  ngAfterViewInit():any {
-    var str:string ="";
-    jQuery("#dropdown").dropdown({
-      allowAdditions: true,
-      onChange: function(value, text, $selectedItem) {
-        str = value.reduce(function(x,y){
-          return x+"、"+y;
-        });
-        console.log(str);
-        sessionStorage.setItem("data",str);
-      }
+  constructor(private _util:UtilService){
+    //获取保密信息定义列表
+    _util.getConfinfo().subscribe((res)=>{
+      this.confinfo = <CheckBox[]> res.json();
     });
+    //获取保密人员列表
+    _util.getConfreciever().subscribe((res)=>{
+      this.confreciever = <CheckBox[]> res.json();
+    });
+    //获取文件模板列表
+    _util.getMould().subscribe((res)=>{
+      this.moulds = <Moudle[]>res.json();
+      //console.log(this.moulds);
+    });
+    //if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
+    //  this.showList = false;
+    //  this.showQ6 = true;
+    //  this.step1 = 'completed';
+    //  this.step2 = 'active';
+    //  this.step3 = 'disabled';
+    //}
   }
 
+  ngAfterViewInit():any {
+    //jQuery(".ui.checkbox").checkbox();
+  }
+
+//获取docType
+  getDocType(moudleId:number):Doctype[]{
+    this._util.getDoctype(moudleId).subscribe((res)=>{
+       this.docType = <Doctype[]>res.json();
+    });
+    console.log(this.docType);
+    return this.docType;
+  }
 
 //返回重新填写
   back(){
@@ -125,20 +146,81 @@ constructor(){
     this.step3 = 'disabled';
     sessionStorage.setItem("nextStep1","true");
   }
-  //读取多选信息；
 
-  setConf(){
-    this.showQ6 = !this.showQ6;
-    this.showQ7 = !this.showQ7;
-    this.agreement.confDefination = sessionStorage.getItem("data");
+//测试
+  test(){
+    alert("ok")
+    //console.log(a,c);
+  }
+  //保密材料选择..........................
+//全选
+  selectAll(){
+    this.confinfo.forEach((c:CheckBox)=>{
+      c.flag = true;
+    })
+  };
+  //全不选
+  selectNone(){
+    this.confinfo.forEach((c:CheckBox)=>{
+      c.flag = false;
+    })
+  }
+
+  //组装选择对象值为字符串，以分号隔开
+  oToS(){
+    var str:string = "";
+    this.confinfo.forEach((c:CheckBox)=>{
+      if(c.flag){
+        str += c.value+"、";
+      }
+
+    });
+    this.agreement.confDefination = str.substr(0,str.length-1); //去除最后一个顿号
     console.log(this.agreement.confDefination);
   }
-
-  //提交有效期
-  setDate(){
-    this.showQ8 = !this.showQ8;
-    this.showQ7 = !this.showQ7
+  //保密人员选择..........................
+//全选
+  selectAllPerson(){
+    this.confreciever.forEach((c:CheckBox)=>{
+      c.flag = true;
+    })
+  };
+  //全不选
+  selectNonePerson(){
+    this.confreciever.forEach((c:CheckBox)=>{
+      c.flag = false;
+    })
   }
+
+  //组装选择对象值为字符串，以分号隔开
+  oToSPerson(){
+    var str:string = "";
+    this.confreciever.forEach((c:CheckBox)=>{
+      if(c.flag){
+        str += c.value+"、";
+      }
+    });
+    this.agreement.recievers = str.substr(0,str.length-1); //去除最后一个顿号
+    //方案选择
+    if(this.dispute){
+      this.agreement.dispute = 1;
+    }else{
+      this.agreement.dispute = 2;
+    }
+    if(this.liability){
+      this.agreement.liability = 1;
+    }else{
+      this.agreement.liability = 2;
+    }
+    console.log(this.agreement.recievers);
+  }
+
+  //最后总结
+  finalConclude(){
+
+  };
+
+
 
 
 }
