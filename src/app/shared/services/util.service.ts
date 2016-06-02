@@ -254,4 +254,16 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/template/insertTemplateInfo";
     return this.http.post(str,data);
   }
+
+  //获取全部文档模块
+  getAllMoudle(){
+    var str = this.url+"law/moudle/getAllMoudle";
+    return this.http.get(str);
+  }
+
+  //
+  insertTypeMoudle(data:string){
+    var str = this.url + "law/moudle/insertTypeMoudle";
+    return this.http.post(str,data);
+  }
 };
