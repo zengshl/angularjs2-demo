@@ -1,0 +1,119 @@
+<!-- navbar navlist-->
+<div class="ui left fixed vertical accordion  menu" id="leftMenu">
+  <div class="item">
+    <a class="active title">
+      <i class="large sitemap icon"></i>
+      <i class="dropdown icon"></i>
+    </a>
+  </div>
+  <div class="item">
+    <a class="active title" (click)="choose('message')">
+      <i class="large sitemap icon"></i>
+      <i class="dropdown icon"></i>
+      基本信息
+    </a>
+  </div>
+
+  <div class="item">
+    <a class="title" (click)="choose('setting')">
+      <i class="large users icon"></i>
+      <i class="dropdown icon"></i>
+      基本设置
+    </a>
+  </div>
+</div>
+
+<div class="ui large top fixed borderless menu" style="background-color: #00a6dd;" id="topMenu">
+  <a class="navMenu item" id="navMenu">
+    <i class="large sidebar icon"></i>
+  </a>
+  <div class="item">
+    <i class="large medium icon"></i>COUL
+  </div>
+
+</div>
+<!-- end -->
+<div class="container-fluid">
+  <div class="row" style="height: 70px;background-color: #F5F5F5"> </div>
+  <div class="row"  style="height: 800px;">
+    <div class="col-md-2"> </div>
+    <!-- main -->
+    <div class="col-md-10">
+
+      <div  class="row" style=" margin-left: 5%; margin-right: 1%; padding-top: 30px;;">
+        <!--基本信息-->
+        <form class="ui form" style="padding: 5px 20px;" >
+          <div class="ui segment" style="padding: 20px 50px;">
+            <div class="ui top attached label" style="background-color: lightskyblue">
+              <h3 style="color: white" >用户信息</h3>
+            </div>
+            <!--<div class="field" style="padding-top: 20px;">-->
+              <!--<div class="three fields">-->
+                <!--<div class="field">-->
+                  <!--<label>账号  </label>-->
+                  <!--<input  placeholder="账号" type="text" [(ngModel)]="user.account" required>-->
+                <!--</div>-->
+                <!--<div class="field" >-->
+                  <!--<label>密码  </label>-->
+                  <!--<input  placeholder="密码" [(ngModel)]="user.password" type="text" required>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <div class="field" style="padding-top: 20px;">
+              <div class="three fields">
+                <div class="field">
+                  <label>手机  </label>
+                  <input placeholder="手机" [(ngModel)]="user.phone" type="text">
+                </div>
+                <div class="field">
+                  <label>昵称  </label>
+                  <input  placeholder="昵称" [(ngModel)]="user.userName" type="text">
+                </div>
+                <div class="field">
+                  <label>地址 </label>
+                  <input  placeholder="地址" [(ngModel)]="user.address" type="text">
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="three fields">
+                <div class="field">
+                  <label>状态  </label>
+                  <input  placeholder="状态"  [(ngModel)]="user.status" type="text">
+                </div>
+                <div class="field">
+                  <label>创建时间  </label>
+                  <input type="text" value="2015-02-15" id="datetimepicker" [(ngModel)]="user.createTime" class="am-form-field">
+                  <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
+                </div>
+                <div class="field">
+                  <label>邮箱  </label>
+                  <input  placeholder="邮箱" [(ngModel)]="user.email" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>备注  </label>
+              <input  placeholder="备注" [(ngModel)]="user.remark" type="text">
+            </div>
+          </div>
+
+          <br><br>
+          <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAdmin()" style="text-align: center"><i class="checkmark box icon"></i>添加用户</div>
+          <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>
+          <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>
+          <div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
+        </form>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+

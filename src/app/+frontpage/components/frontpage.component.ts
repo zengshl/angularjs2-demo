@@ -11,6 +11,7 @@ import {AdviceComponent} from "../../+advice/index";
 import {AdminComponent} from "../../+admin/index";
 import {FileComponent} from "../../+file/index";
 import {PersonalComponent} from "../../+personal/components/personal.component";
+import {PersonalSetComponent} from "../../+personalset/components/personalset";
 import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} from "../../+chat/components/chat.component";
 @Component({
   selector: 'front-page',
@@ -49,6 +50,11 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
     path: '/personal',      //个人中心
     name: 'Personal',
     component: PersonalComponent
+  },
+  {
+    path: '/personalset',  //个人设置
+    name: 'PersonalSet',
+    component: PersonalSetComponent
   }
 ])
 export class FrontPageComponent implements AfterViewInit{
