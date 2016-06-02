@@ -108,6 +108,9 @@ export class SysMoudleComponent implements AfterViewInit{
 
   //更新模板信息
   updataMoudle(){
+    //对数据进行处理
+    let moudleId = jQuery("#moudleId").val();
+    this.curType.moudleId = parseInt(moudleId);
     var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
     this._util.updataMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
       let data = res.json();
