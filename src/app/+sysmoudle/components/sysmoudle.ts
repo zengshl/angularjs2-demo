@@ -93,7 +93,6 @@ export class SysMoudleComponent implements AfterViewInit{
 
       this.tableShow = false;
       this.isInsert = false;
-      console.log(this.curType.moudleId);
     });
   }
 
@@ -162,7 +161,7 @@ export class SysMoudleComponent implements AfterViewInit{
   }
 
   mouseenter(event:any,item:any){
-    console.log(event+","+item);
+    //console.log(event+","+item);
   }
 
   //跳转到增加模板属性界面
@@ -184,12 +183,6 @@ export class SysMoudleComponent implements AfterViewInit{
   resetAttr(){
     this.addTemp = new DocTemplate();
   }
-
-  //点击每一行表格
-  //clickItem(item:any){
-  //  //console.log(item);
-  //  this.router.parent.navigate(['Template',{"typeId":item.id}]);
-  //}
 
   updataAttr(item:any){
     this.addAttr = true;
