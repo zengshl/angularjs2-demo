@@ -178,8 +178,8 @@ export class ConfidentAgreement{
   bContactFax:string = "";
   bContactAddress:string = "";
   recievers:string = "";
-  dispute:number = 0;
-  liability:number = 0;
+  dispute:string = "";
+  liability:string = "";
   aSiger:string = "";
   bSiger:string = "";
   userId: number = 0;
@@ -193,4 +193,25 @@ export class CheckBox{
   value:string ="";
 }
 
+export class DocAttr{
+  id: number = 0;
+  attrType:string = "";
+  attrName:string ="";
+  attrValue:string ="";
+  attrModule:string ="";
+  createTime:string ="";
+  modifyTime:string ="";
+  documentId:number = 0;
+  templateId:number =0;
+  constructor(documentId?:number,n?:string,v?:string){
+    this.attrName = n || "";
+    this.attrValue = v || "";
+    this.documentId = documentId || 0;
+  }
+}
+
+//export class AttrData {
+//  documentId :number;
+//  attr: Array<DocAttr> = new Array<DocAttr>();
+//}
 

@@ -266,4 +266,22 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/moudle/insertTypeMoudle";
     return this.http.post(str,data);
   }
+  //创建文件，返回文件id
+  createFile(data:string){
+    var str = this.url + "law/doc/insertUserDoc";
+    return this.http.post(str,data);
+  }
+  //创建文件属性，返回文件0，1
+  createDocAttr(data:string){
+    var str = this.url + "law/docattr/insert";
+    return this.http.post(str,data);
+  }
+  //生成文档文件
+  generateFile(fileId:string){
+    var str = this.url + "law/doc/unloadWordDoc/"+fileId;
+    //return this.http.get(str);
+    window.open(str);
+  }
+
+
 };
