@@ -25,6 +25,24 @@ private url = 'http://localhost:9000/';
 //      return this.users;
 //    });
 //  };
+  //获取confinfo的jason数据
+  getConfinfo(){
+    return this.http.get("assets/json/confinfo.json");
+  }
+  //获取confreciever的jason数据
+  getConfreciever(){
+    return this.http.get("assets/json/confreciever.json");
+  }
+  //获取mould的jason数据
+  getMould(){
+    var str = this.url + 'law/doc/getMoudleList';
+    return this.http.get(str);
+  }
+  //获取doctype的jason数据
+  getDoctype(mouldId:number){
+    var str = this.url + 'law/doc/getDocTypeListByMoudleId/'+ mouldId;
+    return this.http.get(str);
+  }
   //获取验证码
   getValidCode(phone:string):any  {
     var str = this.url + 'law/user/smsValid/'+phone;
