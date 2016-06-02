@@ -154,28 +154,10 @@
       </div>
     </div>
     <br><br>
-    <div class="three fields">
-      <div class="field">
-        <div class="ui right floated button" tabindex="0" (click)="backTo()"><i class="reply icon"></i>返回</div>
-      </div>
-      <div class="field">
-        <button type="submit" class="ui teal labeled icon submit button" (click)="resetAdmin()">
-          重置
-          <i class="refresh icon"></i>
-        </button></div>
-      <div class="field" *ngIf="isInsert">
-        <button type="submit" class="ui teal labeled icon submit button" (click)="insertAdmin()">
-          添加用户
-          <i class="checkmark box icon"></i>
-        </button>
-      </div>
-      <div class="field" *ngIf="!isInsert">
-        <button type="submit" class="ui teal labeled icon submit button" (click)="updataAdmin()">
-          更新用户
-          <i class="check circle outline icon"></i>
-        </button>
-      </div>
-    </div>
+    <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAdmin()" style="text-align: center"><i class="checkmark box icon"></i>添加用户</div>
+    <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>
+    <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>
+    <div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
   </form>
 </div>
 
