@@ -1,5 +1,5 @@
 <div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:50px;background-color:ghostwhite">
-<div class="ui stackable relaxed grid">
+<div class="ui stackable relaxed grid" *ngIf = "!openMyFile">
   <!--我的文件夹列表-->
     <div class="eight wide column" *ngIf = "!showMyFiles && !showCreateFolder && !showModifyFolder">
       <div class="ui segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
@@ -92,7 +92,7 @@
                 <p></p>
               </div>
               <div class="extra">
-                <a>修改</a>   <a>删除</a>
+                <a (click)="modifyFile(mf)">修改</a>   <a (click)="deleteFile(mf)">删除</a>
               </div>
             </div>
           </div>
@@ -124,17 +124,379 @@
             <p></p>
           </div>
           <div class="extra">
-            <a>修改</a>   <a>删除</a>
+            <a (click)="modifyFile(fl)">修改</a>   <a (click)="deleteFile(fl)">删除</a>
           </div>
         </div>
       </div>
     </div>
-    <a  class="button button-3d button-primary button-rounded">
+    <a  class="button button-3d button-primary button-rounded" (click)="nav('./NewFile')">
       <i class="large add icon"></i>&nbsp;创建文件</a>
   </div>
   </div>
 
 
 </div>
+
+  <div class="ui stackable relaxed grid" *ngIf = "openMyFile">
+    <!-- 修改文档-->
+    <div class="sixteen wide column">
+      <div class="ui segment" style="padding: 20px 50px;min-height: 500px;_height:500px; ">
+        <div class="ui top attached label" style="background-color: lightskyblue" (click)="openMyFile = !openMyFile" *ngIf = "modifyList">
+          <h3 style="color: white" >修改文件{{myFile.docName}} （ 双击返回文件夹列表 ）</h3>
+        </div>
+        <br><br>
+        <!-- 修改文件板块列表 -->
+        <div class="ui fluid vertical menu" *ngIf = "modifyList">
+          <a class="item"  (click)="checkOrg();">
+            <h4 class="ui header">协议主体信息</h4>
+            <p>点击修改该法律文件甲乙双方的名称或姓名等详细信息</p>
+          </a>
+          <a class="item" (click)="showQ3 = !showQ3;modifyList = !modifyList">
+            <h4 class="ui header">拟议交易和保密信息定义</h4>
+            <p>点击修改拟议交易项目名称和保密信息定义列表等</p>
+          </a>
+          <a class="item" (click)="showQ7 = !showQ7;modifyList = !modifyList">
+            <h4 class="ui header">协议期限和保密期限</h4>
+            <p>点击修改该协议的协议有效期限和保密期限</p>
+          </a>
+          <a class="item" (click)="showQ8 = !showQ8;modifyList = !modifyList">
+            <h4 class="ui header">指派具体联系人信息修改</h4>
+            <p>点击修改甲方和乙方指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人的信息</p>
+          </a>
+          <a class="item" (click)="showQ9 = !showQ9;modifyList = !modifyList">
+            <h4 class="ui header">争议与违约责任</h4>
+            <p>点击修改争议与违约责任内容</p>
+          </a>
+          <a class="item" (click)="showQ10 = !showQ10;modifyList = !modifyList">
+            <h4 class="ui header">法定代表人或授权签署人</h4>
+            <p>点击修改法定代表人或授权签署人姓名</p>
+          </a>
+        </div>
+        <!--主体1-->
+        <div class="sixteen wide column" *ngIf = "showQ1"
+             style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;">
+          <h3>请输入双方企业的名称： </h3>
+          <hr>
+          <form class="ui form" style="padding:10px 200px;" (ngSubmit)="modifyList = !modifyList;showQ1 = !showQ1;updateAgreement()">
+            <div class="field">
+              <label>甲方公司名称</label>
+              <input  placeholder="甲方公司名称" type="text" [(ngModel)]="agreement.aName" required>
+            </div>
+            <div class="field">
+              <label>乙方公司名称</label>
+              <input  placeholder="乙方公司名称" type="text" [(ngModel)]="agreement.bName" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ1 = !showQ1;">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- 主体 2 -->
+        <div class="sixteen wide column" *ngIf = "showQ2"
+             style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;">
+          <h3>请输入甲乙双方自然人的姓名： </h3>
+          <hr>
+          <form class="ui form" style="padding:10px 200px;" (ngSubmit)="modifyList = !modifyList;showQ2 = !showQ2;updateAgreement()">
+            <div class="field">
+              <label>甲方姓名</label>
+              <input placeholder="甲方姓名" type="text" [(ngModel)]="agreement.aName" required>
+            </div>
+            <div class="field">
+              <label>甲方身份证号/护照号</label>
+              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="agreement.aIdNo" required>
+            </div>
+            <hr>
+            <div class="field">
+              <label>乙方姓名</label>
+              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="agreement.bName" required>
+            </div>
+            <div class="field">
+              <label>乙方身份证号/护照号</label>
+              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="agreement.bIdNo" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ2 = !showQ2">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- 交易描述 -->
+        <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ3">
+          <h3>拟议交易和保密信息定义</h3>
+          <hr>
+          <form class="ui form" style="padding:10px 100px;" (ngSubmit)="oToS();showQ3 = !showQ3;modifyList = !modifyList;">
+            <div class="field">
+              <label>请填写拟议交易项目的名称</label>
+              <br>
+              <input  placeholder="项目名称" type="text" [(ngModel)]="agreement.projectName" required>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <br>
+            <div class="field">
+              <label class="ui grid">
+                <span class="six wide column">请选择需要保密的材料（建议全选）</span>
+                <a class="two wide column" (click)="selectAll()">
+                  <i class="edit icon"></i>
+                  全选
+                </a>
+                <a class="two wide column" (click)="selectNone()">
+                  <i class="edit icon"></i>
+                  全不选
+                </a>
+              </label>
+              <br>
+              <div class="ui grid">
+                <div class="four wide column" *ngFor = "let c of confinfo">
+                  <div class="ui checkbox" (click)="c.flag = !c.flag;">
+                    <input type="checkbox"  [(ngModel)]="c.flag">
+                    <label>{{c.value}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ3 = !showQ3">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        <!-- 问题7 -->
+        <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
+          <h3>协议期限和保密期限</h3>
+          <hr>
+          <form class="ui form" style="padding:10px 200px;" (ngSubmit)="updateAgreement();showQ7 = !showQ7;modifyList = !modifyList;">
+            <div class="field">
+              <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
+              <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <div class="field">
+              <label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>
+              <input  placeholder="保密期限" type="number" [(ngModel)]="agreement.secrecy" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ7 = !showQ7">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">下一步</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- 问题8 -->
+        <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ8">
+          <h3>甲方和乙方应指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人。</h3>
+          <hr>
+          <form class="ui form" style="padding:10px 100px;" (ngSubmit)="updateAgreement();modifyList = !modifyList;showQ8 = !showQ8;">
+            <div class="two fields">
+              <div class="field">
+                <label>甲方指定联系人姓名</label>
+                <input placeholder="姓名" type="text" [(ngModel)]="agreement.aContactName" required>
+              </div>
+              <div class="field">
+                <label>乙方指定联系人姓名</label>
+                <input placeholder="姓名" type="text" [(ngModel)]="agreement.bContactName" required>
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="field">
+                <label>甲方指定联系人手机号</label>
+                <input placeholder="手机号" type="text" [(ngModel)]="agreement.aContactPhone" required>
+              </div>
+              <div class="field">
+                <label>乙方指定联系人手机号</label>
+                <input placeholder="手机号" type="text" [(ngModel)]="agreement.bContactPhone" required>
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="field">
+                <label>甲方指定联系人邮箱</label>
+                <input placeholder="邮箱" type="text" [(ngModel)]="agreement.aContactEmail" required>
+              </div>
+              <div class="field">
+                <label>乙方指定联系人邮箱</label>
+                <input placeholder="邮箱" type="text" [(ngModel)]="agreement.bContactEmail" required>
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="field">
+                <label>甲方指定联系人传真</label>
+                <input placeholder="传真" type="text" [(ngModel)]="agreement.aContactFax" required>
+              </div>
+              <div class="field">
+                <label>乙方指定联系人传真</label>
+                <input placeholder="传真" type="text" [(ngModel)]="agreement.bContactFax" required>
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="field">
+                <label>甲方指定联系人地址</label>
+                <input placeholder="地址" type="text" [(ngModel)]="agreement.aContactAddress" required>
+              </div>
+              <div class="field">
+                <label>乙方指定联系人地址</label>
+                <input placeholder="地址" type="text" [(ngModel)]="agreement.bContactAddress" required>
+              </div>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ8 = !showQ8">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- 问题9 -->
+        <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
+          <h3>争议与违约责任</h3>
+          <hr>
+          <form class="ui form" style="padding:10px 100px;" (ngSubmit)="oToSPerson();modifyList = !modifyList;showQ9 = !showQ9;">
+            <div class="field">
+              <label>争议解决方案：</label>
+              <br>
+              <div class="ui checkbox" (click)="dispute =!dispute">
+                <input type="checkbox" [(ngModel)]="dispute">
+                <label>【方案一】
+                  <p>
+                    {{disputeVersion1}}
+                  </p>
+                </label>
+              </div>
+              <div class="ui checkbox" (click)="dispute =!dispute">
+                <input type="checkbox" [(ngModel)]="!dispute">
+                <label>【方案二】
+                  <p>
+                    {{disputeVersion2}}
+                  </p>
+                </label>
+              </div>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <br>
+            <div class="field">
+              <label class="ui grid">
+                <span class="eight wide column">接收方将可能向以下公司人员其披露保密信息：</span>
+                <a class="two wide column" (click)="selectAllPerson()">
+                  <i class="edit icon"></i>
+                  全选
+                </a>
+                <a class="two wide column" (click)="selectNonePerson()">
+                  <i class="edit icon"></i>
+                  全不选
+                </a>
+              </label>
+              <br>
+              <div class="ui grid">
+                <div class="four wide column" *ngFor = "let c of confreciever">
+                  <div class="ui checkbox" (click)="c.flag = !c.flag;">
+                    <input type="checkbox"  [(ngModel)]="c.flag">
+                    <label>{{c.value}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <br>
+            <div class="field">
+              <label>违约责任方案：</label>
+              <br>
+              <div class="ui checkbox" (click)="liability =!liability">
+                <input type="checkbox" [(ngModel)]="liability">
+                <label>【方案一】
+                  <p>
+                    {{libVersion1}}
+                  </p>
+                </label>
+              </div>
+              <div class="ui checkbox" (click)="liability =!liability">
+                <input type="checkbox" [(ngModel)]="!liability">
+                <label>【方案二】
+                  <p>
+                    {{libVersion2}}
+                  </p>
+                </label>
+              </div>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ9 = !showQ9">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- 问题10 -->
+        <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf="showQ10">
+          <h3>请输入双方法定代表人或授权签署人的名字：</h3>
+          <hr>
+          <form class="ui form" style="padding:10px 200px;" (ngSubmit)="modifyList = !modifyList;showQ10 = !showQ10;updateAgreement();">
+            <div class="field">
+              <label>甲方法定代表人或授权签署人</label>
+              <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required>
+            </div>
+            <div class="field">
+              <label>乙方法定代表人或授权签署人</label>
+              <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="modifyList = !modifyList;showQ10 = !showQ10">返回修改列表</a>
+              </div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">修改</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+
+
+
+
+
+
+
+        <br><br>
+      </div>
+    </div>
+
+  </div>
 </div>
 

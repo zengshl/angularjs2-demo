@@ -1,7 +1,8 @@
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
-import {User,Folder,File} from "../../shared/index";
+import {User,Folder,File,DocAttr,ConfidentAgreement,CheckBox} from "../../shared/index";
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
+import {Router} from '@angular/router-deprecated';
 declare var jQuery:JQueryStatic;
 
 @Component({
@@ -11,25 +12,61 @@ declare var jQuery:JQueryStatic;
   styles: [ require('app/+file/components/file.component.css') ],
   template: require('app/+file/components/file.component.html')
 })
-export class FileComponent implements AfterViewInit, DoCheck {
+export class FileComponent {
+
+//开关
+  showCreateFolder:boolean = false;
+  showModifyFolder:boolean = false;
+  showMyFiles:boolean = false;
+  openMyFile:boolean = false;
+  modifyList:boolean = true;
+  showQ1:boolean = false;
+  showQ2:boolean = false;
+  showQ4:boolean = false;
+  showQ5:boolean = false;
+  showQ6:boolean = false;
+  dispute:boolean = true; //争议版本切换
+  liability:boolean = true;
+
   user:User;
   folders:Folder[];
   files:File[] = new Array<File>(); //这个必须要用，否则无法拖拽
-  showMyFiles:boolean = false;
   myFolder: Folder;
   myFiles:File[] = new Array<File>();
-  showCreateFolder:boolean = false;
-  showModifyFolder:boolean = false;
+  myFile:File = new File();
   forModify:string; //用于修改
   differ:any;
+  attrs:DocAttr[] = new Array<DocAttr>(); //属性列表
+  agreement: ConfidentAgreement = new ConfidentAgreement();
+  attrData : Array<DocAttr> = new Array<DocAttr>();
 
-  constructor(private _util:UtilService,private dragulaService:DragulaService,private differs: KeyValueDiffers){
+  confinfo:CheckBox[]; //保密信息列表
+  confreciever:CheckBox[]; //保密人员列表
+  disputeVersion1:string = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
+    + "如协商未能解决争议，任何一方可将争议提交（中国国际经济贸易仲裁委员会）仲裁，"
+    + "仲裁应依照该会当时有效的仲裁规则进行。仲裁地点在（北京），仲裁语言为（中文），"
+    + "仲裁裁决是终局的，对双方均有约束力。";
+  disputeVersion2:string = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
+    +"如协商未能解决争议，任何一方可向具有管辖权的法院起诉。";
+  //责任版本
+  libVersion1:string =" 如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接损失以及因此而支出的合理费用。";
+  libVersion2:string = "如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接和间接损失以及因此而支出的全部费用。";
+
+
+  constructor(private _util:UtilService,private dragulaService:DragulaService,private router:Router){
     this.user = new User();
     this.user = <User>JSON.parse(sessionStorage.getItem('user'));
-    this.differ = differs.find([]).create(null);
+
+    _util.getConfinfo().subscribe((res)=>{
+      this.confinfo = <CheckBox[]> res.json();
+    });
+    //获取保密人员列表
+    _util.getConfreciever().subscribe((res)=>{
+      this.confreciever = <CheckBox[]> res.json();
+    });
 
     this.getFolder();
-    this.getFile();
+    this.getFile(0);
 
     //拖拽功能 1
       dragulaService.setOptions('bag', {
@@ -46,16 +83,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
 
 
   }
-  ngAfterViewInit() {
 
-  };
-
-  public ngDoCheck():any {  //藏检查
-    //var changes = this.differ.diff(this.myFiles);
-    //if(changes){
-    //  console.log("change",this.myFiles);
-    //}
-  }
 
   //拖拽功能 2
   private onDrop(args) {
@@ -74,7 +102,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
       var data = '{"folderId":'+ folderId+ ', "docId":'+fileId+' }'
       this._util.updateFileFolder(data).subscribe((res)=>{
         //console.log(res);
-        //this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
+        //this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
        // console.log(fileId,"msg",folderId,this.myFiles);
         //重新刷新两个文件夹列表
         this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
@@ -98,8 +126,8 @@ export class FileComponent implements AfterViewInit, DoCheck {
     })
   }
   //获取该用户的文件
-  getFile(){
-    this._util.getFile(0,this.user.id).subscribe((res)=>{
+  getFile(folderId:number){
+    this._util.getFile(folderId,this.user.id).subscribe((res)=>{
       this.files = <File[]> res.json().data;
       //console.log(this.files);
     });
@@ -111,7 +139,7 @@ export class FileComponent implements AfterViewInit, DoCheck {
     this._util.deleteFolder(fd.id,fd.userId).subscribe((res)=>{
      // console.log(res);
       this.getFolder(); //刷新文件夹列表
-      this.getFile();  //刷新文件列表（将原来的文件夹中的文件释放）
+      this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
     });
   }
   //打开文件夹
@@ -157,6 +185,210 @@ export class FileComponent implements AfterViewInit, DoCheck {
     }else{
       alert("不能为空");
     }
+  }
+//跳转路由功能
+  nav(name:string){
+    this.router.parent.navigate([name])
+    //console.log(name);
+  }
+  //对属性数据进行转化 1
+  transFormat(attr:DocAttr[]):ConfidentAgreement{
+    var c = new ConfidentAgreement();
+    attr.forEach((a:DocAttr)=>{
+      if(a.attrName === "organizationType") c.organizationType = a.attrValue;
+      if(a.attrName === "aName") c.aName = a.attrValue;
+      if(a.attrName === "aIdNo") c.aIdNo = a.attrValue;
+      if(a.attrName === "aAddress") c.aAddress = a.attrValue;
+      if(a.attrName === "bName") c.bName = a.attrValue;
+      if(a.attrName === "bIdNo") c.bIdNo = a.attrValue;
+      if(a.attrName === "bAddress") c.bAddress = a.attrValue;
+      if(a.attrName === "projectName") c.projectName = a.attrValue;
+      if(a.attrName === "confDefination") c.confDefination = a.attrValue;
+      if(a.attrName === "contractPeriod") c.contractPeriod = parseInt(a.attrValue);
+      if(a.attrName === "secrecy") c.secrecy = parseInt(a.attrValue);
+      if(a.attrName === "aContactName") c.aContactName = a.attrValue;
+      if(a.attrName === "aContactPhone") c.aContactPhone = a.attrValue;
+      if(a.attrName === "aContactEmail") c.aContactEmail = a.attrValue;
+      if(a.attrName === "aContactFax") c.aContactFax = a.attrValue;
+      if(a.attrName === "aContactAddress") c.aContactAddress = a.attrValue;
+      if(a.attrName === "bContactName") c.bContactName = a.attrValue;
+      if(a.attrName === "bContactPhone") c.bContactPhone = a.attrValue;
+      if(a.attrName === "bContactEmail") c.bContactEmail = a.attrValue;
+      if(a.attrName === "bContactFax") c.bContactFax = a.attrValue;
+      if(a.attrName === "bContactAddress") c.bContactAddress = a.attrValue;
+      if(a.attrName === "recievers") c.recievers = a.attrValue;
+      if(a.attrName === "dispute") c.dispute = a.attrValue;
+      if(a.attrName === "liability") c.liability = a.attrValue;
+      if(a.attrName === "aSiger") c.aSiger = a.attrValue;
+      if(a.attrName === "bSiger") c.bSiger = a.attrValue;
+    })
+    return c;
+  }
+//属性转化2
+  setAttrData(){
+    var documentId = this.myFile.id;
+    var a = new DocAttr(documentId,"aName",this.agreement.aName);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bName",this.agreement.bName);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"organizationType",this.agreement.organizationType);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aIdNo",this.agreement.aIdNo);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bIdNo",this.agreement.bIdNo);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"projectName",this.agreement.projectName);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"confDefination",this.agreement.confDefination);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"contractPeriod",""+this.agreement.contractPeriod);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"secrecy",""+this.agreement.secrecy);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aContactName",this.agreement.aContactName);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bContactName",this.agreement.bContactName);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aContactPhone",""+this.agreement.aContactPhone);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bContactPhone",""+this.agreement.bContactPhone);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aContactEmail",this.agreement.aContactEmail);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bContactEmail",""+this.agreement.bContactEmail);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aContactFax",""+this.agreement.aContactFax);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bContactFax",this.agreement.bContactFax);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aContactAddress",this.agreement.aContactAddress);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bContactAddress",""+this.agreement.bContactAddress);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"recievers",""+this.agreement.recievers);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"dispute",""+this.agreement.dispute);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"liability",""+this.agreement.liability);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"aSiger",this.agreement.aSiger);
+    this.attrData.push(a);
+    a = new DocAttr(documentId,"bSiger",""+this.agreement.bSiger);
+    this.attrData.push(a);
+  }
+
+  //删除文档
+  deleteFile(mf:File){
+    this.myFile = mf;
+    this._util.deleteFile(this.myFile.id).subscribe(()=>{
+      if(this.myFile.folderId !== 0){
+        this._util.getFile(this.myFile.folderId,this.user.id).subscribe((res)=>{
+          this.myFiles = <File[]> res.json().data;
+          this.showMyFiles = true;
+        });
+      }else {
+        this.getFile(0);
+      }
+      alert("删除成功！");
+
+
+    })
+  }
+
+//修改文件
+  modifyFile(mf:File){
+    this.myFile = mf;
+    this._util.getDocAttrs(this.myFile.id).subscribe((res)=>{
+        this.attrs = <DocAttr[]>res.json();
+      //console.log(this.attrs);
+      this.agreement = this.transFormat(this.attrs);
+      this.openMyFile = true;
+    });
+
+
+  }
+  //检查协议主体类型
+  checkOrg(){
+    this.modifyList = !this.modifyList;
+    if(this.agreement.organizationType == '企业'){
+      this.showQ1 = !this.showQ1;
+    }else {
+      this.showQ2 = !this.showQ2;
+    }
+
+  }
+
+  //保密材料选择..........................
+//全选
+  selectAll(){
+    this.confinfo.forEach((c:CheckBox)=>{
+      c.flag = true;
+    })
+  };
+  //全不选
+  selectNone(){
+    this.confinfo.forEach((c:CheckBox)=>{
+      c.flag = false;
+    })
+  }
+
+  //组装选择对象值为字符串，以分号隔开
+  oToS(){
+    var str:string = "";
+    this.confinfo.forEach((c:CheckBox)=>{
+      if(c.flag){
+        str += c.value+"、";
+      }
+
+    });
+    this.agreement.confDefination = str.substr(0,str.length-1); //去除最后一个顿号
+    this.updateAgreement();
+  }
+  //保密人员选择..........................
+//全选
+  selectAllPerson(){
+    this.confreciever.forEach((c:CheckBox)=>{
+      c.flag = true;
+    })
+  };
+  //全不选
+  selectNonePerson(){
+    this.confreciever.forEach((c:CheckBox)=>{
+      c.flag = false;
+    })
+  }
+
+  //组装选择对象值为字符串，以分号隔开
+  oToSPerson(){
+    var str:string = "";
+    this.confreciever.forEach((c:CheckBox)=>{
+      if(c.flag){
+        str += c.value+"、";
+      }
+    });
+    this.agreement.recievers = str.substr(0,str.length-1); //去除最后一个顿号
+    //方案选择
+
+    if(this.dispute){
+      this.agreement.dispute = this.disputeVersion1;
+    }else{
+      this.agreement.dispute = this.disputeVersion2;
+    }
+    if(this.liability){
+      this.agreement.liability = this.libVersion1;
+
+    }else{
+      this.agreement.liability = this.libVersion2;
+    }
+    this.updateAgreement();
+  }
+
+  //修改协议
+  updateAgreement(){
+    this.setAttrData();
+    this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
+      alert("修改成功！");
+    })
   }
 
 
