@@ -37,7 +37,7 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
     component: FileComponent
   },
   {
-    path: '/newfile', //创建法律文档
+    path: '/newfile/...', //创建法律文档
     name: 'NewFile',
     component: NewFileComponent
   },
