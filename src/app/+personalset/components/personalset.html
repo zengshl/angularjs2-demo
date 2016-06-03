@@ -47,19 +47,6 @@
             <div class="ui top attached label" style="background-color: lightskyblue">
               <h3 style="color: white" >用户信息</h3>
             </div>
-            <!--<div class="field" style="padding-top: 20px;">-->
-              <!--<div class="three fields">-->
-                <!--<div class="field">-->
-                  <!--<label>账号  </label>-->
-                  <!--<input  placeholder="账号" type="text" [(ngModel)]="user.account" required>-->
-                <!--</div>-->
-                <!--<div class="field" >-->
-                  <!--<label>密码  </label>-->
-                  <!--<input  placeholder="密码" [(ngModel)]="user.password" type="text" required>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-
             <div class="field" style="padding-top: 20px;">
               <div class="three fields">
                 <div class="field">
@@ -100,11 +87,10 @@
             </div>
           </div>
 
-          <br><br>
-          <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAdmin()" style="text-align: center"><i class="checkmark box icon"></i>添加用户</div>
-          <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>
-          <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>
-          <div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
+          <!--<br><br>-->
+          <!--<div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>-->
+          <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>-->
+          <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>-->
         </form>
       </div>
 
