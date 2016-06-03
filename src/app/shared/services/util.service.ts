@@ -282,6 +282,14 @@ private url = 'http://localhost:9000/';
     //return this.http.get(str);
     window.open(str);
   }
-
-
+  //根据id获取用户信息
+  getUserById(id:number){
+    var str = this.url + "law/user/getUserById/"+id;
+    return this.http.get(str);
+  }
+  //更新用户信息
+  updataUser(data:string){
+    var str = this.url + "law/user/updata";
+    return this.http.post(str,data);
+  }
 };
