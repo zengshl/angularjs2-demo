@@ -281,6 +281,7 @@ export class ConfidTemplateComponent {
   finalConclude(){
     this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
       alert("保存成功！");
+      this.nav("File");
     })
   };
   //最后生成文件

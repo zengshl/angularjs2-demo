@@ -276,11 +276,23 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/docattr/insert";
     return this.http.post(str,data);
   }
+  //通过文件id,获取所有该文件属性
+  getDocAttrs(docId:number){
+    var data = JSON.stringify({"documentId":docId});
+    var str = this.url + "law/docattr/getAttrWithDocumentId";
+    return this.http.post(str,data);
+  }
   //生成文档文件
   generateFile(fileId:string){
     var str = this.url + "law/doc/unloadWordDoc/"+fileId;
     //return this.http.get(str);
     window.open(str);
+  }
+  //删除文档
+  deleteFile(docId:number){
+    var data = JSON.stringify({"documentId":docId});
+    var str = this.url + "law/doc/deleteDocById";
+    return this.http.post(str,data);
   }
 
 
