@@ -177,6 +177,12 @@ private url = 'http://localhost:9000/';
     var str = this.url+"law/sysrole/getAllMenu";
     return this.http.get(str);
   }
+
+  //批量删除角色
+  roleDeletes(data:string):any{
+    var str = this.url+"law/sysrole/deletes";
+    return this.http.post(str,data);
+  }
   /**
    * 文件夹部分
    * */

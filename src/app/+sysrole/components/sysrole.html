@@ -26,6 +26,7 @@
               </div>
               <div class="ten wide field">
                 <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加角色</button>
+                <button class="right floated ui teal icon button" (click)="deletes()" [disabled]="isdeletes"><i class="plus icon"></i>批量删除</button>
               </div>
             </div>
           </form>
@@ -34,6 +35,7 @@
                  (fpage) = "getPageData($event)">
             <thead>
             <tr>
+              <th>                                     </th>
               <th>                角色名              </th>
               <th>                角色编码            </th>
               <th>                描述                </th>
@@ -42,6 +44,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let item of mf.data.data" (click)="clickItem(item)" (mouseenter)="mouseenter($event.target,item)" >
+              <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
               <td>{{item.roleName}}</td>
               <td>{{item.roleNo}}</td>
               <td>{{item.roleDes}}</td>
@@ -54,7 +57,7 @@
             </tbody>
             <tfoot *ngIf="mf.data.page>0">
             <tr>
-              <th colspan="4">
+              <th colspan="5">
                 <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
               </th>
             </tr>

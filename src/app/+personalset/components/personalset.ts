@@ -42,6 +42,11 @@ export class PersonalSetComponent implements AfterViewInit{
   updataUser(){
     this._util.updataUser(JSON.stringify(this.user)).subscribe((res:Response)=>{
       this.freshUser();
+      if(res.json() !=0){
+        alert("更新成功");
+      }else{
+        alert("更新失败");
+      }
     });
   }
 

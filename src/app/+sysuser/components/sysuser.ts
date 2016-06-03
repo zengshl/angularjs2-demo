@@ -63,7 +63,7 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 2;
+    this.pdata.iDisplayLength = 10;
     this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
     //实例化用户对象
     this.curUser = new Admin();

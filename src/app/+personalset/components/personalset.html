@@ -68,7 +68,10 @@
               <div class="three fields">
                 <div class="field">
                   <label>状态  </label>
-                  <input  placeholder="状态"  [(ngModel)]="user.status" type="text">
+                  <select class="ui dropdown" [(ngModel)]="user.status" >
+                    <option value="1">有效</option>
+                    <option value="0">无效</option>
+                  </select>
                 </div>
                 <div class="field">
                   <label>创建时间  </label>

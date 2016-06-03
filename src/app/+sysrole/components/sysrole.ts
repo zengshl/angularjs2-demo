@@ -30,9 +30,11 @@ export class SysRoleComponent implements AfterViewInit{
   private pdata :PageData;
   private tableShow:boolean = true
   curRole:Role;
+  private ids:Array<number>;
 
 
   isInsert:boolean = false;
+  isdeletes:string = true;
   nameSearch:string = "";
   noSearch:string = "";
 
@@ -42,14 +44,14 @@ export class SysRoleComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 3;
+    this.pdata.iDisplayLength = 10;
     this.menus = new Array<Menu>();
     this.postPowers = new Array<Power>();
     this.pdata.searchData = {"roleName":this.nameSearch,"roleNo":this.noSearch}
     //实例化用户对象
     this.curRole = new Role();
     this.arrayMenu = new Array<Array<Menu>>();
-
+    this.ids = new Array<number>();
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getRole(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -174,6 +176,7 @@ export class SysRoleComponent implements AfterViewInit{
     this.postPowers = new Array<Power>();
     this.pdata.searchData = {"roleName":this.nameSearch,"roleNo":this.noSearch}
       this._util.getRole(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+      this.ids = new Array<number>();
       this.data = res.json();
         this.tableShow = true;
     });
@@ -202,6 +205,33 @@ export class SysRoleComponent implements AfterViewInit{
   }
 
   mouseenter(event:any,item:any){
-    console.log(event+","+item);
+    //console.log(event+","+item);
+  }
+  //批量删除勾选
+  onDelete(event:any,item:any){
+    if(event.checked){
+      //选中
+      this.ids.push(item.id);
+    }else{
+      //取消
+      for(var i=0;i<this.ids.length;i++){
+        if(this.ids[i] == item.id){
+          this.ids.splice(i,1);
+        }
+      }
+    }
+    //批量删除按钮点击控制
+    if(this.ids.length>0){
+      this.isdeletes = false;
+    }else{
+      this.isdeletes = true;
+    }
+  }
+  //批量删除
+  deletes(){
+    this._util.roleDeletes(JSON.stringify(this.ids)).subscribe((res:Response)=>{
+      this.updataTable();
+      alert('批量删除成功');
+    });
   }
 }
