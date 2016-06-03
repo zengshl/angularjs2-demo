@@ -42,13 +42,14 @@ export class SysUserComponent implements AfterViewInit{
   private tableShow:boolean = true
   curUser:Admin;
   userBase:UserBase;
-
+  private ids:Array<number>;//批量删除id组
   userRole: Array<UserRole>;  //发送到后台的角色数组数据
 
   arrayRole:Array<Array<Role>>;//用来决定每行有几列角色数据
 
   secondPSD:string = "";
   isInsert:boolean = false;
+  isdeletes:boolean = true;
   accountSearch:string = '';
   phoneSearch:string = '';
   modalContent:string = '';
@@ -70,7 +71,7 @@ export class SysUserComponent implements AfterViewInit{
     this.getRole = new Array<Role>();
     this.userRole = new Array<UserRole>();
     this.arrayRole = new Array<Array<Role>>();
-
+    this.ids = new Array<number>();
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -212,6 +213,7 @@ export class SysUserComponent implements AfterViewInit{
   //表格刷新
   updataTable(){
     this.userRole = new Array<UserRole>();
+    this.ids = new Array<number>();
     this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch};
     this._util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -233,4 +235,33 @@ export class SysUserComponent implements AfterViewInit{
       }
     }
   }
+
+  //批量删除勾选
+  onDelete(event:any,item:any){
+    if(event.checked){
+      //选中
+      this.ids.push(item.id);
+    }else{
+      //取消
+      for(var i=0;i<this.ids.length;i++){
+        if(this.ids[i] == item.id){
+          this.ids.splice(i,1);
+        }
+      }
+    }
+    //批量删除按钮点击控制
+    if(this.ids.length>0){
+      this.isdeletes = false;
+    }else{
+      this.isdeletes = true;
+    }
+  }
+  //批量删除
+  deletes(){
+    this._util.adminDeletes(JSON.stringify(this.ids)).subscribe((res:Response)=>{
+      this.updataTable();
+      alert('批量删除成功');
+    });
+  }
+
 }

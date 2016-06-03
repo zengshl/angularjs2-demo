@@ -30,6 +30,7 @@
         </div>
         <div class="ten wide field">
           <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加用户</button>
+          <button class="right floated ui teal icon button" (click)="deletes()" [disabled]="isdeletes"><i class="plus icon"></i>批量删除</button>
         </div>
       </div>
     </form>
@@ -38,6 +39,7 @@
            (fpage) = "getPageData($event)">
       <thead>
       <tr>
+        <th></th>
         <th>用户名</th>
         <th>手机号</th>
         <th>申请时间</th>
@@ -47,6 +49,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of mf.data.data">
+        <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
         <td>{{item.account}}</td>
         <td>{{item.phone}}</td>
         <td class="text-right">{{item.createTime}}</td>
@@ -60,7 +63,7 @@
       </tbody>
       <tfoot *ngIf="mf.data.page>0">
       <tr>
-        <th colspan="5">
+        <th colspan="6">
           <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
         </th>
       </tr>

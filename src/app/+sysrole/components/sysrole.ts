@@ -34,7 +34,7 @@ export class SysRoleComponent implements AfterViewInit{
 
 
   isInsert:boolean = false;
-  isdeletes:string = true;
+  isdeletes:boolean = true;
   nameSearch:string = "";
   noSearch:string = "";
 

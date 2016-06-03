@@ -103,6 +103,11 @@ private url = 'http://localhost:9000/';
     return this.http.post(str,data);
   }
 
+  adminDeletes(data:string){
+    var str = this.url+"law/sysuser/deletes";
+    return this.http.post(str,data);
+  }
+
   //通过客户id获取文件夹
   getFolder(userId:number){
     var str = this.url + "law/doc/queryFolderByUserId/"+userId;
@@ -298,4 +303,5 @@ private url = 'http://localhost:9000/';
     var str = this.url + "law/user/updata";
     return this.http.post(str,data);
   }
+
 };
