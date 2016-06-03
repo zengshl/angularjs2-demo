@@ -5,6 +5,7 @@ var index_2 = require('../+signup/index');
 var index_3 = require('../+forgot/index');
 var router_deprecated_2 = require('@angular/router-deprecated');
 var index_4 = require("../+frontpage/index");
+var index_5 = require('../+adminlogin/index');
 //import {servicesInjectables} from '../+chat/ts/services/services';
 //import {utilInjectables} from '../+chat/ts/util/util';
 //import {ChatApp} from "../+chat/ts/app";
@@ -16,7 +17,7 @@ var index_4 = require("../+frontpage/index");
 //} from '../+chat/ts/services/services';
 //import {ChatExampleData} from '../+chat/ts/ChatExampleData';
 //import {User, Thread, Message} from '../+chat/ts/models';
-var index_5 = require("../+admin/index");
+var index_6 = require("../+admin/index");
 var AppComponent = (function () {
     //isChatShow:boolean = false;//聊天控制
     //hasMessage:boolean = false;
@@ -129,7 +130,12 @@ var AppComponent = (function () {
             {
                 path: '/admin/...',
                 name: 'Admin',
-                component: index_5.AdminComponent
+                component: index_6.AdminComponent
+            },
+            {
+                path: '/adminlogin',
+                name: 'AdminLogin',
+                component: index_5.AdminLoginComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_2.Router])

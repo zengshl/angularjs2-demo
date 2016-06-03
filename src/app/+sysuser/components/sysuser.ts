@@ -9,14 +9,14 @@ import {UtilService} from '../../shared/index';
 import {Response} from '@angular/http';
 import {PageData,Admin,UserBase,UserRole,Role} from '../../shared/services/entity.service';
 import {FORM_DIRECTIVES} from '@angular/common';
-import {AddSysUserComponent} from "../../+addsysuser/index";
+import {NKDatetime} from 'ng2-datetime/ng2-datetime';
 declare var jQuery:JQueryStatic;
 
 
 @Component({
   selector: 'sys_user',
   providers:[UtilService],
-  directives: [DataTableDirectives,FORM_DIRECTIVES, AddSysUserComponent],
+  directives: [DataTableDirectives,FORM_DIRECTIVES,NKDatetime],
   styles: [ require('app/+sysuser/components/sysuser.css')],
   template: require('app/+sysuser/components/sysuser.html')
 })
@@ -63,7 +63,7 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 2;
+    this.pdata.iDisplayLength = 9;
     this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
     //实例化用户对象
     this.curUser = new Admin();
