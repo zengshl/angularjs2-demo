@@ -5,21 +5,21 @@ import {Component} from '@angular/core';
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {AfterViewInit} from "@angular/core";
 import  {User} from '../../shared/index';
+import {UtilService} from "../../shared/index";
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'navbar-box',
+  providers:[UtilService],
   template: require('app/+personalset/components/personalset.html')
 })
 export class PersonalSetComponent implements AfterViewInit{
   user:User;
-  constructor(private router:Router)  {
+  constructor(private router:Router,private _util:UtilService)  {
     this.user = new User();
-    this.user.phone = "123456";
     if(sessionStorage.getItem('user')) {
-      //this.user = sessionStorage.getItem('user');
       this.user = JSON.parse(sessionStorage.getItem('user'))
-      console.log(JSON.parse(sessionStorage.getItem('user')));
+      this.freshUser();
     }
   }
 
@@ -37,5 +37,18 @@ export class PersonalSetComponent implements AfterViewInit{
 
   choose(value:string){
     console.log(value);
+  }
+
+  updataUser(){
+    this._util.updataUser(JSON.stringify(this.user)).subscribe((res:Response)=>{
+      this.freshUser();
+    });
+  }
+
+  //刷新数据
+  freshUser(){
+    this._util.getUserById(this.user.id).subscribe((resp:Response)=>{
+      this.user = resp.json();
+    });
   }
 }

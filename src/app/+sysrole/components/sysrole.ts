@@ -7,7 +7,6 @@ import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {UtilService} from "../../shared/index";
 import {Response} from '@angular/http';
 import {PageData,Role,Menu,Power} from "../../shared/services/entity.service";
-declare var $:JQueryStatic;
 declare var jQuery:JQueryStatic;
 
 
