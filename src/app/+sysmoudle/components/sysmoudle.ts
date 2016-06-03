@@ -49,7 +49,7 @@ export class SysMoudleComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 3;
+    this.pdata.iDisplayLength = 10;
     this.curType = new Doctype();
     this.temps = new Array<DocTemplate>();
     this.allMoudle = new Array<Moudle>();

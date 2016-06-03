@@ -14,7 +14,7 @@ var UserLoginComponent = (function () {
         this._util = _util;
         this.user = new index_1.User();
         //记住密码
-        this.phone = localStorage.getItem('phone');
+        this.account = localStorage.getItem('account');
         this.password = localStorage.getItem('password');
         //如果用户已经登陆，自动跳转
         if (sessionStorage.getItem('user')) {
@@ -52,7 +52,7 @@ var UserLoginComponent = (function () {
             else if (data.status === '1') {
                 sessionStorage.setItem('user', JSON.stringify(data.reuslt));
                 if (form.rmbCtrl) {
-                    localStorage.setItem('phone', form.accountCtrl);
+                    localStorage.setItem('account', form.accountCtrl);
                     localStorage.setItem('password', form.pwdCtrl);
                 }
                 else {

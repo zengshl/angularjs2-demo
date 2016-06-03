@@ -27,7 +27,7 @@
 
             <thead>
             <tr>
-              <th>                父亲ID               </th>
+              <!--<th>                父亲ID               </th>-->
               <th>                类型名称             </th>
               <th>                文档模块ID               </th>
               <th>                状态               </th>
@@ -37,7 +37,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let item of mf.data.data"  (mouseenter)="mouseenter($event.target,item)" >
-              <td>{{item.preId}}</td>
+              <!--<td>{{item.preId}}</td>-->
               <td>{{item.typeName}}</td>
               <td>{{item.moudleId}}</td>
               <td>{{item.status}}</td>
@@ -51,7 +51,7 @@
             </tbody>
             <tfoot *ngIf="mf.data.page>0">
             <tr>
-              <th colspan="6">
+              <th colspan="5">
                 <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
               </th>
             </tr>
@@ -78,7 +78,10 @@
                   </div>
                   <div class="field">
                     <label>状态  </label>
-                    <input  placeholder="状态" [(ngModel)]="curType.status" type="text">
+                    <select class="ui dropdown" [(ngModel)]="curType.status">
+                      <option value="1">有效</option>
+                      <option value="0">无效</option>
+                    </select>
                   </div>
                 </div>
                 <div class="three fields">
@@ -132,7 +135,7 @@
               </div>
             </div>
             </div>
-          <br><br>
+
           <div class="ui segment" style="padding: 20px 50px;">
 
             <div class="ui segment" style="padding: 20px 50px;">
@@ -186,7 +189,7 @@
               </div>
             </div>
           </div>
-          <br><br>
+
           <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertMoudle()" style="text-align: center"><i class="checkmark box icon"></i>添加模板属性</div>
           <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataMoudle()" style="text-align: center"><i class="check circle outline icon"></i>更新模板属性</div>
           <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetMoudle()" style="text-align: center"><i class="refresh icon"></i>重置</div>

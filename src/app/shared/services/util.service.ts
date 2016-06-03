@@ -103,6 +103,11 @@ private url = 'http://localhost:9000/';
     return this.http.post(str,data);
   }
 
+  adminDeletes(data:string){
+    var str = this.url+"law/sysuser/deletes";
+    return this.http.post(str,data);
+  }
+
   //通过客户id获取文件夹
   getFolder(userId:number){
     var str = this.url + "law/doc/queryFolderByUserId/"+userId;
@@ -176,6 +181,12 @@ private url = 'http://localhost:9000/';
   getAllMenu():any{
     var str = this.url+"law/sysrole/getAllMenu";
     return this.http.get(str);
+  }
+
+  //批量删除角色
+  roleDeletes(data:string):any{
+    var str = this.url+"law/sysrole/deletes";
+    return this.http.post(str,data);
   }
   /**
    * 文件夹部分
@@ -288,12 +299,19 @@ private url = 'http://localhost:9000/';
     //return this.http.get(str);
     window.open(str);
   }
-  //删除文档
+  //根据id获取用户信息
+  getUserById(id:number){
+    var str = this.url + "law/user/getUserById/"+id;
+    return this.http.get(str);
+  }
+  //更新用户信息
+  updataUser(data:string){
+    var str = this.url + "law/user/updata";
+    return this.http.post(str,data);
+  }  //删除文档
   deleteFile(docId:number){
     var data = JSON.stringify({"documentId":docId});
     var str = this.url + "law/doc/deleteDocById";
     return this.http.post(str,data);
   }
-
-
 };

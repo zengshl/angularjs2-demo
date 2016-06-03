@@ -30,6 +30,7 @@
         </div>
         <div class="ten wide field">
           <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加用户</button>
+          <button class="right floated ui teal icon button" (click)="deletes()" [disabled]="isdeletes"><i class="plus icon"></i>批量删除</button>
         </div>
       </div>
     </form>
@@ -38,6 +39,7 @@
            (fpage) = "getPageData($event)">
       <thead>
       <tr>
+        <th></th>
         <th>用户名</th>
         <th>手机号</th>
         <th>申请时间</th>
@@ -47,6 +49,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of mf.data.data">
+        <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
         <td>{{item.account}}</td>
         <td>{{item.phone}}</td>
         <td class="text-right">{{item.createTime}}</td>
@@ -60,7 +63,7 @@
       </tbody>
       <tfoot *ngIf="mf.data.page>0">
       <tr>
-        <th colspan="5">
+        <th colspan="6">
           <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
         </th>
       </tr>
@@ -114,17 +117,18 @@
           </div>
         </div>
       </div>
-
       <div class="field">
         <div class="three fields">
           <div class="field">
             <label>状态  </label>
-            <input  placeholder="状态"  [(ngModel)]="curUser.status" type="text">
+            <select class="ui dropdown" [(ngModel)]="curUser.status">
+              <option value="1">有效</option>
+              <option value="0">无效</option>
+            </select>
           </div>
           <div class="field">
             <label>生日  </label>
-            <input type="text" value="2015-02-15" id="datetimepicker" [(ngModel)]="userBase.birthday" class="am-form-field">
-            <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
+            <datetime [timepicker]="false"  [datepicker]="{ format:'yyyy-mm-dd', language:'zh-CN'}" [(ngModel)]="userBase.birthday"></datetime>
           </div>
           <div class="field">
             <label>邮箱  </label>
@@ -137,7 +141,6 @@
         <input  placeholder="备注" [(ngModel)]="userBase.remark" type="text">
       </div>
     </div>
-    <br><br>
     <div class="ui segment" style="padding: 20px 50px;">
       <div class="ui top attached label" style="background-color: lightskyblue">
         <h3 style="color: white" >角色权限</h3>
@@ -153,7 +156,6 @@
         </div>
       </div>
     </div>
-    <br><br>
     <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAdmin()" style="text-align: center"><i class="checkmark box icon"></i>添加用户</div>
     <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>
     <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>

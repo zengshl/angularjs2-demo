@@ -23,6 +23,24 @@ var UtilService = (function () {
     //      return this.users;
     //    });
     //  };
+    //获取confinfo的jason数据
+    UtilService.prototype.getConfinfo = function () {
+        return this.http.get("assets/json/confinfo.json");
+    };
+    //获取confreciever的jason数据
+    UtilService.prototype.getConfreciever = function () {
+        return this.http.get("assets/json/confreciever.json");
+    };
+    //获取mould的jason数据
+    UtilService.prototype.getMould = function () {
+        var str = this.url + 'law/doc/getMoudleList';
+        return this.http.get(str);
+    };
+    //获取doctype的jason数据
+    UtilService.prototype.getDoctype = function (mouldId) {
+        var str = this.url + 'law/doc/getDocTypeListByMoudleId/' + mouldId;
+        return this.http.get(str);
+    };
     //获取验证码
     UtilService.prototype.getValidCode = function (phone) {
         var str = this.url + 'law/user/smsValid/' + phone;
@@ -169,6 +187,74 @@ var UtilService = (function () {
         var str = this.url + "law/doc/createFolde";
         var data = '{"folderName":"' + folderName + '", "userId":' + userId + '}';
         return this.http.post(str, data);
+    };
+    //后台模板部分
+    UtilService.prototype.getMoudle = function (data) {
+        var str = this.url + "law/moudle/pageList";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.deleteMoudle = function (data) {
+        var str = this.url + "law/moudle/moudleDelect";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.getMoudleInfo = function (data) {
+        var str = this.url + "law/moudle/getInfo";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.updataMoudleInfo = function (data) {
+        var str = this.url + "law/moudle/updataInfo";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.insertMoudleInfo = function (data) {
+        var str = this.url + "law/moudle/insertInfo";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.getDocTemplate = function (data) {
+        var str = this.url + "law/moudle/getDocTemplate";
+        return this.http.post(str, data);
+    };
+    //后台文件资源模板
+    UtilService.prototype.deleteTemplate = function (data) {
+        var str = this.url + "law/template/deleteTemplate";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.getTemplateInfo = function (data) {
+        var str = this.url + "law/template/getTemplateInfo";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.updataTemplateInfo = function (data) {
+        var str = this.url + "law/template/updataTemplateInfo";
+        return this.http.post(str, data);
+    };
+    UtilService.prototype.insertTemplateInfo = function (data) {
+        var str = this.url + "law/template/insertTemplateInfo";
+        return this.http.post(str, data);
+    };
+    //获取全部文档模块
+    UtilService.prototype.getAllMoudle = function () {
+        var str = this.url + "law/moudle/getAllMoudle";
+        return this.http.get(str);
+    };
+    //
+    UtilService.prototype.insertTypeMoudle = function (data) {
+        var str = this.url + "law/moudle/insertTypeMoudle";
+        return this.http.post(str, data);
+    };
+    //创建文件，返回文件id
+    UtilService.prototype.createFile = function (data) {
+        var str = this.url + "law/doc/insertUserDoc";
+        return this.http.post(str, data);
+    };
+    //创建文件属性，返回文件0，1
+    UtilService.prototype.createDocAttr = function (data) {
+        var str = this.url + "law/docattr/insert";
+        return this.http.post(str, data);
+    };
+    //生成文档文件
+    UtilService.prototype.generateFile = function (fileId) {
+        var str = this.url + "law/doc/unloadWordDoc/" + fileId;
+        //return this.http.get(str);
+        window.open(str);
     };
     UtilService = __decorate([
         core_1.Injectable(), 
