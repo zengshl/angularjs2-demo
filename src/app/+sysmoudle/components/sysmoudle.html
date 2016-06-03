@@ -60,8 +60,6 @@
         </div>
         <!--<add_sys_moudle></add_sys_moudle>-->
         <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow">
-          <div class="ui segment" style="padding: 20px 50px;">
-
             <div class="ui segment" style="padding: 20px 50px;">
               <div class="ui top attached label" style="background-color: lightskyblue">
                 <h3 style="color: white" >文档类型信息</h3>
@@ -92,8 +90,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="ui segment" style="padding: 20px 50px;">
             <div class="ui segment" style="padding: 20px 50px;">
               <div class="ui top attached label" style="background-color: lightskyblue">
                 <h3 style="color: white" >文档资源模板</h3>
@@ -134,9 +130,6 @@
                 </table>
               </div>
             </div>
-            </div>
-
-          <div class="ui segment" style="padding: 20px 50px;">
 
             <div class="ui segment" style="padding: 20px 50px;">
               <div class="ui top attached label" style="background-color: lightskyblue">
@@ -188,7 +181,6 @@
 
               </div>
             </div>
-          </div>
 
           <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertMoudle()" style="text-align: center"><i class="checkmark box icon"></i>添加模板属性</div>
           <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataMoudle()" style="text-align: center"><i class="check circle outline icon"></i>更新模板属性</div>

@@ -20,7 +20,6 @@ declare var jQuery:JQueryStatic;
 
 export class SysRoleComponent implements AfterViewInit{
   ngAfterViewInit() {
-
   }
   private data: any ;
   private menus : Array<Menu>;
@@ -132,14 +131,36 @@ export class SysRoleComponent implements AfterViewInit{
   }
 
 
-  //更新角色信息
-  updataRole(){
+  ////更新角色信息
+  //updataRole(){
+  //  var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
+  //  this._util.updataRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+  //    let data = res.json();
+  //    this.updataTable();
+  //
+  //  });
+  //}
+  //
+  ////新增角色信息
+  //insertRole(){
+  //  var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
+  //  this._util.insertRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+  //    this.updataTable();
+  //  });
+  //}
+  //新增或者保存
+  insertOrUpdata(){
     var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
-    this._util.updataRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-      let data = res.json();
-      this.updataTable();
-
-    });
+    if(this.isInsert){
+      this._util.insertRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        this.updataTable();
+      });
+    }else{
+      this._util.updataRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        let data = res.json();
+        this.updataTable();
+      });
+    }
   }
 
   //重置表单
@@ -162,13 +183,6 @@ export class SysRoleComponent implements AfterViewInit{
     this.isInsert = true;
     this.tableShow = false;
     this.resetRole();
-  }
-  //新增角色信息
-  insertRole(){
-      var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
-      this._util.insertRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-        this.updataTable();
-      });
   }
 
   //表格刷新

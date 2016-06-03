@@ -125,8 +125,11 @@ export class SysUserComponent implements AfterViewInit{
       let getdata = res.json();
 
       this.curUser = getdata.data;
+
       for(var i=0;i<getdata.base.length;i++){
         this.userBase = getdata.base[i]
+        //this.userBase.birthday = new Date(getdata.base[i].birthday.replace(/-/g, "/"));
+        //console.log(this.userBase.birthday);
       }
 
       this.getUserRole = getdata.role;

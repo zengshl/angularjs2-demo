@@ -6,6 +6,7 @@ import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {AfterViewInit} from "@angular/core";
 import  {User} from '../../shared/index';
 import {UtilService} from "../../shared/index";
+import {Response} from '@angular/http';
 declare var jQuery:JQueryStatic;
 
 @Component({

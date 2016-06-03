@@ -40,6 +40,7 @@ export class UserBase {
   userId: number = 0;
   userName: string = "";
   sex :string = "";
+  birthday:string = "";
   email:string = "";
   remark:string = "";
   createTime:string = "";
