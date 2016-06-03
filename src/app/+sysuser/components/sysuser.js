@@ -6,7 +6,7 @@ var datatable_1 = require('angular2-datatable/datatable');
 var index_1 = require('../../shared/index');
 var entity_service_1 = require('../../shared/services/entity.service');
 var common_1 = require('@angular/common');
-var index_2 = require("../../+addsysuser/index");
+var ng2_datetime_1 = require('ng2-datetime/ng2-datetime');
 var SysUserComponent = (function () {
     function SysUserComponent(_util) {
         var _this = this;
@@ -22,7 +22,7 @@ var SysUserComponent = (function () {
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
-        this.pdata.iDisplayLength = 2;
+        this.pdata.iDisplayLength = 9;
         this.pdata.searchData = { 'account': this.accountSearch, 'phone': this.phoneSearch };
         //实例化用户对象
         this.curUser = new entity_service_1.Admin();
@@ -198,7 +198,7 @@ var SysUserComponent = (function () {
         core_1.Component({
             selector: 'sys_user',
             providers: [index_1.UtilService],
-            directives: [datatable_1.DataTableDirectives, common_1.FORM_DIRECTIVES, index_2.AddSysUserComponent],
+            directives: [datatable_1.DataTableDirectives, common_1.FORM_DIRECTIVES, ng2_datetime_1.NKDatetime],
             styles: [require('app/+sysuser/components/sysuser.css')],
             template: require('app/+sysuser/components/sysuser.html')
         }), 

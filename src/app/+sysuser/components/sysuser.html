@@ -125,8 +125,7 @@
           </div>
           <div class="field">
             <label>生日  </label>
-            <input type="text" value="2015-02-15" id="datetimepicker" [(ngModel)]="userBase.birthday" class="am-form-field">
-            <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
+            <datetime [timepicker]="false"  [datepicker]="{ format:'yyyy-mm-dd', language:'zh-CN'}" [(ngModel)]="userBase.birthday"></datetime>
           </div>
           <div class="field">
             <label>邮箱  </label>

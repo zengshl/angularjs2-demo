@@ -99,11 +99,12 @@ var FileComponent = (function () {
     //打开文件夹
     FileComponent.prototype.openFolder = function (fd) {
         var _this = this;
+        this.myFiles = []; //保证打开文件夹后，没有先前的文件夹的文件列表
         this.myFolder = fd;
         this._util.getFile(this.myFolder.id, this.user.id).subscribe(function (res) {
             _this.myFiles = res.json().data;
+            _this.showMyFiles = true;
         });
-        this.showMyFiles = true;
     };
     //新建文件夹
     FileComponent.prototype.create = function (fn) {

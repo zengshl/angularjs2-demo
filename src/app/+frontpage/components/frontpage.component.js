@@ -9,6 +9,8 @@ var index_4 = require("../../+blank/index");
 var index_5 = require("../../+advice/index");
 var index_6 = require("../../+file/index");
 var personal_component_1 = require("../../+personal/components/personal.component");
+var personalset_1 = require("../../+personalset/components/personalset");
+var index_7 = require("../../+newfile/index");
 var chat_component_1 = require("../../+chat/components/chat.component");
 var FrontPageComponent = (function () {
     function FrontPageComponent(router) {
@@ -47,6 +49,11 @@ var FrontPageComponent = (function () {
                 component: index_6.FileComponent
             },
             {
+                path: '/newfile/...',
+                name: 'NewFile',
+                component: index_7.NewFileComponent
+            },
+            {
                 path: '/advice',
                 name: 'Advice',
                 component: index_5.AdviceComponent
@@ -55,6 +62,11 @@ var FrontPageComponent = (function () {
                 path: '/personal',
                 name: 'Personal',
                 component: personal_component_1.PersonalComponent
+            },
+            {
+                path: '/personalset',
+                name: 'PersonalSet',
+                component: personalset_1.PersonalSetComponent
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])

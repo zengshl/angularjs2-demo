@@ -4,6 +4,8 @@ var sysuser_1 = require('../../+sysuser/components/sysuser');
 var sysrole_1 = require("../../+sysrole/components/sysrole");
 var document_1 = require("../../+document/components/document");
 var folder_1 = require("../../+folder/components/folder");
+var sysmoudle_1 = require("../../+sysmoudle/components/sysmoudle");
+var sysdoctemplate_1 = require("../../+sysdoctemplate/components/sysdoctemplate");
 var custmanager_component_1 = require('../../+custmanager/components/custmanager.component');
 var index_1 = require("../../+file/index");
 var AdminComponent = (function () {
@@ -23,6 +25,9 @@ var AdminComponent = (function () {
         this.router.navigate([name]);
     };
     ;
+    AdminComponent.prototype.navFile = function () {
+        this.router.navigate(['Document', { "userId": "0", "folderId": "0" },]);
+    };
     AdminComponent = __decorate([
         core_1.Component({
             selector: 'admin-box',
@@ -66,6 +71,16 @@ var AdminComponent = (function () {
                 path: '/document/:userId/:folderId',
                 name: 'Document',
                 component: document_1.DocumentComponent,
+            },
+            {
+                path: '/moudle',
+                name: 'Moudle',
+                component: sysmoudle_1.SysMoudleComponent,
+            },
+            {
+                path: '/template/:typeId',
+                name: 'Template',
+                component: sysdoctemplate_1.SysDocTemplateComponent,
             }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
