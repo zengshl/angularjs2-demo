@@ -28,6 +28,8 @@ export class FileComponent {
   dispute:boolean = true; //争议版本切换
   liability:boolean = true;
 
+  move:boolean = false;
+  moveTo:boolean = false;
   user:User;
   folders:Folder[];
   files:File[] = new Array<File>(); //这个必须要用，否则无法拖拽
@@ -101,13 +103,10 @@ export class FileComponent {
       var folderId = jQuery(target).parent().find('.folderId').text();
       var data = '{"folderId":'+ folderId+ ', "docId":'+fileId+' }'
       this._util.updateFileFolder(data).subscribe((res)=>{
-        //console.log(res);
-        //this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
-       // console.log(fileId,"msg",folderId,this.myFiles);
         //重新刷新两个文件夹列表
-        this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
-          this.myFiles = <File[]> res.json().data;
-        });
+          this._util.getFile(this.myFolder.id,this.user.id).subscribe((res)=>{
+            this.myFiles = <File[]> res.json().data;
+          });
         this._util.getFile(0,this.user.id).subscribe((res)=>{
           this.files = <File[]> res.json().data;
           //console.log(this.files);
@@ -294,7 +293,10 @@ export class FileComponent {
 
     })
   }
-
+  //更新文件
+  updateFile(){
+    this._util.updateFile(JSON.stringify(this.myFile)).subscribe();
+  }
 //修改文件
   modifyFile(mf:File){
     this.myFile = mf;
@@ -304,9 +306,47 @@ export class FileComponent {
       this.agreement = this.transFormat(this.attrs);
       this.openMyFile = true;
     });
-
-
   }
+  //移动文件按钮
+  moveFile(mf:File){
+    this.myFile = mf;
+  }
+  moveToFolder(folderId:number){
+    if(this.myFile.folderId == 0){  //未归类的文件
+      this.myFile.folderId = folderId;
+      var data = '{"folderId":'+ folderId+ ', "docId":'+this.myFile.id+' }'
+      this._util.updateFileFolder(data).subscribe((res)=>{
+        //重新刷新文件列表
+        this._util.getFile(0,this.user.id).subscribe((res)=>{
+          this.files = <File[]> res.json().data;
+          //console.log(this.files);
+          this.move = false;
+        });
+      });
+
+    }else{ //指定文件夹
+      var fdId = this.myFolder.id;
+      this.myFile.folderId = folderId;
+      var data = '{"folderId":'+ folderId+ ', "docId":'+this.myFile.id+' }'
+      this._util.updateFileFolder(data).subscribe((res)=>{
+        //重新刷新文件列表
+        this._util.getFile(fdId,this.user.id).subscribe((res)=>{
+          this.myFiles = <File[]> res.json().data;
+        });
+        this.moveTo = false;
+      });
+
+    }
+  }
+  //移动界面返回
+  backTo(){
+    if(this.myFile.folderId == 0){
+      this.move = false;
+    }else{
+      this.moveTo = false;
+    }
+  }
+
   //检查协议主体类型
   checkOrg(){
     this.modifyList = !this.modifyList;
@@ -382,6 +422,7 @@ export class FileComponent {
     }
     this.updateAgreement();
   }
+
 
   //修改协议
   updateAgreement(){

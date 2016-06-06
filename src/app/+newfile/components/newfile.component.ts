@@ -26,6 +26,8 @@ import {TemplateListComponent} from "./templatelist.component";
 
 ])
 export class NewFileComponent{
-
-
+  constructor(private router:Router)  {}
+  nav(name:string){
+    this.router.parent.navigate([name]);
+  }
 }
