@@ -28,6 +28,11 @@ export class SysUserComponent implements AfterViewInit{
       alert('11')
 
     });
+
+    jQuery("#selected").dropdown({
+      maxSelections: 3
+    });
+
     //jQuery('#datetimepicker').datetimepicker({
     //  format: 'yyyy-mm-dd',
     //  language:  'zh-CN',

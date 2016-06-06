@@ -188,6 +188,25 @@
       </div>
 
       <div class="field">
+        <label>性别 </label>
+        <select multiple="" name="skills" class="ui fluid normal dropdown" id="selected" required ="required" >
+                <!--[ngModel]="news.categoryID" (change)="onItemChange($event.target.value)">-->
+          <option value="1">男</option>
+          <option value="">Skills</option>
+          <option value="0">女</option>
+        </select>
+        <!--<div class="ui selection dropdown" >-->
+          <!--<input name="gender" type="hidden" >-->
+          <!--<i class="dropdown icon"></i>-->
+          <!--<div class="default text">Gender</div>-->
+          <!--<div class="menu" id="selected">-->
+            <!--<div class="item" data-value="1">Male</div>-->
+            <!--<div class="item" data-value="0">Female</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="field">
         <label>备注  </label>
         <input  placeholder="备注" [(ngModel)]="userBase.remark" type="text">
       </div>
