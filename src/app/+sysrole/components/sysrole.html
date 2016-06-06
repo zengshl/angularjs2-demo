@@ -24,6 +24,9 @@
                   <i class="search link icon" (click)="filter()"></i>
                 </div>
               </div>
+              <div class="three wide field">
+                <button class="ui teal icon button" (click)="filter()"><i class="search icon"></i>查询</button>
+              </div>
               <div class="ten wide field">
                 <button class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加角色</button>
                 <button class="right floated ui teal icon button" (click)="deletes()" [disabled]="isdeletes"><i class="plus icon"></i>批量删除</button>
@@ -31,13 +34,13 @@
             </div>
           </form>
 
-          <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="3"
+          <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="8"
                  (fpage) = "getPageData($event)">
             <thead>
             <tr>
               <th>                                     </th>
               <th>                角色名              </th>
-              <th>                角色编码            </th>
+              <!--<th>                角色编码            </th>-->
               <th>                描述                </th>
               <th></th>
             </tr>
@@ -46,19 +49,19 @@
             <tr *ngFor="let item of mf.data.data" (click)="clickItem(item)" (mouseenter)="mouseenter($event.target,item)" >
               <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
               <td>{{item.roleName}}</td>
-              <td>{{item.roleNo}}</td>
+              <!--<td>{{item.roleNo}}</td>-->
               <td>{{item.roleDes}}</td>
               <td style="text-align: center">
-                <a (click)="deleteData(item)">删除</a>
+                <a (click)="deleteData(item)"><i class="icon remove"></i>删除</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a (click)="updataData(item)">修改</a>
+                <a (click)="updataData(item)"><i class="icon paint brush"></i>修改</a>
               </td>
             </tr>
             </tbody>
-            <tfoot *ngIf="mf.data.page>0">
+            <tfoot>
             <tr>
-              <th colspan="5">
-                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+              <th colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[8,16,24]" ></mfBootstrapPaginator>
               </th>
             </tr>
             </tfoot>
@@ -68,17 +71,18 @@
         <form class="ui form"  *ngIf="!tableShow" #f="ngForm" (ngSubmit)="insertOrUpdata()">
           <div class="ui segment" style="padding: 20px 50px;">
             <div class="ui top attached label" style="background-color: lightskyblue">
-              <h3 style="color: white" >角色信息（必填）</h3>
+              <h3 style="color: white;text-align:left" >角色信息</h3>
             </div>
             <div class="field" style="padding-top: 20px;">
               <div class="three fields">
                 <div class="field">
                   <label>角色名  </label>
-                  <input  placeholder="角色名"  [(ngModel)]="curRole.roleName" type="text" required="required">
-                </div>
-                <div class="field">
-                  <label>角色编码  </label>
-                  <input  placeholder="角色编码"  [(ngModel)]="curRole.roleNo" type="text" required="required">
+                  <div class="ui left labeled icon input">
+                    <input  placeholder="角色名"  [(ngModel)]="curRole.roleName" type="text" required="required">
+                    <div class="ui corner label">
+                      <i class="icon red asterisk"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="field">
                   <label>描述  </label>
@@ -90,7 +94,7 @@
 
           <div class="ui segment" style="padding: 20px 50px;">
             <div class="ui top attached label" style="background-color: lightskyblue">
-              <h3 style="color: white" >菜单权限</h3>
+              <h3 style="color: white;text-align:left" >菜单权限</h3>
             </div>
             <div class="field" style="padding-top: 20px;">
               <div  class="three fields" *ngFor="let menus of arrayMenu">
@@ -104,10 +108,8 @@
             </div>
           </div>
           <button *ngIf="isInsert"type="submit" class="ui teal labeled icon submit button">保存<i class="checkmark box icon"></i></button>
-          <button *ngIf="!isInsert"type="submit" class="ui teal labeled icon submit button">更新<i class="check circle outline icon"></i></button>
-          <!--<div *ngIf="isInsert" type="submit" class="ui teal labeled icon submit button" tabindex="0"  style="text-align: center"><i class="checkmark box icon"></i>保存</div>-->
-          <!--<div *ngIf="!isInsert" type="submit" class="ui teal labeled icon submit button" tabindex="0"  style="text-align: center"><i class="check circle outline icon"></i>更新</div>-->
-          <div class="ui teal labeled icon submit button" tabindex="0" (click)="resetRole()" style="text-align: center"><i class="refresh icon"></i>重置</div>
-          <div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
+          <button *ngIf="!isInsert"type="submit" class="ui blue labeled icon submit button">更新<i class="check circle outline icon"></i></button>
+          <div class="ui brown labeled icon submit button" tabindex="0" (click)="resetRole()" style="text-align: center"><i class="refresh icon"></i>重置</div>
+          <div class="ui grey labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
         </form>
       </div>

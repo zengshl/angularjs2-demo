@@ -44,7 +44,7 @@ export class DocumentComponent implements AfterViewInit{
 
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
-    this.pdata.page = 0;
+    this.pdata.page = 1;
     this.pdata.iDisplayLength = 10;
     this.pdata.searchData = {"docName":this.nameSearch,"docType":this.typeSearch,"userId":this.userId,"folderId":this.folderId};
     _util.getDocumentByuserIdAndfolderId(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
@@ -54,8 +54,8 @@ export class DocumentComponent implements AfterViewInit{
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    this.pdata.searchData = {"docName":this.nameSearch,"docType":this.typeSearch,"userId":this.userId,"folderId":this.folderId};
-    this._util.getDocumentByuserIdAndfolderId(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+    ds.searchData = {"docName":this.nameSearch,"docType":this.typeSearch,"userId":this.userId,"folderId":this.folderId};
+    this._util.getDocumentByuserIdAndfolderId(JSON.stringify(ds)).subscribe((res:Response)=>{
       this.data = res.json();
     });
   }

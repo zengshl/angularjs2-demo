@@ -30,16 +30,17 @@ export class FolderComponent implements AfterViewInit{
   isInsert:boolean = false;
   nameSearch:string = "";
   userSearch:string = "";
+  phoneSearch:string = "";
 
 
   constructor(private _util:UtilService,private router:Router){
     //实例化分页对象
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
-    this.pdata.page = 0;
+    this.pdata.page = 1;
     this.pdata.iDisplayLength = 10;
 
-    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch};
+    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getFolderList(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -48,8 +49,8 @@ export class FolderComponent implements AfterViewInit{
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch};
-    this._util.getFolderList(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+    ds.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
+    this._util.getFolderList(JSON.stringify(ds)).subscribe((res:Response)=>{
       this.data = res.json();
     });
   }
@@ -59,7 +60,7 @@ export class FolderComponent implements AfterViewInit{
   }
   //表格刷新
   updataTable(){
-    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch};
+    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
     this._util.getFolderList(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
       this.tableShow = true;

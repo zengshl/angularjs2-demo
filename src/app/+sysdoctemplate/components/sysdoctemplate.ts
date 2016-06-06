@@ -56,8 +56,8 @@ export class SysDocTemplateComponent implements AfterViewInit{
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    this.pdata.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId+""};
-    this._util.getDocTemplate(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+    ds.searchData = {"resourceName":this.nameSearch,"resourcePath":this.pathSearch,"typeId":this.typeId+""};
+    this._util.getDocTemplate(JSON.stringify(ds)).subscribe((res:Response)=>{
       this.data = res.json();
     });
   }

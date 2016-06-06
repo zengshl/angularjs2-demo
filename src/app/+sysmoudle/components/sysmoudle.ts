@@ -24,6 +24,8 @@ declare var jQuery:JQueryStatic;
 export class SysMoudleComponent implements AfterViewInit{
   ngAfterViewInit() {
 
+    jQuery('#text').dropdown();
+    //jQuery('.ui.fluid.search.dropdown').dropdown();
   }
   private data: any ;
   private attrData :any = {"data":[],page:0,size:0};

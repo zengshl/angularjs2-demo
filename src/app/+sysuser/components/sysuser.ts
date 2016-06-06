@@ -64,7 +64,8 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-	this.pdata.iDisplayLength = 9;    this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
+	  this.pdata.iDisplayLength = 8;
+    this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
     //实例化用户对象
     this.curUser = new Admin();
     this.userBase = new UserBase();
@@ -121,6 +122,9 @@ export class SysUserComponent implements AfterViewInit{
 
   //获取详细信息
   updataData(user:any){
+    //由于获取到的列表是map（string，string），所以需要多number类型的数据进行转换
+    let id = user.id
+    user.id = parseInt(id);
     this._util.getAdminInfo(JSON.stringify(user)).subscribe((res:Response)=>{
       let getdata = res.json();
 

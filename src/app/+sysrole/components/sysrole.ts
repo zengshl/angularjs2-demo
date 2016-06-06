@@ -43,7 +43,7 @@ export class SysRoleComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-    this.pdata.iDisplayLength = 10;
+    this.pdata.iDisplayLength = 8;
     this.menus = new Array<Menu>();
     this.postPowers = new Array<Power>();
     this.pdata.searchData = {"roleName":this.nameSearch,"roleNo":this.noSearch}
