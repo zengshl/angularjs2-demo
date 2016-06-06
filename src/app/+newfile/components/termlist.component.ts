@@ -38,13 +38,15 @@ export class TermListComponent implements OnChanges{
         this.file.userId = this.user.id;
         this.file.docType = '2';
         this.file.templateId = 1; //保密协议 第1个版本
-        this.file.docName = "保密协议";
+        //this.file.docName = "保密协议";
         this.file.folderId = 0;
-        this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
-          var str = res.json();
-          sessionStorage.setItem("fileId",str);
-          this.nav('./ConfidTemplate');
-        });
+        sessionStorage.setItem("file",JSON.stringify(this.file));
+        this.nav('./ConfidTemplate');
+        //this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
+        //  var str = res.json();
+        //  sessionStorage.setItem("fileId",str);
+        //
+        //});
 
       }
     }

@@ -170,7 +170,16 @@
       <p style="text-indent : 20px;line-height:200%">
         {{conclusion}}
       </p>
-      <br><br><br>
+      <br>
+      <h3>如果上述信息正确，请输入即将要生成文档的文档名：</h3>
+      <hr>
+      <div class="ui form">
+        <div class="field">
+          <label>保密协议名称</label>
+          <input name="first-name" placeholder="保密协议名称" type="text" [(ngModel)]="file.docName" required>
+        </div>
+      </div>
+      <br><br>
       <div class="ui grid">
         <div class="four wide column">
           <i class="reply icon"></i>

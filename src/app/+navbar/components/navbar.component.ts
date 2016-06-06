@@ -25,7 +25,7 @@ export class NavbarComponent implements AfterViewInit{
 
       this.user = <User>JSON.parse(sessionStorage.getItem('user'));
      // console.log(this.user)
-      if(this.user.userName === '' || this.user.userName ==='  ') {
+      if(this.user.userName.trim() === '') {
         this.user.userName = this.user.phone;
       }
     }

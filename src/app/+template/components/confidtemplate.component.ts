@@ -1,5 +1,5 @@
 import {Component } from '@angular/core';
-import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr} from "../../shared/index";
+import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File} from "../../shared/index";
 import {Router} from '@angular/router-deprecated';
 import {CheckBox} from "../../shared/services/entity.service";
 import  {FORM_DIRECTIVES} from '@angular/common';
@@ -48,6 +48,7 @@ export class ConfidTemplateComponent {
   moulds:Array<Moudle> = new Array<Moudle>();
   docType:Array<Doctype> = new Array<Doctype>();
   differ:any;
+  file:File = new File();
   //步骤
   step1:string = 'active';
   step2:string = 'disabled';
@@ -69,6 +70,7 @@ export class ConfidTemplateComponent {
 
 
   constructor(private _util:UtilService,private router:Router){
+    this.file = <File>JSON.parse(sessionStorage.getItem('file'));
     //获取保密信息定义列表
     _util.getConfinfo().subscribe((res)=>{
       this.confinfo = <CheckBox[]> res.json();
@@ -144,21 +146,30 @@ export class ConfidTemplateComponent {
     this.step1 = 'completed';
     this.step2 = 'active';
     this.step3 = 'disabled';
-    var documentId = parseInt(sessionStorage.getItem("fileId"));
-    var a = new DocAttr(documentId,"aName",this.agreement.aName);
-    this.attrData.push(a);
-    a = new DocAttr(documentId,"bName",this.agreement.bName);
-    this.attrData.push(a);
-    a = new DocAttr(documentId,"organizationType",this.agreement.organizationType);
-    this.attrData.push(a);
-    a = new DocAttr(documentId,"aIdNo",this.agreement.aIdNo);
-    this.attrData.push(a);
-    a = new DocAttr(documentId,"bIdNo",this.agreement.bIdNo);
-    this.attrData.push(a);
-    this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
-      sessionStorage.setItem("nextStep1","true");
-    })
-    this.attrData  = new Array<DocAttr>(); //数据归零
+    if(sessionStorage.getItem("file")){
+      this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
+        this.file.id = res.json();
+        var documentId = this.file.id;
+        var a = new DocAttr(documentId,"aName",this.agreement.aName);
+        this.attrData.push(a);
+        a = new DocAttr(documentId,"bName",this.agreement.bName);
+        this.attrData.push(a);
+        a = new DocAttr(documentId,"organizationType",this.agreement.organizationType);
+        this.attrData.push(a);
+        a = new DocAttr(documentId,"aIdNo",this.agreement.aIdNo);
+        this.attrData.push(a);
+        a = new DocAttr(documentId,"bIdNo",this.agreement.bIdNo);
+        this.attrData.push(a);
+        this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
+          sessionStorage.setItem("nextStep1","true");
+        })
+        this.attrData  = new Array<DocAttr>(); //数据归零
+      });
+    }else{
+      alert("请重新选择文件模板");
+      this.nav('./TemplateList');
+    }
+
   }
 
 //测试
@@ -237,7 +248,7 @@ export class ConfidTemplateComponent {
     this.step1 = 'completed';
     this.step2 = 'completed';
     this.step3 = 'active';
-    var documentId = parseInt(sessionStorage.getItem("fileId"));
+    var documentId = this.file.id;
     var a = new DocAttr(documentId,"projectName",this.agreement.projectName);
     this.attrData.push(a);
     a = new DocAttr(documentId,"confDefination",this.agreement.confDefination);
@@ -287,7 +298,7 @@ export class ConfidTemplateComponent {
   //最后生成文件
   createDocument(){
     this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
-      this._util.generateFile(sessionStorage.getItem("fileId"));
+      this._util.generateFile(""+this.file.id);
     })
 
   }
