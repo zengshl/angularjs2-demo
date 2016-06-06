@@ -114,7 +114,8 @@
                   <tbody>
                   <tr *ngFor="let item of mf.data.data">
                     <td>{{item.resourceName}}</td>
-                    <td>{{item.resourcePath}}</td>
+                    <td>{{item.resourcePath.substr(0, 10)+'...'}}</td>
+                    <!--<td>{{item.resourcePath}}</td>-->
                     <td>{{item.resourceTitle}}</td>
                     <td>{{item.resouceContext}}</td>
                     <td>{{item.createTime}}</td>

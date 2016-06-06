@@ -84,8 +84,17 @@ export class SysMoudleComponent implements AfterViewInit{
   }
 
   //获取详细信息
-  updataData(role:any){
-    this._util.getMoudleInfo(JSON.stringify(role)).subscribe((res:Response)=>{
+  updataData(doctype:any){
+
+    //由于返回的数据是map（string，string）类型，所以需要对number类型的数据进行处理
+    let id = doctype.id;
+    let preId = doctype.preId;
+    let moudleId = doctype.moudleId;
+    doctype.id = parseInt(id);
+    doctype.preId = parseInt(preId);
+    doctype.moudleId = parseInt(moudleId);
+
+    this._util.getMoudleInfo(JSON.stringify(doctype)).subscribe((res:Response)=>{
       let getdata = res.json();
       this.curType = getdata.data;
       this.temps = getdata.temp;
