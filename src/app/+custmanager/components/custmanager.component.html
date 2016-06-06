@@ -52,7 +52,7 @@
         </div>
       </div>
     </form>
-    <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="3"
+    <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="8"
            (fpage) = "getPageData($event)">
       <thead>
       <tr>
@@ -75,10 +75,10 @@
         <td>{{item.createTime}}</td>
       </tr>
       </tbody>
-      <tfoot *ngIf="mf.data.page>0">
+      <tfoot>
       <tr>
         <th colspan="7">
-          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          <mfBootstrapPaginator [rowsOnPageSet]="[8,16,24]"></mfBootstrapPaginator>
         </th>
       </tr>
       </tfoot>

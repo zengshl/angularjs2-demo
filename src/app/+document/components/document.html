@@ -28,6 +28,9 @@
             <i class="search link icon" (click)="filter()"></i>
           </div>
         </div>
+        <div class="three wide field">
+          <button class="ui teal icon button" (click)="filter()"><i class="search icon"></i>查询</button>
+        </div>
         <div class="ten wide field">
           <button class="right floated ui teal icon button" (click)="back()"><i class="reply icon"></i>返回</button>
         </div>
@@ -60,7 +63,7 @@
         <td>{{item.createTime}}</td>
       </tr>
       </tbody>
-      <tfoot *ngIf="mf.data.page>0">
+      <tfoot>
       <tr>
       <th colspan="8">
           <mfBootstrapPaginator [rowsOnPageSet]="[10,20,30]"></mfBootstrapPaginator>

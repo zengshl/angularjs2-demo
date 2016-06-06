@@ -72,7 +72,7 @@ private url = 'http://localhost:9000/';
   //用户管理部分
   //获取管理用户信息
   getAdmin(pageData:string):any {
-    var str = this.url+'law/sysuser/pageListPost';
+    var str = this.url+'law/sysuser/pageListMap';
     return this.http.post(str,pageData);
   };
 

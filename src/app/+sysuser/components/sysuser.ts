@@ -28,6 +28,11 @@ export class SysUserComponent implements AfterViewInit{
       alert('11')
 
     });
+
+    jQuery("#selected").dropdown({
+      maxSelections: 3
+    });
+
     //jQuery('#datetimepicker').datetimepicker({
     //  format: 'yyyy-mm-dd',
     //  language:  'zh-CN',
@@ -64,7 +69,8 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
-	this.pdata.iDisplayLength = 9;    this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
+	  this.pdata.iDisplayLength = 8;
+    this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
     //实例化用户对象
     this.curUser = new Admin();
     this.userBase = new UserBase();
@@ -121,12 +127,18 @@ export class SysUserComponent implements AfterViewInit{
 
   //获取详细信息
   updataData(user:any){
+    //由于获取到的列表是map（string，string），所以需要多number类型的数据进行转换
+    let id = user.id
+    user.id = parseInt(id);
     this._util.getAdminInfo(JSON.stringify(user)).subscribe((res:Response)=>{
       let getdata = res.json();
 
       this.curUser = getdata.data;
+
       for(var i=0;i<getdata.base.length;i++){
         this.userBase = getdata.base[i]
+        //this.userBase.birthday = new Date(getdata.base[i].birthday.replace(/-/g, "/"));
+        //console.log(this.userBase.birthday);
       }
 
       this.getUserRole = getdata.role;

@@ -28,7 +28,7 @@ export class CustmanagerComponent {
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1 ;
-    this.pdata.iDisplayLength = 10;
+    this.pdata.iDisplayLength = 8;
 
     this.pdata.searchData = {"userName":this.userSearch};
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
@@ -39,8 +39,8 @@ export class CustmanagerComponent {
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    this.pdata.searchData = {"userName":this.userSearch};
-    this._util.getUser(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
+    ds.searchData = {"userName":this.userSearch};
+    this._util.getUser(JSON.stringify(ds)).subscribe((res:Response)=>{
       this.data = res.json();
     });
   }

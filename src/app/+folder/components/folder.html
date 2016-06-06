@@ -28,6 +28,16 @@
             <i class="search link icon" (click)="filter()"></i>
           </div>
         </div>
+
+        <div class="three wide field">
+          <div class="ui  icon input">
+            <input placeholder="手机号码..." type="text" [(ngModel)]="phoneSearch">
+            <i class="search link icon" (click)="filter()"></i>
+          </div>
+        </div>
+        <div class="three wide field">
+          <button class="ui teal icon button" (click)="filter()"><i class="search icon"></i>查询</button>
+        </div>
       </div>
     </form>
     <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10"
@@ -52,7 +62,7 @@
         <!--<td><i class="paint brush icon"></i></td>-->
       </tr>
       </tbody>
-      <tfoot *ngIf="mf.data.page>0">
+      <tfoot>
       <tr>
         <th colspan="5">
           <mfBootstrapPaginator [rowsOnPageSet]="[10,20,30]"></mfBootstrapPaginator>
@@ -60,5 +70,15 @@
       </tr>
       </tfoot>
     </table>
+    <div class="row" style="padding-bottom: 15px;">
+
+      <div class="ui icon message">
+        <i class="inbox icon"></i>
+        <div class="content">
+          <div class="header">点击每一行可查看该文件夹的文件详情 </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
