@@ -33,6 +33,18 @@ export class SysUserComponent implements AfterViewInit{
       maxSelections: 3
     });
 
+    jQuery('.ui.radio.checkbox').checkbox();
+
+    jQuery("[name='gender']").on("change",
+
+      function(e){
+
+        console.log(jQuery(e.target).val());
+
+      }
+
+    );
+
     //jQuery('#datetimepicker').datetimepicker({
     //  format: 'yyyy-mm-dd',
     //  language:  'zh-CN',
@@ -137,10 +149,7 @@ export class SysUserComponent implements AfterViewInit{
 
       for(var i=0;i<getdata.base.length;i++){
         this.userBase = getdata.base[i]
-        //this.userBase.birthday = new Date(getdata.base[i].birthday.replace(/-/g, "/"));
-        //console.log(this.userBase.birthday);
       }
-
       this.getUserRole = getdata.role;
 
       //有权限的角色打勾
@@ -275,5 +284,9 @@ export class SysUserComponent implements AfterViewInit{
       alert('批量删除成功');
     });
   }
-
+  radioSelect(event:any){
+    if(event.checked){
+      console.log(event.value);
+    }
+  }
 }
