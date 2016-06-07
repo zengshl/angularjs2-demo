@@ -122,15 +122,6 @@
       </div>
       <div class="field" style="padding-top: 20px;">
         <div class="three fields">
-          <!--<div class="field">-->
-            <!--<label>手机  </label>-->
-            <!--<div class="ui left labeled icon input">-->
-              <!--<input placeholder="手机" [(ngModel)]="curUser.phone" type="text" required>-->
-              <!--<div class="ui corner label">-->
-                <!--<i class="icon red asterisk"></i>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
           <div class="field" [ngClass]="{error:!mobileControl.valid && mobileControl.dirty}">
             <label>手机号</label>
             <input [(ngFormControl)]="mobileControl" placeholder="手机" [(ngModel)]="curUser.phone"/>
@@ -138,16 +129,6 @@
               <validation-messages [control]="mobileControl"></validation-messages>
             </span>
           </div>
-
-          <!--<div class="field">-->
-            <!--<label>邮箱  </label>-->
-            <!--<div class="ui left labeled icon input">-->
-              <!--<input  placeholder="邮箱" [(ngModel)]="userBase.email" type="text" required>-->
-              <!--<div class="ui corner label">-->
-                <!--<i class="icon red asterisk"></i>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
           <div class="field" [ngClass]="{error:!emailControl.valid && emailControl.dirty}">
             <label>邮箱</label>
             <input [(ngFormControl)]="emailControl" placeholder="邮箱"  [(ngModel)]="userBase.email" />
