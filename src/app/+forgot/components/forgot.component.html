@@ -31,10 +31,19 @@
       <div class="ui bottom attached form segment" style="padding:10px 200px">
         <form accept-charset="UTF-8"  #f="ngForm" (ngSubmit)="recallPwd(f.value)">
           <input name="utf8" type="hidden" value="&#x2713;" />
+          <!--<div class="field">-->
+            <!--<label for="user_username">手机号</label>-->
+            <!--<div class="ui left labeled icon input">-->
+              <!--<input required="required" type="text" id="user_username"  pattern="^1[0-9]{10}$"  ngControl="phone" [(ngModel)]="mobile"/>-->
+              <!--<div class="ui corner label">-->
+                <!--<i class="icon asterisk"></i>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
           <div class="field">
-            <label for="user_username">手机号</label>
+            <label for="user_username">手机号/邮箱</label>
             <div class="ui left labeled icon input">
-              <input required="required" type="text" id="user_username"  pattern="^1[0-9]{10}$"  ngControl="phone" [(ngModel)]="mobile"/>
+              <input required="required" type="text" id="user_username"  ngControl="phone" [(ngModel)]="mobile"/>
               <div class="ui corner label">
                 <i class="icon asterisk"></i>
               </div>

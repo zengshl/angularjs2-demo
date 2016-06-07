@@ -33,6 +33,18 @@ export class SysUserComponent implements AfterViewInit{
       maxSelections: 3
     });
 
+    jQuery('.ui.radio.checkbox').checkbox();
+
+    jQuery("[name='gender']").on("change",
+
+      function(e){
+
+        console.log(jQuery(e.target).val());
+
+      }
+
+    );
+
     //jQuery('#datetimepicker').datetimepicker({
     //  format: 'yyyy-mm-dd',
     //  language:  'zh-CN',
@@ -118,6 +130,9 @@ export class SysUserComponent implements AfterViewInit{
 
   //删除用户
   deleteData(user:any){
+    //将string转为int
+    let id = user.id;
+    user.id = parseInt(id);
     this._util.deleteAdmin(JSON.stringify(user)).subscribe((res:Response)=>{
 
       let getdata = res.json();
@@ -137,10 +152,7 @@ export class SysUserComponent implements AfterViewInit{
 
       for(var i=0;i<getdata.base.length;i++){
         this.userBase = getdata.base[i]
-        //this.userBase.birthday = new Date(getdata.base[i].birthday.replace(/-/g, "/"));
-        //console.log(this.userBase.birthday);
       }
-
       this.getUserRole = getdata.role;
 
       //有权限的角色打勾
@@ -252,7 +264,7 @@ export class SysUserComponent implements AfterViewInit{
   onDelete(event:any,item:any){
     if(event.checked){
       //选中
-      this.ids.push(item.id);
+      this.ids.push(parseInt(item.id));
     }else{
       //取消
       for(var i=0;i<this.ids.length;i++){
@@ -275,5 +287,30 @@ export class SysUserComponent implements AfterViewInit{
       alert('批量删除成功');
     });
   }
+  radioSelect(event:any){
+    if(event.checked){
+      console.log(event.value);
+    }
+  }
 
+  //新增或者保存
+  insertOrUpdata(){
+    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+    if(this.isInsert){
+      if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
+        var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+        this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+          let data = res.json();
+          this.updataTable();
+        });
+      }else{
+        alert('新增失败','请确认两次密码一致');
+      }
+    }else{
+      this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        let data = res.json();
+        this.updataTable();
+      });
+    }
+  }
 }

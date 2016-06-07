@@ -34,7 +34,6 @@ export class ModifyPasswordComponent  {
       this.user.password = form.password;
       this._util.mdfPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
-        console.log(data);
         if(data.status ==='1') { //修改成功
           alert('密码修改成功！');
           this.toLogin();

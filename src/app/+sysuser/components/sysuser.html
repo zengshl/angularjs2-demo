@@ -79,7 +79,7 @@
   </div>
 
   <!--<addsysuser-box *ngIf="!tableShow"></addsysuser-box>-->
-  <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow">
+  <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow" (ngSubmit)="insertOrUpdata()">
     <div class="ui segment" style="padding: 20px 50px;">
       <div class="ui top attached label" style="background-color: lightskyblue">
         <h3 style="color: white;text-align:left" >登录信息</h3>
@@ -107,7 +107,7 @@
           <div class="field" *ngIf="isInsert">
             <label>确认密码  </label>
             <div class="ui left labeled icon input">
-              <input  placeholder="确认密码" [(ngModel)]="secondPSD" type="text">
+              <input  placeholder="确认密码" [(ngModel)]="secondPSD" type="text" required>
               <div class="ui corner label">
                 <i class="icon red asterisk"></i>
               </div>
@@ -125,15 +125,22 @@
           <div class="field">
             <label>手机  </label>
             <div class="ui left labeled icon input">
-              <input placeholder="手机" [(ngModel)]="curUser.phone" type="text">
+              <input placeholder="手机" [(ngModel)]="curUser.phone" type="text" required>
               <div class="ui corner label">
                 <i class="icon red asterisk"></i>
               </div>
             </div>
           </div>
+
           <div class="field">
-            <label>昵称  </label>
-            <input  placeholder="昵称" [(ngModel)]="userBase.userName" type="text">
+            <label>邮箱  </label>
+            <div class="ui left labeled icon input">
+              <input  placeholder="邮箱" [(ngModel)]="userBase.email" type="text" required>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
+
           </div>
           <div class="field">
             <label>性别 </label>
@@ -158,36 +165,24 @@
             <datetime [timepicker]="false"  [datepicker]="{ format:'yyyy-mm-dd', language:'zh-CN'}" [(ngModel)]="userBase.birthday"></datetime>
           </div>
           <div class="field">
-            <label>邮箱  </label>
-            <div class="ui left labeled icon input">
-              <input  placeholder="邮箱" [(ngModel)]="userBase.email" type="text">
-              <div class="ui corner label">
-                <i class="icon red asterisk"></i>
-              </div>
-            </div>
-
+            <label>昵称  </label>
+            <input  placeholder="昵称" [(ngModel)]="userBase.userName" type="text">
           </div>
         </div>
       </div>
       <div class="field" *ngIf="false">
-        <label>性别 </label>
+        <label for="gender">性别 </label>
         <div class="inline fields">
         <div class="field">
-          <div class="ui radio checkbox">
-            <input name="frequency" type="radio">
-            <label>男</label>
-          </div>
+          <input type="radio" value="1" name="gender" (change)="radioSelect($event.target)" />男
         </div>
         <div class="field">
-          <div class="ui radio checkbox">
-            <input name="frequency" type="radio">
-            <label>女</label>
-          </div>
+          <input type="radio" value="0" name="gender" (change)="radioSelect($event.target)"/>女
         </div>
         </div>
       </div>
 
-      <div class="field">
+      <div class="field" *ngIf="false">
         <label>性别 </label>
         <select multiple="" name="skills" class="ui fluid normal dropdown" id="selected" required ="required" >
                 <!--[ngModel]="news.categoryID" (change)="onItemChange($event.target.value)">-->
@@ -195,15 +190,6 @@
           <option value="">Skills</option>
           <option value="0">女</option>
         </select>
-        <!--<div class="ui selection dropdown" >-->
-          <!--<input name="gender" type="hidden" >-->
-          <!--<i class="dropdown icon"></i>-->
-          <!--<div class="default text">Gender</div>-->
-          <!--<div class="menu" id="selected">-->
-            <!--<div class="item" data-value="1">Male</div>-->
-            <!--<div class="item" data-value="0">Female</div>-->
-          <!--</div>-->
-        <!--</div>-->
       </div>
 
       <div class="field">
@@ -226,8 +212,8 @@
         </div>
       </div>
     </div>
-    <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAdmin()" style="text-align: center"><i class="checkmark box icon"></i>添加用户</div>
-    <div *ngIf="!isInsert" class="ui blue labeled icon submit button" tabindex="0" (click)="updataAdmin()" style="text-align: center"><i class="check circle outline icon"></i>更新用户</div>
+    <button *ngIf="isInsert"type="submit" class="ui teal labeled icon submit button">保存<i class="checkmark box icon"></i></button>
+    <button *ngIf="!isInsert"type="submit" class="ui blue labeled icon submit button">更新<i class="check circle outline icon"></i></button>
     <div class="ui brown  labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>
     <div class="ui grey  labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
   </form>
