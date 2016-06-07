@@ -149,7 +149,7 @@
                         <div class="field">
                           <label>文档名称  </label>
                           <div class="ui left labeled icon input">
-                            <input placeholder="文档名称" [(ngModel)]="addTemp.resourceName" type="text">
+                            <input placeholder="文档名称" [(ngModel)]="addTemp.resourceName" type="text" required>
                             <div class="ui corner label">
                               <i class="icon red asterisk"></i>
                             </div>
@@ -176,8 +176,6 @@
                     </div>
                   <button *ngIf="isAttrInsert" type="submit" class="ui teal labeled icon submit button">添加资源模板<i class="checkmark box icon"></i></button>
                   <button *ngIf="!isAttrInsert" type="submit" class="ui blue labeled icon submit button">更新资源模板<i class="check circle outline icon"></i></button>
-                  <!--<div *ngIf="isAttrInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertAttrData()" style="text-align: center"><i class="checkmark box icon"></i>添加资源模板</div>-->
-                  <!--<div *ngIf="!isAttrInsert" class="ui blue labeled icon submit button" tabindex="0" (click)="updataAttrData()" style="text-align: center"><i class="check circle outline icon"></i>更新资源模板</div>-->
                   <div class="ui brown labeled icon submit button" tabindex="0" (click)="resetAttr()" style="text-align: center"><i class="refresh icon"></i>重置</div>
                   <div class="ui grey labeled icon submit button" tabindex="0" (click)="goback()" style="text-align: center"><i class="reply icon"></i>返回</div>
                 </form>
