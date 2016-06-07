@@ -25,8 +25,8 @@ export class PersonalSetComponent implements AfterViewInit{
   }
 
   ngAfterViewInit() {
-    jQuery('#leftMenu')
-      .accordion();
+    //jQuery('#leftMenu')
+    //  .accordion();
   }
 
   nav(name:string){
@@ -53,6 +53,7 @@ export class PersonalSetComponent implements AfterViewInit{
 
   //刷新数据
   freshUser(){
+    console.log("freshUser");
     this._util.getUserById(this.user.id).subscribe((resp:Response)=>{
       this.user = resp.json();
     });

@@ -130,6 +130,9 @@ export class SysUserComponent implements AfterViewInit{
 
   //删除用户
   deleteData(user:any){
+    //将string转为int
+    let id = user.id;
+    user.id = parseInt(id);
     this._util.deleteAdmin(JSON.stringify(user)).subscribe((res:Response)=>{
 
       let getdata = res.json();
@@ -261,7 +264,7 @@ export class SysUserComponent implements AfterViewInit{
   onDelete(event:any,item:any){
     if(event.checked){
       //选中
-      this.ids.push(item.id);
+      this.ids.push(parseInt(item.id));
     }else{
       //取消
       for(var i=0;i<this.ids.length;i++){
@@ -287,6 +290,27 @@ export class SysUserComponent implements AfterViewInit{
   radioSelect(event:any){
     if(event.checked){
       console.log(event.value);
+    }
+  }
+
+  //新增或者保存
+  insertOrUpdata(){
+    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+    if(this.isInsert){
+      if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
+        var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+        this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+          let data = res.json();
+          this.updataTable();
+        });
+      }else{
+        alert('新增失败','请确认两次密码一致');
+      }
+    }else{
+      this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        let data = res.json();
+        this.updataTable();
+      });
     }
   }
 }

@@ -73,19 +73,8 @@ export class SysMoudleComponent implements AfterViewInit{
       this.data = res.json();
     });
   }
-
-  //删除角色
-  deleteData(role:any){
-    this._util.deleteMoudle(JSON.stringify(role)).subscribe((res:Response)=>{
-
-      let getdata = res.json();
-      this.updataTable();
-    });
-  }
-
-  //获取详细信息
-  updataData(doctype:any){
-
+  //删除模板类型
+  deleteData(doctype:any){
     //由于返回的数据是map（string，string）类型，所以需要对number类型的数据进行处理
     let id = doctype.id;
     let preId = doctype.preId;
@@ -93,7 +82,20 @@ export class SysMoudleComponent implements AfterViewInit{
     doctype.id = parseInt(id);
     doctype.preId = parseInt(preId);
     doctype.moudleId = parseInt(moudleId);
-
+    this._util.deleteMoudle(JSON.stringify(doctype)).subscribe((res:Response)=>{
+      let getdata = res.json();
+      this.updataTable();
+    });
+  }
+  //获取详细信息
+  updataData(doctype:any){
+    //由于返回的数据是map（string，string）类型，所以需要对number类型的数据进行处理
+    let id = doctype.id;
+    let preId = doctype.preId;
+    let moudleId = doctype.moudleId;
+    doctype.id = parseInt(id);
+    doctype.preId = parseInt(preId);
+    doctype.moudleId = parseInt(moudleId);
     this._util.getMoudleInfo(JSON.stringify(doctype)).subscribe((res:Response)=>{
       let getdata = res.json();
       this.curType = getdata.data;
@@ -101,12 +103,11 @@ export class SysMoudleComponent implements AfterViewInit{
       this.attrData.data = this.temps;
       this.attrData.page = 1;
       this.attrData.size = this.temps.length;
-
+      console.log(this.attrData);
       this.tableShow = false;
       this.isInsert = false;
     });
   }
-
   //返回列表界面
   backTo(){
     this.curType = new Doctype();
@@ -114,50 +115,22 @@ export class SysMoudleComponent implements AfterViewInit{
     this.tableShow = true;
     this.updataTable();
   }
-
-
-  //更新模板信息
-  updataMoudle(){
-    //对数据进行处理
-    let moudleId = jQuery("#moudleId").val();
-    this.curType.moudleId = parseInt(moudleId);
-    var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
-    this._util.updataMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-      let data = res.json();
-      this.updataTable();
-
-    });
-  }
-
-  //重置表单
+    //重置表单
   resetMoudle(){
     this.curType = new Doctype();
     this.temps = new Array<DocTemplate>();
   }
-
   //查询
   filter(){
     this.pdata.searchData = {"typeName":this.typeSearch}
     this.updataTable();
   }
-
   //调整到新增界面
   insert(){
     this.isInsert = true;
     this.tableShow = false;
     this.resetMoudle();
   }
-  //新增模板信息
-  insertMoudle(){
-    //对数据进行处理
-      let moudleId = jQuery("#moudleId").val();
-      this.curType.moudleId = parseInt(moudleId);
-      var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
-      this._util.insertMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-        this.updataTable();
-      });
-  }
-
   //表格刷新
   updataTable(){
     this.temps = new Array<DocTemplate>();
@@ -170,11 +143,8 @@ export class SysMoudleComponent implements AfterViewInit{
         this.tableShow = true;
     });
   }
-
   mouseenter(event:any,item:any){
-    //console.log(event+","+item);
   }
-
   //跳转到增加模板属性界面
   insertTemp(){
     this.addAttr = true;
@@ -187,6 +157,8 @@ export class SysMoudleComponent implements AfterViewInit{
   }
   //新增类型模板
   insertAttrData(){
+
+
     this.temps.push(this.addTemp);
     this.updataAttrData();
   }
@@ -236,5 +208,29 @@ export class SysMoudleComponent implements AfterViewInit{
   backType(){
     this.curMoudle = new Moudle();
     this.isAddTypeMoudle = false;
+  }
+
+  //新增或者保存
+  insertOrUpdata(){
+    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+    if(this.isInsert){
+    //对数据进行处理
+          let moudleId = jQuery("#moudleId").val();
+          if(moudleId!=null&&moudleId!=""){
+            this.curType.moudleId = parseInt(moudleId);
+          }
+          var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
+          this._util.insertMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+            this.updataTable();
+          });
+    }else{
+      //对数据进行处理
+      let moudleId = jQuery("#moudleId").val();
+      this.curType.moudleId = parseInt(moudleId);
+      var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
+      this._util.updataMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        let data = res.json();
+        this.updataTable();
+    }
   }
 }

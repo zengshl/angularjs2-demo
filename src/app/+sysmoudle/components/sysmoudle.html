@@ -63,7 +63,7 @@
           </table>
         </div>
         <!--<add_sys_moudle></add_sys_moudle>-->
-        <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow">
+        <form class="ui form" style="padding: 5px 20px;" *ngIf="!tableShow" (ngSubmit)="insertOrUpdata()">
             <div class="ui segment" style="padding: 20px 50px;">
               <div class="ui top attached label" style="background-color: lightskyblue">
                 <h3 style="color: white;text-align:left" >文档类型信息</h3>
@@ -101,7 +101,7 @@
                 <button class="right floated ui teal icon button" (click)="insertTemp()"><i class="plus icon"></i>添加资源模板</button>
                 <br>
                 <br>
-                <table class="ui teal celled table" [mfData]="attrData" #mf="mfDataTable" [mfRowsOnPage]="3" (fpage) = "getPageData($event)">
+                <table  *ngIf="!addAttr" class="ui teal celled table" [mfData]="attrData" #mf="mfDataTable" [mfRowsOnPage]="3" (fpage) = "getPageData($event)">
                   <thead>
                   <tr>
                     <th>          模板名称          </th>
@@ -225,8 +225,8 @@
               </div>
             </div>
 
-          <div *ngIf="isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="insertMoudle()" style="text-align: center"><i class="checkmark box icon"></i>添加模板属性</div>
-          <div *ngIf="!isInsert" class="ui blue labeled icon submit button" tabindex="0" (click)="updataMoudle()" style="text-align: center"><i class="check circle outline icon"></i>更新模板属性</div>
+          <button *ngIf="isInsert"type="submit" class="ui teal labeled icon submit button">添加模板属性<i class="checkmark box icon"></i></button>
+          <button *ngIf="!isInsert"type="submit" class="ui blue labeled icon submit button">更新模板属性<i class="check circle outline icon"></i></button>
           <div class="ui brown labeled icon submit button" tabindex="0" (click)="resetMoudle()" style="text-align: center"><i class="refresh icon"></i>重置</div>
           <div class="ui grey labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
         </form>
