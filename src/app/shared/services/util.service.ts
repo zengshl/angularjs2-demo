@@ -300,10 +300,20 @@ private url = 'http://localhost:9000/';
     return this.http.post(str,data);
   }
   //生成文档文件
-  generateFile(fileId:string){
-    var str = this.url + "law/doc/unloadWordDoc/"+fileId;
+  generateFile(fileId:string,format:string){
+    var str = this.url + "law/doc/downLoadFile/"+fileId+"/"+format;
+    if(format == "show"){
+      this.http.get(str).subscribe((res)=>{
+        var path = res.json();
+        str = "file:///"+path;
+        window.open(str);
+      })
+    }else{
+      window.open(str);
+    }
+
     //return this.http.get(str);
-    window.open(str);
+
   }
   //根据id获取用户信息
   getUserById(id:number){
@@ -314,10 +324,18 @@ private url = 'http://localhost:9000/';
   updataUser(data:string){
     var str = this.url + "law/user/updata";
     return this.http.post(str,data);
-  }  //删除文档
+  }
+  //删除文档
   deleteFile(docId:number){
     var data = JSON.stringify({"documentId":docId});
     var str = this.url + "law/doc/deleteDocById";
     return this.http.post(str,data);
   }
+  //获取案件类型列表
+  getLawCategory(){
+    var str = "assets/json/lawcategory.json";
+    return this.http.get(str);
+  }
+
+
 };

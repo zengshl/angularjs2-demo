@@ -215,8 +215,8 @@ export class DocAttr{
   }
 }
 
-//export class AttrData {
-//  documentId :number;
-//  attr: Array<DocAttr> = new Array<DocAttr>();
-//}
+export class LawCategory {
+  id :number;
+  value:string;
+}
 

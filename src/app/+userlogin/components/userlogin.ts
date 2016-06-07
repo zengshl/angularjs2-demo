@@ -26,6 +26,7 @@ export class UserLoginComponent implements AfterViewInit {
   account:string; //手机号输入框
   password:string; //密码输入框
   user:User;
+  load:boolean;
   constructor(private router:Router,private http:Http,private _util:UtilService) {
     this.user = new User();
     //记住密码
@@ -53,6 +54,7 @@ export class UserLoginComponent implements AfterViewInit {
     this._util.logIn(JSON.stringify(this.user)).subscribe((res)=>{
       var data = res.json();
       if(data.status === '0'){
+        this.load = false;
         this.message = '您所输入的用户名或密码不正确，请重新输入！';
         this.error = true;
         setTimeout(() =>  {

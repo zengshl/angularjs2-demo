@@ -446,15 +446,21 @@
 
     <!-- 问题11 -->
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;" *ngIf="showQ11">
-      <h3>协议内容已经填写完毕，您是否需要生成协议文档文件？ </h3>
+      <h3>协议内容已经填写完毕，请选择对文档的操作？ </h3>
       <hr>
       <br><br>
-      <div class="ui two column grid">
-        <a class="center aligned column" style="font-size: 14px;font-weight: bolder" (click)="createDocument()">
-          <i class="big green checkmark icon"></i>是的，需要生成文档文件
+      <div class="ui four column grid">
+        <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('pdf')">
+          <i class="big green checkmark icon"></i>生成文档PDF文件,并下载
+        </a>
+        <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('docx')">
+          <i class="big green checkmark icon"></i>生成文档WORD文件,并下载
+        </a>
+        <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('show')">
+          <i class="big green checkmark icon"></i>生成文档PDF文件,并浏览
         </a>
         <a class="column" style="font-size: 14px;font-weight: bolder" (click)="finalConclude()">
-          <i class="big red remove icon"></i>暂时先保存，以后再生成文件
+          <i class="big red remove icon"></i>暂时不生成文件，先保存数据
         </a>
       </div>
       <br><br><br>
