@@ -187,8 +187,10 @@ export class SysMoudleComponent implements AfterViewInit{
   }
 //跳转到添加模块界面
   insertTypeMoudle(){
+
     this.isAddTypeMoudle = true;
     this.curMoudle = new Moudle();
+
   }
 
   //新增模块
