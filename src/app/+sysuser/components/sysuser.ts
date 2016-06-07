@@ -10,19 +10,24 @@ import {Response} from '@angular/http';
 import {PageData,Admin,UserBase,UserRole,Role} from '../../shared/services/entity.service';
 import {FORM_DIRECTIVES} from '@angular/common';
 import {NKDatetime} from 'ng2-datetime/ng2-datetime';
+import { Control, ControlGroup } from '@angular/common';
+import { ValidationMessagesComponent } from 'ng2-validate/core';
+import {EmailValidation, MobileValidation, PasswordValidation, PersonIdValidation} from "../../shared/index";
 declare var jQuery:JQueryStatic;
 
 
 @Component({
   selector: 'sys_user',
   providers:[UtilService],
-  directives: [DataTableDirectives,FORM_DIRECTIVES,NKDatetime],
+  directives: [DataTableDirectives,FORM_DIRECTIVES,NKDatetime,ValidationMessagesComponent],
   styles: [ require('app/+sysuser/components/sysuser.css')],
   template: require('app/+sysuser/components/sysuser.html')
 })
 
 export class SysUserComponent implements AfterViewInit{
-
+  private myForm: ControlGroup;
+  private mobileControl: Control;
+  private emailControl: Control;
   ngAfterViewInit() {
     jQuery('#gender').click(function(){
       alert('11')
@@ -38,21 +43,17 @@ export class SysUserComponent implements AfterViewInit{
     jQuery("[name='gender']").on("change",
 
       function(e){
-
         console.log(jQuery(e.target).val());
-
       }
 
     );
+    this.mobileControl = new Control('', new MobileValidation().validator);
+    this.emailControl = new Control('', new EmailValidation().validator);
+    this.myForm = new ControlGroup({
 
-    //jQuery('#datetimepicker').datetimepicker({
-    //  format: 'yyyy-mm-dd',
-    //  language:  'zh-CN',
-    //  autoclose: true,
-    //  minView:1,
-    //  todayBtn: true
-    //});
-
+      emailControl: this.emailControl,
+      mobileControl : this.mobileControl
+    });
   }
   private data: any ;
   private pdata :PageData;
@@ -304,7 +305,7 @@ export class SysUserComponent implements AfterViewInit{
           this.updataTable();
         });
       }else{
-        alert('新增失败','请确认两次密码一致');
+        alert('新增失败,请确认两次密码一致');
       }
     }else{
       this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
