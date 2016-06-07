@@ -212,7 +212,6 @@ export class SysMoudleComponent implements AfterViewInit{
 
   //新增或者保存
   insertOrUpdata(){
-    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
     if(this.isInsert){
     //对数据进行处理
           let moudleId = jQuery("#moudleId").val();
