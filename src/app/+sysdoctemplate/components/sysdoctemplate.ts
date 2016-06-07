@@ -38,8 +38,8 @@ export class SysDocTemplateComponent implements AfterViewInit{
 
   constructor(private _util:UtilService,private rooteParmas:RouteParams,private router:Router){
     //实例化分页对象
-
-    this.typeId = rooteParmas.get("typeId");
+    let parmaId = rooteParmas.get("typeId")
+    this.typeId = parseInt(parmaId);
 
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
