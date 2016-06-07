@@ -157,8 +157,6 @@ export class SysMoudleComponent implements AfterViewInit{
   }
   //新增类型模板
   insertAttrData(){
-
-
     this.temps.push(this.addTemp);
     this.updataAttrData();
   }
@@ -233,6 +231,16 @@ export class SysMoudleComponent implements AfterViewInit{
       this._util.updataMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
         let data = res.json();
         this.updataTable();
+      });
     }
+  }
+
+  insertOrUpdataAttr(){
+    if(this.isAttrInsert){
+      this.temps.push(this.addTemp);
+      this.updataAttrData();
+    }else{
+      this.updataAttrData();
+      }
   }
 }
