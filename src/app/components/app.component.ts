@@ -25,6 +25,8 @@ declare var jQuery:JQueryStatic;
 //import {User, Thread, Message} from '../+chat/ts/models';
 
 import {AdminComponent} from "../+admin/index";
+import {ValidDemoComponent} from "../+validdemo/index";
+import {HomeComponent} from "../+home/home.component";
 
 @Component({
   selector: 'sd-app',
@@ -43,10 +45,20 @@ import {AdminComponent} from "../+admin/index";
   //  component: DemoComponent
   //},
   {
-    path: '/...',  //用这种方法，可以默认一个路由为开始路由
-    name: 'FrontPage',
-    component: FrontPageComponent,
+    path: '/',  //用这种方法，可以默认一个路由为开始路由
+    name: 'Home',
+    component: HomeComponent,
     useAsDefault: true
+  },
+  {
+    path: '/front/...',  //用这种方法，可以默认一个路由为开始路由
+    name: 'FrontPage',
+    component: FrontPageComponent
+  },
+  {
+    path: '/validdemo',  //用这种方法，可以默认一个路由为开始路由
+    name: 'ValidDemo',
+    component: ValidDemoComponent
   },
   {
     path: '/register',

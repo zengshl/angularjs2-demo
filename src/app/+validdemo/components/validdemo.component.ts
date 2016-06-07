@@ -6,12 +6,12 @@ import {EmailValidation, MobileValidation, PasswordValidation, PersonIdValidatio
 declare var jQuery:JQueryStatic;
 
 @Component({
-  selector: 'demo-box',
+  selector: 'validdemo-box',
   directives: [ValidationMessagesComponent],
-  styles: [ require('app/+demo/components/demo.component.css') ],
-  template: require('app/+demo/components/demo.component.html')
+  styles: [ require('app/+validdemo/components/validdemo.component.css') ],
+  template: require('app/+validdemo/components/validdemo.component.html')
 })
-export class DemoComponent implements OnInit{
+export class ValidDemoComponent implements OnInit{
   private myForm: ControlGroup;
   private emailControl: Control;
   private mobileControl: Control;
