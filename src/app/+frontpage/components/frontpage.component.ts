@@ -28,8 +28,7 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
   {
     path: '/',
     name: 'Main',
-    component: MainComponent,
-    useAsDefault: true
+    component: MainComponent
   },
   {
     path: '/file', //我的文件
@@ -49,7 +48,8 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
   {
     path: '/personal',      //个人中心
     name: 'Personal',
-    component: PersonalComponent
+    component: PersonalComponent,
+    useAsDefault: true
   },
   {
     path: '/personalset',  //个人设置
