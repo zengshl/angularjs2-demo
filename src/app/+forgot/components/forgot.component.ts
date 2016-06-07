@@ -15,7 +15,7 @@ import {Response} from '@angular/http';
 })
 
 export class ForgotComponent {
-  mobile:string; //发送短信的手机号
+  mobile:string = ""; //发送短信的手机号
   isDisabled:boolean = false;
   user:User;
   isNext:boolean = false; //是否下一步
@@ -55,12 +55,15 @@ export class ForgotComponent {
 
   //获取验证码
   getCode() {
-    if (this.mobile) { //如果手机不为空
-      alert('验证码已发送至您的手机，请注意查收！');
-      this._util.getValidCodeForgot(this.mobile).subscribe((res:Response)=> {
+
+
+    if (this.mobile.contains("@")) { //如果邮箱不为空
+      alert('验证码已发送至您的邮箱，请注意查收！');
+      this.user.email = this.mobile;
+      this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
         if (data.status === "0") {
-          this.errorMsg = '该手机未注册！';
+          this.errorMsg = '该邮箱未注册！';
           this.error = true;
           this.isRegistered = false;
           setTimeout(() => {
@@ -72,16 +75,38 @@ export class ForgotComponent {
         }
       });
       this.countBack();
-    } else {
-      alert("请输入您的手机号！")
-    }
+    } else if (this.mobile.length == 11) {
+      let value = this.mobile
+      if (parseInt(value) > 10000000000) {
+        //手机验证
+        alert('验证码已发送至您的手机，请注意查收！');
+        this.user.phone = this.mobile;
+        this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
+          var data = res.json();
+          if (data.status === "0") {
+            this.errorMsg = '该手机未注册！';
+            this.error = true;
+            this.isRegistered = false;
+            setTimeout(() => {
+              this.error = false;
+            }, 8000);
+          } else if (data.status === "1") {
+            this.vdcode = data.result;
+            this.isRegistered = true;
+          }
+        });
+        this.countBack();
+      } else {
+        alert("请输入您的手机号或邮箱！")
+      }
 
+    }
   }
 
   //下一步
   recallPwd(form:any) {
     if (!this.isRegistered) {
-      this.errorMsg = '该手机未注册！';
+      this.errorMsg = '该手机或邮箱未注册！';
       this.error = true;
       setTimeout(() => {
         this.error = false;

@@ -12,6 +12,10 @@ export class User {
   address:string = "";
   createTime:string = "";
   remark:string = "";
+  companyNum = "";
+  industry = "";
+  region = "";
+
 }
 //对象必须赋初值，否则scala后台转对象时会报错
 export class Admin {

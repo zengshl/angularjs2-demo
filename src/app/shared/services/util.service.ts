@@ -53,6 +53,12 @@ private url = 'http://localhost:9000/';
     var str = this.url + 'law/user/smsValidMdPassword/'+phone;
     return this.http.get(str);
   };
+  //手机号或者邮箱获取验证码
+  getValidMdPassword(data:string):any{
+    var str = this.url + 'law/user/ValidMdPassword';
+    return this.http.post(str,data);
+
+  }
   //注册表单提交
   signUp(data:string)  {
     var str = this.url + 'law/user/register';
