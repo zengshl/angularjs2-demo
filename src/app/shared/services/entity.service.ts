@@ -242,6 +242,14 @@ export class LawCategory {
 
 
 
+export class UserCompany {
+  id:number = 0;
+  userId:number = 0;
+  companyName:string = "";
+  companyScope:string = "";
+  companyAddress:string = "";
+}
+
 
 
 
