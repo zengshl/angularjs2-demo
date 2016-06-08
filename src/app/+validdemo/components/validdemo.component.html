@@ -1,0 +1,36 @@
+<div [ngFormModel]="myForm" class="ui form" style="padding: 50px;">
+
+  <div class="field" [ngClass]="{error:!emailControl.valid && emailControl.dirty}">
+    <label>Email</label>
+    <input [(ngFormControl)]="emailControl" [(ngModel)]="email" (keyup)="check()"/>
+    <span style="color: red;" *ngIf = "!emailControl.valid && emailControl.dirty">
+      <validation-messages [control]="emailControl"></validation-messages>
+    </span>
+  </div>
+
+  <div class="field" [ngClass]="{error:!mobileControl.valid && mobileControl.dirty}">
+    <label>手机号</label>
+    <input [(ngFormControl)]="mobileControl" [(ngModel)]="mobile"/>
+    <span style="color: red;" *ngIf = "!mobileControl.valid && mobileControl.dirty">
+      <validation-messages [control]="mobileControl"></validation-messages>
+    </span>
+  </div>
+
+  <div class="field" [ngClass]="{error:!passwordControl.valid && passwordControl.dirty}">
+    <label>密码：以字母开头，长度在6~18之间，只能包含字符、数字和下划线。</label>
+    <input [(ngFormControl)]="passwordControl" [(ngModel)]="password"/>
+    <span style="color: red;" *ngIf = "!passwordControl.valid && passwordControl.dirty">
+      <validation-messages [control]="passwordControl"></validation-messages>
+    </span>
+  </div>
+
+  <div class="field" [ngClass]="{error:!personidControl.valid && personidControl.dirty}">
+    <label>身份证号：15位或18位，如果是15位，必需全是数字。如果是18位，最后一位可以是数字或字母Xx，其余必需是数字。</label>
+    <input [(ngFormControl)]="personidControl" [(ngModel)]="personid"/>
+    <span style="color: red;" *ngIf = "!personidControl.valid && personidControl.dirty">
+      <validation-messages [control]="personidControl"></validation-messages>
+    </span>
+  </div>
+
+  <button class="ui teal button" (click)="login()" [disabled]="!myForm.valid">提交</button>
+</div>

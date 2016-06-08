@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "C:\\Projects\\webpack0523\\angular2-webpack-starter\\node_modules\\@angularclass\\angular2-beta-to-rc-alias\\src\\beta-17\\typings.d.ts",
+    "raw": "file:./node_modules/@angularclass/angular2-beta-to-rc-alias/src/beta-17/typings.d.ts",
+    "typings": "C:\\Projects\\webpack0523\\angular2-webpack-starter\\node_modules\\@angularclass\\angular2-beta-to-rc-alias\\src\\beta-17\\typings.d.ts"
+  }
+}

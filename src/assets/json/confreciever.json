@@ -1,0 +1,26 @@
+[
+  { "flag":false,
+    "value":"股东"
+  },
+  { "flag":false,
+    "value":"董事"
+  },
+  {
+    "flag": false,
+    "value": "管理人员"
+  },
+  { "flag":false,
+    "value":"雇员"
+  },
+  {
+    "flag": false,
+    "value": "代理人"
+  },
+  {
+    "flag": false,
+    "value": "咨询机构"
+  }, {
+  "flag": false,
+  "value": "授权代表"
+}
+]

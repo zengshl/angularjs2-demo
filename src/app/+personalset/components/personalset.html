@@ -1,0 +1,125 @@
+
+<br>
+<div class="ui internally celled grid">
+  <div class="row">
+    <div class="eight wide column">
+      <div class="container-fluid">
+        <div class="row"  style="height: 800px;">
+          <!--基本信息-->
+          <div class="ui top attached teal  label">
+            <h3 style="color: white;text-align:left" >用户基本信息</h3>
+          </div>
+          <form class="ui form" style="padding: 5px 20px;" >
+          <div class="ui segment" style="padding: 20px 50px;">
+          <div class="field" style="padding-top: 20px;">
+          <div class="three fields">
+          <div class="field">
+          <label>手机  </label>
+          <input placeholder="手机" [(ngModel)]="user.phone" type="text">
+          </div>
+
+            <div class="field">
+              <label>邮箱  </label>
+              <input  placeholder="邮箱" [(ngModel)]="user.email" type="text">
+            </div>
+
+            <div class="field">
+              <label>昵称  </label>
+              <input  placeholder="昵称" [(ngModel)]="user.userName" type="text">
+            </div>
+          </div>
+          </div>
+
+          <div class="field">
+          <div class="three fields">
+            <div class="field">
+              <label>地址 </label>
+              <input  placeholder="地址" [(ngModel)]="user.address" type="text">
+            </div>
+          <div class="field">
+          <label>状态  </label>
+          <select class="ui dropdown" [(ngModel)]="user.status" >
+          <option value="1">有效</option>
+          <option value="0">无效</option>
+          </select>
+          </div>
+
+          <div class="field">
+          <label>创建时间  </label>
+          <input type="text" value="2015-02-15" id="datetimepicker" [(ngModel)]="user.createTime" class="am-form-field">
+          <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
+          </div>
+
+          </div>
+          </div>
+          <div class="field">
+          <label>备注  </label>
+          <input  placeholder="备注" [(ngModel)]="user.remark" type="text">
+          </div>
+          </div>
+
+          <!--<br><br>-->
+          <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataUser()" style="text-align: center"><i class="check circle outline icon"></i>更新基本信息</div>
+          <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>-->
+          <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>-->
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="ui vertical divider"></div>
+    <div class="eight wide column">
+      <div class="ui top attached olive label">
+        <h3 style="color: white;text-align:left" >用户其他信息</h3>
+      </div>
+      <div class="ui one column grid">
+        <div class="column">
+          <div class="ui raised segment">
+            <a class="ui red ribbon label">用户会员信息</a>
+              <form class="ui form" >
+                <!--<div class="ui segment">-->
+                  <div class="field">
+                    <div class="three fields">
+                      <div class="field">
+                        <label>会员等级  </label>
+                        <input placeholder="会员等级" type="text">
+                      </div>
+                      <div class="field">
+                        <label>开通时间  </label>
+                        <input  placeholder="开通时间" [(ngModel)]="user.userName" type="text">
+                      </div>
+                      <div class="field">
+                        <label>到期时间 </label>
+                        <input  placeholder="到期时间" [(ngModel)]="user.address" type="text">
+                      </div>
+                    </div>
+                  </div>
+                <!--</div>-->
+              </form>
+            <br>
+            <a class="ui green ribbon label">用户验证信息</a>
+              <form class="ui form" >
+                <!--<div class="ui segment">-->
+                  <div class="field">
+                    <div class="three fields">
+                      <div class="field">
+                        <label>手机验证</label>
+                        <input placeholder="手机验证" [(ngModel)]="user.phone" type="text">
+                      </div>
+                      <div class="field">
+                        <label>身份证验证  </label>
+                        <input  placeholder="身份证验证" [(ngModel)]="user.userName" type="text">
+                      </div>
+                      <div class="field">
+                        <label>银行卡验证 </label>
+                        <input  placeholder="银行卡验证" [(ngModel)]="user.address" type="text">
+                      </div>
+                    </div>
+                  </div>
+                <!--</div>-->
+              </form>
+
+          </div>
+        </div>
+      </div>
+</div>
+

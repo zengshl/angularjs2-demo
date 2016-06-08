@@ -1,0 +1,27 @@
+.button.button-rounded{
+  font-weight: bold;
+  font-family: 'Ubuntu', Microsoft YaHei;
+  color: white;
+  text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 2px;
+  margin: 30px auto;
+
+}
+
+
+table th{
+  text-align: center;
+}
+table td {
+  height: 80%;
+}
+
+h3{
+  font-family: 'Ubuntu', Microsoft YaHei;
+  font-size: 20px;
+  font-weight: bolder;
+  text-shadow: rgba(0, 0, 0, 0.75) 1px 1px 1px;
+}
+
+.ui.list .item{
+  padding: 10px 0;
+}
