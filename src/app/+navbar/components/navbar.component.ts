@@ -77,7 +77,7 @@ export class NavbarComponent implements AfterViewInit{
   logout(){
     sessionStorage.clear();
     this.isLogin = false;
-    this.router.parent.navigate(['FrontPage']);
+    this.router.parent.navigate(['Login']);
     this.dropdown();
   }
   nav(name:string){
