@@ -1,195 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
 import {User,Folder,File,DocAttr,ConfidentAgreement,CheckBox} from "../../shared/index";
@@ -247,7 +55,7 @@ export class FileComponent {
   libVersion2:string = "如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接和间接损失以及因此而支出的全部费用。";
 
 
-  constructor(private _util:UtilService,private dragulaService:DragulaService,private router:Router){
+  constructor(public _util:UtilService,private dragulaService:DragulaService,private router:Router){
     this.user = new User();
     this.user = <User>JSON.parse(sessionStorage.getItem('user'));
 
@@ -327,11 +135,23 @@ export class FileComponent {
   //删除文件夹
   deleteFolder(fd:Folder){
     //console.log(fd);
-    this._util.deleteFolder(fd.id,fd.userId).subscribe((res)=>{
-     // console.log(res);
-      this.getFolder(); //刷新文件夹列表
-      this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
-    });
+    if (confirm("您确定要删除吗?")){
+      this._util.deleteFolder(fd.id,fd.userId).subscribe((res)=>{
+        // console.log(res);
+        this.getFolder(); //刷新文件夹列表
+        this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
+      });
+      return true;
+    }
+    else{
+      return false;
+    }
+
+    //this._util.deleteFolder(fd.id,fd.userId).subscribe((res)=>{
+    // // console.log(res);
+    //  this.getFolder(); //刷新文件夹列表
+    //  this.getFile(0);  //刷新文件列表（将原来的文件夹中的文件释放）
+    //});
   }
   //打开文件夹
   openFolder(fd:Folder){
@@ -387,19 +207,25 @@ export class FileComponent {
   //删除文档
   deleteFile(mf:File){
     this.myFile = mf;
-    this._util.deleteFile(this.myFile.id).subscribe(()=>{
-      if(this.myFile.folderId !== 0){
-        this._util.getFile(this.myFile.folderId,this.user.id).subscribe((res)=>{
-          this.myFiles = <File[]> res.json().data;
-          this.showMyFiles = true;
-        });
-      }else {
-        this.getFile(0);
-      }
-      alert("删除成功！");
+    if (confirm("您确定要删除吗?")){
+      this._util.deleteFile(this.myFile.id).subscribe(()=>{
+        if(this.myFile.folderId !== 0){
+          this._util.getFile(this.myFile.folderId,this.user.id).subscribe((res)=>{
+            this.myFiles = <File[]> res.json().data;
+            this.showMyFiles = true;
+          });
+        }else {
+          this.getFile(0);
+        }
+        alert("删除成功！");
+      })
+      return true;
+    }
+    else{
+      return false;
+    }
 
 
-    })
   }
   //更新文件
   updateFile(){
