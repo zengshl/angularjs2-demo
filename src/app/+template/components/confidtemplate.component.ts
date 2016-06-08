@@ -296,9 +296,9 @@ export class ConfidTemplateComponent {
     })
   };
   //最后生成文件
-  createDocument(){
+  createDocument(format:string){
     this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
-      this._util.generateFile(""+this.file.id);
+      this._util.generateFile(""+this.file.id,format);
     })
 
   }

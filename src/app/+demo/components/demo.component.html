@@ -1,36 +1,56 @@
-<div [ngFormModel]="myForm" class="ui form" style="padding: 50px;">
-
-  <div class="field" [ngClass]="{error:!emailControl.valid && emailControl.dirty}">
-    <label>Email</label>
-    <input [(ngFormControl)]="emailControl" [(ngModel)]="email" (keyup)="check()"/>
-    <span style="color: red;" *ngIf = "!emailControl.valid && emailControl.dirty">
-      <validation-messages [control]="emailControl"></validation-messages>
-    </span>
+<div class="ui grid">
+  <div class="row">
+    <div class="three wide column"></div>
+    <div class="ten wide column">
+      <div style="text-align: left;margin: 50px auto;">
+        <h2 class="ui center aligned header" style="margin: 50px auto">法律咨询</h2>
+        <form class="ui form">
+          <div class="fields" align="center">
+            <div class="eight wide field">
+              <div class="ui labeled input">
+                <div class="ui label">案件类别</div>
+                <select class="ui dropdown" id="selected" required ="required"
+                        (change)="onItemChange($event.target.value)">
+                  <option value="">案件类别</option>
+                  <option *ngFor="#l of lawCategory" [value]="l.id">{{l.categoryName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="eight wide field">
+              <div class="ui right labeled left icon input">
+                <i class="tags icon"></i>
+                <input required="required" type="text" id="title"/>
+                <label for="title" class="teal ui tag label">标题</label>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui raised segment">
+              <label class="ui ribbon label" for="newsContent">咨询内容</label>
+              <textarea id="newsContent"></textarea>
+            </div>
+          </div>
+          <div class="ui hidden divider"></div>
+          <div class="field">
+            <div class="ui toggle checkbox">
+              <input id="agree" type="checkbox" [(ngModel)]="agree">
+              <label for="agree">同意 <a>服务条款</a>。</label>
+            </div>
+          </div>
+          <div class="five fields">
+            <div class="field"></div>
+            <input type="reset" value="重写" class="field ui reset button"/>
+            <div class="field"></div>
+            <input type="submit" [disabled]="!agree" value="提交" class="field ui teal submit button" (click)="press()"/>
+            <div class="field"></div>
+          </div>
+        </form>
+      </div>
+      <div class="ui horizontal divider" style="margin: 40px 0;">
+        END
+      </div>
+    </div>
+    <div class="three wide column"></div>
   </div>
-
-  <div class="field" [ngClass]="{error:!mobileControl.valid && mobileControl.dirty}">
-    <label>手机号</label>
-    <input [(ngFormControl)]="mobileControl" [(ngModel)]="mobile"/>
-    <span style="color: red;" *ngIf = "!mobileControl.valid && mobileControl.dirty">
-      <validation-messages [control]="mobileControl"></validation-messages>
-    </span>
-  </div>
-
-  <div class="field" [ngClass]="{error:!passwordControl.valid && passwordControl.dirty}">
-    <label>密码：以字母开头，长度在6~18之间，只能包含字符、数字和下划线。</label>
-    <input [(ngFormControl)]="passwordControl" [(ngModel)]="password"/>
-    <span style="color: red;" *ngIf = "!passwordControl.valid && passwordControl.dirty">
-      <validation-messages [control]="passwordControl"></validation-messages>
-    </span>
-  </div>
-
-  <div class="field" [ngClass]="{error:!personidControl.valid && personidControl.dirty}">
-    <label>身份证号：15位或18位，如果是15位，必需全是数字。如果是18位，最后一位可以是数字或字母Xx，其余必需是数字。</label>
-    <input [(ngFormControl)]="personidControl" [(ngModel)]="personid"/>
-    <span style="color: red;" *ngIf = "!personidControl.valid && personidControl.dirty">
-      <validation-messages [control]="personidControl"></validation-messages>
-    </span>
-  </div>
-
-  <button class="ui teal button" (click)="login()" [disabled]="!myForm.valid">提交</button>
 </div>
+

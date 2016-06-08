@@ -1,4 +1,5 @@
-<form class="ui  bottom attached stackable form segment" style="padding: 50px;"  #f="ngForm" (ngSubmit)="login(f.value)">
+<form class="ui  bottom attached stackable form segment" style="padding: 50px;"
+      #f="ngForm" (ngSubmit)="load=!load;login(f.value)" [ngClass]="{loading:load}">
   <div class="field">
     <label>帐号</label>
     <div class="ui left icon input">
