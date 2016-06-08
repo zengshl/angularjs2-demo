@@ -117,7 +117,7 @@ export class ForgotComponent {
   getCode() {
 
 
-    if (this.mobile.contains("@")) { //如果邮箱不为空
+    if (this.mobile.indexOf("@")) { //如果邮箱不为空
       this.user.email = this.mobile;
       this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
