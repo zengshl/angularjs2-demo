@@ -1,16 +1,16 @@
 
 <br>
-<div class="ui internally celled grid">
-  <div class="row">
+<div class="ui internally celled grid" >
+  <div class="row" style="padding: 5px 20px;">
     <div class="seven wide column">
+      <div class="ui segment">
       <div class="container-fluid">
-        <div class="row"  style="height: 800px;">
+        <div class="row"  style="height: 800px;padding: 5px">
           <!--基本信息-->
           <div class="ui top attached teal  label">
             <h3 style="color: white;text-align:left" >用户基本信息</h3>
           </div>
           <form class="ui form" style="padding: 5px 20px;" >
-            <div class="ui segment" style="padding: 20px 50px;">
               <div class="field">
                 <label>手机  </label>
                 <input placeholder="手机" [(ngModel)]="user.phone" type="text">
@@ -48,7 +48,6 @@
                 <label>备注  </label>
                 <input  placeholder="备注" [(ngModel)]="user.remark" type="text">
               </div>
-            </div>
 
             <!--<br><br>-->
             <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataUser()" style="text-align: center"><i class="check circle outline icon"></i>更新基本信息</div>
@@ -57,15 +56,19 @@
           </form>
         </div>
       </div>
+        </div>
     </div>
     <div class="one wide column"></div>
+
     <div class="seven wide column">
+      <div class="ui segment">
+      <div class="row"  style="height: 800px;">
       <div class="ui top attached olive label">
         <h3 style="color: white;text-align:left" >用户其他信息</h3>
       </div>
+      <form class="ui form" style="padding: 5px 20px;" >
       <div class="ui one column grid">
         <div class="column">
-          <div class="ui raised segment">
             <a class="ui red ribbon label">用户会员信息</a>
             <form class="ui form" >
               <!--<div class="ui segment">-->
@@ -115,8 +118,11 @@
                 <input  placeholder="公司地址" [(ngModel)]="company.companyAddress" type="text">
               </div>
             </form>
-          </div>
         </div>
       </div>
+      </form>
+        </div>
+        </div>
     </div>
-
+  </div>
+</div>
