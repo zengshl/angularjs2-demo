@@ -4,7 +4,7 @@
 import {Component} from '@angular/core';
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {AfterViewInit} from "@angular/core";
-import  {User} from '../../shared/index';
+import  {User,UserCompany} from '../../shared/index';
 import {UtilService} from "../../shared/index";
 import {Response} from '@angular/http';
 declare var jQuery:JQueryStatic;
@@ -16,8 +16,10 @@ declare var jQuery:JQueryStatic;
 })
 export class PersonalSetComponent implements AfterViewInit{
   user:User;
+  company:UserCompany;
   constructor(private router:Router,private _util:UtilService)  {
     this.user = new User();
+    this.company = new UserCompany();
     if(sessionStorage.getItem('user')) {
       this.user = JSON.parse(sessionStorage.getItem('user'))
       this.freshUser();
@@ -53,9 +55,9 @@ export class PersonalSetComponent implements AfterViewInit{
 
   //刷新数据
   freshUser(){
-    console.log("freshUser");
     this._util.getUserById(this.user.id).subscribe((resp:Response)=>{
-      this.user = resp.json();
+      this.user = resp.json().data;
+      this.company = resp.json().company
     });
   }
 }

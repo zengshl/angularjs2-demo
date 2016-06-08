@@ -17,6 +17,15 @@ export class User {
   region = "";
 
 }
+
+export class UserCompany {
+  id:number = 0;
+  userId:number = 0;
+  companyName:string = "";
+  companyScope:string = "";
+  companyAddress:string = "";
+}
+
 //对象必须赋初值，否则scala后台转对象时会报错
 export class Admin {
   id:number = 0;

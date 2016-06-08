@@ -104,15 +104,15 @@
             <form class="ui form" >
               <div class="field">
                 <label>公司名称</label>
-                <input placeholder="公司名称" type="text">
+                <input placeholder="公司名称" [(ngModel)]="company.companyName" type="text">
               </div>
               <div class="field">
                 <label>公司规模  </label>
-                <input  placeholder="公司规模"  type="text">
+                <input  placeholder="公司规模" [(ngModel)]="company.companyScope" type="text">
               </div>
               <div class="field">
                 <label>公司地址 </label>
-                <input  placeholder="公司地址"  type="text">
+                <input  placeholder="公司地址" [(ngModel)]="company.companyAddress" type="text">
               </div>
             </form>
           </div>
