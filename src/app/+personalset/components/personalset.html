@@ -2,7 +2,7 @@
 <br>
 <div class="ui internally celled grid">
   <div class="row">
-    <div class="eight wide column">
+    <div class="seven wide column">
       <div class="container-fluid">
         <div class="row"  style="height: 800px;">
           <!--基本信息-->
@@ -11,8 +11,6 @@
           </div>
           <form class="ui form" style="padding: 5px 20px;" >
           <div class="ui segment" style="padding: 20px 50px;">
-          <div class="field" style="padding-top: 20px;">
-          <div class="three fields">
           <div class="field">
           <label>手机  </label>
           <input placeholder="手机" [(ngModel)]="user.phone" type="text">
@@ -27,11 +25,7 @@
               <label>昵称  </label>
               <input  placeholder="昵称" [(ngModel)]="user.userName" type="text">
             </div>
-          </div>
-          </div>
 
-          <div class="field">
-          <div class="three fields">
             <div class="field">
               <label>地址 </label>
               <input  placeholder="地址" [(ngModel)]="user.address" type="text">
@@ -50,8 +44,6 @@
           <!--<input [(ngModel)]="userBase.birthday" placeholder="生日" type="text" id="inputDate">-->
           </div>
 
-          </div>
-          </div>
           <div class="field">
           <label>备注  </label>
           <input  placeholder="备注" [(ngModel)]="user.remark" type="text">
@@ -66,8 +58,8 @@
         </div>
       </div>
     </div>
-    <div class="ui vertical divider"></div>
-    <div class="eight wide column">
+    <div class="one wide column"></div>
+    <div class="seven wide column">
       <div class="ui top attached olive label">
         <h3 style="color: white;text-align:left" >用户其他信息</h3>
       </div>
@@ -77,47 +69,52 @@
             <a class="ui red ribbon label">用户会员信息</a>
               <form class="ui form" >
                 <!--<div class="ui segment">-->
-                  <div class="field">
-                    <div class="three fields">
+
                       <div class="field">
                         <label>会员等级  </label>
                         <input placeholder="会员等级" type="text">
                       </div>
                       <div class="field">
                         <label>开通时间  </label>
-                        <input  placeholder="开通时间" [(ngModel)]="user.userName" type="text">
+                        <input  placeholder="开通时间"  type="text">
                       </div>
                       <div class="field">
                         <label>到期时间 </label>
-                        <input  placeholder="到期时间" [(ngModel)]="user.address" type="text">
+                        <input  placeholder="到期时间"  type="text">
                       </div>
-                    </div>
-                  </div>
-                <!--</div>-->
               </form>
             <br>
             <a class="ui green ribbon label">用户验证信息</a>
               <form class="ui form" >
-                <!--<div class="ui segment">-->
-                  <div class="field">
-                    <div class="three fields">
                       <div class="field">
                         <label>手机验证</label>
-                        <input placeholder="手机验证" [(ngModel)]="user.phone" type="text">
+                        <input placeholder="手机验证"  type="text">
                       </div>
                       <div class="field">
                         <label>身份证验证  </label>
-                        <input  placeholder="身份证验证" [(ngModel)]="user.userName" type="text">
+                        <input  placeholder="身份证验证"  type="text">
                       </div>
                       <div class="field">
                         <label>银行卡验证 </label>
-                        <input  placeholder="银行卡验证" [(ngModel)]="user.address" type="text">
+                        <input  placeholder="银行卡验证"  type="text">
                       </div>
-                    </div>
-                  </div>
-                <!--</div>-->
               </form>
-
+            <br>
+            <a class="ui blue ribbon label">用户公司信息</a>
+            <form class="ui form" >
+              <div class="field">
+                <label>公司名称</label>
+                <input placeholder="公司名称" type="text">
+              </div>
+              <div class="field">
+                <label>公司规模  </label>
+                <input  placeholder="公司规模"  type="text">
+              </div>
+              <div class="field">
+                <label>公司地址 </label>
+                <input  placeholder="公司地址"  type="text">
+              </div>
+            </form>
           </div>
         </div>
       </div>
