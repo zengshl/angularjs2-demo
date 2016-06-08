@@ -117,8 +117,7 @@ export class ForgotComponent {
   getCode() {
 
 
-    if (this.mobile.contains("@")) { //如果邮箱不为空
-      alert('验证码已发送至您的邮箱，请注意查收！');
+    if (this.mobile.indexOf("@")) { //如果邮箱不为空
       this.user.email = this.mobile;
       this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
@@ -130,6 +129,7 @@ export class ForgotComponent {
             this.error = false;
           }, 8000);
         } else if (data.status === "1") {
+          alert('验证码已发送至您的邮箱，请注意查收！');
           this.vdcode = data.result;
           this.isRegistered = true;
         }
@@ -139,7 +139,6 @@ export class ForgotComponent {
       let value = this.mobile
       if (parseInt(value) > 10000000000) {
         //手机验证
-        alert('验证码已发送至您的手机，请注意查收！');
         this.user.phone = this.mobile;
         this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
           var data = res.json();
@@ -151,6 +150,7 @@ export class ForgotComponent {
               this.error = false;
             }, 8000);
           } else if (data.status === "1") {
+            alert('验证码已发送至您的手机，请注意查收！');
             this.vdcode = data.result;
             this.isRegistered = true;
           }

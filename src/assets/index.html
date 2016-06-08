@@ -1,511 +1,509 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>找律师</title>
-<!-- for-mobile-apps -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- //for-mobile-apps -->
-<link rel="stylesheet" href="assets/css/swipebox.css">
-<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- js -->
-<script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
-<!-- //js -->
-<!--animate-->
-<link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
-<script src="assets/js/wow.min.js"></script>
-	<script>
-		 new WOW().init();
-	</script>
-<!--//end-animate-->
-<link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<script src="assets/js/responsiveslides.min.js"></script>
-		<!-- swipe box js -->
-			<script src="assets/js/jquery.swipebox.min.js"></script>
-				<script type="text/javascript">
-					jQuery(function($) {
-						$(".swipebox").swipebox();
-					});
-			</script>
-		<!-- //swipe box js -->
-	<!-- start-smoth-scrolling -->
-		<script type="text/javascript" src="assets/js/move-top.js"></script>
-		<script type="text/javascript" src="assets/js/easing.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-        $("#login").click(function(){
-          window.open("home.html","_self");
-        })
-			});
-		</script>
-	<!-- start-smoth-scrolling -->
+  <title>找律师</title>
+  <!-- for-mobile-apps -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="" />
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+  function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- //for-mobile-apps -->
+  <link rel="stylesheet" href="assets/css/swipebox.css">
+  <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+  <!--QQ 样式-->
+  <style type="text/css">
+    *{border:0;margin:0;padding:0;}
+    body{font-family:'Microsoft Yahei','微软雅黑',Arial,'Hiragino Sans GB','宋体';font-size:14px;	}
+    ul{list-style:none;}
+    /* slides */
+    .slides{position:fixed;right:0;top:75%;}
+    .slides .slideul>li{position:relative;display:block;width:56px;height:56px;margin-bottom:10px;overflow:visible;}
+    .slides .slideul>li.kefu{width:66px;padding-left:10px;margin-left:-10px;}
+    .slides .slideul>li ul.kefulist{position:absolute;left:-86px;top:-30px;padding-right:10px;display:none;}
+    .slides .slideul>li ul.kefulist li{margin-bottom:10px;}
+    .slides .slideul>li ul.kefulist li a{display:block;width:90px;height:30px;line-height:30px;background:#a8defe;color:#fff;text-align:center;text-decoration:none;}
+    .slides .slideul>li ul.kefulist li a:hover{text-decoration:none;}
+  </style>
+
+  <!-- js -->
+  <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
+  <!-- //js -->
+  <!--animate-->
+  <link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
+  <script src="assets/js/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <!--//end-animate-->
+  <link href='http://fonts.useso.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.useso.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <script src="assets/js/responsiveslides.min.js"></script>
+  <!-- swipe box js -->
+  <script src="assets/js/jquery.swipebox.min.js"></script>
+  <script type="text/javascript">
+    jQuery(function($) {
+      $(".swipebox").swipebox();
+    });
+  </script>
+  <!-- //swipe box js -->
+  <!-- start-smoth-scrolling -->
+  <script type="text/javascript" src="assets/js/move-top.js"></script>
+  <script type="text/javascript" src="assets/js/easing.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $(".scroll").click(function(event){
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+      });
+      $("#login").click(function(){
+        window.open("index.html","_self");
+      })
+    });
+  </script>
+  <!-- start-smoth-scrolling -->
 
 </head>
 <body>
 <!--banner-->
 <div class="banner">
-	<div class="container">
-			<div class="header-nav">
-						<nav class="navbar navbar-default">
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<div class="navbar-header logo">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<h1>
-									<a class="navbar-brand link link--yaku" href="index.html">
-                    <span>找</span><span>律</span><span>师</span><span>网</span></a>
-								</h1>
+  <div class="container">
+    <div class="header-nav">
+      <nav class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header logo">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1>
+            <a class="navbar-brand link link--yaku" href="index.html">
+              <span>找</span><span>律</span><span>师</span><span>网</span></a>
+          </h1>
 
-							</div>
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-								<nav class="cl-effect-1">
-									<ul class="nav navbar-nav ">
-										<li><a class="hvr-overline-from-left button2 active scroll" href="index.html">主页</a></li>
-										<li><a class="hvr-overline-from-left button2 scroll" href="#about">关于我们</a></li>
-										<li><a class="hvr-overline-from-left button2 scroll" href="#team">我们的团队</a></li>
-										<li><a class="hvr-overline-from-left button2 scroll" href="#services">我们的服务</a></li>
-										<li><a class="hvr-overline-from-left button2 scroll" href="#work">工作流程</a></li>
-										<li><a class="hvr-overline-from-left button2 scroll" href="#contact">联系我们</a></li>
-                    <li><a class="hvr-overline-from-left button2" id="login" style="cursor:pointer">登陆 / 注册</a></li>
-									</ul>
-								</nav>
-							</div><!-- /navbar-collapse -->
-						</nav>
-			</div>
-				<script>
-						// You can also use "$(window).load(function() {"
-						$(function () {
-						 // Slideshow 4
-						$("#slider3").responsiveSlides({
-							auto: true,
-							pager: false,
-							nav: false,
-							speed: 500,
-							namespace: "callbacks",
-							before: function () {
-						$('.events').append("<li>before event fired.</li>");
-						},
-						after: function () {
-							$('.events').append("<li>after event fired.</li>");
-							}
-							});
-						});
-				</script>
-		<div  id="top" class="callbacks_container">
-			<ul class="rslides" id="slider3">
-				<li>
-					<div class="banner-info">
-						<h3 style="font-family: LiSu;font-size: 34px;">最权威的法律咨询平台 <span>为您解答各种法律困惑</span></h3>
-						<p>法律网全心为你服务</p>
-						<div class="clearfix"></div>
-						<div class="arrow text-center"><a class="scroll" href="#about"><img src="assets/images/icon.png" alt=" " /></a></div>
-					</div>
-				</li>
-				<li>
-					<div class="banner-info">
-						<h3 style="font-family: LiSu;font-size: 34px;">最专业的法律团队<span>为您打赢各种法律案件</span></h3>
-						<p>法律网全心为你服务</p>
-						<div class="clearfix"></div>
-						<div class="arrow text-center"><a class="scroll" href="#about"><img src="assets/images/icon.png" alt=" " /></a></div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+          <nav class="cl-effect-1">
+            <ul class="nav navbar-nav ">
+              <li><a class="hvr-overline-from-left button2 active scroll" href="index.html">主页</a></li>
+              <li><a class="hvr-overline-from-left button2 scroll" href="#about">关于我们</a></li>
+              <li><a class="hvr-overline-from-left button2 scroll" href="#team">我们的团队</a></li>
+              <li><a class="hvr-overline-from-left button2 scroll" href="#services">我们的服务</a></li>
+              <li><a class="hvr-overline-from-left button2 scroll" href="#work">工作流程</a></li>
+              <li><a class="hvr-overline-from-left button2 scroll" href="#contact">联系我们</a></li>
+              <li><a class="hvr-overline-from-left button2" id="login" style="cursor:pointer">登陆 / 注册</a></li>
+            </ul>
+          </nav>
+        </div><!-- /navbar-collapse -->
+      </nav>
+    </div>
+    <script>
+      // You can also use "$(window).load(function() {"
+      $(function () {
+        // Slideshow 4
+        $("#slider3").responsiveSlides({
+          auto: true,
+          pager: false,
+          nav: false,
+          speed: 500,
+          namespace: "callbacks",
+          before: function () {
+            $('.events').append("<li>before event fired.</li>");
+          },
+          after: function () {
+            $('.events').append("<li>after event fired.</li>");
+          }
+        });
+      });
+    </script>
+    <div  id="top" class="callbacks_container">
+      <ul class="rslides" id="slider3">
+        <li>
+          <div class="banner-info">
+            <h3 style="font-family: LiSu;font-size: 34px;">最权威的法律咨询平台 <span>为您解答各种法律困惑</span></h3>
+            <p>法律网全心为你服务</p>
+            <div class="clearfix"></div>
+            <div class="arrow text-center"><a class="scroll" href="#about"><img src="assets/images/icon.png" alt=" " /></a></div>
+          </div>
+        </li>
+        <li>
+          <div class="banner-info">
+            <h3 style="font-family: LiSu;font-size: 34px;">最专业的法律团队<span>为您打赢各种法律案件</span></h3>
+            <p>法律网全心为你服务</p>
+            <div class="clearfix"></div>
+            <div class="arrow text-center"><a class="scroll" href="#about"><img src="assets/images/icon.png" alt=" " /></a></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
 <!--//banner-->
 <!-- about -->
 <div id="about" class="about all_pad text-center">
-	<div class="container">
-		<h3 class="title">ABOUT CONSORTIUM</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-		<div class="col-md-4 abt-grid">
-			<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-				<a href="#" class="hi-icon icon1"></a>
-			</div>
-			<h4>BRANDING</h4>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-		</div>
-		<div class="col-md-4 abt-grid yes_marg">
-			<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-				<a href="#" class="hi-icon icon2"></a>
-			</div>
-			<h4>MARKETING</h4>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-		</div>
-		<div class="col-md-4 abt-grid">
-			<div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
-				<a href="#" class="hi-icon icon3"></a>
-			</div>
-			<h4>PROMOTION</h4>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+  <div class="container">
+    <h3 class="title">关于联盟</h3>
+    <div class="col-md-4 abt-grid">
+      <div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
+        <a href="#" class="hi-icon icon1"></a>
+      </div>
+      <h4>品牌</h4>
+      <p>国内领先的法律服务平台，致力于为用户提供优质法律服务。赢了网首创的“律师竞标”模式，竭力破除法律行业的强专业壁垒和信息不对称，
+        帮助用户选择律师，最大化自己的合法权益。赢了网成立至今以其诚信、透明、公平、高效、创新的特征赢得了用户口碑。</p>
+    </div>
+    <div class="col-md-4 abt-grid yes_marg">
+      <div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
+        <a href="#" class="hi-icon icon2"></a>
+      </div>
+      <h4>营销</h4>
+      <p>
+        “优质”：来源于我们创造的模式
+        让法律从业者专注于创“优”,争“优”,价值得到最大化实现。让用户得以选“优“,用“优”，利益得到最大化满足。
+      </p>
+    </div>
+    <div class="col-md-4 abt-grid">
+      <div class="hi-icon-wrap hi-icon-effect-7 hi-icon-effect-7b">
+        <a href="#" class="hi-icon icon3"></a>
+      </div>
+      <h4>推广 </h4>
+      <p>利用互联网及信息技术，让用户获得法律服务变得轻而易举。</p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
 <!-- //about -->
 
 <!-- philosophy -->
 <div class="philosophy all_pad text-center">
-	<div class="container">
-		<h3 class="title">OUR PHILOSOPHY IS</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-	</div>
+  <div class="container">
+    <h3 class="title">我们的理念是</h3>
+    <p class="para">1.提供真正有价值的法律咨询服务，为用户排忧解惑<span> 2.帮助用户找到最合适的律师，从而最大化用户的合法权益</span>
+      3.破除法律行业的强专业壁垒和信息不对称，让用户明白法律，看懂律师
+    </p>
+
+
+  </div>
 </div>
 <!-- //philosophy -->
 
 <!-- team -->
 <div id="team" class="team all_pad text-center">
-	<div class="container">
-		<h3 class="title">OUR TEAM</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-			<div class="col-md-3 about-poleft">
-				<div class="about_img"><img src="assets/images/team1.jpg" alt="">
-				  <h5>Victoria<span>Web Designer</span></h5>
-				  <div class="about_opa">
-					<ul class="fb_icons2 text-center">
-						<li><a class="fb" href="#"></a></li>
-						<li><a class="twit" href="#"></a></li>
-					</ul>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-3 about-poleft yes_marg">
-				<div class="about_img"><img src="assets/images/team2.jpg" alt="">
-				  <h5>Thompson<span>Manager</span></h5>
-				  <div class="about_opa">
-					<ul class="fb_icons2 text-center">
-						<li><a class="fb" href="#"></a></li>
-						<li><a class="twit" href="#"></a></li>
-					</ul>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-3 about-poleft yes_marg">
-				<div class="about_img"><img src="assets/images/team4.jpg" alt="">
-				  <h5>Nick Smith<span>Developer</span></h5>
-				  <div class="about_opa">
-					<ul class="fb_icons2 text-center">
-						<li><a class="fb" href="#"></a></li>
-						<li><a class="twit" href="#"></a></li>
-					</ul>
-				  </div>
-				</div>
-			</div>
-			<div class="col-md-3 about-poleft ">
-				<div class="about_img"><img src="assets/images/team3.jpg" alt="">
-				  <h5>Patrick<span>Assistant</span></h5>
-				  <div class="about_opa">
-					<ul class="fb_icons2 text-center">
-						<li><a class="fb" href="#"></a></li>
-						<li><a class="twit" href="#"></a></li>
-					</ul>
-				  </div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-	</div>
+  <div class="container">
+    <h3 class="title">我们的团队</h3>
+    <p class="para">正如一份详尽的菜谱并不能让每一个人都发挥专业的厨艺。由专业律师执行整个诉讼方案可以最大实现法律意见价值。<span> 诉讼前，律师能快速启动司法程序，高效精准的准备材</span>诉讼中，律师受过的专业教育和执业经验能让他们应对法庭上的每一个问题，及时调整，力求最佳诉讼结</p>
+    <div class="col-md-3 about-poleft">
+      <div class="about_img"><img src="assets/images/team1.jpg" alt="">
+        <h5>维多利亚<span>网络推广</span></h5>
+        <div class="about_opa">
+          <ul class="fb_icons2 text-center">
+            <li><a class="fb" href="#"></a></li>
+            <li><a class="twit" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 about-poleft yes_marg">
+      <div class="about_img"><img src="assets/images/team2.jpg" alt="">
+        <h5>汤普森 <span>系统管理</span></h5>
+        <div class="about_opa">
+          <ul class="fb_icons2 text-center">
+            <li><a class="fb" href="#"></a></li>
+            <li><a class="twit" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 about-poleft yes_marg">
+      <div class="about_img"><img src="assets/images/team4.jpg" alt="">
+        <h5>尼克·史密斯<span>业务发展</span></h5>
+        <div class="about_opa">
+          <ul class="fb_icons2 text-center">
+            <li><a class="fb" href="#"></a></li>
+            <li><a class="twit" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 about-poleft ">
+      <div class="about_img"><img src="assets/images/team3.jpg" alt="">
+        <h5>帕特里克<span>助理</span></h5>
+        <div class="about_opa">
+          <ul class="fb_icons2 text-center">
+            <li><a class="fb" href="#"></a></li>
+            <li><a class="twit" href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
 <!-- //team -->
 <!-- services -->
 <div id="services" class="services all_pad text-center">
-	<div class="container">
-		<h3 class="title">SERVICES</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-		<div class="col-md-6 services-left">
-			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-			<div class="head_ser"><h5>1</h5></div>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum
-			fugiat </p>
-		</div>
-		<div class="col-md-6 services-right">
-			<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-			<div class="head_ser"><h5>2</h5></div>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum
-			fugiat </p>
-		</div>
-		<div class="col-md-6 services-left mar-top">
-			<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
-			<div class="head_ser"><h5>3</h5></div>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum
-			fugiat </p>
-		</div>
-		<div class="col-md-6 services-right mar-top">
-			<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-			<div class="head_ser"><h5>4</h5></div>
-			<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum
-			fugiat </p>
-		</div>
-		<div class="clearfix"></div>
-		<div class="ser-bottom">
-				<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
-				<div class="head_ser"><h5>5</h5></div>
-				<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum
-				fugiat </p>
-		</div>
-	</div>
+  <div class="container">
+    <h3 class="title">我们的服务</h3>
+    <div class="col-md-6 services-left">
+      <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+      <div class="head_ser"><h5>1</h5></div>
+      <p>从咨询到诉讼，全程服务</p>
+    </div>
+    <div class="col-md-6 services-right">
+      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+      <div class="head_ser"><h5>2</h5></div>
+      <p>案情线上沟通，便捷高效 </p>
+    </div>
+    <div class="col-md-6 services-left mar-top">
+      <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+      <div class="head_ser"><h5>3</h5></div>
+      <p>在线支付、在线确认合同 </p>
+    </div>
+    <div class="col-md-6 services-right mar-top">
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      <div class="head_ser"><h5>4</h5></div>
+      <p>签字 </p>
+    </div>
+    <div class="clearfix"></div>
+    <div class="ser-bottom">
+      <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+      <div class="head_ser"><h5>5</h5></div>
+      <p>在线确认合同</p>
+    </div>
+  </div>
 </div>
 <!-- //services -->
 <!-- work -->
 <div id="work" class="work all_pad text-center">
-	<div class="container">
-		<h3 class="title">WORK STEPS</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-		<div class="col-md-8 where-right">
-			<div class="wel-left">
-				<div class="work-left">
-					<h4>01</h4>
-				</div>
-				<div class="work-right text-left">
-					<h5>PROJECT UNDERSTANDING</h5>
-					<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu
-						fugiat nulla pariatur. Excepteur sint occaecat.</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="wel-right ">
-				<div class="content-item item-image1">
-					<div class="overlay"></div>
-					  <div class="corner-overlay-content"></div>
-					  <div class="overlay-content">
-					  </div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="col-md-8 where-right no-marg">
-			<div class="wel-right2">
-				<div class="content-item item-image2">
-					<div class="overlay"></div>
-					  <div class="corner-overlay-content"></div>
-					  <div class="overlay-content">
-					  </div>
-				</div>
-			</div>
-			<div class="wel-left2">
-				<div class="work-left">
-					<h4>02</h4>
-				</div>
-				<div class="work-right text-left">
-					<h5>RESEARCH & PLANNING</h5>
-					<p>Duis aute irure dolor reprehenderit in voluptate velit esse cillum dolore eu
-						fugiat nulla pariatur. Excepteur sint occaecat.</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+  <div class="container">
+    <h3 class="title">工作步骤</h3>
+    <div class="col-md-8 where-right">
+      <div class="wel-left">
+        <div class="work-left">
+          <h4>01</h4>
+        </div>
+        <div class="work-right text-left">
+          <h5>项目的理解</h5>
+          <p>对用户需求进行分析</p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="wel-right ">
+        <div class="content-item item-image1">
+          <div class="overlay"></div>
+          <div class="corner-overlay-content"></div>
+          <div class="overlay-content">
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-8 where-right no-marg">
+      <div class="wel-right2">
+        <div class="content-item item-image2">
+          <div class="overlay"></div>
+          <div class="corner-overlay-content"></div>
+          <div class="overlay-content">
+          </div>
+        </div>
+      </div>
+      <div class="wel-left2">
+        <div class="work-left">
+          <h4>02</h4>
+        </div>
+        <div class="work-right text-left">
+          <h5>研究与规划 </h5>
+          <p>研究案例规划完成时间</p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
 </div>
 <!-- //services -->
 <!-- portfolio -->
 <div id="portfolio" class="portfolio all_pad text-center">
-	<div class="container">
-		<h3 class="title">PORTFOLIO</h3>
-		<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-		fugiat nulla pariatur. Excepteur sint occaecat.</p>
-        <div class="filtr-container ">
-                <div class=" col-md-6 filtr-item baner-top" data-category="1, 5" data-sort="Busy streets">
-					<a href="assets/images/g1.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g1.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-                <div class="col-md-6 filtr-item baner-top" data-category="2, 5" data-sort="Luminous night">
-					<a href="assets/images/g2.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g2.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-				<div class="col-md-4 filtr-item baner-top ban-mar" data-category="3, 4" data-sort="Industrial site">
-					<a href="assets/images/g3.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g3.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-                <div class="col-md-4 filtr-item baner-top ban-mar" data-category="2, 4" data-sort="Peaceful lake">
-					<a href="assets/images/g4.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g4.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-                <div class="col-md-4  filtr-item baner-top ban-mar" data-category="1, 5" data-sort="City lights">
-                    <a href="assets/images/g5.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g5.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-                <div class="col-md-6 filtr-item baner-top" data-category="1, 4" data-sort="City wonders">
-					<a href="assets/images/g6.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g6.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
-                <div class=" col-md-6 filtr-item baner-top" data-category="3" data-sort="In production">
-					<a href="assets/images/g3.jpg" class="b-link-stripe b-animate-go  swipebox">
-							<div class="gal-spin-effect vertical ">
-								<img src="assets/images/g3.jpg" alt=" " />
-								<div class="gal-text-box">
-									<div class="info-gal-con">
-										<h4>CONSORTIUM</h4>
-										<span class="divider"></span>
-										<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
-										<span class="divider"></span>
-									</div>
-								</div>
-							</div>
-					</a>
-                </div>
+  <div class="container">
+    <h3 class="title">工作环境</h3>
+
+    <div class="filtr-container ">
+      <div class=" col-md-6 filtr-item baner-top" data-category="1, 5" data-sort="Busy streets">
+        <a href="assets/images/g1.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g1.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 filtr-item baner-top" data-category="2, 5" data-sort="Luminous night">
+        <a href="assets/images/g2.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g2.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filtr-item baner-top ban-mar" data-category="3, 4" data-sort="Industrial site">
+        <a href="assets/images/g3.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g3.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filtr-item baner-top ban-mar" data-category="2, 4" data-sort="Peaceful lake">
+        <a href="assets/images/g4.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g4.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4  filtr-item baner-top ban-mar" data-category="1, 5" data-sort="City lights">
+        <a href="assets/images/g5.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g5.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 filtr-item baner-top" data-category="1, 4" data-sort="City wonders">
+        <a href="assets/images/g6.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g6.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class=" col-md-6 filtr-item baner-top" data-category="3" data-sort="In production">
+        <a href="assets/images/g3.jpg" class="b-link-stripe b-animate-go  swipebox">
+          <div class="gal-spin-effect vertical ">
+            <img src="assets/images/g3.jpg" alt=" " />
+            <div class="gal-text-box">
+              <div class="info-gal-con">
+                <h4>CONSORTIUM</h4>
+                <span class="divider"></span>
+                <p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla nisi hic quasi enim.</p>
+                <span class="divider"></span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
 
 
-               <div class="clearfix"> </div>
+      <div class="clearfix"> </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 <!-- //portfolio -->
 <!-- contact -->
 <div id="contact" class="contact">
-		<div class="col-md-4 contact_left text-center">
-			<ul>
-				<li><a class="fb" href="#"></a></li>
-				<li><a class="twit" href="#"></a></li>
-				<li><a class="goog" href="#"></a></li>
-				<li><a class="drib" href="#"></a></li>
-				<li><a class="pin" href="#"></a></li>
-			</ul>
-		</div>
-		<div class="col-md-8 contact_right text-center">
-			<div class="map">
-				<h3 class="title">CONTACT</h3>
-				<p class="para">Duis aute irure dolor reprehenderit<span> in voluptate velit</span> esse cillum dolore eu
-				fugiat.</p>
-				<ul class="contact-list text-left">
-					<li>756 Global Place, New York.</li>
-					<li>+7(888)91-34-34</li>
-					<li><a href="mailto:example@mail.com">mail@example.com</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="clearfix"></div>
+
 </div>
 <!-- //contact -->
 <!-- footer -->
 <div class="footer">
-	<div class="container">
-		<form action="#" method="post">
-			<div class="col-md-6 footer-left">
-				<input type="text" value="Name" name="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-				<input type="email" value="Email" name="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-				<input type="text" value="Mobile Number" name="Mobile Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile Number';}" required="">
-			</div>
-			<div class="col-md-6 footer-right">
-				<textarea name="Message..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-				<input type="submit" value="Submit Now">
-			</div>
-			<div class="clearfix"></div>
+  <div class="container">
 
-		</form>
-		<p class="copy-rights">Copyright &copy; 2016.Company name All rights reserved.<a target="_blank">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+    <p class="copy-rights">Copyright &copy; 2016.Company name All rights reserved.</p>
 
-	</div>
+  </div>
 </div>
 <!-- //footer -->
+
+<!--QQ插件-->
+<div class="slides">
+  <ul class="slideul">
+    <li><a href=""><img src="http://demo.lanrenzhijia.com/2014/service0826/image/slide-01.jpg" alt=""></a></li>
+    <li class="kefu">
+      <img src="http://demo.lanrenzhijia.com/2014/service0826/image/slide-02.jpg" alt="">
+      <ul class="kefulist">
+        <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=303298846&Site=qq&Menu=yes">在线客服一</a></li>
+        <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=123456789&Site=qq&Menu=yes">在线客服二</a></li>
+        <li><a  target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=123456789&Site=qq&Menu=yes">在线客服三</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!--//QQ插件-->
+
 <script type="text/javascript" src="assets/js/bootstrap-3.1.1.min.js"></script>
 <!-- smooth scrolling -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-		/*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear'
-			};
-		*/
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		});
-	</script>
-	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<script type="text/javascript">
+  $(document).ready(function() {
+    /*
+     var defaults = {
+     containerID: 'toTop', // fading element id
+     containerHoverID: 'toTopHover', // fading element hover id
+     scrollSpeed: 1200,
+     easingType: 'linear'
+     };
+     */
+    $().UItoTop({ easingType: 'easeOutQuart' });
+
+    //Sldie
+    $(".slides .kefu").mouseenter(function(){
+      $(this).find(".kefulist").fadeIn();
+    });
+    $(".slides .kefu").mouseleave(function(){
+      $(this).find(".kefulist").fadeOut();
+    });
+
+  });
+</script>
+<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!-- //smooth scrolling -->
 
 </body>
