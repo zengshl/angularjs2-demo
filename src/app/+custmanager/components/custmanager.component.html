@@ -85,7 +85,95 @@
     </table>
 
     <div class="row" style="padding-bottom: 15px;">
+      <form  class="ui form" style="padding: 5px 20px;">
+        <!--用户会员信息-->
+        <div class="ui segment" style="padding: 20px 50px;">
+          <div class="ui top attached label" style="background-color: PaleTurquoise">
+            <h3 style="color: white;text-align:left" >用户会员信息</h3>
+          </div>
+          <div class="field" style="padding-top: 20px;">
+            <div class="three fields">
+              <div class="field">
+                <label>会员等级  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true">
+                </div>
+              </div>
+              <div class="field">
+                <label>会员状态  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true">
+                </div>
+              </div>
+              <div class="field">
+                <label>会员描述  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--用户验证信息-->
+        <div class="ui segment" style="padding: 20px 50px;">
+          <div class="ui top attached label" style="background-color: PaleTurquoise">
+            <h3 style="color: white;text-align:left" >用户验证信息</h3>
+          </div>
+          <div class="field" style="padding-top: 20px;">
+            <div class="three fields">
+              <div class="field">
+                <label>身份验证  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true" >
+                </div>
+              </div>
+              <div class="field">
+                <label>手机验证  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true">
+                </div>
+              </div>
+              <div class="field">
+                <label>银行卡验证  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [disabled]="true">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--用户公司信息-->
+        <div class="ui segment" style="padding: 20px 50px;">
+          <div class="ui top attached label" style="background-color: PaleTurquoise">
+            <h3 style="color: white;text-align:left" >用户公司信息</h3>
+          </div>
+          <div class="field" style="padding-top: 20px;">
+            <div class="three fields">
+              <div class="field">
+                <label>公司名称  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [(ngModel)]="company.companyName"  [disabled]="true">
+                </div>
+              </div>
+              <div class="field">
+                <label>公司规模 </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [(ngModel)]="company.companyScope"  [disabled]="true" >
+                </div>
+              </div>
+              <div class="field">
+                <label>公司地址  </label>
+                <div class="ui left labeled icon input">
+                  <input  type="text" [(ngModel)]="company.companyAddress"  [disabled]="true">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
+    <div class="row" style="padding-bottom: 15px;">
       <div class="ui icon message">
         <i class="inbox icon"></i>
         <div class="content">

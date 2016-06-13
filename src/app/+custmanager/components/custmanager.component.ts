@@ -3,8 +3,9 @@ import {AfterViewInit} from "@angular/core";
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {UtilService} from "../../shared/index";
 import {Response} from '@angular/http';
-import {PageData} from "../../shared/services/entity.service";
+import {PageData,UserCompany} from "../../shared/services/entity.service";
 import {Router} from '@angular/router-deprecated';
+
 declare var jQuery:JQueryStatic;
 
 @Component({
@@ -19,7 +20,7 @@ export class CustmanagerComponent {
   private data: any ;
   private pdata :PageData;
   private tableShow:boolean = true
-
+  private company : UserCompany;
   isInsert:boolean = false;
   userSearch:string = "";
 
@@ -29,7 +30,7 @@ export class CustmanagerComponent {
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1 ;
     this.pdata.iDisplayLength = 8;
-
+    this.company = new UserCompany();
     this.pdata.searchData = {"userName":this.userSearch};
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getUser(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
@@ -59,5 +60,10 @@ export class CustmanagerComponent {
 //点击每一行表格
   clickItem(item:any){
     console.log(item);
+    this._util.getUserById(parseInt(item.id)).subscribe((res:Response)=>{
+      if(res.json().company!=null){
+        this.company = res.json().company;
+      }
+    });
   }
 }

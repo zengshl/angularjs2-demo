@@ -9,7 +9,7 @@ import {DocAttr,ConfidentAgreement} from "./entity.service";
   @Injectable()
 export class UtilService  {
 
-private url = 'http://120.24.252.170:9000/';
+private url = 'http://localhost:9000/';
 //  private url = 'http://localhost:9000/';
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；
@@ -429,4 +429,9 @@ private url = 'http://120.24.252.170:9000/';
     return attrData;
   }
 
+  //上传文件
+  uploadFile(data:string){
+    var str = this.url + "law/file/upload";
+    return this.http.post(str,data);
+  }
 };
