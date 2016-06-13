@@ -1,0 +1,88 @@
+<div class="ui stackable grid" style="margin-top:20px;">
+  <div class="row">
+    <div class="three wide column"></div>
+    <div class="ten wide column">
+      <h2 class="ui center aligned header">
+        <div class="content" style="margin: 10px auto;">
+          取回密码
+        </div>
+      </h2>
+      <div  *ngIf="!isNext">
+      <div class="ui top attached ordered steps">
+        <div class="active step">
+          <div class="content">
+            <div class="title">帐户验证</div>
+            <div class="description">输入验证码</div>
+          </div>
+        </div>
+        <div class="disabled step">
+          <div class="content">
+            <div class="title">重置密码</div>
+            <div class="description">输入新的密码</div>
+          </div>
+        </div>
+        <div class="disabled step">
+          <div class="content">
+            <div class="title">修改成功</div>
+            <div class="description">返回登陆页面</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui bottom attached form segment" style="padding:10px 200px">
+        <form accept-charset="UTF-8"  #f="ngForm" (ngSubmit)="recallPwd(f.value)">
+          <input name="utf8" type="hidden" value="&#x2713;" />
+          <!--<div class="field">-->
+            <!--<label for="user_username">手机号</label>-->
+            <!--<div class="ui left labeled icon input">-->
+              <!--<input required="required" type="text" id="user_username"  pattern="^1[0-9]{10}$"  ngControl="phone" [(ngModel)]="mobile"/>-->
+              <!--<div class="ui corner label">-->
+                <!--<i class="icon asterisk"></i>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="field">
+            <label for="user_username">手机号/邮箱</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="text" id="user_username"  ngControl="phone" [(ngModel)]="account"/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="user_code">验证码</label>
+            <div class="ui action input">
+              <input required="required" type="text" id="user_code"  ngControl="validCode"/>
+              <button class="ui teal button" (click)="getCode()"  [disabled]="isDisabled">
+                {{message}}
+              </button>
+            </div>
+          </div>
+
+          <div class="ui red message" style="font-size: 12px" *ngIf="error">{{errorMsg}} </div>
+          <br>
+          <div style="text-align: center">
+              <button type="submit" class="ui teal labeled icon submit button" [disabled]="!isRegistered">
+                下一步
+                <i class="pointing right icon"></i>
+              </button>
+          </div>
+
+        </form>
+      </div>
+      </div>
+      <modify-password *ngIf="isNext" [user]="user"></modify-password>
+      <div class="ui horizontal divider" style="margin: 40px 0;">
+        Or
+      </div>
+      <div style="text-align: center;">
+        <a class="ui black large labeled icon button" (click)="toLogin()">
+          返回登陆页面
+          <i class="signup icon"></i>
+        </a>
+      </div>
+    </div>
+    <div class="three wide column"></div>
+  </div>
+</div>
+

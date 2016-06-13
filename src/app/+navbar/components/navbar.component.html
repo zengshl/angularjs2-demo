@@ -1,0 +1,88 @@
+<div class="ui large top fixed menu" id="top-menu">
+
+  <a class="item"  href="index.html"> <i class="large home icon"></i>首页</a>
+  <a class="item" (click)="navSelf('./Personal')"><i class="large mail outline icon"></i>个人中心</a>
+  <a class="item" (click)="navSelf('./NewFile')"><i class="large find icon"></i>创建法律文档</a>
+  <a class="item" (click)="navSelf('./File')"><i class="large trophy icon"></i>我的文件管理</a>
+  <a class="item" (click)="navSelf('./Advice')"><i class="large phone icon"></i>我的法律咨询</a>
+  <div class="right menu" >
+    <div class="ui dropdown item" *ngIf="!isLogin">
+      <i class="large add user icon"></i>
+      游客<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="nav('Login')"><i class="user icon"></i>登陆</a>
+        <a class="item" (click)="nav('Signup')"><i class="add user icon"></i>注册</a>
+        <a class="item" (click)="nav('AdminLogin')"><i class="user icon"></i>管理员登陆</a>
+        <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
+      </div>
+    </div>
+    <div class="ui dropdown item" *ngIf="isLogin">
+      <i class="large user icon"></i>
+      <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="navSelf('./Personal')" >个人中心</a>
+        <a class="item" (click)="navSelf('./NewFile')">创建法律文档</a>
+        <a class="item" (click)="navSelf('./File')">我的文件管理</a>
+        <a class="item" (click)="navSelf('./Advice')">我的法律咨询</a>
+        <a class="item">消息中心</a>
+        <a class="item">我的优惠券</a>
+        <a class="item">账号设置</a>
+        <a class="item" (click)="logout()">退出登陆</a>
+        <a class="item" (click)="nav('AdminLogin')"><i class="user icon"></i>管理员登陆</a>
+        <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mobile -->
+<div class="ui large top fixed menu" id="mobile-menu">
+  <div class="right menu" >
+    <div class="ui dropdown item" *ngIf="!isLogin">
+      <i class="large add user icon"></i>
+      游客<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="nav('Login')"><i class="user icon"></i>登陆</a>
+        <a class="item" (click)="nav('Signup')"><i class="add user icon"></i>注册</a>
+        <a class="item" (click)="nav('AdminLogin')"><i class="user icon"></i>管理员登陆</a>
+        <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
+      </div>
+    </div>
+    <div class="ui dropdown item" *ngIf="isLogin">
+      <i class="large user icon"></i>
+      <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" (click)="navSelf('./Personal')" >个人中心</a>
+        <a class="item" (click)="navSelf('./NewFile')">创建法律文档</a>
+        <a class="item" (click)="navSelf('./File')">我的文件管理</a>
+        <a class="item" (click)="navSelf('./Advice')">我的法律咨询</a>
+        <a class="item">消息中心</a>
+        <a class="item">我的优惠券</a>
+        <a class="item">账号设置</a>
+        <a class="item" (click)="logout()">退出登陆</a>
+        <a class="item" (click)="nav('AdminLogin')"><i class="user icon"></i>管理员登陆</a>
+        <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- top-nav -->
+<nav class="top-nav">
+  <div class="shell">
+    <!--
+    <a  class="nav-btn">主页<span></span></a>
+    <span class="top-nav-shadow"></span>
+    <ul>
+      <li class="active"><span><a >主页</a></span></li>
+      <li><span><a >关于我们</a></span></li>
+      <li><span><a >法律咨询</a></span></li>
+      <li><span><a >找律师</a></span></li>
+      <li><span><a >服务保障</a></span></li>
+      <li><span><a >联系我们</a></span></li>
+      <li><span><a >个人中心</a></span></li>
+    </ul>
+    -->
+  </div>
+</nav>
+<!-- end of top-nav -->
+<!-- header -->

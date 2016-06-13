@@ -1,0 +1,81 @@
+<!-- navbar navlist-->
+<div class="ui left fixed vertical accordion  menu" id="leftMenu">
+  <div class="item">
+    <a class="active title">
+      <i class="large sitemap icon"></i>
+      <i class="dropdown icon"></i>
+      系统管理
+    </a>
+    <div class="active content">
+      <a class="item" (click)="navSelf('./User')" ><i class="user icon"></i>系统用户管理</a>
+      <a class="item" (click)="navSelf('./SysRole')"><i class="student icon"></i>系统角色管理</a>
+    </div>
+  </div>
+
+  <div class="item">
+    <a class="title">
+      <i class="large browser icon"></i>
+      <i class="dropdown icon"></i>
+      模板管理
+    </a>
+    <div class="content">
+      <a class="item" (click)="navSelf('./Moudle')"><i class="list layout icon"></i>模板管理</a>
+    </div>
+  </div>
+
+  <div class="item">
+    <a class="title">
+      <i class="large users icon"></i>
+      <i class="dropdown icon"></i>
+      用户管理
+    </a>
+    <div class="content">
+      <a class="item" (click)="navSelf('./Custmanager')"><i class="user icon"></i>用户管理</a>
+      <a class="item" (click)="navSelf('./Folder')"><i class="folder open icon"></i>用户文件夹管理</a>
+      <a class="item" (click)="navFile()"><i class="file icon"></i>用户文件管理</a>
+    </div>
+
+  </div>
+
+  <!--<div class="item">-->
+    <!--<a class="title">-->
+      <!--<i class="large setting icon"></i>-->
+      <!--<i class="dropdown icon"></i>-->
+      <!--文件管理-->
+    <!--</a>-->
+    <!--<div class="content">-->
+      <!--<a class="item" ><i class="user icon"></i>用户管理</a>-->
+      <!--<a class="item" (click)="navSelf('./File')"><i class="file icon"></i>文件管理</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<a class="item">系统管理</a>-->
+</div>
+
+<div class="ui large top fixed borderless menu" style="background-color: #00a6dd;" id="topMenu">
+  <a class="navMenu item" id="navMenu">
+    <i class="large sidebar icon"></i>
+  </a>
+  <div class="item">
+    <i class="large medium icon"></i>abc
+  </div>
+
+</div>
+<!-- end -->
+<div class="container-fluid">
+  <div class="row" style="height: 70px;background-color: #F5F5F5"> </div>
+  <div class="row"  style="height: 800px;">
+    <div class="col-md-2"> </div>
+    <!-- main -->
+    <div class="col-md-10">
+
+         <router-outlet></router-outlet>
+
+      </div>
+
+    </div>
+
+</div>
+
+
+
