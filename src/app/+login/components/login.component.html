@@ -1,24 +1,30 @@
 <div class="ui stackable grid" style="margin: 50px auto;">
   <div class="five wide column"></div>
-  <div class="six wide column">
+  <div class="seven wide column">
     <!-- 菜单 -->
-    <div class="ui top attached stackable tabular menu">
-      <a class="active item" (click)="navSelf('./UserLogin')">
-        <i class="large user icon"></i> 普通用户登录
-      </a>
-      <!--<a class="item">-->
-        <!--<i class="large user icon"></i> 律师登陆-->
-      <!--</a>-->
-      <!--<a class="item" (click)="navSelf('./AdminLogin')">-->
-        <!--<i class="large user icon"></i> 管理员登陆-->
-      <!--</a>-->
-      <a class="ui right item" href="#">
-        <i class="home icon"></i> 返回首页
-      </a>
+    <h2 style="text-align: center;font-weight: bolder" (click)="navSelf('./UserLogin')">普通用户登录</h2>
+    <div style="text-align: right">
+      <a  href="index.html"><i class="share icon"></i>返回首页</a>
     </div>
+
+    <br>
+    <!--<div class="ui top attached tabular menu">-->
+      <!--<a class="active item" (click)="navSelf('./UserLogin')">-->
+        <!--<i class="large user icon"></i> 普通用户登录-->
+      <!--</a>-->
+      <!--&lt;!&ndash;<a class="item">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="large user icon"></i> 律师登陆&ndash;&gt;-->
+      <!--&lt;!&ndash;</a>&ndash;&gt;-->
+      <!--&lt;!&ndash;<a class="item" (click)="navSelf('./AdminLogin')">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="large user icon"></i> 管理员登陆&ndash;&gt;-->
+      <!--&lt;!&ndash;</a>&ndash;&gt;-->
+      <!--<a class="ui right item" href="index.html">-->
+        <!--<i class="home icon"></i> 返回首页-->
+      <!--</a>-->
+    <!--</div>-->
     <!-- 页面 -->
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
   </div>
-  <div class="five wide column"></div>
+  <div class="four wide column"></div>
 </div>
 

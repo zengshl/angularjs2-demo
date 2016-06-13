@@ -19,3 +19,13 @@
 .top-nav ul li.active span { background: url(assets/images/active-nav-border.png) no-repeat 0 0; padding-left: 2px; }
 .top-nav span.top-nav-shadow { background: url(assets/images/top-nav-shadow.png) no-repeat 0 0; width: 959px; height: 7px; position: absolute; top: 59px; left: 50%; margin-left: -480px; }
 .top-nav a.nav-btn { display: none; }
+
+
+
+@media all and (max-width:765px)
+{
+  #top-menu{ display:none }
+  #mobile-menu{ display:inline-block }
+
+}
+
