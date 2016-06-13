@@ -1,3 +1,4 @@
+
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
 import {User,Folder,File,DocAttr,ConfidentAgreement,CheckBox} from "../../shared/index";
@@ -379,7 +380,6 @@ export class FileComponent {
 
 
 }
-
 
 
 
