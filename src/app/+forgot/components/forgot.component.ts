@@ -1,63 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {Component} from '@angular/core';
 import {Router} from '@angular/router-deprecated';
 import {FORM_DIRECTIVES} from '@angular/common';
@@ -75,7 +16,7 @@ import {Response} from '@angular/http';
 })
 
 export class ForgotComponent {
-  mobile:string = ""; //发送短信的手机号
+  account:string = ""; //发送短信的手机号/邮箱
   isDisabled:boolean = false;
   user:User;
   isNext:boolean = false; //是否下一步
@@ -117,8 +58,9 @@ export class ForgotComponent {
   getCode() {
 
 
-    if (this.mobile.indexOf("@")) { //如果邮箱不为空
-      this.user.email = this.mobile;
+    if (this.account.indexOf("@") !== -1) { //如果邮箱不为空
+      this.user.email = this.account;
+      console.log(this.user)
       this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
         if (data.status === "0") {
@@ -135,11 +77,11 @@ export class ForgotComponent {
         }
       });
       this.countBack();
-    } else if (this.mobile.length == 11) {
-      let value = this.mobile
+    } else if (this.account.length == 11) {
+      let value = this.account
       if (parseInt(value) > 10000000000) {
         //手机验证
-        this.user.phone = this.mobile;
+        this.user.phone = this.account;
         this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
           var data = res.json();
           if (data.status === "0") {
@@ -182,3 +124,61 @@ export class ForgotComponent {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

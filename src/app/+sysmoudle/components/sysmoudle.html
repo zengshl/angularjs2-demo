@@ -143,13 +143,13 @@
                 </table>
 
                 <!--添加模板属性-->
-                <form class="ui form"  *ngIf="addAttr"  (ngSubmit)="insertOrUpdataAttr()" >
+                <form class="ui form"  *ngIf="addAttr" (ngSubmit)="insertOrUpdataAttr()">
                     <div class="field" style="padding-top: 20px;">
                       <div class="three fields">
                         <div class="field">
                           <label>文档名称  </label>
                           <div class="ui left labeled icon input">
-                            <input placeholder="文档名称" [(ngModel)]="addTemp.resourceName" ngControl="resourceName" type="text" required>
+                            <input placeholder="文档名称" [(ngModel)]="addTemp.resourceName" type="text" required>
                             <div class="ui corner label">
                               <i class="icon red asterisk"></i>
                             </div>
@@ -157,26 +157,22 @@
                         </div>
                         <div class="field">
                           <label>文档标题 </label>
-                          <input  placeholder="文档标题" [(ngModel)]="addTemp.resourceTitle" ngControl="resourceTitle" type="text">
+                          <input  placeholder="文档标题" [(ngModel)]="addTemp.resourceTitle" type="text">
                         </div>
                         <div class="field">
                           <label>创建时间  </label>
-                          <input  placeholder="创建时间" [(ngModel)]="addTemp.createTime" ngControl="createTime" type="text">
+                          <input  placeholder="创建时间" [(ngModel)]="addTemp.createTime" type="text">
                         </div>
                       </div>
-
-                        <div class="three fields" >
-                          <div class="field">
-                            <label>上传模板 </label>
-                            <div class="ui action input">
-                              <input placeholder="上传模板" type="file" ngControl="uploadfile" (change)="onFileSelect($event)">
-                              <button class="ui button">上传</button>
-                            </div>
-                            <!--<a class="file">选择文件-->
-                              <!--<input type="file" ngControl="uploadfile" (change)="onFileSelect($event)">-->
-                            <!--</a>-->
+                      <div class="three fields" *ngIf="false">
+                        <div class="field">
+                          <label>上传模板 </label>
+                          <div class="ui action input">
+                            <input placeholder="上传模板" type="text">
+                            <button class="ui button">上传</button>
                           </div>
                         </div>
+                      </div>
                     </div>
                   <button *ngIf="isAttrInsert" type="submit" class="ui teal labeled icon submit button">添加资源模板<i class="checkmark box icon"></i></button>
                   <button *ngIf="!isAttrInsert" type="submit" class="ui blue labeled icon submit button">更新资源模板<i class="check circle outline icon"></i></button>

@@ -1,3 +1,4 @@
+
 <div class="ui stackable grid" style="margin-top:20px;">
   <div class="row">
     <div class="three wide column"></div>
@@ -11,7 +12,7 @@
       <div class="ui top attached ordered steps">
         <div class="active step">
           <div class="content">
-            <div class="title">手机验证</div>
+            <div class="title">帐户验证</div>
             <div class="description">输入验证码</div>
           </div>
         </div>
@@ -43,7 +44,7 @@
           <div class="field">
             <label for="user_username">手机号/邮箱</label>
             <div class="ui left labeled icon input">
-              <input required="required" type="text" id="user_username"  ngControl="phone" [(ngModel)]="mobile"/>
+              <input required="required" type="text" id="user_username"  ngControl="phone" [(ngModel)]="account"/>
               <div class="ui corner label">
                 <i class="icon red asterisk"></i>
               </div>
@@ -85,4 +86,3 @@
     <div class="three wide column"></div>
   </div>
 </div>
-

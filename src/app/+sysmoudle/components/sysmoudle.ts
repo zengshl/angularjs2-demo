@@ -27,7 +27,6 @@ export class SysMoudleComponent implements AfterViewInit{
     jQuery('#text').dropdown();
     //jQuery('.ui.fluid.search.dropdown').dropdown();
   }
-
   private data: any ;
   private attrData :any = {"data":[],page:0,size:0};
   private pdata :PageData;
@@ -242,17 +241,5 @@ export class SysMoudleComponent implements AfterViewInit{
     }else{
       this.updataAttrData();
       }
-  }
-
-  onFileSelect(event:any){
-    let file = {
-      "fileName" : event.target.value,
-      "data" : event.target.files[0]
-    }
-    this._util.uploadFile(JSON.stringify(file)).subscribe((res:Response)=>{
-      let data = res.json();
-      console.log(data);
-    });
-    console.log(file);
   }
 }

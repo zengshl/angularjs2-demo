@@ -1,3 +1,4 @@
+
 import {Component} from '@angular/core';
 import {AfterViewInit} from "@angular/core";
 //import {Router} from "@angular/router";
@@ -58,7 +59,13 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
   }
 ])
 export class FrontPageComponent implements AfterViewInit{
-  constructor(private router:Router){}
+  constructor(private router:Router){
+    //如果用户已经登陆，自动跳转
+    if(!sessionStorage.getItem('user')) {
+      //alert('已经登陆');
+      this.nav('Login');
+    }
+  }
   ngAfterViewInit() {
 
 

@@ -1,5 +1,4 @@
 
-
 import  {Http} from '@angular/http';
 import  {Injectable} from '@angular/core';
 import {DocAttr,ConfidentAgreement} from "./entity.service";
@@ -9,8 +8,10 @@ import {DocAttr,ConfidentAgreement} from "./entity.service";
   @Injectable()
 export class UtilService  {
 
-private url = 'http://localhost:9000/';
-//  private url = 'http://localhost:9000/';
+//private url = 'http://120.24.252.170:9000/';
+//  private url = 'http://192.168.1.104:9000/';
+  private url = 'http://localhost:9000/';
+
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；
     //this._promise = new Promise<void>((resolve) =>  {
@@ -428,10 +429,14 @@ private url = 'http://localhost:9000/';
     attrData.push(a);
     return attrData;
   }
-
-  //上传文件
-  uploadFile(data:string){
-    var str = this.url + "law/file/upload";
-    return this.http.post(str,data);
+//获取步骤组
+  getSteps(){
+    return this.http.get("assets/json/steps.json");
   }
+
+
 };
+
+
+
+

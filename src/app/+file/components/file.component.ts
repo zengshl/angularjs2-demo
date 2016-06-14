@@ -1,3 +1,4 @@
+
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
 import {User,Folder,File,DocAttr,ConfidentAgreement,CheckBox} from "../../shared/index";
@@ -169,6 +170,7 @@ export class FileComponent {
     //console.log(fn);
     if(fn){ //不为空的话
       this._util.createFolder(fn,this.user.id).subscribe((res)=>{
+        alert("创建文件夹成功！");
         this.showCreateFolder = false;
         this.getFolder(); //刷新文件夹列表
 
@@ -190,6 +192,7 @@ export class FileComponent {
       this.myFolder.fileName = forModify;
       this._util.updateFolder(JSON.stringify(this.myFolder)).subscribe((res)=>{
         this.showModifyFolder = false;
+        alert("修改成功！");
         this.getFolder(); //刷新文件夹列表
 
       });
@@ -254,6 +257,7 @@ export class FileComponent {
         this._util.getFile(0,this.user.id).subscribe((res)=>{
           this.files = <File[]> res.json().data;
           //console.log(this.files);
+          alert("文件转移成功！");
           this.move = false;
         });
       });
@@ -266,6 +270,7 @@ export class FileComponent {
         //重新刷新文件列表
         this._util.getFile(fdId,this.user.id).subscribe((res)=>{
           this.myFiles = <File[]> res.json().data;
+          alert("文件转移成功！");
         });
         this.moveTo = false;
       });
@@ -375,7 +380,6 @@ export class FileComponent {
 
 
 }
-
 
 
 
