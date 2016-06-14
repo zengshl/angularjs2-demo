@@ -60,6 +60,7 @@ export class CustmanagerComponent {
 //点击每一行表格
   clickItem(item:any){
     console.log(item);
+    this.company = new UserCompany();
     this._util.getUserById(parseInt(item.id)).subscribe((res:Response)=>{
       if(res.json().company!=null){
         this.company = res.json().company;
