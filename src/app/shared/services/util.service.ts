@@ -9,7 +9,9 @@ import {DocAttr,ConfidentAgreement} from "./entity.service";
 export class UtilService  {
 
 //private url = 'http://120.24.252.170:9000/';
-  private url = 'http://192.168.1.104:9000/';
+//  private url = 'http://192.168.1.104:9000/';
+  private url = 'http://localhost:9000/';
+
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；
     //this._promise = new Promise<void>((resolve) =>  {
@@ -427,6 +429,11 @@ export class UtilService  {
     attrData.push(a);
     return attrData;
   }
+//获取步骤组
+  getSteps(){
+    return this.http.get("assets/json/steps.json");
+  }
+
 
 };
 

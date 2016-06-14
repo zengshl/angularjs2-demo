@@ -250,8 +250,18 @@ export class UserCompany {
   companyAddress:string = "";
 }
 
-
-
-
+//步骤的实体类
+export class Step {
+  stepId:number = 0;
+  stepTitle:string = "";
+  description:string = "";
+  status:string = "";
+}
+//步骤组的实体类
+export class Steps {
+  id:number = 0;
+  stepName:string = "";
+  data:Step[] = new Array<Step>();
+}
 
 

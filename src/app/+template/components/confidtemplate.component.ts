@@ -1,105 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {Component } from '@angular/core';
-import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File} from "../../shared/index";
+import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File,Step,Steps} from "../../shared/index";
 import {Router} from '@angular/router-deprecated';
 import {CheckBox} from "../../shared/services/entity.service";
 import  {FORM_DIRECTIVES} from '@angular/common';
@@ -131,9 +31,9 @@ export class ConfidTemplateComponent {
 
   //问题的数据
   agreement: ConfidentAgreement = new ConfidentAgreement();
-  business:boolean = false; //是否是企业 / 个人
-  discloseToB:boolean = false; //是否向乙方披露
-  discloseToA:boolean = false; //是否向甲方披露
+  business:boolean = true; //是否是企业 / 个人
+  discloseToB:boolean = true; //是否向乙方披露
+  discloseToA:boolean = true; //是否向甲方披露
   aPersonName:string; //甲方自然人姓名
   bPersonName:string; //乙方自然人姓名
   aCompanyName:string; //甲方公司名称
@@ -153,9 +53,13 @@ export class ConfidTemplateComponent {
   step1:string = 'active';
   step2:string = 'disabled';
   step3:string = 'disabled';
+  //步骤组
+  steps:Steps[] = new Array<Steps>();
+  mySteps:Steps = new Steps();
   //组装Attr json对象
   docAttr: DocAttr = new DocAttr();
   attrData : Array<DocAttr> = new Array<DocAttr>();
+
   //争议的版本
   disputeVersion1:string = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
   + "如协商未能解决争议，任何一方可将争议提交（中国国际经济贸易仲裁委员会）仲裁，"
@@ -180,37 +84,65 @@ export class ConfidTemplateComponent {
       this.confreciever = <CheckBox[]> res.json();
     });
 
-    if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
-      //this.nav('./ConfidTemplate');
-      this.showPro = false;
-      this.showList = false;
-      this.showQ6 = true;
-      this.step1 = 'completed';
-      this.step2 = 'active';
-      this.step3 = 'disabled';
-    }
-  }
 
 
-//返回重新填写
-  back(){
-    //复原
-    this.business = false;
-    this.discloseToA = false;
-    this.discloseToB = false;
-    this.aPersonName = '';
-    this.bPersonName = '';
-    this.aCompanyName = '';
-    this.bCompanyName = '';
+
+
+    //....................................................
+    //获取步骤组
+    _util.getSteps().subscribe((res)=>{
+      this.steps =<Steps[]> res.json();
+      //console.log(this.steps);
+      this.getStepsById(1);
+    });
+
+
+    //if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
+    //  //this.nav('./ConfidTemplate');
+    //  this.showPro = false;
+    //  this.showList = false;
+    //  this.showQ6 = true;
+    //  this.step1 = 'completed';
+    //  this.step2 = 'active';
+    //  this.step3 = 'disabled';
+    //  this.activeStep(2,1);
+    //}
+
+
   }
+
+//输入步骤组的id，获取步骤组
+  getStepsById(id:number){
+    this.steps.forEach((s)=>{
+      if(s.id === id) {
+        this.mySteps = s;
+        return;
+      }
+    })
+  }
+  //按钮触发步骤变化
+  activeStep(stepsId:number,stepId:number){
+    this.getStepsById(stepsId);
+    this.mySteps.data.map((ms:Step)=>{
+      if(ms.stepId > stepId){
+        ms.status = "disabled";
+      }else if(ms.stepId < stepId){
+        ms.status = "completed";
+      }else{
+        ms.status = "active";
+      }
+    })
+  }
+
   //总结
   conclude(){
+    this.activeStep(1,4);
     if(this.business){  //确定个人还是企业
       this.agreement.aName = this.aCompanyName;
       this.agreement.bName = this.bCompanyName;
       this.agreement.organizationType = "企业";
       this.showQ5 = !this.showQ5;
-      this.showQ41 = !this.showQ41;
+      this.showQ2 = !this.showQ2;
     }else{
       this.agreement.aName = this.aPersonName;
       this.agreement.bName = this.bPersonName;
@@ -218,7 +150,7 @@ export class ConfidTemplateComponent {
       this.agreement.aIdNo = this.aIdNo;
       this.agreement.bIdNo = this.bIdNo;
       this.showQ5 = !this.showQ5;
-      this.showQ4 = !this.showQ4;
+      this.showQ2 = !this.showQ2;
     }
 
     if(this.discloseToA && this.discloseToB){
@@ -235,7 +167,6 @@ export class ConfidTemplateComponent {
       alert(this.agreement.organizationType+"至少是披露方或者接收方，请重新填写问题答案。");
       this.showQ5 = !this.showQ5;
       this.showPro = !this.showPro;
-      this.back();
 
     }
 
@@ -246,6 +177,7 @@ export class ConfidTemplateComponent {
     this.step1 = 'completed';
     this.step2 = 'active';
     this.step3 = 'disabled';
+    this.activeStep(2,1);
     if(sessionStorage.getItem("file")){
       this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
         this.file.id = res.json();
@@ -261,7 +193,7 @@ export class ConfidTemplateComponent {
         a = new DocAttr(documentId,"bIdNo",this.agreement.bIdNo);
         this.attrData.push(a);
         this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
-          sessionStorage.setItem("nextStep1","token");
+          //sessionStorage.setItem("nextStep1","token");
           swal("Good job!", "第一步完成！", "success");
         })
         this.attrData  = new Array<DocAttr>(); //数据归零
@@ -303,7 +235,7 @@ export class ConfidTemplateComponent {
 
     });
     this.agreement.confDefination = str.substr(0,str.length-1); //去除最后一个顿号
-    console.log(this.agreement.confDefination);
+    this.activeStep(2,2);
   }
   //保密人员选择..........................
 //全选
@@ -350,6 +282,7 @@ export class ConfidTemplateComponent {
     this.step1 = 'completed';
     this.step2 = 'completed';
     this.step3 = 'active';
+    this.activeStep(2,6);
     var documentId = this.file.id;
     var a = new DocAttr(documentId,"projectName",this.agreement.projectName);
     this.attrData.push(a);

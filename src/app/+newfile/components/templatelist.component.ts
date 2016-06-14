@@ -8,6 +8,7 @@ import {TermListComponent} from "./termlist.component";
   directives:[TermListComponent],
   template: `
       <!-- 标题 -->
+      <div  style = "padding:0 40px;">
       <div  *ngFor = "let mds of moulds">
         <div class="row" style="margin:20px 0 20px 2px;">
           <h3>{{mds.moudleName}}</h3>
@@ -20,6 +21,7 @@ import {TermListComponent} from "./termlist.component";
           </div>
         </div>
         <br><br>
+      </div>
       </div>
   `
 })

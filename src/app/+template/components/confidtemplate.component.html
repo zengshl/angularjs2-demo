@@ -1,25 +1,47 @@
-
-    <!-- 步骤 -->
-    <div class="ui top attached ordered steps"  *ngIf = "!showList">
-      <div class="step" [ngClass]="step1">
-        <div class="content">
-          <div class="title">基本信息</div>
-          <div class="description">前置问题和主体名称</div>
-        </div>
+<!-- 左边栏 -->
+<div class="col-md-2" id="sidebarLeft">
+  <!-- 步骤 -->
+  <div class="ui fluid vertical steps"  *ngIf = "!showList" >
+    <div class="step" style="background-color: grey;color: white">
+      <i class="info icon"></i>
+      <div class="content">
+        <div class="title">{{mySteps.stepName}}</div>
       </div>
-      <div class="step" [ngClass]="step2">
+    </div>
+    <div *ngFor ="let st of mySteps.data">
+      <div class="step" [ngClass]="st.status">
+        <i class="paw icon"></i>
         <div class="content">
-          <div class="title">协议内容填写</div>
-          <div class="description">协议相关的内容信息</div>
-        </div>
-      </div>
-      <div class="step" [ngClass]="step3">
-        <div class="content">
-          <div class="title">协议文档生成</div>
-          <div class="description">确定生成协议文件</div>
+          <div class="title"> {{st.stepTitle}}</div>
+          <div class="description">{{st.description}}</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+    <div class="col-md-8">
+      <!-- 步骤 -->
+      <div class="ui top attached ordered steps"  *ngIf = "!showList">
+        <div class="step" [ngClass]="step1">
+          <div class="content">
+            <div class="title">基本信息</div>
+            <div class="description">前置问题和主体名称</div>
+          </div>
+        </div>
+        <div class="step" [ngClass]="step2">
+          <div class="content">
+            <div class="title">协议内容填写</div>
+            <div class="description">协议相关的内容信息</div>
+          </div>
+        </div>
+        <div class="step" [ngClass]="step3">
+          <div class="content">
+            <div class="title">协议文档生成</div>
+            <div class="description">确定生成协议文件</div>
+          </div>
+        </div>
+      </div>
     <!-- 保密协议简介 -->
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showPro">
       <h3>保密协议简介</h3>
@@ -37,133 +59,133 @@
         </div>
         <div class="eight wide column" style="text-align: right">
           <a class="button button-glow button-border button-rounded button-primary"
-             (click)="showPro = !showPro;showQ1 = !showQ1">开始</a>
+             (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,2)">开始</a>
         </div>
       </div>
     </div>
     <!-- 前置问题1 -->
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showQ1">
-      <h3>贵司是否会向对方披露关于公司或项目的信息？ </h3>
-      <hr>
-      <br><br>
-      <div class="ui four column stackable grid">
-        <div class="column"></div>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ1 = !showQ1;discloseToB = true;">
-          <i class="big green checkmark icon"></i>是
-        </a>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ1 = !showQ1;discloseToB = false;">
-          <i class="big red remove icon"></i>否
-        </a>
-        <div class="column"></div>
-      </div>
-      <br><br><br>
-      <div class="row" style="margin-left:20px; ">
-        <i class="reply icon"></i>
-        <a (click)="showPro = !showPro;showQ1 = !showQ1">返回上一步</a>
-      </div>
-    </div>
-    <!-- 前置问题2 -->
-    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;" *ngIf ="showQ2">
-      <h3>贵司是否会接收对方披露的信息？ </h3>
-      <hr>
-      <br><br>
-      <div class="ui four column stackable grid">
-        <div class="column"></div>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ3 = !showQ3;discloseToA = true;">
-          <i class="big green checkmark icon"></i>是
-        </a>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ2 = !showQ2;showQ3 = !showQ3;discloseToA = false;">
-          <i class="big red remove icon"></i>否
-        </a>
-        <div class="column"></div>
-      </div>
-      <br><br><br>
-      <div class="row" style="margin-left:20px; ">
-        <i class="reply icon"></i>
-        <a (click)="showQ2 = !showQ2;showQ1 = !showQ1">返回上一步</a>
-      </div>
-    </div>
-    <!-- 前置问题3 -->
-    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showQ3">
-      <h3>签订协议双方是企业还是自然人？ </h3>
-      <hr>
-      <br><br>
-      <div class="ui four column stackable grid">
-        <div class="column"></div>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ3 = !showQ3;showQ41 = !showQ41;business = !business">
-          <i class="large green university icon"></i>企业
-        </a>
-        <a class="column" style="font-size: 20px;font-weight: bolder" (click)="showQ3 = !showQ3;showQ4 = !showQ4;">
-          <i class="large green male icon"></i>自然人
-        </a>
-        <div class="column"></div>
-      </div>
-      <br><br><br>
-      <div class="row" style="margin-left:20px; ">
-        <i class="reply icon"></i>
-        <a (click)="showQ2 = !showQ2;showQ3 = !showQ3">返回上一步</a>
-      </div>
-    </div>
-    <!-- 前置问题4 -->
-    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf="showQ4">
-      <h3>请输入甲乙双方自然人的姓名： </h3>
-      <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="conclude()">
-        <div class="field">
-          <label>甲方姓名</label>
-          <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required>
-        </div>
-        <div class="field">
-          <label>甲方身份证号/护照号</label>
-          <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required>
-        </div>
-        <hr>
-        <div class="field">
-          <label>乙方姓名</label>
-          <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required>
-        </div>
-        <div class="field">
-          <label>乙方身份证号/护照号</label>
-          <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required>
-        </div>
-        <br><br>
-        <div class="two fields">
-          <div class="field">
+      <div class="ui two column stackable internally celled  grid">
+        <div class="column" >
+          <h3>贵司是否会向对方披露关于公司或项目的信息？ </h3>
+          <hr>
+          <br><br>
+          <div class="ui four column stackable grid">
+            <div class="column"></div>
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="discloseToB = true;">
+              <i class="big checkmark icon" [ngClass]="{green: discloseToB}"></i>是
+            </a>
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="discloseToB = false;">
+              <i class="big remove icon"  [ngClass]="{red: !discloseToB}"></i>否
+            </a>
+            <div class="column"></div>
+          </div>
+          <br><br><br>
+          <div class="row" style="padding:0 10%; ">
             <i class="reply icon"></i>
-            <a (click)="showPro = !showPro;showQ4 = !showQ4;back();">从头开始填写</a>
-          </div>
-          <div class="field">
-            <button class="ui teal right floated  button" type="submit">确定</button>
+            <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
           </div>
         </div>
-      </form>
-    </div>
-    <!-- 前置问题4.1 -->
-    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf="showQ41">
-      <h3>请输入双方企业的名称： </h3>
-      <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="conclude()">
-        <div class="field">
-          <label>甲方公司名称</label>
-          <input name="first-name" placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required>
-        </div>
-        <div class="field">
-          <label>乙方公司名称</label>
-          <input name="first-name" placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required>
-        </div>
-        <br><br>
-        <div class="two fields">
-          <div class="field">
-            <i class="reply icon"></i>
-            <a (click)="showPro = !showPro;showQ41 = !showQ41;back()">从头开始填写</a>
+        <div class="column">
+          <h3>贵司是否会接收对方披露的信息？ </h3>
+          <hr>
+          <br><br>
+          <div class="ui four column stackable grid">
+            <div class="column"></div>
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="discloseToA = true;">
+              <i class="big checkmark icon" [ngClass]="{green: discloseToA}"></i>是
+            </a>
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="discloseToA = false;">
+              <i class="big red remove icon" [ngClass]="{red: !discloseToA}"></i>否
+            </a>
+            <div class="column"></div>
           </div>
-          <div class="field">
-            <button class="ui teal right floated  button" type="submit">确定</button>
+          <br><br><br>
+          <div class="row" style="text-align: right;padding: 0 10%; ">
+            <a class="ui teal button" (click)="showQ2 = !showQ2;showQ1 = !showQ1;activeStep(1,3)">下一步</a>
           </div>
         </div>
-      </form>
+      </div>
+
 
     </div>
+    <!-- 前置问题2 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showQ2">
+
+      <div class="ui two column stackable internally celled  grid">
+        <div class="column" style="min-height: 120px;_height:120px;">
+          <h3>签订协议双方是企业还是自然人？ </h3>
+          <hr>
+          <br><br>
+          <div class="ui two column stackable grid">
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="business = true">
+              <i class="large university icon" [ngClass]="{green: business}"></i>企业
+            </a>
+            <a class="column" style="font-size: 20px;font-weight: bolder" (click)="business = false">
+              <i class="large male icon" [ngClass]="{green: !business}"></i>自然人
+            </a>
+            <div class="column"></div>
+          </div>
+          <br><br><br>
+          <div class="row" style="margin-left:10%; ">
+            <i class="reply icon"></i>
+            <a (click)="showQ2 = !showQ2;showQ1 = !showQ1;activeStep(1,2)">返回上一步</a>
+          </div>
+        </div>
+        <div class="column" *ngIf="!business">
+          <h3>请输入甲乙双方自然人的姓名： </h3>
+          <hr>
+          <form class="ui form" style="padding:10px 10%;" (ngSubmit)="conclude()">
+            <div class="field">
+              <label>甲方姓名</label>
+              <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required>
+            </div>
+            <div class="field">
+              <label>甲方身份证号/护照号</label>
+              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required>
+            </div>
+            <hr>
+            <div class="field">
+              <label>乙方姓名</label>
+              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required>
+            </div>
+            <div class="field">
+              <label>乙方身份证号/护照号</label>
+              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field"></div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">确定</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="column" *ngIf="business">
+          <h3>请输入双方企业的名称： </h3>
+          <hr>
+          <form class="ui form" style="padding:10px 10%;" (ngSubmit)="conclude()">
+            <div class="field">
+              <label>甲方公司名称</label>
+              <input name="first-name" placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required>
+            </div>
+            <div class="field">
+              <label>乙方公司名称</label>
+              <input name="first-name" placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+              <div class="field"></div>
+              <div class="field">
+                <button class="ui teal right floated  button" type="submit">确定</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- 总结 5 -->
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showQ5">
       <h3>核对信息是否正确</h3>
@@ -177,14 +199,14 @@
       <div class="ui form">
         <div class="field">
           <label>保密协议名称</label>
-          <input name="first-name" placeholder="保密协议名称" type="text" [(ngModel)]="file.docName" required>
+          <input  placeholder="保密协议名称" type="text" [(ngModel)]="file.docName" required>
         </div>
       </div>
       <br><br>
       <div class="ui stackable grid">
         <div class="four wide column">
           <i class="reply icon"></i>
-          <a (click)="showQ5 = !showQ5;showPro = !showPro;back();">从头开始填写</a>
+          <a (click)="showQ5 = !showQ5;showPro = !showPro;activeStep(1,1);">从头开始填写</a>
         </div>
         <div class="right floated four wide column">
           <a class="button button-glow button-border button-rounded button-primary"
@@ -245,7 +267,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
       <h3>协议期限和保密期限</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,3)">
         <div class="field">
           <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
           <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
@@ -259,7 +281,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;activeStep(2,1)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -271,7 +293,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ8">
       <h3>甲方和乙方应指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人。</h3>
       <hr>
-      <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;">
+      <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(2,4)">
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人姓名</label>
@@ -326,7 +348,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -338,7 +360,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
       <h3>争议与违约责任</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(2,5)">
         <div class="field">
           <label>争议解决方案：</label>
           <br>
@@ -409,7 +431,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(2,3)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -435,7 +457,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(2,4)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">确定</button>
@@ -467,6 +489,38 @@
       <br><br><br>
       <div class="row" style="margin-left:20px; ">
         <i class="reply icon"></i>
-        <a (click)="showQ10 = !showQ10;showQ11 = !showQ11">返回上一步</a>
+        <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;activeStep(2,5)">返回上一步</a>
       </div>
     </div>
+
+    </div>
+    <!-- 右边栏 -->
+
+<div class="col-md-2" id="sidebarRight">
+  <div class="ui styled fluid accordion" style="padding: 10%;">
+    <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1">
+      <i class="dropdown icon"></i>
+      个人信息
+    </div>
+    <div class="content" [ngClass]="{active: !m1}">
+      <p>甲方信息</p>
+      <p>乙方信息</p>
+    </div>
+    <div class="title" [ngClass]="{active: m2}" (click)="m2 = !m2">
+      <i class="dropdown icon"></i>
+      个人信息
+    </div>
+    <div class="content" [ngClass]="{active: m2}">
+      <p>甲方信息</p>
+      <p>乙方信息</p>
+    </div>
+    <div class="title" [ngClass]="{active: m3}" (click)="m3 = !m3">
+      <i class="dropdown icon"></i>
+      个人信息
+    </div>
+    <div class="content" [ngClass]="{active: m3}">
+      <p>甲方信息</p>
+      <p>乙方信息</p>
+    </div>
+  </div>
+</div>
