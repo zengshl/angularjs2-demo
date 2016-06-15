@@ -52,6 +52,7 @@ export class ConfidTemplateComponent {
   history:History[] = new Array<History>(); //获取历史信息填表
   his:History = new History();
   isModal:boolean = false;
+  isInfo:string = "";
 
   //步骤
   step1:string = 'active';
@@ -79,6 +80,7 @@ export class ConfidTemplateComponent {
 
   constructor(private _util:UtilService,private router:Router){
     this.file = <File>JSON.parse(sessionStorage.getItem('file'));
+    this.file.docName = "保密协议"+_util.getSerialNo();
     //获取保密信息定义列表
     _util.getConfinfo().subscribe((res)=>{
       this.confinfo = <CheckBox[]> res.json();
@@ -119,19 +121,45 @@ export class ConfidTemplateComponent {
   getHistory(value:string){
     this._util.getHistory(this.file.userId,this.file.docType,this.file.templateId,value).subscribe((res)=>{
       this.history = <History[]>res.json();
-      console.log(this.history);
+      this.isInfo = value; //确定是显示什么样的列表
     })
   }
   //选择记录填表
   selectRecord(hs:History){
-    if(this.business){
-      this.aCompanyName = hs.aNAME;
-    }else{
-      this.aPersonName = hs.aIdNo;
-      this.aIdNo = hs.aIdNo;
+    if(this.isInfo == "a"){
+      if(this.business){
+        this.aCompanyName = hs.aName;
+      }else{
+        this.aPersonName = hs.aName;
+        this.aIdNo = hs.aIdNo;
+      }
+    }else if(this.isInfo == "b"){
+      if(this.business){
+        this.bCompanyName = hs.bName;
+      }else{
+        this.bPersonName = hs.bName;
+        this.bIdNo = hs.bIdNo;
+      }
+    }else if(this.isInfo == "ac"){
+      this.agreement.aContactName = hs.aContactName;
+      this.agreement.aContactPhone = hs.aContactPhone;
+      this.agreement.aContactEmail = hs.aContactEmail;
+      this.agreement.aContactFax = hs.aContactFax;
+      this.agreement.aContactAddress = hs.aContactAddress;
+    }else if(this.isInfo == "bc"){
+      this.agreement.bContactName = hs.bContactName;
+      this.agreement.bContactPhone = hs.bContactPhone;
+      this.agreement.bContactEmail = hs.bContactEmail;
+      this.agreement.bContactFax = hs.bContactFax;
+      this.agreement.bContactAddress = hs.bContactAddress;
+    }else if(this.isInfo == "as"){
+      this.agreement.aSiger = hs.aSiger;
+    }else if(this.isInfo == "bs"){
+      this.agreement.bSiger = hs.bSiger;
     }
+
     this.isModal = false;
-    console.log(hs.aNAME,this.isModal);
+
 
   }
 
@@ -160,22 +188,28 @@ export class ConfidTemplateComponent {
 
   //总结
   conclude(){
-    this.activeStep(1,4);
     if(this.business){  //确定个人还是企业
+      if(this.aCompanyName == null || this.bCompanyName ==null){
+        alert("名称不能为空！");
+        return;
+      }
       this.agreement.aName = this.aCompanyName;
       this.agreement.bName = this.bCompanyName;
       this.agreement.organizationType = "企业";
-      this.showQ5 = !this.showQ5;
-      this.showQ2 = !this.showQ2;
     }else{
+      if(this.aPersonName == null || this.bPersonName== null || this.aIdNo== null || this.bIdNo== null){
+        alert("名称不能为空！");
+        return;
+      }
       this.agreement.aName = this.aPersonName;
       this.agreement.bName = this.bPersonName;
       this.agreement.organizationType = "自然人";
       this.agreement.aIdNo = this.aIdNo;
       this.agreement.bIdNo = this.bIdNo;
-      this.showQ5 = !this.showQ5;
-      this.showQ2 = !this.showQ2;
     }
+    this.showQ5 = !this.showQ5;
+    this.showQ1 = !this.showQ1;
+    this.activeStep(1,3);
 
     if(this.discloseToA && this.discloseToB){
       this.conclusion = this.agreement.aName+"与"
@@ -189,8 +223,9 @@ export class ConfidTemplateComponent {
         +this.agreement.bName+"披露给本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
     }else{
       alert(this.agreement.organizationType+"至少是披露方或者接收方，请重新填写问题答案。");
-      this.showQ5 = !this.showQ5;
+      this.showQ1 = !this.showQ1;
       this.showPro = !this.showPro;
+      this.activeStep(1,1);
 
     }
 

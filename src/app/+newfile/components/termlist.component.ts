@@ -36,17 +36,13 @@ export class TermListComponent implements OnChanges{
       if(sessionStorage.getItem('user')){
         this.user = <User>JSON.parse(sessionStorage.getItem('user'));
         this.file.userId = this.user.id;
-        this.file.docType = '2'; //docType 对应doc_docType表中的id,此处2对应保密协议；待其他模板健全后，改为t
+        this.file.docType = "2"; //docType 对应doc_docType表中的id,此处2对应保密协议；待其他模板健全后，改为 t.id+""
         this.file.templateId = 1; //保密协议 第1个版本
         //this.file.docName = "保密协议";
-        this.file.folderId = 0;
+        this.file.folderId = 0; //未分类文件夹
+        this.file.status = "0"; //非最终化
         sessionStorage.setItem("file",JSON.stringify(this.file));
-        this.nav('./ConfidTemplate');
-        //this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
-        //  var str = res.json();
-        //  sessionStorage.setItem("fileId",str);
-        //
-        //});
+        this.nav('./ConfidTemplate');  //此处到时候，通过if语句判断上面的模板参数，来指定相应的路由
 
       }
     }

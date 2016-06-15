@@ -5,7 +5,7 @@
   <a class="item" (click)="navSelf('./NewFile')"><i class="large find icon"></i>创建法律文档</a>
   <a class="item" (click)="navSelf('./File')"><i class="large trophy icon"></i>我的文件管理</a>
   <a class="item" (click)="navSelf('./Advice')"><i class="large phone icon"></i>我的法律咨询</a>
-  <div class="right menu" >
+  <div class="right menu">
     <div class="ui dropdown item" *ngIf="!isLogin">
       <i class="large add user icon"></i>
       游客<i class="dropdown icon"></i>
@@ -16,7 +16,7 @@
         <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
       </div>
     </div>
-    <div class="ui dropdown item" *ngIf="isLogin">
+    <div class="ui simple dropdown item" *ngIf="isLogin">
       <i class="large user icon"></i>
       <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
       <div class="menu">
@@ -48,7 +48,7 @@
         <a class="item" (click)="nav('ValidDemo')"><i class="edit icon"></i>验证测试</a>
       </div>
     </div>
-    <div class="ui dropdown item" *ngIf="isLogin">
+    <div class="ui simple dropdown item" *ngIf="isLogin">
       <i class="large user icon"></i>
       <b>{{user.userName}}</b> &nbsp;&nbsp;&nbsp;欢迎回来！<i class="dropdown icon"></i>
       <div class="menu">
