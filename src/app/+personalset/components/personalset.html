@@ -10,7 +10,16 @@
           <div class="ui top attached teal  label">
             <h3 style="color: white;text-align:left" >用户基本信息</h3>
           </div>
-          <form class="ui form" style="padding: 5px 20px;" >
+
+            <!--<form  [ngFormModel]="myForm" class="ui form" style="padding: 5px 20px;"  >-->
+              <!--<div class="field" [ngClass]="{error:!mobileControl.valid && mobileControl.dirty}">-->
+                <!--<label>手机</label>-->
+                <!--<input [(ngFormControl)]="mobileControl" placeholder="手机" [(ngModel)]="user.phone"/>-->
+                <!--<span style="color: red;" *ngIf = "!mobileControl.valid && mobileControl.dirty">-->
+                  <!--<validation-messages [control]="mobileControl"></validation-messages>-->
+                <!--</span>-->
+              <!--</div>-->
+          <form  class="ui form" style="padding: 5px 20px;">
               <div class="field">
                 <label>手机  </label>
                 <input placeholder="手机" [(ngModel)]="user.phone" type="text">
@@ -50,9 +59,7 @@
               </div>
 
             <!--<br><br>-->
-            <div *ngIf="!isInsert" class="ui teal labeled icon submit button" tabindex="0" (click)="updataUser()" style="text-align: center"><i class="check circle outline icon"></i>更新基本信息</div>
-            <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>-->
-            <!--<div class="ui teal labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>-->
+            <div class="ui teal labeled icon submit button" tabindex="0"  style="text-align: center"><i class="check circle outline icon"></i>更新基本信息</div>
           </form>
         </div>
       </div>
@@ -69,24 +76,6 @@
       <form class="ui form" style="padding: 5px 20px;" >
       <div class="ui one column grid">
         <div class="column">
-            <a class="ui red ribbon label">用户会员信息</a>
-            <form class="ui form" >
-              <!--<div class="ui segment">-->
-
-              <div class="field">
-                <label>会员等级  </label>
-                <input placeholder="会员等级" type="text">
-              </div>
-              <div class="field">
-                <label>开通时间  </label>
-                <input  placeholder="开通时间"  type="text">
-              </div>
-              <div class="field">
-                <label>到期时间 </label>
-                <input  placeholder="到期时间"  type="text">
-              </div>
-            </form>
-            <br>
             <a class="ui green ribbon label">用户验证信息</a>
             <form class="ui form" >
               <div class="field">
@@ -97,10 +86,10 @@
                 <label>身份证验证  </label>
                 <input  placeholder="身份证验证"  type="text">
               </div>
-              <div class="field">
-                <label>银行卡验证 </label>
-                <input  placeholder="银行卡验证"  type="text">
-              </div>
+              <!--<div class="field">-->
+                <!--<label>银行卡验证 </label>-->
+                <!--<input  placeholder="银行卡验证"  type="text">-->
+              <!--</div>-->
             </form>
             <br>
             <a class="ui blue ribbon label">用户公司信息</a>
