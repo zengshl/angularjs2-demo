@@ -313,15 +313,7 @@ export class UtilService  {
   //生成文档文件
   generateFile(fileId:string,format:string){
     var str = this.url + "law/doc/downLoadFile/"+fileId+"/"+format;
-    if(format == "show"){
-      this.http.get(str).subscribe((res)=>{
-        var path = res.json();
-        str = "file:///"+path;
-        window.open(str);
-      })
-    }else{
       window.open(str);
-    }
 
     //return this.http.get(str);
 
@@ -448,7 +440,11 @@ export class UtilService  {
     var str = this.url + "law/doc/getAnameInfo/"+userId+"/"+docType+"/"+tempId+"/"+value;
     return this.http.get(str);
   }
-
+//随机生成序列号
+  getSerialNo():string{
+    var mydate = new Date();
+    return "" + mydate.getHours()+mydate.getMilliseconds()+ mydate.getSeconds();
+  }
 
 };
 

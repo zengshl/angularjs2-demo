@@ -255,8 +255,7 @@ export class FileComponent {
       //console.log(this.attrs);
       this.agreement = this._util.transFormat(this.attrs);
       //如果该文件是最终化
-      console.log(this.myFile.status);
-      if(this.myFile.status == 1){
+      if(this.myFile.status == "1"){
         this.isFinal = true; //最终化开关
       }else{
         this.isFinal = false;
@@ -421,6 +420,7 @@ export class FileComponent {
   }
   //生成文件
   createDocument(format:string){
+    console.log(format);
     this._util.generateFile(""+this.myFile.id,format);
 
   }

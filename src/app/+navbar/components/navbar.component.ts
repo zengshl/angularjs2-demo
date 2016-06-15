@@ -1,43 +1,14 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {Component} from '@angular/core';
 import {Router} from '@angular/router-deprecated';
 import {User} from "../../shared/index";
 import {AfterViewInit} from "@angular/core";
-declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'navbar-box',
   styles: [ require('app/+navbar/components/navbar.component.css') ],
   template: require('app/+navbar/components/navbar.component.html')
 })
-export class NavbarComponent implements AfterViewInit{
+export class NavbarComponent{
   isLogin:boolean = false;
   user:User;
   constructor(private router:Router)  {
@@ -62,23 +33,13 @@ export class NavbarComponent implements AfterViewInit{
 
       }
     }
-    this.dropdown();
   }
-  ngAfterViewInit() {
 
-  }
-  dropdown(){
-    setTimeout(function(){
-      jQuery('.ui.dropdown')
-        .dropdown();
-    },10);
-  }
 
   logout(){
     sessionStorage.clear();
     this.isLogin = false;
     this.router.parent.navigate(['Login']);
-    this.dropdown();
   }
   nav(name:string){
     this.router.parent.navigate([name]);

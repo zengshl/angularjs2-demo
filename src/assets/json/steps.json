@@ -52,12 +52,6 @@
       },
       {
         "stepId":3,
-        "stepTitle":"第三步",
-        "description":"主体名称",
-        "status":"disabled"
-      },
-      {
-        "stepId":4,
         "stepTitle":"完成",
         "description":"保密协议名称",
         "status":"disabled"

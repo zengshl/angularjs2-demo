@@ -94,7 +94,7 @@ export class File {
   createTime:string = "";
   remark:string = "";
   templateId:number = 0;
-  status:number = 0;
+  status:string = "0";
 }
 
 export class Role{
@@ -253,6 +253,23 @@ export class History {
   typeName:string = "";
   templateName:string = "";
   createTime:string = "";
-  aNAME:string = "";
+  //主体信息
+  aName:string = "";
   aIdNo:string = "";
+  bName:string = "";
+  bIdNo:string = "";
+  //联系人信息
+  aContactName:string = "";
+  aContactPhone:string = "";
+  aContactEmail:string = "";
+  aContactFax:string = "";
+  aContactAddress:string = "";
+  bContactName:string = "";
+  bContactPhone:string = "";
+  bContactEmail:string = "";
+  bContactFax:string = "";
+  bContactAddress:string = "";
+  //签名
+  aSiger:string = "";
+  bSiger:string = "";
 }
