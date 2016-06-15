@@ -3,7 +3,7 @@ import {AfterViewInit} from "@angular/core";
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {UtilService} from "../../shared/index";
 import {Response} from '@angular/http';
-import {PageData} from "../../shared/services/entity.service";
+import {PageData,UserCompany} from "../../shared/services/entity.service";
 import {Router} from '@angular/router-deprecated';
 declare var jQuery:JQueryStatic;
 
@@ -58,6 +58,11 @@ export class CustmanagerComponent {
   }
 //点击每一行表格
   clickItem(item:any){
-    console.log(item);
+    this.company = new UserCompany();
+    this._util.getUserById(parseInt(item.id)).subscribe((res:Response)=>{
+      if(res.json().company!=null){
+        this.company = res.json().company;
+      }
+    });
   }
 }
