@@ -1,14 +1,14 @@
 import {Component } from '@angular/core';
-import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File,Step,Steps} from "../../shared/index";
+import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File,Step,Steps,CheckBox,History} from "../../shared/index";
 import {Router} from '@angular/router-deprecated';
-import {CheckBox} from "../../shared/services/entity.service";
 import  {FORM_DIRECTIVES} from '@angular/common';
+import {DimmerComponent} from "./dimmer.directive";
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'confidtemplate-box',
   providers: [UtilService],
-  directives:[FORM_DIRECTIVES],
+  directives:[FORM_DIRECTIVES,DimmerComponent],
   styles: [ require('app/+template/components/confidtemplate.component.css') ],
   template: require('app/+template/components/confidtemplate.component.html')
 })
@@ -49,6 +49,10 @@ export class ConfidTemplateComponent {
   docType:Array<Doctype> = new Array<Doctype>();
   differ:any;
   file:File = new File();
+  history:History[] = new Array<History>(); //获取历史信息填表
+  his:History = new History();
+  isModal:boolean = false;
+
   //步骤
   step1:string = 'active';
   step2:string = 'disabled';
@@ -108,6 +112,26 @@ export class ConfidTemplateComponent {
     //  this.activeStep(2,1);
     //}
 
+
+  }
+
+  //获取历史信息填表
+  getHistory(value:string){
+    this._util.getHistory(this.file.userId,this.file.docType,this.file.templateId,value).subscribe((res)=>{
+      this.history = <History[]>res.json();
+      console.log(this.history);
+    })
+  }
+  //选择记录填表
+  selectRecord(hs:History){
+    if(this.business){
+      this.aCompanyName = hs.aNAME;
+    }else{
+      this.aPersonName = hs.aIdNo;
+      this.aIdNo = hs.aIdNo;
+    }
+    this.isModal = false;
+    console.log(hs.aNAME,this.isModal);
 
   }
 
@@ -346,3 +370,5 @@ export class ConfidTemplateComponent {
   }
 
 }
+
+

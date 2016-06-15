@@ -12,6 +12,15 @@ p{
   text-indent : 20px;
   line-height:200%;
 }
+table tr{
+  cursor: pointer;
+  cursor: hand;
+}
+table tr:hover {
+  background-color: #f2f2f2;
+  color: #fff;
+  cursor:hand;
+}
 
 @media all and (max-width:765px)
 {

@@ -36,7 +36,7 @@ export class TermListComponent implements OnChanges{
       if(sessionStorage.getItem('user')){
         this.user = <User>JSON.parse(sessionStorage.getItem('user'));
         this.file.userId = this.user.id;
-        this.file.docType = '2';
+        this.file.docType = '2'; //docType 对应doc_docType表中的id,此处2对应保密协议；待其他模板健全后，改为t
         this.file.templateId = 1; //保密协议 第1个版本
         //this.file.docName = "保密协议";
         this.file.folderId = 0;

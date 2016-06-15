@@ -28,6 +28,7 @@ export class FileComponent {
   showQ6:boolean = false;
   dispute:boolean = true; //争议版本切换
   liability:boolean = true;
+  isFinal:boolean = false; //是否已经最终化
 
   move:boolean = false;
   moveTo:boolean = false;
@@ -230,6 +231,18 @@ export class FileComponent {
 
 
   }
+  //复制文件
+  copyFile(mf:File){
+    this.myFile = mf;
+    var data = '{"docId":'+this.myFile.id+',"docName":"'+this.myFile.docName+'-副本"'+'}';
+    this._util.copyFile(data).subscribe((res)=>{
+      var rc = res.json;
+      console.log(rc);
+      alert("文件复制成功！");
+      //刷新列表
+      this.refreshFileList(this.myFile.folderId);
+    })
+  }
   //更新文件
   updateFile(){
     this._util.updateFile(JSON.stringify(this.myFile)).subscribe();
@@ -241,8 +254,43 @@ export class FileComponent {
         this.attrs = <DocAttr[]>res.json();
       //console.log(this.attrs);
       this.agreement = this._util.transFormat(this.attrs);
+      //如果该文件是最终化
+      console.log(this.myFile.status);
+      if(this.myFile.status == 1){
+        this.isFinal = true; //最终化开关
+      }else{
+        this.isFinal = false;
+      }
       this.openMyFile = true;
     });
+  }
+  //最终化文档
+  finalizedDocument(){
+    if (confirm("您确定要最终化该文档?")){
+      this._util.finalFile(this.myFile.id).subscribe((res)=>{
+        this.isFinal = true;
+        //最终化后，需要重新刷新文档列表
+        this.refreshFileList(this.myFile.folderId);
+        alert("成功最终化文档！");
+      })
+      return true;
+    }
+    else{
+      return false;
+    }
+
+  }
+  //文件列表刷新
+  refreshFileList(folderId:number){
+    if(folderId == 0){ //未归类文档
+      this._util.getFile(0,this.user.id).subscribe((res)=>{
+        this.files = <File[]> res.json().data;
+      });
+    }else{ //相关文件夹的文档列表刷新
+      this._util.getFile(folderId,this.user.id).subscribe((res)=>{
+        this.myFiles = <File[]> res.json().data;
+      });
+    }
   }
   //移动文件按钮
   moveFile(mf:File){

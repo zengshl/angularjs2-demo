@@ -151,6 +151,11 @@ export class UtilService  {
     var str = this.url + 'law/doc/updataDocumentWithFolderId';
     return this.http.post(str,data)
   }
+  //最终化文件
+  finalFile(docId:number){
+    var str = this.url + "law/doc/finalDoc/"+docId;
+    return this.http.get(str);
+  }
 
 
   adminLogin(data:string)  {
@@ -337,6 +342,11 @@ export class UtilService  {
     var str = this.url + "law/doc/deleteDocById";
     return this.http.post(str,data);
   }
+  //复制文档
+  copyFile(data:string){
+    var str = this.url + "law/doc/copyDoc";
+    return this.http.post(str,data);
+  }
   //获取案件类型列表
   getLawCategory(){
     var str = "assets/json/lawcategory.json";
@@ -432,6 +442,11 @@ export class UtilService  {
 //获取步骤组
   getSteps(){
     return this.http.get("assets/json/steps.json");
+  }
+//获取该用户历史信息填表
+  getHistory(userId:number,docType:string,tempId:number,value:string){
+    var str = this.url + "law/doc/getAnameInfo/"+userId+"/"+docType+"/"+tempId+"/"+value;
+    return this.http.get(str);
   }
 
 

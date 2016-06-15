@@ -21,6 +21,7 @@
 </div>
 
     <div class="col-md-8">
+
       <!-- 步骤 -->
       <div class="ui top attached ordered steps"  *ngIf = "!showList">
         <div class="step" [ngClass]="step1">
@@ -498,29 +499,42 @@
 
 <div class="col-md-2" id="sidebarRight">
   <div class="ui styled fluid accordion" style="padding: 10%;">
+    <div class="title" style="text-align: center;font-weight: bolder;font-size: 17px;cursor:help;margin-bottom: 10px;">
+      辅助表单填写工具
+    </div>
     <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1">
       <i class="dropdown icon"></i>
-      个人信息
+      协议主体信息
     </div>
     <div class="content" [ngClass]="{active: !m1}">
-      <p>甲方信息</p>
-      <p>乙方信息</p>
+      <p><a (click)="isModal = !isModal;getHistory('a')">甲方信息</a></p>
+      <p><a>乙方信息</a></p>
     </div>
     <div class="title" [ngClass]="{active: m2}" (click)="m2 = !m2">
       <i class="dropdown icon"></i>
-      个人信息
+      协议联系人信息
     </div>
     <div class="content" [ngClass]="{active: m2}">
-      <p>甲方信息</p>
-      <p>乙方信息</p>
+      <p><a>甲方联系人信息</a></p>
+      <p><a>乙方联系人信息</a></p>
     </div>
     <div class="title" [ngClass]="{active: m3}" (click)="m3 = !m3">
       <i class="dropdown icon"></i>
       个人信息
     </div>
     <div class="content" [ngClass]="{active: m3}">
-      <p>甲方信息</p>
-      <p>乙方信息</p>
+      <p><a>甲方信息</a></p>
+      <p><a>乙方信息</a></p>
     </div>
   </div>
+</div>
+
+<!-- 制作modal -->
+<div class="ui dimmer" [ngClass]="{ active:isModal }" style="padding: 10% ; ">
+  <div class="ui segment" style="padding: 20px;background-color: #F5F5F5;min-height: 500px;_height:500px;">
+    <dimmer-box [hs]="history" (modal)="selectRecord($event)"></dimmer-box>
+    <br><br><br>
+    <a class="ui teal button" (click)="isModal = !isModal">关闭</a>
+  </div>
+
 </div>

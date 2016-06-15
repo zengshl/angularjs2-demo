@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * Created by Ping on 2016/5/10.
  */
@@ -112,7 +93,8 @@ export class File {
   docType :string = "";
   createTime:string = "";
   remark:string = "";
-  templateId:number;
+  templateId:number = 0;
+  status:number = 0;
 }
 
 export class Role{
@@ -264,4 +246,13 @@ export class Steps {
   data:Step[] = new Array<Step>();
 }
 
-
+//历史信息
+export class History {
+  id:number = 0;
+  docName:string ="";
+  typeName:string = "";
+  templateName:string = "";
+  createTime:string = "";
+  aNAME:string = "";
+  aIdNo:string = "";
+}

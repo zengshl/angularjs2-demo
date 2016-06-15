@@ -129,7 +129,7 @@
                     <img src="assets/images/fileimg2.png">
                   </a>
                 </div>
-                <div class="eight wide column">
+                <div class="eleven wide column">
                   <div class="content">
                     <div class="fileId" style="display: none">{{mf.id}}</div>
                     <div class="header">{{mf.docName}}</div>
@@ -139,21 +139,28 @@
                     <div class="description">
                       <p></p>
                     </div>
-                    <!--<div class="extra">-->
-                    <!--<a (click)="modifyFile(mf)">修改</a>   <a (click)="deleteFile(mf)">删除</a>-->
-                    <!--</div>-->
                   </div>
                 </div>
-                <div class="seven wide column">
-                  <a class="ui right floated item" (click)="deleteFile(mf)">
-                    <i class="red remove icon"></i>删除
-                  </a>
-                  <a class="ui right floated item" (click)="modifyFile(mf)">
-                    <i class="green edit icon"></i>修改
-                  </a>
-                  <a class="ui right floated item" (click)="moveFile(mf);moveTo =!moveTo;">
-                    <i class="blue share square icon"></i>移动
-                  </a>
+
+                <div class="four wide column">
+                  <div class="ui stackable grid">
+                    <div class="eight wide column">
+                      <a class="ui right floated item" (click)="deleteFile(mf)">
+                        <i class="red remove icon"></i>删除
+                      </a>
+                      <a class="ui right floated item" (click)="modifyFile(mf)">
+                        <i class="green edit icon"></i>修改
+                      </a>
+                    </div>
+                    <div class="eight wide column">
+                      <a class="ui right floated item" (click)="moveFile(mf);moveTo =!moveTo;">
+                        <i class="blue share square icon"></i>移动
+                      </a>
+                      <a class="ui right floated item" (click)="copyFile(mf);">
+                        <i class="green copy icon"></i>复制
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               <br>
@@ -219,7 +226,7 @@
                   <img src="assets/images/fileimg2.png">
                 </a>
               </div>
-              <div class="eight wide column">
+              <div class="eleven wide column">
                 <div class="content">
                   <div class="fileId" style="display: none">{{fl.id}}</div>
                   <div class="header">{{fl.docName}}</div>
@@ -231,16 +238,25 @@
                   </div>
                 </div>
               </div>
-              <div class="seven wide column">
-                <a class="ui right floated item" (click)="deleteFile(fl)">
-                  <i class="red remove icon"></i>删除
-                </a>
-                <a class="ui right floated item" (click)="modifyFile(fl)">
-                  <i class="green edit icon"></i>修改
-                </a>
-                <a class="ui right floated item" (click)="moveFile(fl);move=!move;">
-                  <i class="blue share square icon"></i>移动
-                </a>
+              <div class="four wide column">
+                <div class="ui stackable grid">
+                  <div class="eight wide column">
+                    <a class="ui right floated item" (click)="deleteFile(fl)">
+                      <i class="red remove icon"></i>删除
+                    </a>
+                    <a class="ui right floated item" (click)="modifyFile(fl)">
+                      <i class="green edit icon"></i>修改
+                    </a>
+                  </div>
+                  <div class="eight wide column">
+                    <a class="ui right floated item" (click)="moveFile(fl);move=!move;">
+                      <i class="blue share square icon"></i>移动
+                    </a>
+                    <a class="ui right floated item" (click)="copyFile(fl);">
+                      <i class="green copy icon"></i>复制
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -270,7 +286,14 @@
             <div class="ui stackable grid"  *ngIf = "modifyList">
               <div class="sixteen wide column">
                 <div class="ui stackable grid">
-                  <div class="ten wide column">
+                  <div class="seven wide column">
+                    <button class="ui red button"  (click)="finalizedDocument()" [disabled]="isFinal">
+                      <i class="large legal icon"></i>
+                      最终化该文档
+                    </button>
+                  </div>
+
+                  <div class="three wide column">
                     <div class="ui right floated labeled button" tabindex="0" (click)="createDocument('show')">
                       <div class="ui green button">
                         <i class="file pdf outline icon"></i> PDF
@@ -357,7 +380,7 @@
                     <a (click)="modifyList = !modifyList;showQ = !showQ;">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -383,7 +406,7 @@
                     <a (click)="modifyList = !modifyList;showQ1 = !showQ1;">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -418,7 +441,7 @@
                     <a (click)="modifyList = !modifyList;showQ2 = !showQ2">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -465,7 +488,7 @@
                     <a (click)="modifyList = !modifyList;showQ3 = !showQ3">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -493,7 +516,7 @@
                     <a (click)="modifyList = !modifyList;showQ7 = !showQ7">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -560,7 +583,7 @@
                     <a (click)="modifyList = !modifyList;showQ8 = !showQ8">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -643,7 +666,7 @@
                     <a (click)="modifyList = !modifyList;showQ9 = !showQ9">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
@@ -669,7 +692,7 @@
                     <a (click)="modifyList = !modifyList;showQ10 = !showQ10">返回修改列表</a>
                   </div>
                   <div class="field">
-                    <button class="ui teal right floated  button" type="submit">修改</button>
+                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
                   </div>
                 </div>
               </form>
