@@ -38,6 +38,9 @@
         <div class="three wide field">
           <button class="ui teal icon button" (click)="filter()"><i class="search icon"></i>查询</button>
         </div>
+        <div class="four wide field" *ngIf="canBack">
+          <button class="right floated ui teal icon button" (click)="back()"><i class="reply icon"></i>返回</button>
+        </div>
       </div>
     </form>
     <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10"

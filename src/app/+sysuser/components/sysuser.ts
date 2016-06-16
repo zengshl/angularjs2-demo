@@ -137,6 +137,11 @@ export class SysUserComponent implements AfterViewInit{
     this._util.deleteAdmin(JSON.stringify(user)).subscribe((res:Response)=>{
 
       let getdata = res.json();
+      if(getdata == 1){
+        swal("用户删除成功", "", "success");
+      }else{
+        swal("用户删除失败", "", "error");
+      }
       this.updataTable();
     });
   }
@@ -285,7 +290,7 @@ export class SysUserComponent implements AfterViewInit{
   deletes(){
     this._util.adminDeletes(JSON.stringify(this.ids)).subscribe((res:Response)=>{
       this.updataTable();
-      alert('批量删除成功');
+      swal("批量删除成功", "", "success");
     });
   }
   radioSelect(event:any){
@@ -303,19 +308,29 @@ export class SysUserComponent implements AfterViewInit{
           var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
           this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
             let data = res.json();
+            if(data.userRes != null && data.userRes != 0){
+              swal("用户保存成功", "", "success");
+            }else{
+              swal("用户保存失败", "", "error");
+            }
             this.updataTable();
           });
         }else{
-          alert('新增失败,请确认两次密码一致');
+          swal("新增失败,请确认两次密码一致", "", "error");
         }
       }else{
         this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
           let data = res.json();
+          if(data.userRes == 1){
+            swal("用户修改成功", "", "success");
+          }else{
+            swal("用户修改失败", "", "error");
+          }
           this.updataTable();
         });
       }
     }}else{
-      console.log('请完善必填信息');
+      //console.log('请完善必填信息');
     }
   }
 }

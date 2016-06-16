@@ -89,8 +89,12 @@ export class SysRoleComponent implements AfterViewInit{
   //删除角色
   deleteData(role:any){
     this._util.deleteRole(JSON.stringify(role)).subscribe((res:Response)=>{
-
       let getdata = res.json();
+      if(getdata == 1){
+        swal("角色删除成功", "", "success");
+      }else{
+        swal("角色删除失败", "", "error");
+      }
       this.updataTable();
     });
   }
@@ -129,34 +133,25 @@ export class SysRoleComponent implements AfterViewInit{
     this.postPowers = new Array<Power>()
     this.tableShow = true;
   }
-
-
-  ////更新角色信息
-  //updataRole(){
-  //  var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
-  //  this._util.updataRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-  //    let data = res.json();
-  //    this.updataTable();
-  //
-  //  });
-  //}
-  //
-  ////新增角色信息
-  //insertRole(){
-  //  var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
-  //  this._util.insertRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-  //    this.updataTable();
-  //  });
-  //}
   //新增或者保存
   insertOrUpdata(){
     var data = {"isInsert":this.isInsert,"role":this.curRole,"power": this.postPowers};
     if(this.isInsert){
       this._util.insertRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        if(res.json().userRes != null && res.json().userRes != 0){
+          swal("角色保存成功", "", "success");
+        }else{
+          swal("角色保存失败", "", "error");
+        }
         this.updataTable();
       });
     }else{
       this._util.updataRoleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+        if(res.json().roleRes == 1){
+          swal("角色更新成功", "", "success");
+        }else{
+          swal("角色更新失败", "", "error");
+        }
         let data = res.json();
         this.updataTable();
       });
@@ -245,7 +240,7 @@ export class SysRoleComponent implements AfterViewInit{
   deletes(){
     this._util.roleDeletes(JSON.stringify(this.ids)).subscribe((res:Response)=>{
       this.updataTable();
-      alert('批量删除成功');
+      swal("批量删除成功", "", "success");
     });
   }
 }

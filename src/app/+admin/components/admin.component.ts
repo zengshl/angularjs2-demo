@@ -45,7 +45,7 @@ declare var jQuery:JQueryStatic;
     component: SysRoleComponent,
   },
   {
-    path: '/folder',  //文件夹管理路由
+    path: '/folder/:userId',  //文件夹管理路由
     name: 'Folder',
     component: FolderComponent,
   },
@@ -84,6 +84,10 @@ export class AdminComponent implements AfterViewInit {
   navSelf(name:string) {
     this.router.navigate([name]);
   };
+
+  navFolder(){
+    this.router.navigate(['Folder',{"userId":"0"}]);
+  }
 
   navFile(){
     this.router.navigate(['Document',{"userId":"0","folderId":"0"},]);

@@ -35,12 +35,17 @@ export class DocumentComponent implements AfterViewInit{
   typeSearch:string = "";
   userId = "";
   folderId = "";
+  canBack:boolean = true;
 
   constructor(private _util:UtilService,private rooteParmas:RouteParams,private router:Router){
     //实例化分页对象
 
     this.userId = rooteParmas.get("userId");
     this.folderId = rooteParmas.get("folderId");
+
+    if(this.userId == "0" && this.folderId == "0"){
+      this.canBack = false;
+    }
 
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
@@ -75,6 +80,6 @@ export class DocumentComponent implements AfterViewInit{
   }
 
   back(){
-    this.router.parent.navigate(['Folder']);
+    this.router.parent.navigate(['Folder',{"userId":this.userId}]);
   }
 }
