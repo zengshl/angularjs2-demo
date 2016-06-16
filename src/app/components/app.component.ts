@@ -8,19 +8,6 @@ import {ModifyPasswordComponent} from "../+modifypassword/components/modifypwd.c
 import {FrontPageComponent} from "../+frontpage/index";
 import {DemoComponent} from "../+demo/index";
 import {AdminLoginComponent} from '../+adminlogin/index';
-declare var jQuery:JQueryStatic;
-
-//import {servicesInjectables} from '../+chat/ts/services/services';
-//import {utilInjectables} from '../+chat/ts/util/util';
-//import {ChatApp} from "../+chat/ts/app";
-//import {ChatWindow} from "../+chat/ts/components/ChatWindow"
-//import {
-//  MessagesService,
-//  ThreadsService,
-//  UserService
-//} from '../+chat/ts/services/services';
-//import {ChatExampleData} from '../+chat/ts/ChatExampleData';
-//import {User, Thread, Message} from '../+chat/ts/models';
 
 import {AdminComponent} from "../+admin/index";
 import {ValidDemoComponent} from "../+validdemo/index";

@@ -11,4 +11,7 @@ export * from './validation/mobile.validation';
 export * from './validation/password.validation';
 export * from './validation/personid.validation';
 
+//directive
+
+
 
