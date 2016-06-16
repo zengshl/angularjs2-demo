@@ -296,22 +296,26 @@ export class SysUserComponent implements AfterViewInit{
 
   //新增或者保存
   insertOrUpdata(){
-    var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
-    if(this.isInsert){
-      if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
-        var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
-        this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+    if(this.myForm.valid){
+      var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+      if(this.isInsert){
+        if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
+          var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
+          this._util.insertAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+            let data = res.json();
+            this.updataTable();
+          });
+        }else{
+          alert('新增失败,请确认两次密码一致');
+        }
+      }else{
+        this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
           let data = res.json();
           this.updataTable();
         });
-      }else{
-        alert('新增失败,请确认两次密码一致');
       }
-    }else{
-      this._util.updataAdminInfo(JSON.stringify(data)).subscribe((res:Response)=>{
-        let data = res.json();
-        this.updataTable();
-      });
+    }}else{
+      console.log('请完善必填信息');
     }
   }
 }

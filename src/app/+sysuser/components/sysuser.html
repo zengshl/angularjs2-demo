@@ -124,14 +124,24 @@
         <div class="three fields">
           <div class="field" [ngClass]="{error:!mobileControl.valid && mobileControl.dirty}">
             <label>手机号</label>
-            <input [(ngFormControl)]="mobileControl" placeholder="手机" [(ngModel)]="curUser.phone"/>
+            <div class="ui left labeled icon input">
+              <input [(ngFormControl)]="mobileControl" placeholder="手机" [(ngModel)]="curUser.phone" required/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
             <span style="color: red;" *ngIf = "!mobileControl.valid && mobileControl.dirty">
               <validation-messages [control]="mobileControl"></validation-messages>
             </span>
           </div>
           <div class="field" [ngClass]="{error:!emailControl.valid && emailControl.dirty}">
             <label>邮箱</label>
-            <input [(ngFormControl)]="emailControl" placeholder="邮箱"  [(ngModel)]="userBase.email" />
+            <div class="ui left labeled icon input">
+              <input [(ngFormControl)]="emailControl" placeholder="邮箱"  [(ngModel)]="userBase.email" required/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
             <span style="color: red;" *ngIf = "!emailControl.valid && emailControl.dirty">
               <validation-messages [control]="emailControl"></validation-messages>
             </span>
@@ -206,8 +216,8 @@
         </div>
       </div>
     </div>
-    <button *ngIf="isInsert" type="submit" class="ui teal labeled icon submit button" [disabled]="!myForm.valid">保存<i class="checkmark box icon"></i></button>
-    <button *ngIf="!isInsert" type="submit" class="ui blue labeled icon submit button" [disabled]="!myForm.valid">更新<i class="check circle outline icon"></i></button>
+    <button *ngIf="isInsert" type="submit" class="ui teal labeled icon submit button" >保存<i class="checkmark box icon"></i></button>
+    <button *ngIf="!isInsert" type="submit" class="ui blue labeled icon submit button" >更新<i class="check circle outline icon"></i></button>
     <div class="ui brown  labeled icon submit button" tabindex="0" (click)="resetAdmin()" style="text-align: center"><i class="refresh icon"></i>重置</div>
     <div class="ui grey  labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
   </form>

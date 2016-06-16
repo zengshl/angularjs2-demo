@@ -85,7 +85,7 @@ export class SignupComponent implements AfterViewInit{
         this.error = false;
       }, 10000);
     } else {
-      if(form.account.indexOf("@")){
+      if(form.account.indexOf("@") != -1){
         //邮箱注册
         this.user.email = form.account;
         this.user.account = form.account;

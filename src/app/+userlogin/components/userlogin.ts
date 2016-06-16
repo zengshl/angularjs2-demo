@@ -40,7 +40,13 @@ export class UserLoginComponent implements AfterViewInit {
   }
   //去注册
   toSignup() {
+    //window.open("../../../assets/register.html","_self");
     this.router.parent.navigate(['Signup']);
+  }
+
+  //去注册
+  toRegister() {
+    window.open("../../../assets/register.html","_self");
   }
   //忘记密码
   toForgot() {

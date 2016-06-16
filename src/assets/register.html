@@ -1,0 +1,215 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>法律网注册</title>
+  <script src='./js/jquery-2.1.4.min.js'></script>
+  <link rel="stylesheet" href="./semantic-ui/semantic.min.css" />
+  <script src="./semantic-ui/semantic.min.js"></script>
+</head>
+<body>
+<div class="ui stackable grid" style="margin-top:20px;">
+  <div class="row">
+    <div class="five wide column"></div>
+    <div class="six wide column">
+      <h2 class="ui center aligned header">
+        <div class="content" style="margin: 10px auto;">
+          用户注册信息
+        </div>
+      </h2>
+      <div class="ui form segment">
+        <!--<form>-->
+          <div class="field">
+            <label for="user_username">手机号/邮箱</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="text" id="user_username"  ngControl="account" [(ngModel)]="mobile"/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="user_password">密码</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="password" id="user_password"  ngControl="password"/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="user_password_confirmation">密码确认</label>
+            <div class="ui left labeled icon input">
+              <input required="required" type="password" id="user_password_confirmation"  ngControl="passwordConfirm"/>
+              <div class="ui corner label">
+                <i class="icon red asterisk"></i>
+              </div>
+            </div>
+          </div>
+          <div class="ui red message" style="font-size: 12px;display:none" id="message" ></div>
+          <br>
+          <div class="ui two column stackable grid">
+            <div class="column">
+              <div class="ui toggle checkbox">
+                <input type="checkbox" onchange="agreement()" id="agreementInput" style="checked:false">
+                <label>
+                  我同意该<a>用户条款</a>
+                </label>
+              </div>
+            </div>
+            <div class="center aligned column">
+              <button class="ui teal labeled icon button" id="registerBtn" disabled="disabled" onclick="register()">
+                注册
+                <i class="checkmark box icon"></i>
+              </button>
+            </div>
+          </div>
+
+        <!--</form>-->
+      </div>
+      <div class="ui horizontal divider" style="margin: 40px 0;">
+        Or
+      </div>
+      <div style="text-align: center;">
+        <a class="ui black large labeled icon button" (click)="toLogin()">
+          返回登陆页面
+          <i class="signup icon"></i>
+        </a>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+  var user = {
+    id: 0,
+  account:string =  "",
+  phone:string = "",
+  password:string ="",
+  email:string ="",
+  userName:string ="",
+  status:string ="",
+  address:string ="",
+  createTime:string ="",
+  remark:string ="",
+  companyNum :string = "",
+  industry :string = "",
+  region :string = ""
+  };
+
+  jQuery(document).ready(function($) {
+
+  });
+
+  function agreement(){
+    var checkBox = $("#agreementInput");
+    if (checkBox.is(':checked')) {
+      $("#registerBtn").removeAttr("disabled","disabled");
+    }else {
+      $("#registerBtn").attr("disabled","disabled");
+    }
+  }
+
+  //注册按钮
+  function register() {
+    var account = $("#user_username").val();
+    var password = $("#user_password").val();
+    var sendPsd = $("#user_password_confirmation").val();
+
+    if(account == null || account == ""){
+        //账号为空
+      $("#message").text("请输入账号");
+      $("#message").css('display','block');
+      setTimeout(() => {
+        $("#message").css('display','none');
+      }, 5000);
+    }else if(password == null || password == ""){
+        //密码为空
+      $("#message").text("请输入密码");
+      $("#message").css('display','block');
+      setTimeout(() => {
+        $("#message").css('display','none');
+      }, 5000);
+    }else if(sendPsd == null || sendPsd == ""){
+        //二次密码为空
+      $("#message").text("请确认密码");
+      $("#message").css('display','block');
+      setTimeout(() => {
+        $("#message").css('display','none');
+      }, 5000);
+    }else{
+
+      if(password !== sendPsd) {
+//        this.errorMsg = '';
+        $("#message").text("两次密码输入不一致！");
+        $("#message").css('display','block');
+        setTimeout(() => {
+          $("#message").css('display','none');
+        }, 5000);
+      } else {
+        if(account.indexOf("@")!== -1){
+          //邮箱注册
+          user.email = account;
+          user.account = account;
+          user.password = password;
+          console.log(user);
+          signup();
+        }else if(account.length==11){
+          let value = account
+          if(parseInt(value)>10000000000){
+            //手机注册
+            user.phone = account;
+            user.account = account;
+            user.password = password;
+            console.log(user);
+            signup();
+          }else{
+            $("#message").text("请输入正确的手机号");
+            $("#message").css('display','block');
+            setTimeout(() => {
+              $("#message").css('display','none');
+            }, 5000);
+          }
+        }else{
+          $("#message").text("请输入正确的手机号或邮箱");
+          $("#message").css('display','block');
+          setTimeout(() => {
+            $("#message").css('display','none');
+          }, 5000);
+        }
+      }
+    }
+  }
+
+  //注册请求
+  function signup(){
+    console.log("signup");
+    $.ajax('http://localhost:9000/law/user/register',
+      {
+      type:'post',
+      dataType:'json',
+      data:JSON.stringify(user),
+      success:function(data){
+//        if($.isFunction(callback)){
+//          callback(data);
+//        }
+        console.log(data);
+      },
+      error:function(response, textStatus, errorThrown){
+        try{
+//          Base.closeProgress();
+        }catch(e){
+          alert(e);
+          Base.alert('提示',"请求出现异常,请联系管理员!!",'error');
+        }
+      },
+      complete:function(){
+//        Base.closeProgress();
+      }
+    });
+  }
+</script>
