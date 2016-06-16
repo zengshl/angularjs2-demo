@@ -7,7 +7,7 @@ import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {UtilService} from "../../shared/index";
 import {Response} from '@angular/http';
 import {PageData,Role,Menu,Power} from "../../shared/services/entity.service";
-import {Router} from '@angular/router-deprecated';
+import {Router,RouteParams} from '@angular/router-deprecated';
 declare var jQuery:JQueryStatic;
 
 
@@ -32,15 +32,22 @@ export class FolderComponent implements AfterViewInit{
   userSearch:string = "";
   phoneSearch:string = "";
 
+  userId = "";
+  canBack:boolean = true;
 
-  constructor(private _util:UtilService,private router:Router){
+  constructor(private _util:UtilService,private rooteParmas:RouteParams,private router:Router){
+
+    this.userId = rooteParmas.get("userId");
+    if(this.userId == "0"){
+      this.canBack = false;
+    }
     //实例化分页对象
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
     this.pdata.iDisplayLength = 10;
 
-    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
+    this.pdata.searchData = {"userId":this.userId,"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getFolderList(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -49,7 +56,7 @@ export class FolderComponent implements AfterViewInit{
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
-    ds.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
+    ds.searchData = {"userId":this.userId,"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
     this._util.getFolderList(JSON.stringify(ds)).subscribe((res:Response)=>{
       this.data = res.json();
     });
@@ -60,7 +67,7 @@ export class FolderComponent implements AfterViewInit{
   }
   //表格刷新
   updataTable(){
-    this.pdata.searchData = {"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
+    this.pdata.searchData = {"userId":this.userId,"userName":this.userSearch,"fileName":this.nameSearch,"phone":this.phoneSearch};
     this._util.getFolderList(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
       this.tableShow = true;
@@ -69,5 +76,9 @@ export class FolderComponent implements AfterViewInit{
 //点击每一行表格
   clickItem(item:any){
     this.router.parent.navigate(['Document',{"userId":item.userId,"folderId":item.id},]);
+  }
+
+  back(){
+    this.router.parent.navigate(['Custmanager']);
   }
 }

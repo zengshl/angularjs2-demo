@@ -84,6 +84,11 @@ export class SysMoudleComponent implements AfterViewInit{
     doctype.moudleId = parseInt(moudleId);
     this._util.deleteMoudle(JSON.stringify(doctype)).subscribe((res:Response)=>{
       let getdata = res.json();
+      if(getdata == 1){
+        swal("模板删除成功", "", "success");
+      }else{
+        swal("模板删除成功", "", "error");
+      }
       this.updataTable();
     });
   }
@@ -194,6 +199,12 @@ export class SysMoudleComponent implements AfterViewInit{
   //新增模块
   insertTypeMoudleData(){
     this._util.insertTypeMoudle(JSON.stringify(this.curMoudle)).subscribe((res:Response)=>{
+      let data = res.json();
+      if(data != null && data != 0){
+        swal("模块保存成功", "", "success");
+      }else{
+        swal("模块保存失败", "", "error");
+      }
       this.resetTypeMoudle();
       this.getAllMoudle();
       this.isAddTypeMoudle = false;
@@ -220,6 +231,12 @@ export class SysMoudleComponent implements AfterViewInit{
           }
           var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
           this._util.insertMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
+            let resData = res.json();
+            if(resData.typeRes != null && resData.typeRes != 0){
+              swal("模板保存成功", "", "success");
+            }else{
+              swal("模板保存失败", "", "error");
+            }
             this.updataTable();
           });
     }else{
@@ -229,6 +246,11 @@ export class SysMoudleComponent implements AfterViewInit{
       var data = {"isInsert":this.isInsert,"type":this.curType,"temp": this.temps};
       this._util.updataMoudleInfo(JSON.stringify(data)).subscribe((res:Response)=>{
         let data = res.json();
+        if(data.roleRes == 1){
+          swal("模板修改成功", "", "success");
+        }else{
+          swal("模板修改失败", "", "error");
+        }
         this.updataTable();
       });
     }

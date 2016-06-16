@@ -65,12 +65,12 @@
         <th>创建时间</th>
       </tr></thead>
       <tbody>
-      <tr *ngFor="let item of mf.data.data" (click)="clickItem(item)">
+      <tr *ngFor="let item of mf.data.data" (click)="clickItem(item)" style="cursor:pointer">
         <td>{{item.userName}}</td>
         <td>{{item.phone}}</td>
         <td>{{item.email}}</td>
         <td>{{item.address}}</td>
-        <td>{{item.status}}</td>
+        <td>{{item.status== '1' ? '有效' : '无效'}}</td>
         <td>{{item.remark}}</td>
         <td>{{item.createTime}}</td>
       </tr>
