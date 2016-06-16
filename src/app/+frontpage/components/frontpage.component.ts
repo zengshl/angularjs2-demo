@@ -1,11 +1,5 @@
-
 import {Component} from '@angular/core';
-import {AfterViewInit} from "@angular/core";
-//import {Router} from "@angular/router";
 import {NavbarComponent} from "../../+navbar/index";
-import {HeaderComponent} from "../../+head/index";
-import {MainComponent} from "../../+main/index";
-//import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {BlankComponent} from "../../+blank/index";
 import {AdviceComponent} from "../../+advice/index";
@@ -13,10 +7,11 @@ import {AdminComponent} from "../../+admin/index";
 import {FileComponent} from "../../+file/index";
 import {PersonalComponent} from "../../+personal/components/personal.component";
 import {PersonalSetComponent} from "../../+personalset/components/personalset";
-import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} from "../../+chat/components/chat.component";
+import {NewFileComponent} from "../../+newfile/index";
+import {ChatComponent} from "../../+chat/components/chat.component";
 @Component({
   selector: 'front-page',
-  directives:[ROUTER_DIRECTIVES,NavbarComponent,HeaderComponent,ChatComponent],
+  directives:[ROUTER_DIRECTIVES,NavbarComponent,ChatComponent],
   styles: [ require('app/+frontpage/components/frontpage.component.css') ],
   template: require('app/+frontpage/components/frontpage.component.html')
 })
@@ -25,11 +20,6 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
     path: '/blank',  //用这种方法，可以默认一个路由为开始路由
     name: 'Blank',
     component: BlankComponent
-  },
-  {
-    path: '/',
-    name: 'Main',
-    component: MainComponent
   },
   {
     path: '/file', //我的文件
@@ -58,18 +48,13 @@ import {NewFileComponent} from "../../+newfile/index";import {ChatComponent} fro
     component: PersonalSetComponent
   }
 ])
-export class FrontPageComponent implements AfterViewInit{
+export class FrontPageComponent {
   constructor(private router:Router){
     //如果用户已经登陆，自动跳转
     if(!sessionStorage.getItem('user')) {
       //alert('已经登陆');
       this.nav('Login');
     }
-  }
-  ngAfterViewInit() {
-
-
-
   }
   nav(name:string){
     this.router.parent.navigate([name]);

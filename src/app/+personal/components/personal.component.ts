@@ -1,24 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import {Component} from '@angular/core';
 import {AfterViewInit} from "@angular/core";
 import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';

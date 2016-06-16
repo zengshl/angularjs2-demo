@@ -76,8 +76,8 @@
         <a class="three wide column" (click)="discloseToB = false;">
           <i class="big remove icon"  [ngClass]="{red: !discloseToB}"></i>否
         </a>
-        <div class="sixteen wide column" style="margin-top: -30px"><!-- 分割线 -->
-          <hr>
+        <div class="sixteen wide column" ><!-- 分割线 -->
+          <div class="ui divider" style="margin-top: -10px;"></div>
         </div>
         <div class="ten wide column" >
           <h3>贵司是否会接收对方披露的信息？ </h3>
@@ -88,8 +88,8 @@
         <a class="three wide column" (click)="discloseToA = false;">
           <i class="big remove icon"  [ngClass]="{red: !discloseToA}"></i>否
         </a>
-        <div class="sixteen wide column" style="margin-top: -30px"><!-- 分割线 -->
-          <hr>
+        <div class="sixteen wide column" ><!-- 分割线 -->
+          <div class="ui divider" style="margin-top: -10px;"></div>
         </div>
         <div class="ten wide column" >
           <h3>签订协议双方是企业还是自然人？ </h3>
@@ -100,8 +100,8 @@
         <a class="three wide column" (click)="business = false">
           <i class="large male icon" [ngClass]="{green: !business}"></i>自然人
         </a>
-        <div class="sixteen wide column" style="margin-top: -30px"><!-- 分割线 -->
-          <hr>
+        <div class="sixteen wide column" ><!-- 分割线 -->
+          <div class="ui divider" style="margin-top: -10px;"></div>
         </div>
         <div class="sixteen wide column" *ngIf="!business" style="margin-top: -20px;">
           <form class="ui form" style="padding:0 10%;">
@@ -137,9 +137,11 @@
           </form>
         </div>
 
-        <div class="sixteen wide column"><!-- 分割线 -->
-          <br><br>
-          <hr>
+        <div class="sixteen wide column" ><!-- 分割线 -->
+          <span style="color: red;"><i class="large red announcement icon"></i>
+            提示：可以通过点击右侧【辅助表单填写栏】的【协议主体信息】，来自动填写甲乙方名称信息。
+          </span>
+          <div class="ui divider"></div>
         </div>
 
         <div class="eight wide column"><!-- 按钮 -->
@@ -174,7 +176,7 @@
       <div class="ui stackable grid">
         <div class="four wide column">
           <i class="reply icon"></i>
-          <a (click)="showQ5 = !showQ5;showPro = !showPro;activeStep(1,1);">从头开始填写</a>
+          <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;activeStep(1,2);">返回上一步</a>
         </div>
         <div class="right floated four wide column">
           <a class="button button-glow button-border button-rounded button-primary"
@@ -313,6 +315,12 @@
           </div>
         </div>
         <br><br>
+        <div class="field" ><!-- 分割线 -->
+          <span style="color: red;"><i class="large red announcement icon"></i>
+            提示：可以通过点击右侧【辅助表单填写栏】的【协议联系人信息】，来自动填写甲乙方联系人信息。
+          </span>
+          <div class="ui divider"></div>
+        </div>
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
@@ -422,6 +430,12 @@
           <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required>
         </div>
         <br><br>
+        <div class="field" ><!-- 分割线 -->
+          <span style="color: red;"><i class="large red announcement icon"></i>
+            提示：可以通过点击右侧【辅助表单填写栏】的【签名信息】，来自动填写甲乙方签名人信息。
+          </span>
+          <div class="ui divider"></div>
+        </div>
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>

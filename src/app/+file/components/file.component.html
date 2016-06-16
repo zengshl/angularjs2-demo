@@ -132,7 +132,7 @@
                 <div class="eleven wide column">
                   <div class="content">
                     <div class="fileId" style="display: none">{{mf.id}}</div>
-                    <div class="header">{{mf.docName}}</div>
+                    <div class="header" [ngStyle]="{color:(mf.status=='1'?'red':'')}">{{mf.docName}}</div>
                     <div class="meta">
                       <span>{{mf.createTime}}</span>
                     </div>
@@ -149,7 +149,7 @@
                         <i class="red remove icon"></i>删除
                       </a>
                       <a class="ui right floated item" (click)="modifyFile(mf)">
-                        <i class="green edit icon"></i>修改
+                        <i class="green edit icon"></i>{{mf.status == "1"?"详情":"修改"}}
                       </a>
                     </div>
                     <div class="eight wide column">
@@ -165,7 +165,11 @@
               </div>
               <br>
             </div>
-
+            <div class="item" >
+              <br>
+              <span style="color: red;"><i class="large red announcement icon"></i>提示：红色文件名说明该文件已最终化，只能浏览不可修改！</span>
+            </div>
+            <br>
           </div>
       </div>
     </div>
@@ -229,7 +233,7 @@
               <div class="eleven wide column">
                 <div class="content">
                   <div class="fileId" style="display: none">{{fl.id}}</div>
-                  <div class="header">{{fl.docName}}</div>
+                  <div class="header" [ngStyle]="{color:(fl.status=='1'?'red':'')}">{{fl.docName}}</div>
                   <div class="meta">
                     <span>{{fl.createTime}}</span>
                   </div>
@@ -245,7 +249,7 @@
                       <i class="red remove icon"></i>删除
                     </a>
                     <a class="ui right floated item" (click)="modifyFile(fl)">
-                      <i class="green edit icon"></i>修改
+                      <i class="green edit icon"></i>{{fl.status == "1"?"详情":"修改"}}
                     </a>
                   </div>
                   <div class="eight wide column">
@@ -259,6 +263,10 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="item" >
+            <br>
+            <span style="color: red;"><i class="large red announcement icon"></i>提示：红色文件名说明该文件已最终化，只能浏览不可修改！</span>
           </div>
           <br>
 
@@ -329,8 +337,8 @@
               <div class="sixteen wide column">
                 <div class="ui fluid vertical menu">
                   <a class="item"  (click)="showQ = !showQ;modifyList = !modifyList;">
-                    <h4 class="ui header">协议名称修改</h4>
-                    <p>点击修改该法律文件的文件名称</p>
+                    <h4 class="ui header">协议名称/签署人/有效期限修改</h4>
+                    <p>点击修改该法律文件的文件名称，签署人姓名和协议有效期限</p>
                   </a>
                   <a class="item"  (click)="checkOrg();">
                     <h4 class="ui header">协议主体信息</h4>
@@ -340,10 +348,6 @@
                     <h4 class="ui header">拟议交易和保密信息定义</h4>
                     <p>点击修改拟议交易项目名称和保密信息定义列表等</p>
                   </a>
-                  <a class="item" (click)="showQ7 = !showQ7;modifyList = !modifyList">
-                    <h4 class="ui header">协议期限和保密期限</h4>
-                    <p>点击修改该协议的协议有效期限和保密期限</p>
-                  </a>
                   <a class="item" (click)="showQ8 = !showQ8;modifyList = !modifyList">
                     <h4 class="ui header">指派具体联系人信息修改</h4>
                     <p>点击修改甲方和乙方指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人的信息</p>
@@ -351,10 +355,6 @@
                   <a class="item" (click)="showQ9 = !showQ9;modifyList = !modifyList">
                     <h4 class="ui header">争议与违约责任</h4>
                     <p>点击修改争议与违约责任内容</p>
-                  </a>
-                  <a class="item" (click)="showQ10 = !showQ10;modifyList = !modifyList">
-                    <h4 class="ui header">法定代表人或授权签署人</h4>
-                    <p>点击修改法定代表人或授权签署人姓名</p>
                   </a>
                 </div>
               </div>
@@ -366,13 +366,40 @@
             <!--协议名称-->
             <div class="sixteen wide column" *ngIf = "showQ"
                  style="min-height: 300px;_height:300px;padding: 30px 2%;margin-bottom: 30px;">
-              <h3>请输入您要修改的协议名称： </h3>
-              <hr>
               <form class="ui form" style="padding:10px 5%;" (ngSubmit)="modifyList = !modifyList;showQ = !showQ;updateFile();updateAgreement()">
+                <h4>请输入您要修改的协议名称： </h4>
+                <hr>
                 <div class="field">
                   <label>保密协议名称</label>
                   <input name="first-name" placeholder="保密协议名称" type="text" [(ngModel)]="myFile.docName" required>
                 </div>
+                <br>
+                <h4>法定签署人</h4>
+                <hr>
+                <div class="two fields">
+                  <div class="field">
+                    <label>甲方法定代表人或授权签署人</label>
+                    <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required>
+                  </div>
+                  <div class="field">
+                    <label>乙方法定代表人或授权签署人</label>
+                    <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required>
+                  </div>
+                </div>
+                <br>
+                <h4>有效期限 </h4>
+                <hr>
+                <div class="two fields">
+                  <div class="field">
+                    <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
+                    <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
+                  </div>
+                  <div class="field">
+                    <label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>
+                    <input  placeholder="保密期限" type="number" [(ngModel)]="agreement.secrecy" required>
+                  </div>
+                </div>
+
                 <br><br>
                 <div class="two fields">
                   <div class="field">
@@ -494,33 +521,6 @@
               </form>
             </div>
 
-
-            <!-- 问题7 -->
-            <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
-              <h3>协议期限和保密期限</h3>
-              <hr>
-              <form class="ui form" style="padding:10px 5%;" (ngSubmit)="updateAgreement();showQ7 = !showQ7;modifyList = !modifyList;">
-                <div class="field">
-                  <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
-                  <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
-                </div>
-                <h4 class="ui dividing header"></h4>
-                <div class="field">
-                  <label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>
-                  <input  placeholder="保密期限" type="number" [(ngModel)]="agreement.secrecy" required>
-                </div>
-                <br><br>
-                <div class="two fields">
-                  <div class="field">
-                    <i class="reply icon"></i>
-                    <a (click)="modifyList = !modifyList;showQ7 = !showQ7">返回修改列表</a>
-                  </div>
-                  <div class="field">
-                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
-                  </div>
-                </div>
-              </form>
-            </div>
             <!-- 问题8 -->
             <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ8">
               <h3>甲方和乙方应指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人。</h3>
@@ -670,33 +670,6 @@
                   </div>
                 </div>
               </form>
-            </div>
-
-            <!-- 问题10 -->
-            <div class="sixteen wide column" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf="showQ10">
-              <h3>请输入双方法定代表人或授权签署人的名字：</h3>
-              <hr>
-              <form class="ui form" style="padding:10px 5%;" (ngSubmit)="modifyList = !modifyList;showQ10 = !showQ10;updateAgreement();">
-                <div class="field">
-                  <label>甲方法定代表人或授权签署人</label>
-                  <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required>
-                </div>
-                <div class="field">
-                  <label>乙方法定代表人或授权签署人</label>
-                  <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required>
-                </div>
-                <br><br>
-                <div class="two fields">
-                  <div class="field">
-                    <i class="reply icon"></i>
-                    <a (click)="modifyList = !modifyList;showQ10 = !showQ10">返回修改列表</a>
-                  </div>
-                  <div class="field">
-                    <button class="ui teal right floated  button" type="submit" [disabled]="isFinal">修改</button>
-                  </div>
-                </div>
-              </form>
-
             </div>
 
            <br><br>
