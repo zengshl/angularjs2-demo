@@ -12,7 +12,15 @@ import {Response} from '@angular/http';
   selector: 'forgot-box',
   providers: [UtilService],
   directives:[FORM_DIRECTIVES,ModifyPasswordComponent],
-  template: require('app/+forgot/components/forgot.component.html')
+  template: require('app/+forgot/components/forgot.component.html'),
+  styles:[`
+  @media all and (max-width:765px)
+    {
+      #mobileHide{ display:none }
+    }
+
+
+  `]
 })
 
 export class ForgotComponent {

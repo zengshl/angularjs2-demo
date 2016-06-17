@@ -15,7 +15,15 @@ declare var jQuery:JQueryStatic;
   selector: 'login-box',
   providers: [UtilService],
   directives:[FORM_DIRECTIVES,ROUTER_DIRECTIVES],
-  template: require('app/+login/components/login.component.html')
+  template: require('app/+login/components/login.component.html'),
+  styles:[`
+  @media all and (max-width:765px)
+    {
+      #mobileHide{ display:none }
+    }
+
+
+  `]
 })
 @RouteConfig([
   {
