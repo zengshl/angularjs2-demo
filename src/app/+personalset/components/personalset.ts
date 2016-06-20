@@ -39,7 +39,7 @@ export class PersonalSetComponent implements AfterViewInit{
   step2:string = '';
   step3:string = '';
 
-  AfterViewInit(){
+  ngAfterViewInit() {
 
   }
 

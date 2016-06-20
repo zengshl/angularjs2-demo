@@ -195,6 +195,26 @@ export class ConfidentAgreement{
 
 }
 
+export class ConfidentTransfer{
+
+  id : number = 0;
+  aName :string = "";
+  aIdNo : string = "";
+  percentage : number = 0;
+  totalMoney : number = 0;
+  payMoney : number = 0;
+  residueMoney : number = 0;
+  otherExpenses : string = "";
+  delayPercentage : number = 0;
+  bName :string = "";
+  bIdNo : string  = "";
+  committee : string = "";
+  companyName : string = "";
+  aSiger : string = "";
+  bSiger : string = "";
+
+}
+
 export class CheckBox{
   flag:boolean = false;
   value:string ="";

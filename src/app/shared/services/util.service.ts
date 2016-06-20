@@ -1,7 +1,7 @@
 
 import  {Http} from '@angular/http';
 import  {Injectable} from '@angular/core';
-import {DocAttr,ConfidentAgreement} from "./entity.service";
+import {DocAttr,ConfidentAgreement,ConfidentTransfer} from "./entity.service";
 /**
  * Created by Ping on 2016/5/10.
  */
@@ -378,6 +378,27 @@ export class UtilService  {
     })
     return c;
   }
+  //对属性数据进行转化 1
+  transTransfer(attr:DocAttr[]):ConfidentTransfer{
+    var c = new ConfidentTransfer();
+    attr.forEach((a:DocAttr)=>{
+      if(a.attrName === "aName") c.aName = a.attrValue;
+      if(a.attrName === "aIdNo") c.aIdNo = a.attrValue;
+      if(a.attrName === "bName") c.bName = a.attrValue;
+      if(a.attrName === "bIdNo") c.bIdNo = a.attrValue;
+      if(a.attrName === "percentage") c.percentage = parseInt(a.attrValue);
+      if(a.attrName === "totalMoney") c.totalMoney = parseInt(a.attrValue);
+      if(a.attrName === "payMoney") c.payMoney = parseInt(a.attrValue);
+      if(a.attrName === "residueMoney") c.residueMoney = parseInt(a.attrValue);
+      if(a.attrName === "otherExpenses") c.otherExpenses = a.attrValue;
+      if(a.attrName === "delayPercentage") c.delayPercentage = parseInt(a.attrValue);
+      if(a.attrName === "committee") c.committee = a.attrValue;
+      if(a.attrName === "companyName") c.companyName = a.attrValue;
+      if(a.attrName === "aSiger") c.aSiger = a.attrValue;
+      if(a.attrName === "bSiger") c.bSiger = a.attrValue;
+    })
+    return c;
+  }
 //属性转化2
   setAttrData(documentId:number,agreement:ConfidentAgreement):DocAttr[]{
     var attrData:DocAttr[] = new Array<DocAttr>();
@@ -428,6 +449,40 @@ export class UtilService  {
     a = new DocAttr(documentId,"aSiger",agreement.aSiger);
     attrData.push(a);
     a = new DocAttr(documentId,"bSiger",""+agreement.bSiger);
+    attrData.push(a);
+    return attrData;
+  }
+
+  //股权转让文档属性数据转换
+  setTransferData(documentId:number,transfer:ConfidentTransfer):DocAttr[]{
+    var attrData:DocAttr[] = new Array<DocAttr>();
+    var a = new DocAttr(documentId,"aName",transfer.aName);
+    attrData.push(a);
+    a = new DocAttr(documentId,"bName",transfer.bName);
+    attrData.push(a);
+    a = new DocAttr(documentId,"aIdNo",transfer.aIdNo);
+    attrData.push(a);
+    a = new DocAttr(documentId,"bIdNo",transfer.bIdNo);
+    attrData.push(a);
+    a = new DocAttr(documentId,"percentage",""+transfer.percentage);
+    attrData.push(a);
+    a = new DocAttr(documentId,"totalMoney",""+transfer.totalMoney);
+    attrData.push(a);
+    a = new DocAttr(documentId,"payMoney",""+transfer.payMoney);
+    attrData.push(a);
+    a = new DocAttr(documentId,"residueMoney",""+transfer.residueMoney);
+    attrData.push(a);
+    a = new DocAttr(documentId,"otherExpenses",transfer.otherExpenses);
+    attrData.push(a);
+    a = new DocAttr(documentId,"delayPercentage",""+transfer.delayPercentage);
+    attrData.push(a);
+    a = new DocAttr(documentId,"committee",""+transfer.committee);
+    attrData.push(a);
+    a = new DocAttr(documentId,"companyName",transfer.companyName);
+    attrData.push(a);
+    a = new DocAttr(documentId,"aSiger",transfer.aSiger);
+    attrData.push(a);
+    a = new DocAttr(documentId,"bSiger",""+transfer.bSiger);
     attrData.push(a);
     return attrData;
   }

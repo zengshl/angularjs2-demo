@@ -56,7 +56,65 @@
         "description":"保密协议名称",
         "status":"disabled"
       }
-
+    ]
+  },
+  { "id":3,
+    "stepName":"基本信息",
+    "data":[
+      {
+        "stepId":1,
+        "stepTitle":"第一步",
+        "description":"股权转让协议简介",
+        "status":"active"
+      },
+      {
+        "stepId":2,
+        "stepTitle":"第二步",
+        "description":"前置问题",
+        "status":"disabled"
+      },
+      {
+        "stepId":3,
+        "stepTitle":"完成",
+        "description":"股权转让协议名称",
+        "status":"disabled"
+      }
+    ]
+  },
+  { "id":4,
+    "stepName":"协议内容",
+    "data":[
+      {
+        "stepId":1,
+        "stepTitle":"第一步",
+        "description":"股权转让信息",
+        "status":"active"
+      },
+      {
+        "stepId":2,
+        "stepTitle":"第二步",
+        "description":"股权转让价格",
+        "status":"disabled"
+      },
+      {
+        "stepId":3,
+        "stepTitle":"第三步",
+        "description":"其它费用",
+        "status":"disabled"
+      },
+      {
+        "stepId":4,
+        "stepTitle":"第四步",
+        "description":"违约与争议",
+        "status":"disabled"
+      },
+      {
+        "stepId":5,
+        "stepTitle":"完成",
+        "description":"法人签名",
+        "status":"disabled"
+      }
     ]
   }
+
 ]
