@@ -30,12 +30,7 @@ import {HomeComponent} from "../+home/home.component";
   //  name: 'Demo',
   //  component: DemoComponent
   //},
-  //{
-  //  path: '/',  //用这种方法，可以默认一个路由为开始路由
-  //  name: 'Home',
-  //  component: HomeComponent,
-  //  useAsDefault: true
-  //},
+
   {
     path: '/front/...',  //用这种方法，可以默认一个路由为开始路由
     name: 'FrontPage',

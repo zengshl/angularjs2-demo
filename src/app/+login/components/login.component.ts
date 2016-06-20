@@ -17,12 +17,10 @@ declare var jQuery:JQueryStatic;
   directives:[FORM_DIRECTIVES,ROUTER_DIRECTIVES],
   template: require('app/+login/components/login.component.html'),
   styles:[`
-  @media all and (max-width:765px)
-    {
-      #mobileHide{ display:none }
-    }
-
-
+    @media all and (max-width:765px)
+      {
+        #mobileHide{ display:none }
+      }
   `]
 })
 @RouteConfig([

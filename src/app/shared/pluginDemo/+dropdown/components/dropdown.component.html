@@ -1,0 +1,31 @@
+<h1>Angular2.0 Semantic 下拉选框演示</h1>
+<div class="ui form" style="margin: 120px;">
+    <h2>单选</h2>
+    <hr>
+    <div class="two fields">
+        <div class="field">
+            <label>普通数组</label>
+            <lsu-dropdown [(ngModel)]="selectedColor" [data]="colors" [placeHolder]="'select color'"></lsu-dropdown>
+            <div class="ui message" *ngIf="selectedColor">
+                <strong>Selected Color: </strong> {{ selectedColor | json }}
+            </div>
+        </div>
+        <div class="field">
+            <label>对象数组</label> <!-- textField 是字段名 -->
+            <lsu-dropdown [(ngModel)]="selectedPerson" [data]="persons" [textField]="fieldForShow" [placeHolder]="'select person'"></lsu-dropdown>
+            <div class="ui message" *ngIf="selectedPerson">
+                <strong>Selected Person: </strong> {{ selectedPerson | json }}
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <h2>多选</h2>
+    <hr>
+    <div class="field">
+        <lsu-dropdown [(ngModel)]="selectedPersons" [data]="persons" [textField]="fieldForShow" [placeHolder]="'select persons'" [multiple]="true"></lsu-dropdown>
+        <div class="ui message" *ngIf="selectedPersons">
+            <strong>selectedPersons: </strong> {{ selectedPersons | json }}
+        </div>
+    </div>
+
+</div>

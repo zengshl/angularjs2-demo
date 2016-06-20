@@ -64,8 +64,6 @@ export class ForgotComponent {
 
   //获取验证码
   getCode() {
-
-
     if (this.account.indexOf("@") !== -1) { //如果邮箱不为空
       this.user.email = this.account;
       console.log(this.user)
