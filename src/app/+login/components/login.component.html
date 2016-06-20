@@ -1,10 +1,15 @@
-<div class="ui stackable grid" style="margin: 50px auto;">
+<div class="ui stackable grid" >
+  <div class="sixteen wide column" style="height: 400px;background-color: #00B38A;padding-top: 100px;padding-left: 100px;" id="mobileHide">
+    <h1 style="color: white">
+      <i class="large white trophy icon"></i>
+      找法律网</h1>
+  </div>
   <div class="five wide column"></div>
-  <div class="seven wide column">
+  <div class="seven wide column"  style="margin-top: -300px;">
     <!-- 菜单 -->
-    <h2 style="text-align: center;font-weight: bolder" (click)="navSelf('./UserLogin')">普通用户登录</h2>
+    <h2 style="text-align: center;font-weight: bolder;color: white" (click)="navSelf('./UserLogin')">普通用户登录</h2>
     <div style="text-align: right">
-      <a  href="index.html"><i class="share icon"></i>返回首页</a>
+      <a  href="index.html" style="color: white;"><i class="share icon"></i>返回首页</a>
     </div>
 
     <br>
@@ -23,8 +28,14 @@
       <!--</a>-->
     <!--</div>-->
     <!-- 页面 -->
-    <router-outlet ></router-outlet>
+    <router-outlet></router-outlet>
   </div>
   <div class="four wide column"></div>
+  <div class="sixteen wide column">
+    <span class="ui horizontal divider header">
+      <i class="bar chart icon"></i>
+      Specifications
+    </span>
+  </div>
 </div>
 

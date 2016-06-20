@@ -15,19 +15,10 @@ declare var jQuery:JQueryStatic;
 export class ConfidTemplateComponent {
 
   //问题显示开关
-    showList:boolean = false;
-    showPro:boolean = true;
-    showQ1:boolean = false;
-    showQ2:boolean = false;
-    showQ3:boolean = false;
-    showQ4:boolean = false;
-    showQ41:boolean = false;
-    showQ5:boolean = false;
-    showQ6:boolean = false;
-    showQ7:boolean = false;
-    showQ8:boolean = false;
-    showQ9:boolean = false;
-    showQ10:boolean = false;
+  showList:boolean = false;
+  showPro:boolean = true;
+  showQ1:boolean = false;
+  showQ5:boolean = false;
 
   //问题的数据
   agreement: ConfidentAgreement = new ConfidentAgreement();
@@ -67,11 +58,11 @@ export class ConfidTemplateComponent {
 
   //争议的版本
   disputeVersion1:string = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
-  + "如协商未能解决争议，任何一方可将争议提交（中国国际经济贸易仲裁委员会）仲裁，"
-  + "仲裁应依照该会当时有效的仲裁规则进行。仲裁地点在（北京），仲裁语言为（中文），"
-  + "仲裁裁决是终局的，对双方均有约束力。";
+      + "如协商未能解决争议，任何一方可将争议提交（中国国际经济贸易仲裁委员会）仲裁，"
+      + "仲裁应依照该会当时有效的仲裁规则进行。仲裁地点在（北京），仲裁语言为（中文），"
+      + "仲裁裁决是终局的，对双方均有约束力。";
   disputeVersion2:string = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
-  +"如协商未能解决争议，任何一方可向具有管辖权的法院起诉。";
+      +"如协商未能解决争议，任何一方可向具有管辖权的法院起诉。";
   //责任版本
   libVersion1:string =" 如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接损失以及因此而支出的合理费用。";
   libVersion2:string = "如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接和间接损失以及因此而支出的全部费用。";
@@ -89,9 +80,6 @@ export class ConfidTemplateComponent {
     _util.getConfreciever().subscribe((res)=>{
       this.confreciever = <CheckBox[]> res.json();
     });
-
-
-
 
 
     //....................................................
@@ -213,14 +201,14 @@ export class ConfidTemplateComponent {
 
     if(this.discloseToA && this.discloseToB){
       this.conclusion = this.agreement.aName+"与"
-        +this.agreement.bName+"签订保密协议。在协议规定内，相互披露和接收彼此商业信息。" +
-        "是否确定？"
+          +this.agreement.bName+"签订保密协议。在协议规定内，相互披露和接收彼此商业信息。" +
+          "是否确定？"
     }else if(this.discloseToB){
       this.conclusion = this.agreement.aName+"与"+this.agreement.bName+"签订保密协议。" +
-        "在协议规定内，"+this.agreement.aName+"应当向"+this.agreement.bName+"披露本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
+          "在协议规定内，"+this.agreement.aName+"应当向"+this.agreement.bName+"披露本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
     }else if(this.discloseToA){
       this.conclusion = this.agreement.aName+"与"+this.agreement.bName+"签订保密协议。" +"在协议规定内，"+this.agreement.aName+"可以获取"
-        +this.agreement.bName+"披露给本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
+          +this.agreement.bName+"披露给本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
     }else{
       alert(this.agreement.organizationType+"至少是披露方或者接收方，请重新填写问题答案。");
       this.showQ1 = !this.showQ1;

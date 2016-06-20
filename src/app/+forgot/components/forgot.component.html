@@ -1,13 +1,16 @@
-
-<div class="ui stackable grid" style="margin-top:20px;">
-  <div class="row">
+<div class="ui stackable grid">
+  <div class="sixteen wide column" style="height: 400px;background-color: #00B38A;padding-top: 100px;padding-left: 100px;" id="mobileHide">
+    <h1 style="color: white">
+      <i class="large white trophy icon"></i>
+      找法律网</h1>
+  </div>
     <div class="three wide column"></div>
-    <div class="ten wide column">
-      <h2 class="ui center aligned header">
-        <div class="content" style="margin: 10px auto;">
-          取回密码
-        </div>
-      </h2>
+    <div class="ten wide column"  style="margin-top: -250px;">
+      <h2 style="text-align: center;font-weight: bolder;color: white">取回密码</h2>
+      <div style="text-align: right">
+        <a  href="index.html" style="color: white;"><i class="share icon"></i>返回首页</a>
+      </div>
+      <br>
       <div  *ngIf="!isNext">
       <div class="ui top attached ordered steps">
         <div class="active step">
@@ -29,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="ui bottom attached form segment" style="padding:10px 200px">
+      <div class="ui bottom attached form segment" style="padding:10px 10%">
         <form accept-charset="UTF-8"  #f="ngForm" (ngSubmit)="recallPwd(f.value)">
           <input name="utf8" type="hidden" value="&#x2713;" />
           <!--<div class="field">-->
@@ -84,5 +87,10 @@
       </div>
     </div>
     <div class="three wide column"></div>
+  <div class="sixteen wide column">
+    <span class="ui horizontal divider header">
+      <i class="bar chart icon"></i>
+      Specifications
+    </span>
   </div>
 </div>

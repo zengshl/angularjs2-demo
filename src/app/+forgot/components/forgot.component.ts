@@ -12,7 +12,15 @@ import {Response} from '@angular/http';
   selector: 'forgot-box',
   providers: [UtilService],
   directives:[FORM_DIRECTIVES,ModifyPasswordComponent],
-  template: require('app/+forgot/components/forgot.component.html')
+  template: require('app/+forgot/components/forgot.component.html'),
+  styles:[`
+  @media all and (max-width:765px)
+    {
+      #mobileHide{ display:none }
+    }
+
+
+  `]
 })
 
 export class ForgotComponent {
@@ -56,8 +64,6 @@ export class ForgotComponent {
 
   //获取验证码
   getCode() {
-
-
     if (this.account.indexOf("@") !== -1) { //如果邮箱不为空
       this.user.email = this.account;
       console.log(this.user)

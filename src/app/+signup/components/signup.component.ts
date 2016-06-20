@@ -11,7 +11,15 @@ declare var jQuery:JQueryStatic;
 @Component({
   selector: 'signup-box',
   providers: [UtilService],
-  template: require('app/+signup/components/signup.component.html')
+  template: require('app/+signup/components/signup.component.html'),
+  styles:[`
+  @media all and (max-width:765px)
+    {
+      #mobileHide{ display:none }
+    }
+
+
+  `]
 })
 
 export class SignupComponent implements AfterViewInit{

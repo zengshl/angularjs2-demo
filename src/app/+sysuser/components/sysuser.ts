@@ -329,7 +329,7 @@ export class SysUserComponent implements AfterViewInit{
           this.updataTable();
         });
       }
-    }}else{
+    }else{
       //console.log('请完善必填信息');
     }
   }
