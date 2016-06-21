@@ -28,7 +28,6 @@ var ModifyPasswordComponent = (function () {
             this.user.password = form.password;
             this._util.mdfPassword(JSON.stringify(this.user)).subscribe(function (res) {
                 var data = res.json();
-                console.log(data);
                 if (data.status === '1') {
                     alert('密码修改成功！');
                     _this.toLogin();

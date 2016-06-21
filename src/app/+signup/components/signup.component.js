@@ -72,7 +72,7 @@ var SignupComponent = (function () {
             }, 10000);
         }
         else {
-            if (form.account.contains("@")) {
+            if (form.account.indexOf("@") != -1) {
                 //邮箱注册
                 this.user.email = form.account;
                 this.user.account = form.account;
@@ -93,7 +93,7 @@ var SignupComponent = (function () {
                 }
             }
             else {
-                alert("请输入正确的格式");
+                alert("请输入正确的手机号或邮箱");
             }
         }
     };
@@ -120,7 +120,8 @@ var SignupComponent = (function () {
         core_1.Component({
             selector: 'signup-box',
             providers: [index_1.UtilService],
-            template: require('app/+signup/components/signup.component.html')
+            template: require('app/+signup/components/signup.component.html'),
+            styles: ["\n  @media all and (max-width:765px)\n    {\n      #mobileHide{ display:none }\n    }\n\n\n  "]
         }), 
         __metadata('design:paramtypes', [router_deprecated_1.Router, index_1.UtilService])
     ], SignupComponent);

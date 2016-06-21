@@ -11,6 +11,9 @@ var PersonalComponent = (function () {
     PersonalComponent.prototype.navSelf = function (name) {
         this.router.navigate([name]);
     };
+    PersonalComponent.prototype.test = function () {
+        swal("Good job!", "You clicked the button!", "success");
+    };
     PersonalComponent = __decorate([
         core_1.Component({
             selector: 'personal-box',

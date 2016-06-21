@@ -28,7 +28,12 @@ var UserLoginComponent = (function () {
     };
     //去注册
     UserLoginComponent.prototype.toSignup = function () {
+        //window.open("../../../assets/register.html","_self");
         this.router.parent.navigate(['Signup']);
+    };
+    //去注册
+    UserLoginComponent.prototype.toRegister = function () {
+        window.open("../../../assets/register.html", "_self");
     };
     //忘记密码
     UserLoginComponent.prototype.toForgot = function () {
@@ -43,6 +48,7 @@ var UserLoginComponent = (function () {
         this._util.logIn(JSON.stringify(this.user)).subscribe(function (res) {
             var data = res.json();
             if (data.status === '0') {
+                _this.load = false;
                 _this.message = '您所输入的用户名或密码不正确，请重新输入！';
                 _this.error = true;
                 setTimeout(function () {

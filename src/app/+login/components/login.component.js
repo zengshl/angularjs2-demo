@@ -29,7 +29,8 @@ var LoginComponent = (function () {
             selector: 'login-box',
             providers: [index_1.UtilService],
             directives: [common_1.FORM_DIRECTIVES, router_deprecated_1.ROUTER_DIRECTIVES],
-            template: require('app/+login/components/login.component.html')
+            template: require('app/+login/components/login.component.html'),
+            styles: ["\n    @media all and (max-width:765px)\n      {\n        #mobileHide{ display:none }\n      }\n  "]
         }),
         router_deprecated_1.RouteConfig([
             {
