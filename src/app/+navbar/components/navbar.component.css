@@ -1,20 +1,15 @@
 #top-menu{
   z-index: 10002;
 }
-#mobile-menu .item{
+#mobile-menu .item,#top-menu .item{
   text-shadow: rgba(255,255,255,0.8) 0px 1px 0px;
   color: white;
 }
-#top-menu .item{
-  text-shadow: rgba(255,255,255,0.8) 0px 1px 0px;
-  color: white;
-}
-#top-menu{
+
+#top-menu,#mobile-menu{
   background-color: #00B38A;
 }
-#mobile-menu{
-  background-color: #00B38A;
-}
+
 
 
 
@@ -25,7 +20,7 @@
 .top-nav ul li.active  { border-right: 0;  }
 .top-nav ul li a { color: #239cc5; float: left; padding: 0 34px; text-shadow: rgba(255,255,255,0.8) 0px 1px 0px; }
 .top-nav ul li span { float: left; }
-.top-nav ul li a:hover,
+.top-nav ul li a:hover
 .top-nav ul li.active a { color: #00719d; text-decoration: none; background: #c8e6ed; }
 .top-nav ul li.active a { background: #c8e6ed url(assets/images/active-nav-border.png) no-repeat right 0; }
 .top-nav ul li.active span { background: url(assets/images/active-nav-border.png) no-repeat 0 0; padding-left: 2px; }
