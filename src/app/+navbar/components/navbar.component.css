@@ -1,10 +1,22 @@
 #top-menu{
   z-index: 10002;
 }
-
+#mobile-menu .item{
+  text-shadow: rgba(255,255,255,0.8) 0px 1px 0px;
+  color: white;
+}
 #top-menu .item{
   text-shadow: rgba(255,255,255,0.8) 0px 1px 0px;
+  color: white;
 }
+#top-menu{
+  background-color: #00B38A;
+}
+#mobile-menu{
+  background-color: #00B38A;
+}
+
+
 
 .top-nav .shell { position: relative; }
 .top-nav { background: #b6dde7; height: 50px;  } /*height: 59px;*/

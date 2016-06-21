@@ -20,7 +20,7 @@
   </div>
 </div>
 <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-7">
 
       <!-- 步骤 -->
       <div class="ui top attached ordered steps"  *ngIf = "!showList">
@@ -60,7 +60,7 @@
         </div>
         <div class="eight wide column" style="text-align: right">
           <a class="button button-glow button-border button-rounded button-primary"
-             (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,2)">开始</a>
+             (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;showHistory(0);activeStep(1,2)">开始</a>
         </div>
       </div>
     </div>
@@ -107,20 +107,20 @@
           <form class="ui form" style="padding:0 10%;">
             <div class="field">
               <label>甲方姓名</label>
-              <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required>
+              <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required (click)="getValue('aPersonName')">
             </div>
             <div class="field">
               <label>甲方身份证号/护照号</label>
-              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required>
+              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required (click)="getValue('aIdNo')">
             </div>
             <hr>
             <div class="field">
               <label>乙方姓名</label>
-              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required>
+              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required (click)="getValue('bPersonName')">
             </div>
             <div class="field">
               <label>乙方身份证号/护照号</label>
-              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required>
+              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required (click)="getValue('bIdNo')">
             </div>
           </form>
         </div>
@@ -128,11 +128,11 @@
           <form class="ui form" style="padding:0 10%;">
             <div class="field">
               <label>甲方公司名称</label>
-              <input name="first-name" placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required>
+              <input placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required (click)="getValue('aCompanyName')">
             </div>
             <div class="field">
               <label>乙方公司名称</label>
-              <input name="first-name" placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required>
+              <input placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required (click)="getValue('bCompanyName')">
             </div>
           </form>
         </div>
@@ -146,7 +146,7 @@
 
         <div class="eight wide column"><!-- 按钮 -->
           <i class="reply icon"></i>
-          <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
+          <a (click)="showPro = !showPro;showQ1 = !showQ1;showHistory(-1);activeStep(1,1)">返回上一步</a>
         </div>
         <div class="eight wide column">
           <a class="ui right floated teal button" (click)="conclude();">下一步</a>
@@ -201,12 +201,12 @@
         <br>
         <div class="field">
           <label class="ui stackable grid">
-            <span class="six wide column">请选择需要保密的材料（建议全选）</span>
-            <a class="two wide column" (click)="selectAll()">
+            <span class="eight wide column">请选择需要保密的材料（建议全选）</span>
+            <a class="three wide column" (click)="selectAll()">
               <i class="edit icon"></i>
               全选
             </a>
-            <a class="two wide column" (click)="selectNone()">
+            <a class="three wide column" (click)="selectNone()">
               <i class="edit icon"></i>
               全不选
             </a>
@@ -237,7 +237,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
       <h3>协议期限和保密期限</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,3)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;showHistory(1);activeStep(2,3)">
         <div class="field">
           <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
           <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
@@ -267,51 +267,51 @@
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人姓名</label>
-            <input placeholder="姓名" type="text" [(ngModel)]="agreement.aContactName" required>
+            <input placeholder="姓名" type="text" [(ngModel)]="agreement.aContactName" required (click)="getValue('agreement.aContactName')">
           </div>
           <div class="field">
             <label>乙方指定联系人姓名</label>
-            <input placeholder="姓名" type="text" [(ngModel)]="agreement.bContactName" required>
+            <input placeholder="姓名" type="text" [(ngModel)]="agreement.bContactName" required (click)="getValue('agreement.bContactName')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人手机号</label>
-            <input placeholder="手机号" type="text" [(ngModel)]="agreement.aContactPhone" required>
+            <input placeholder="手机号" type="text" [(ngModel)]="agreement.aContactPhone" required (click)="getValue('agreement.aContactPhone')">
           </div>
           <div class="field">
             <label>乙方指定联系人手机号</label>
-            <input placeholder="手机号" type="text" [(ngModel)]="agreement.bContactPhone" required>
+            <input placeholder="手机号" type="text" [(ngModel)]="agreement.bContactPhone" required (click)="getValue('agreement.bContactPhone')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人邮箱</label>
-            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.aContactEmail" required>
+            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.aContactEmail" required (click)="getValue('agreement.aContactEmail')">
           </div>
           <div class="field">
             <label>乙方指定联系人邮箱</label>
-            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.bContactEmail" required>
+            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.bContactEmail" required (click)="getValue('agreement.bContactEmail')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人传真</label>
-            <input placeholder="传真" type="text" [(ngModel)]="agreement.aContactFax" required>
+            <input placeholder="传真" type="text" [(ngModel)]="agreement.aContactFax" required (click)="getValue('agreement.aContactFax')">
           </div>
           <div class="field">
             <label>乙方指定联系人传真</label>
-            <input placeholder="传真" type="text" [(ngModel)]="agreement.bContactFax" required>
+            <input placeholder="传真" type="text" [(ngModel)]="agreement.bContactFax" required (click)="getValue('agreement.bContactFax')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人地址</label>
-            <input placeholder="地址" type="text" [(ngModel)]="agreement.aContactAddress" required>
+            <input placeholder="地址" type="text" [(ngModel)]="agreement.aContactAddress" required (click)="getValue('agreement.aContactAddress')">
           </div>
           <div class="field">
             <label>乙方指定联系人地址</label>
-            <input placeholder="地址" type="text" [(ngModel)]="agreement.bContactAddress" required>
+            <input placeholder="地址" type="text" [(ngModel)]="agreement.bContactAddress" required (click)="getValue('agreement.bContactAddress')">
           </div>
         </div>
         <br><br>
@@ -324,7 +324,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2)">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2);showHistory(-1);">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -336,7 +336,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
       <h3>争议与违约责任</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(2,5)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;showHistory(2);activeStep(2,5)">
         <div class="field">
           <label>争议解决方案：</label>
           <br>
@@ -362,11 +362,11 @@
         <div class="field">
           <label class="ui stackable grid">
             <span class="eight wide column">接收方将可能向以下公司人员其披露保密信息：</span>
-            <a class="two wide column" (click)="selectAllPerson()">
+            <a class="three wide column" (click)="selectAllPerson()">
               <i class="edit icon"></i>
               全选
             </a>
-            <a class="two wide column" (click)="selectNonePerson()">
+            <a class="three wide column" (click)="selectNonePerson()">
               <i class="edit icon"></i>
               全不选
             </a>
@@ -423,11 +423,11 @@
       <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ11 = !showQ11;showQ10 = !showQ10;setAttrData()">
         <div class="field">
           <label>甲方法定代表人或授权签署人</label>
-          <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required>
+          <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required (click)="getValue('agreement.aSiger')">
         </div>
         <div class="field">
           <label>乙方法定代表人或授权签署人</label>
-          <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required>
+          <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required (click)="getValue('agreement.bSiger')">
         </div>
         <br><br>
         <div class="field" ><!-- 分割线 -->
@@ -439,7 +439,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(2,4)">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;showHistory(-1);activeStep(2,4)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">确定</button>
@@ -477,38 +477,62 @@
     </div>
     <!-- 右边栏 -->
 
-<div class="col-md-2"></div>
+<div class="col-md-3"></div>
 
-<div class="col-md-2" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
-  <div class="ui styled fluid accordion" style="padding: 10%;">
-    <div class="title" style="text-align: center;font-weight: bolder;font-size: 17px;cursor:help;margin-bottom: 10px;">
+<div class="col-md-3" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
+  <div class="ui styled fluid accordion" style="padding: 5% 2%;">
+    <div class="active title">
+      <i class="dropdown icon"></i>
       辅助表单填写
     </div>
-    <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1;">
-      <i class="dropdown icon"></i>
-      协议主体信息
-    </div>
-    <div class="content" [ngClass]="{active: !m1}">
-      <p><a (click)="isModal = !isModal;getHistory('a')">甲方信息</a></p>
-      <p><a (click)="isModal = !isModal;getHistory('b')">乙方信息</a></p>
-    </div>
-    <div class="title" [ngClass]="{active: m2}" (click)="m2 = !m2;">
-      <i class="dropdown icon"></i>
-      协议联系人信息
-    </div>
-    <div class="content" [ngClass]="{active: m2}">
-      <p><a (click)="isModal = !isModal;getHistory('ac')">甲方联系人信息</a></p>
-      <p><a (click)="isModal = !isModal;getHistory('bc')">乙方联系人信息</a></p>
-    </div>
-    <div class="title" [ngClass]="{active: m3}" (click)="m3 = !m3;">
-      <i class="dropdown icon"></i>
-      签名信息
-    </div>
-    <div class="content" [ngClass]="{active: m3}">
-      <p><a (click)="isModal = !isModal;getHistory('as')">甲方签名人</a></p>
-      <p><a (click)="isModal = !isModal;getHistory('bs')">乙方签名人</a></p>
+    <div class="active content">
+      <div class="active title">
+        <i class="dropdown icon"></i>
+        个人信息
+      </div>
+      <div class="active content">
+        <p *ngIf ="company.companyName"><a (click)="setValue(company.companyName)">公司名称：{{company.companyName}}</a></p>
+        <p *ngIf ="user.userName"><a (click)="setValue(user.userName)">个人姓名：{{user.userName}}</a></p>
+        <p *ngIf ="user.phone"><a (click)="setValue(user.phone)">个人手机：{{user.phone}}</a></p>
+        <p *ngIf ="user.email"><a (click)="setValue(user.email)">个人邮箱：{{user.email}}</a></p>
+        <p *ngIf ="user.address"><a (click)="setValue(user.address)">个人地址：{{user.address}}</a></p>
+      </div>
+
+
+      <div class="active title" *ngIf = "hisInfo">
+        <i class="dropdown icon"></i>
+        过往信息
+      </div>
+      <div class="active content" *ngIf = "hisInfo">
+        <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1;" *ngIf = "hisFlag[0]">
+          <i class="dropdown icon"></i>
+          协议主体
+        </div>
+        <div class="content" [ngClass]="{active: !m1}" *ngIf = "hisFlag[0]">
+          <p><a (click)="isModal = !isModal;getHistory('a')">甲方信息</a></p>
+          <p><a (click)="isModal = !isModal;getHistory('b')">乙方信息</a></p>
+        </div>
+        <div class="title" [ngClass]="{active: !m2}" (click)="m2 = !m2;" *ngIf = "hisFlag[1]">
+          <i class="dropdown icon"></i>
+          协议联系人
+        </div>
+        <div class="content" [ngClass]="{active: !m2}" *ngIf = "hisFlag[1]">
+          <p><a (click)="isModal = !isModal;getHistory('ac')">甲方联系人</a></p>
+          <p><a (click)="isModal = !isModal;getHistory('bc')">乙方联系人</a></p>
+        </div>
+        <div class="title" [ngClass]="{active: !m3}" (click)="m3 = !m3;" *ngIf = "hisFlag[2]">
+          <i class="dropdown icon"></i>
+          签名人
+        </div>
+        <div class="content" [ngClass]="{active: !m3}" *ngIf = "hisFlag[2]">
+          <p><a (click)="isModal = !isModal;getHistory('as')">甲方签名人</a></p>
+          <p><a (click)="isModal = !isModal;getHistory('bs')">乙方签名人</a></p>
+        </div>
+      </div>
     </div>
   </div>
+
+
 </div>
 
 <!-- 制作modal -->
