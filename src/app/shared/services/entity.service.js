@@ -13,6 +13,9 @@ var User = (function () {
         this.address = "";
         this.createTime = "";
         this.remark = "";
+        this.companyNum = "";
+        this.industry = "";
+        this.region = "";
     }
     return User;
 })();
@@ -49,6 +52,7 @@ var UserBase = (function () {
         this.userId = 0;
         this.userName = "";
         this.sex = "";
+        this.birthday = "";
         this.email = "";
         this.remark = "";
         this.createTime = "";
@@ -104,9 +108,12 @@ var File = (function () {
         this.docName = "";
         this.docContext = "";
         this.docPath = "";
+        this.pdfPath = "";
         this.docType = "";
         this.createTime = "";
         this.remark = "";
+        this.templateId = 0;
+        this.status = "0";
     }
     return File;
 })();
@@ -230,6 +237,27 @@ var ConfidentAgreement = (function () {
     return ConfidentAgreement;
 })();
 exports.ConfidentAgreement = ConfidentAgreement;
+var ConfidentTransfer = (function () {
+    function ConfidentTransfer() {
+        this.id = 0;
+        this.aName = "";
+        this.aIdNo = "";
+        this.percentage = 0;
+        this.totalMoney = 0;
+        this.payMoney = 0;
+        this.residueMoney = 0;
+        this.otherExpenses = "";
+        this.delayPercentage = 0;
+        this.bName = "";
+        this.bIdNo = "";
+        this.committee = "";
+        this.companyName = "";
+        this.aSiger = "";
+        this.bSiger = "";
+    }
+    return ConfidentTransfer;
+})();
+exports.ConfidentTransfer = ConfidentTransfer;
 var CheckBox = (function () {
     function CheckBox() {
         this.flag = false;
@@ -256,8 +284,73 @@ var DocAttr = (function () {
     return DocAttr;
 })();
 exports.DocAttr = DocAttr;
-//export class AttrData {
-//  documentId :number;
-//  attr: Array<DocAttr> = new Array<DocAttr>();
-//}
+var LawCategory = (function () {
+    function LawCategory() {
+    }
+    return LawCategory;
+})();
+exports.LawCategory = LawCategory;
+var UserCompany = (function () {
+    function UserCompany() {
+        this.id = 0;
+        this.userId = 0;
+        this.companyName = "";
+        this.companyScope = "";
+        this.companyAddress = "";
+    }
+    return UserCompany;
+})();
+exports.UserCompany = UserCompany;
+//步骤的实体类
+var Step = (function () {
+    function Step() {
+        this.stepId = 0;
+        this.stepTitle = "";
+        this.description = "";
+        this.status = "";
+    }
+    return Step;
+})();
+exports.Step = Step;
+//步骤组的实体类
+var Steps = (function () {
+    function Steps() {
+        this.id = 0;
+        this.stepName = "";
+        this.data = new Array();
+    }
+    return Steps;
+})();
+exports.Steps = Steps;
+//历史信息
+var History = (function () {
+    function History() {
+        this.id = 0;
+        this.docName = "";
+        this.typeName = "";
+        this.templateName = "";
+        this.createTime = "";
+        //主体信息
+        this.aName = "";
+        this.aIdNo = "";
+        this.bName = "";
+        this.bIdNo = "";
+        //联系人信息
+        this.aContactName = "";
+        this.aContactPhone = "";
+        this.aContactEmail = "";
+        this.aContactFax = "";
+        this.aContactAddress = "";
+        this.bContactName = "";
+        this.bContactPhone = "";
+        this.bContactEmail = "";
+        this.bContactFax = "";
+        this.bContactAddress = "";
+        //签名
+        this.aSiger = "";
+        this.bSiger = "";
+    }
+    return History;
+})();
+exports.History = History;
 //# sourceMappingURL=entity.service.js.map

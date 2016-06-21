@@ -15,25 +15,20 @@ var NavbarComponent = (function () {
             this.isLogin = true;
             this.user = JSON.parse(sessionStorage.getItem('user'));
             // console.log(this.user)
-            if (this.user.userName === '' || this.user.userName === '  ') {
-                this.user.userName = this.user.phone;
+            if (this.user.userName.trim() === '') {
+                if (this.user.phone.trim() !== '') {
+                    this.user.userName = this.user.phone;
+                }
+                else {
+                    this.user.userName = this.user.email;
+                }
             }
         }
-        this.dropdown();
     }
-    NavbarComponent.prototype.ngAfterViewInit = function () {
-    };
-    NavbarComponent.prototype.dropdown = function () {
-        setTimeout(function () {
-            jQuery('.ui.dropdown')
-                .dropdown();
-        }, 10);
-    };
     NavbarComponent.prototype.logout = function () {
         sessionStorage.clear();
         this.isLogin = false;
-        this.router.parent.navigate(['FrontPage']);
-        this.dropdown();
+        this.router.parent.navigate(['Login']);
     };
     NavbarComponent.prototype.nav = function (name) {
         this.router.parent.navigate([name]);

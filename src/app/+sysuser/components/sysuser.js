@@ -7,6 +7,9 @@ var index_1 = require('../../shared/index');
 var entity_service_1 = require('../../shared/services/entity.service');
 var common_1 = require('@angular/common');
 var ng2_datetime_1 = require('ng2-datetime/ng2-datetime');
+var common_2 = require('@angular/common');
+var core_2 = require('ng2-validate/core');
+var index_2 = require("../../shared/index");
 var SysUserComponent = (function () {
     function SysUserComponent(_util) {
         var _this = this;
@@ -14,6 +17,7 @@ var SysUserComponent = (function () {
         this.tableShow = true;
         this.secondPSD = "";
         this.isInsert = false;
+        this.isdeletes = true;
         this.accountSearch = '';
         this.phoneSearch = '';
         this.modalContent = '';
@@ -22,7 +26,7 @@ var SysUserComponent = (function () {
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
-        this.pdata.iDisplayLength = 9;
+        this.pdata.iDisplayLength = 8;
         this.pdata.searchData = { 'account': this.accountSearch, 'phone': this.phoneSearch };
         //实例化用户对象
         this.curUser = new entity_service_1.Admin();
@@ -30,6 +34,7 @@ var SysUserComponent = (function () {
         this.getRole = new Array();
         this.userRole = new Array();
         this.arrayRole = new Array();
+        this.ids = new Array();
         //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
         _util.getAdmin(JSON.stringify(this.pdata)).subscribe(function (res) {
             _this.data = res.json();
@@ -63,13 +68,19 @@ var SysUserComponent = (function () {
         jQuery('#gender').click(function () {
             alert('11');
         });
-        //jQuery('#datetimepicker').datetimepicker({
-        //  format: 'yyyy-mm-dd',
-        //  language:  'zh-CN',
-        //  autoclose: true,
-        //  minView:1,
-        //  todayBtn: true
-        //});
+        jQuery("#selected").dropdown({
+            maxSelections: 3
+        });
+        jQuery('.ui.radio.checkbox').checkbox();
+        jQuery("[name='gender']").on("change", function (e) {
+            console.log(jQuery(e.target).val());
+        });
+        this.mobileControl = new common_2.Control('', new index_2.MobileValidation().validator);
+        this.emailControl = new common_2.Control('', new index_2.EmailValidation().validator);
+        this.myForm = new common_2.ControlGroup({
+            emailControl: this.emailControl,
+            mobileControl: this.mobileControl
+        });
     };
     //切换页面，获取表单数据
     SysUserComponent.prototype.getPageData = function (ds) {
@@ -82,14 +93,26 @@ var SysUserComponent = (function () {
     //删除用户
     SysUserComponent.prototype.deleteData = function (user) {
         var _this = this;
+        //将string转为int
+        var id = user.id;
+        user.id = parseInt(id);
         this._util.deleteAdmin(JSON.stringify(user)).subscribe(function (res) {
             var getdata = res.json();
+            if (getdata == 1) {
+                swal("用户删除成功", "", "success");
+            }
+            else {
+                swal("用户删除失败", "", "error");
+            }
             _this.updataTable();
         });
     };
     //获取详细信息
     SysUserComponent.prototype.updataData = function (user) {
         var _this = this;
+        //由于获取到的列表是map（string，string），所以需要多number类型的数据进行转换
+        var id = user.id;
+        user.id = parseInt(id);
         this._util.getAdminInfo(JSON.stringify(user)).subscribe(function (res) {
             var getdata = res.json();
             _this.curUser = getdata.data;
@@ -172,6 +195,7 @@ var SysUserComponent = (function () {
     SysUserComponent.prototype.updataTable = function () {
         var _this = this;
         this.userRole = new Array();
+        this.ids = new Array();
         this.pdata.searchData = { 'account': this.accountSearch, 'phone': this.phoneSearch };
         this._util.getAdmin(JSON.stringify(this.pdata)).subscribe(function (res) {
             _this.data = res.json();
@@ -194,11 +218,85 @@ var SysUserComponent = (function () {
             }
         }
     };
+    //批量删除勾选
+    SysUserComponent.prototype.onDelete = function (event, item) {
+        if (event.checked) {
+            //选中
+            this.ids.push(parseInt(item.id));
+        }
+        else {
+            //取消
+            for (var i = 0; i < this.ids.length; i++) {
+                if (this.ids[i] == item.id) {
+                    this.ids.splice(i, 1);
+                }
+            }
+        }
+        //批量删除按钮点击控制
+        if (this.ids.length > 0) {
+            this.isdeletes = false;
+        }
+        else {
+            this.isdeletes = true;
+        }
+    };
+    //批量删除
+    SysUserComponent.prototype.deletes = function () {
+        var _this = this;
+        this._util.adminDeletes(JSON.stringify(this.ids)).subscribe(function (res) {
+            _this.updataTable();
+            swal("批量删除成功", "", "success");
+        });
+    };
+    SysUserComponent.prototype.radioSelect = function (event) {
+        if (event.checked) {
+            console.log(event.value);
+        }
+    };
+    //新增或者保存
+    SysUserComponent.prototype.insertOrUpdata = function () {
+        var _this = this;
+        if (this.myForm.valid) {
+            var data = { 'isInsert': this.isInsert, 'user': this.curUser, 'base': this.userBase, 'role': this.userRole };
+            if (this.isInsert) {
+                if (this.curUser.password != '' && this.curUser.password == this.secondPSD) {
+                    var data = { 'isInsert': this.isInsert, 'user': this.curUser, 'base': this.userBase, 'role': this.userRole };
+                    this._util.insertAdminInfo(JSON.stringify(data)).subscribe(function (res) {
+                        var data = res.json();
+                        if (data.userRes != null && data.userRes != 0) {
+                            swal("用户保存成功", "", "success");
+                        }
+                        else {
+                            swal("用户保存失败", "", "error");
+                        }
+                        _this.updataTable();
+                    });
+                }
+                else {
+                    swal("新增失败,请确认两次密码一致", "", "error");
+                }
+            }
+            else {
+                this._util.updataAdminInfo(JSON.stringify(data)).subscribe(function (res) {
+                    var data = res.json();
+                    if (data.userRes == 1) {
+                        swal("用户修改成功", "", "success");
+                    }
+                    else {
+                        swal("用户修改失败", "", "error");
+                    }
+                    _this.updataTable();
+                });
+            }
+        }
+        else {
+        }
+    };
     SysUserComponent = __decorate([
         core_1.Component({
             selector: 'sys_user',
             providers: [index_1.UtilService],
-            directives: [datatable_1.DataTableDirectives, common_1.FORM_DIRECTIVES, ng2_datetime_1.NKDatetime],
+            directives: [datatable_1.DataTableDirectives, common_1.FORM_DIRECTIVES, ng2_datetime_1.NKDatetime, core_2.ValidationMessagesComponent],
             styles: [require('app/+sysuser/components/sysuser.css')],
             template: require('app/+sysuser/components/sysuser.html')
         }), 

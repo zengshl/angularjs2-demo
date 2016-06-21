@@ -15,7 +15,7 @@ var CustmanagerComponent = (function () {
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
-        this.pdata.iDisplayLength = 10;
+        this.pdata.iDisplayLength = 8;
         this.pdata.searchData = { "userName": this.userSearch };
         //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
         _util.getUser(JSON.stringify(this.pdata)).subscribe(function (res) {
@@ -25,8 +25,8 @@ var CustmanagerComponent = (function () {
     //切换页面，获取表单数据
     CustmanagerComponent.prototype.getPageData = function (ds) {
         var _this = this;
-        this.pdata.searchData = { "userName": this.userSearch };
-        this._util.getUser(JSON.stringify(this.pdata)).subscribe(function (res) {
+        ds.searchData = { "userName": this.userSearch };
+        this._util.getUser(JSON.stringify(ds)).subscribe(function (res) {
             _this.data = res.json();
         });
     };
@@ -45,7 +45,13 @@ var CustmanagerComponent = (function () {
     };
     //点击每一行表格
     CustmanagerComponent.prototype.clickItem = function (item) {
-        console.log(item);
+        this.router.parent.navigate(['Folder', { "userId": item.id + '' }]);
+        //this.company = new UserCompany();
+        //this._util.getUserById(parseInt(item.id)).subscribe((res:Response)=>{
+        //  if(res.json().company!=null){
+        //    this.company = res.json().company;
+        //  }
+        //});
     };
     CustmanagerComponent = __decorate([
         core_1.Component({

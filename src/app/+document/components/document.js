@@ -22,11 +22,15 @@ var DocumentComponent = (function () {
         this.typeSearch = "";
         this.userId = "";
         this.folderId = "";
+        this.canBack = true;
         this.userId = rooteParmas.get("userId");
         this.folderId = rooteParmas.get("folderId");
+        if (this.userId == "0" && this.folderId == "0") {
+            this.canBack = false;
+        }
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
-        this.pdata.page = 0;
+        this.pdata.page = 1;
         this.pdata.iDisplayLength = 10;
         this.pdata.searchData = { "docName": this.nameSearch, "docType": this.typeSearch, "userId": this.userId, "folderId": this.folderId };
         _util.getDocumentByuserIdAndfolderId(JSON.stringify(this.pdata)).subscribe(function (res) {
@@ -38,8 +42,8 @@ var DocumentComponent = (function () {
     //切换页面，获取表单数据
     DocumentComponent.prototype.getPageData = function (ds) {
         var _this = this;
-        this.pdata.searchData = { "docName": this.nameSearch, "docType": this.typeSearch, "userId": this.userId, "folderId": this.folderId };
-        this._util.getDocumentByuserIdAndfolderId(JSON.stringify(this.pdata)).subscribe(function (res) {
+        ds.searchData = { "docName": this.nameSearch, "docType": this.typeSearch, "userId": this.userId, "folderId": this.folderId };
+        this._util.getDocumentByuserIdAndfolderId(JSON.stringify(ds)).subscribe(function (res) {
             _this.data = res.json();
         });
     };
@@ -57,7 +61,7 @@ var DocumentComponent = (function () {
         });
     };
     DocumentComponent.prototype.back = function () {
-        this.router.parent.navigate(['Folder']);
+        this.router.parent.navigate(['Folder', { "userId": this.userId }]);
     };
     DocumentComponent = __decorate([
         core_1.Component({

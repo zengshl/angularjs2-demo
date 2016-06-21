@@ -1,15 +1,16 @@
 
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
 import {UtilService} from '../../shared/index';
-import {User,Folder,File,DocAttr,ConfidentAgreement,CheckBox} from "../../shared/index";
+import {User,Folder,File,DocAttr,ConfidentAgreement,ConfidentTransfer,CheckBox} from "../../shared/index";
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 import {Router} from '@angular/router-deprecated';
+import {ModifyFileComponent} from '../../+modifyfile/index';
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'file-box',
   providers:[UtilService,DragulaService],
-  directives: [Dragula],
+  directives: [Dragula,ModifyFileComponent],
   styles: [ require('app/+file/components/file.component.css') ],
   template: require('app/+file/components/file.component.html')
 })
@@ -20,6 +21,9 @@ export class FileComponent {
   showModifyFolder:boolean = false;
   showMyFiles:boolean = false;
   openMyFile:boolean = false;
+  openList:boolean = true;
+  openTransfer:boolean = false;
+
   modifyList:boolean = true;
   showQ1:boolean = false;
   showQ2:boolean = false;
@@ -42,6 +46,7 @@ export class FileComponent {
   differ:any;
   attrs:DocAttr[] = new Array<DocAttr>(); //属性列表
   agreement: ConfidentAgreement = new ConfidentAgreement();
+  transfer : ConfidentTransfer = new ConfidentTransfer();
   attrData : Array<DocAttr> = new Array<DocAttr>();
 
   confinfo:CheckBox[]; //保密信息列表
@@ -253,14 +258,24 @@ export class FileComponent {
     this._util.getDocAttrs(this.myFile.id).subscribe((res)=>{
         this.attrs = <DocAttr[]>res.json();
       //console.log(this.attrs);
-      this.agreement = this._util.transFormat(this.attrs);
+      if(this.myFile.docType == '7'){
+        this.transfer = this._util.transTransfer(this.attrs);
+        this.openMyFile = false;
+        this.openList = false;
+        this.openTransfer = true;
+      }else{
+        this.agreement = this._util.transFormat(this.attrs);
+        this.openMyFile = true;
+        this.openList = false;
+        this.openTransfer = false;
+      }
+
       //如果该文件是最终化
       if(this.myFile.status == "1"){
         this.isFinal = true; //最终化开关
       }else{
         this.isFinal = false;
       }
-      this.openMyFile = true;
     });
   }
   //最终化文档

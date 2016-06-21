@@ -10,7 +10,7 @@
   </div>
 
 
-  <div class="ui stackable relaxed grid" *ngIf = "!openMyFile">
+  <div class="ui stackable relaxed grid" *ngIf = "openList">
   <!--我的文件夹列表-->
 
     <div class="sixteen wide column" *ngIf = "!showMyFiles && !showCreateFolder && !showModifyFolder">
@@ -683,6 +683,9 @@
     </div>
 
   </div>
+
+  <!--股权转让协议修改-->
+  <modifyfile-box [transfer]="transfer" [myFile]="myFile" [isFinal]="isFinal" *ngIf="openTransfer"></modifyfile-box>
 </div>
 
 

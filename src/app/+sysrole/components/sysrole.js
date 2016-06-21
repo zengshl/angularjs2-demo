@@ -11,19 +11,21 @@ var SysRoleComponent = (function () {
         this._util = _util;
         this.tableShow = true;
         this.isInsert = false;
+        this.isdeletes = true;
         this.nameSearch = "";
         this.noSearch = "";
         //实例化分页对象
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
-        this.pdata.iDisplayLength = 3;
+        this.pdata.iDisplayLength = 8;
         this.menus = new Array();
         this.postPowers = new Array();
         this.pdata.searchData = { "roleName": this.nameSearch, "roleNo": this.noSearch };
         //实例化用户对象
         this.curRole = new entity_service_1.Role();
         this.arrayMenu = new Array();
+        this.ids = new Array();
         //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
         _util.getRole(JSON.stringify(this.pdata)).subscribe(function (res) {
             _this.data = res.json();
@@ -68,6 +70,12 @@ var SysRoleComponent = (function () {
         var _this = this;
         this._util.deleteRole(JSON.stringify(role)).subscribe(function (res) {
             var getdata = res.json();
+            if (getdata == 1) {
+                swal("角色删除成功", "", "success");
+            }
+            else {
+                swal("角色删除失败", "", "error");
+            }
             _this.updataTable();
         });
     };
@@ -104,14 +112,33 @@ var SysRoleComponent = (function () {
         this.postPowers = new Array();
         this.tableShow = true;
     };
-    //更新角色信息
-    SysRoleComponent.prototype.updataRole = function () {
+    //新增或者保存
+    SysRoleComponent.prototype.insertOrUpdata = function () {
         var _this = this;
         var data = { "isInsert": this.isInsert, "role": this.curRole, "power": this.postPowers };
-        this._util.updataRoleInfo(JSON.stringify(data)).subscribe(function (res) {
-            var data = res.json();
-            _this.updataTable();
-        });
+        if (this.isInsert) {
+            this._util.insertRoleInfo(JSON.stringify(data)).subscribe(function (res) {
+                if (res.json().userRes != null && res.json().userRes != 0) {
+                    swal("角色保存成功", "", "success");
+                }
+                else {
+                    swal("角色保存失败", "", "error");
+                }
+                _this.updataTable();
+            });
+        }
+        else {
+            this._util.updataRoleInfo(JSON.stringify(data)).subscribe(function (res) {
+                if (res.json().roleRes == 1) {
+                    swal("角色更新成功", "", "success");
+                }
+                else {
+                    swal("角色更新失败", "", "error");
+                }
+                var data = res.json();
+                _this.updataTable();
+            });
+        }
     };
     //重置表单
     SysRoleComponent.prototype.resetRole = function () {
@@ -132,20 +159,13 @@ var SysRoleComponent = (function () {
         this.tableShow = false;
         this.resetRole();
     };
-    //新增角色信息
-    SysRoleComponent.prototype.insertRole = function () {
-        var _this = this;
-        var data = { "isInsert": this.isInsert, "role": this.curRole, "power": this.postPowers };
-        this._util.insertRoleInfo(JSON.stringify(data)).subscribe(function (res) {
-            _this.updataTable();
-        });
-    };
     //表格刷新
     SysRoleComponent.prototype.updataTable = function () {
         var _this = this;
         this.postPowers = new Array();
         this.pdata.searchData = { "roleName": this.nameSearch, "roleNo": this.noSearch };
         this._util.getRole(JSON.stringify(this.pdata)).subscribe(function (res) {
+            _this.ids = new Array();
             _this.data = res.json();
             _this.tableShow = true;
         });
@@ -172,7 +192,37 @@ var SysRoleComponent = (function () {
         console.log(item);
     };
     SysRoleComponent.prototype.mouseenter = function (event, item) {
-        console.log(event + "," + item);
+        //console.log(event+","+item);
+    };
+    //批量删除勾选
+    SysRoleComponent.prototype.onDelete = function (event, item) {
+        if (event.checked) {
+            //选中
+            this.ids.push(item.id);
+        }
+        else {
+            //取消
+            for (var i = 0; i < this.ids.length; i++) {
+                if (this.ids[i] == item.id) {
+                    this.ids.splice(i, 1);
+                }
+            }
+        }
+        //批量删除按钮点击控制
+        if (this.ids.length > 0) {
+            this.isdeletes = false;
+        }
+        else {
+            this.isdeletes = true;
+        }
+    };
+    //批量删除
+    SysRoleComponent.prototype.deletes = function () {
+        var _this = this;
+        this._util.roleDeletes(JSON.stringify(this.ids)).subscribe(function (res) {
+            _this.updataTable();
+            swal("批量删除成功", "", "success");
+        });
     };
     SysRoleComponent = __decorate([
         core_1.Component({
