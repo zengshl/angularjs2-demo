@@ -220,70 +220,69 @@
         <!--<div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;">-->
         <h3>股权转让有关费用的负担。</h3>
         <hr>
-        <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,4)">
-            <div class="two fields">
-                <div class="field">
-                    <p>双方同意办理本合同约定的股权转让手续所产生的有关费用，由</p>
-                </div>
-                <div class="field">
-                    <div class="two fields">
-                        <div class="field">
-                            <select [(ngModel)]="transfer.otherExpenses" id="other" name="other">
-                                <option value="甲" selected="selected">甲</option>
-                                <option value="乙">乙</option>
-                            </select>
-                        </div>
-                        <div class="field">
-                            <p>方承担。</p>
-                        </div>
-
-                    </div>
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">双方同意办理本合同约定的股权转让手续所产生的有关费用，由
+                    <select class="ui search dropdown"  style="width:200px" [(ngModel)]="transfer.otherExpenses" id="other" name="other">-->
+                        <option value="甲" selected="selected">甲</option>
+                        <option value="乙">乙</option>
+                    </select>
+                    方承担。
                 </div>
             </div>
             <br><br>
             <div class="two fields">
                 <div class="field">
-                    <i class="reply icon"></i>
-                    <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,2)">返回上一步</a>
-                </div>
-                <div class="field">
-                    <button class="ui teal right floated  button" type="submit">下一步</button>
-                </div>
+                     <i class="reply icon"></i>
+                     <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,2)">返回上一步</a>
             </div>
-        </form>
-    </div>
-    <!-- 问题9 -->
+            <div class="field">
+                <button class="ui teal right floated  button" (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,4)">下一步</button>
+            </div>
+            </div>
+</div>
+<!-- 问题9 -->
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
         <h3>违约责任与争议解决条款</h3>
         <hr>
-        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(4,5)">
-            <div class="field"> 如果乙方未能按本合同第二条的规定按时支付股权价款，
-                每延迟一天，应按延迟部分价款的
-                <div class="ui right labeled input">
+            <div class="ui stackable grid">
+                <div class="sixteen wide column">如果乙方未能按本合同第二条的规定按时支付股权价款，</div>
+                <div class="sixteen wide column">每延迟一天，应按延迟部分价款的
+                    <div class="ui right labeled input">
                     <input  type="text" [(ngModel)]="transfer.delayPercentage" required>
                     <div class="ui basic label">%</div>
-                </div>支付滞纳金。
-                乙方向甲方支付滞纳金后，如果乙方的违约给甲方造成的损失超过滞纳金数额，
-                或因乙方违约给甲方造成其它损害的，
-                不影响甲方就超过部分或其它损害要求赔偿的权利。</div>
-            <h4 class="ui dividing header"></h4>
-            <br>
-            <br><br>
-            <div class="field">甲乙双方因履行本协议所发生的或与本协议有关的一切争议，应当友好协商解决。
-                如协商不成，任何一方均有权按下列任何一种方式解决：
-            1、将争议提交<input  type="text" [(ngModel)]="transfer.committee" required>仲裁委员会仲裁，按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。
-            2、各自向所在地人民法院起诉。</div>
+                    </div>支付滞纳金。
+                </div>
+                <br>
+                <div class="sixteen wide column">乙方向甲方支付滞纳金后，如果乙方的违约给甲方造成的损失超过滞纳金数额，
+                    或因乙方违约给甲方造成其它损害的，不影响甲方就超过部分或其它损害要求赔偿的权利。</div>
+                <br>
+                <div class="sixteen wide column">
+                    <hr>
+                </div>
+                <br>
 
-            <div class="two fields">
-                <div class="field">
-                    <i class="reply icon"></i>
-                    <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,3)">返回上一步</a>
+                <div class="sixteen wide column">甲乙双方因履行本协议所发生的或与本协议有关的一切争议，应当友好协商解决。</div>
+                <div class="sixteen wide column">   如协商不成，任何一方均有权按下列任何一种方式解决：</div>
+                <div class="sixteen wide column"> 1、将争议提交
+                    <div class="ui input focus">
+                        <input type="text" [(ngModel)]="transfer.committee" required>
+                    </div>仲裁委员会仲裁，按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。
                 </div>
-                <div class="field">
-                    <button class="ui teal right floated  button" type="submit">下一步</button>
-                </div>
+                <div class="sixteen wide column"> 按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。</div>
+                <div class="sixteen wide column">    2、各自向所在地人民法院起诉。</div>
             </div>
-        </form>
+        <br><br><br><br>
+        <div class="two fields">
+            <div class="field">
+                <i class="reply icon"></i>
+                <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,3)">返回上一步</a>
+            </div>
+            <div class="field">
+                <button class="ui teal right floated  button" (click)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(4,5)">下一步</button>
+            </div>
+        </div>
+        <br>
+        <br>
     </div>
 
     <!-- 问题10 -->
