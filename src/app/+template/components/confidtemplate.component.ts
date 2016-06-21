@@ -140,7 +140,7 @@ export class ConfidTemplateComponent {
     if(this.midData == 'agreement.bContactFax') this.agreement.bContactFax = value;
     if(this.midData == 'agreement.aContactAddress') this.agreement.aContactAddress = value;
     if(this.midData == 'agreement.bContactAddress') this.agreement.bContactAddress = value;
-    if(this.midData == 'agreement.bSiger') this.agreement.aSiger = value;
+    if(this.midData == 'agreement.aSiger') this.agreement.aSiger = value;
     if(this.midData == 'agreement.bSiger') this.agreement.bSiger = value;
   }
   //获取值
@@ -150,10 +150,10 @@ export class ConfidTemplateComponent {
 
 
 //显示历史
-  showHistory(index:number){
-    this.hisFlag = [];
-    if(index!=-1) this.hisFlag[index]= true;
-  }
+//  showHistory(index:number){
+//    this.hisFlag = [];
+//    if(index!=-1) this.hisFlag[index]= true;
+//  }
 
   //获取历史信息填表
   getHistory(value:string){

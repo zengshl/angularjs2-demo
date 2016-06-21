@@ -60,7 +60,7 @@
         </div>
         <div class="eight wide column" style="text-align: right">
           <a class="button button-glow button-border button-rounded button-primary"
-             (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;showHistory(0);activeStep(1,2)">开始</a>
+             (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;activeStep(1,2)">开始</a>
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@
 
         <div class="eight wide column"><!-- 按钮 -->
           <i class="reply icon"></i>
-          <a (click)="showPro = !showPro;showQ1 = !showQ1;showHistory(-1);activeStep(1,1)">返回上一步</a>
+          <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
         </div>
         <div class="eight wide column">
           <a class="ui right floated teal button" (click)="conclude();">下一步</a>
@@ -237,7 +237,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
       <h3>协议期限和保密期限</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;showHistory(1);activeStep(2,3)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,3)">
         <div class="field">
           <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
           <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
@@ -324,7 +324,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2);showHistory(-1);">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2);">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -336,7 +336,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
       <h3>争议与违约责任</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;showHistory(2);activeStep(2,5)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(2,5)">
         <div class="field">
           <label>争议解决方案：</label>
           <br>
@@ -439,7 +439,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;showHistory(-1);activeStep(2,4)">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(2,4)">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">确定</button>
@@ -499,32 +499,32 @@
       </div>
 
 
-      <div class="active title" *ngIf = "hisInfo">
+      <div class="active title" *ngIf = "showQ1 || showQ8 || showQ10">
         <i class="dropdown icon"></i>
         过往信息
       </div>
-      <div class="active content" *ngIf = "hisInfo">
-        <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1;" *ngIf = "hisFlag[0]">
+      <div class="active content" *ngIf = "showQ1 || showQ8 || showQ10">
+        <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1;" *ngIf = "showQ1">
           <i class="dropdown icon"></i>
           协议主体
         </div>
-        <div class="content" [ngClass]="{active: !m1}" *ngIf = "hisFlag[0]">
+        <div class="content" [ngClass]="{active: !m1}" *ngIf = "showQ1">
           <p><a (click)="isModal = !isModal;getHistory('a')">甲方信息</a></p>
           <p><a (click)="isModal = !isModal;getHistory('b')">乙方信息</a></p>
         </div>
-        <div class="title" [ngClass]="{active: !m2}" (click)="m2 = !m2;" *ngIf = "hisFlag[1]">
+        <div class="title" [ngClass]="{active: !m2}" (click)="m2 = !m2;" *ngIf = "showQ8">
           <i class="dropdown icon"></i>
           协议联系人
         </div>
-        <div class="content" [ngClass]="{active: !m2}" *ngIf = "hisFlag[1]">
+        <div class="content" [ngClass]="{active: !m2}" *ngIf = "showQ8">
           <p><a (click)="isModal = !isModal;getHistory('ac')">甲方联系人</a></p>
           <p><a (click)="isModal = !isModal;getHistory('bc')">乙方联系人</a></p>
         </div>
-        <div class="title" [ngClass]="{active: !m3}" (click)="m3 = !m3;" *ngIf = "hisFlag[2]">
+        <div class="title" [ngClass]="{active: !m3}" (click)="m3 = !m3;" *ngIf = "showQ10">
           <i class="dropdown icon"></i>
           签名人
         </div>
-        <div class="content" [ngClass]="{active: !m3}" *ngIf = "hisFlag[2]">
+        <div class="content" [ngClass]="{active: !m3}" *ngIf = "showQ10">
           <p><a (click)="isModal = !isModal;getHistory('as')">甲方签名人</a></p>
           <p><a (click)="isModal = !isModal;getHistory('bs')">乙方签名人</a></p>
         </div>
