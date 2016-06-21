@@ -3,6 +3,7 @@ import {ConfidentAgreement,UtilService,Moudle,Doctype,DocAttr,File,Step,Steps,Ch
 import {Router} from '@angular/router-deprecated';
 import  {FORM_DIRECTIVES} from '@angular/common';
 import {DimmerComponent} from "./dimmer.directive";
+import {User,UserCompany} from "../../shared/index";
 declare var jQuery:JQueryStatic;
 
 @Component({
@@ -42,6 +43,9 @@ export class ConfidTemplateComponent {
   file:File = new File();
   history:History[] = new Array<History>(); //获取历史信息填表
   his:History = new History();
+  hisFlag:boolean[] = [ true,false,false ]; //控制历史信息显示
+  hisInfo:boolean =false;
+
   isModal:boolean = false;
   isInfo:string = "";
 
@@ -67,11 +71,25 @@ export class ConfidTemplateComponent {
   libVersion1:string =" 如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接损失以及因此而支出的合理费用。";
   libVersion2:string = "如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接和间接损失以及因此而支出的全部费用。";
 
+  //中转变量
+  midData:any;
+
+  //用户信息
+  user:User = new User();
+  company:UserCompany = new UserCompany();
 
 
   constructor(private _util:UtilService,private router:Router){
     this.file = <File>JSON.parse(sessionStorage.getItem('file'));
     this.file.docName = "保密协议"+_util.getSerialNo();
+    //获取用户信息
+    _util.getUserInfoById(this.file.userId).subscribe((res)=>{
+      this.user = <User>res.json().data;
+      this.company = <UserCompany>res.json().company;
+      //console.log(this.user,this.company);
+      if(!this.user) this.user = new User();
+      if(!this.company) this.company = new UserCompany();
+    })
     //获取保密信息定义列表
     _util.getConfinfo().subscribe((res)=>{
       this.confinfo = <CheckBox[]> res.json();
@@ -90,7 +108,6 @@ export class ConfidTemplateComponent {
       this.getStepsById(1);
     });
 
-
     //if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
     //  //this.nav('./ConfidTemplate');
     //  this.showPro = false;
@@ -103,6 +120,39 @@ export class ConfidTemplateComponent {
     //}
 
 
+  }
+
+  //设置值
+  setValue(value:string){
+    if(this.midData == 'aCompanyName') this.aCompanyName = value;
+    if(this.midData == 'bCompanyName') this.bCompanyName = value;
+    if(this.midData == 'aPersonName') this.aPersonName = value;
+    if(this.midData == 'aIdNo') this.aIdNo = value;
+    if(this.midData == 'bPersonName') this.bPersonName = value;
+    if(this.midData == 'bIdNo') this.bIdNo = value;
+    if(this.midData == 'agreement.aContactName') this.agreement.aContactName = value;
+    if(this.midData == 'agreement.bContactName') this.agreement.bContactName = value;
+    if(this.midData == 'agreement.aContactPhone') this.agreement.aContactPhone = value;
+    if(this.midData == 'agreement.bContactPhone') this.agreement.bContactPhone = value;
+    if(this.midData == 'agreement.aContactEmail') this.agreement.aContactEmail = value;
+    if(this.midData == 'agreement.bContactEmail') this.agreement.bContactEmail = value;
+    if(this.midData == 'agreement.aContactFax') this.agreement.aContactFax = value;
+    if(this.midData == 'agreement.bContactFax') this.agreement.bContactFax = value;
+    if(this.midData == 'agreement.aContactAddress') this.agreement.aContactAddress = value;
+    if(this.midData == 'agreement.bContactAddress') this.agreement.bContactAddress = value;
+    if(this.midData == 'agreement.bSiger') this.agreement.aSiger = value;
+    if(this.midData == 'agreement.bSiger') this.agreement.bSiger = value;
+  }
+  //获取值
+  getValue(a:any){
+    this.midData = a;
+  }
+
+
+//显示历史
+  showHistory(index:number){
+    this.hisFlag = [];
+    if(index!=-1) this.hisFlag[index]= true;
   }
 
   //获取历史信息填表
@@ -177,6 +227,7 @@ export class ConfidTemplateComponent {
   //总结
   conclude(){
     if(this.business){  //确定个人还是企业
+      console.log(this.aCompanyName,this.bCompanyName);
       if(this.aCompanyName == null || this.bCompanyName ==null){
         alert("名称不能为空！");
         return;

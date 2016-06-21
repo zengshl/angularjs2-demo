@@ -445,6 +445,22 @@ export class UtilService  {
     var mydate = new Date();
     return "" + mydate.getHours()+mydate.getMilliseconds()+ mydate.getSeconds();
   }
+  //生成用户id
+  getId(object:any[]):number{
+    var id = 1;
+    object.forEach(function(item,key){ //注意，这个key跟id不一样，key从零开始，自动递增更新
+      if(item.id > id){
+        id = item.id;
+      }
+    })
+    return id+1;
+  }
+
+  //通过用户id,获取用户信息
+  getUserInfoById(userId:number){
+    var str = this.url + "law/user/getUserById/"+userId;
+    return this.http.get(str);
+  }
 
 };
 
