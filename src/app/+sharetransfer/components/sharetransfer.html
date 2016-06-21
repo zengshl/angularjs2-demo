@@ -1,0 +1,391 @@
+<!-- 左边栏 -->
+<div class="col-md-2" id="sidebarLeft" style="position: fixed;top:23%;left:1%;">
+    <!-- 步骤 -->
+    <div class="ui fluid vertical steps"  *ngIf = "!showList" >
+        <div class="step" style="background-color: grey;color: white">
+            <i class="info icon"></i>
+            <div class="content">
+                <div class="title">{{mySteps.stepName}}</div>
+            </div>
+        </div>
+        <div *ngFor ="let st of mySteps.data">
+            <div class="step" [ngClass]="st.status">
+                <i class="paw icon"></i>
+                <div class="content">
+                    <div class="title"> {{st.stepTitle}}</div>
+                    <div class="description">{{st.description}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-2"></div>
+<div class="col-md-8">
+
+    <!-- 步骤 -->
+    <div class="ui top attached ordered steps"  *ngIf = "!showList">
+        <div class="step" [ngClass]="step1">
+            <div class="content">
+                <div class="title">基本信息</div>
+                <div class="description">前置问题和主体名称</div>
+            </div>
+        </div>
+        <div class="step" [ngClass]="step2">
+            <div class="content">
+                <div class="title">协议内容填写</div>
+                <div class="description">协议相关的内容信息</div>
+            </div>
+        </div>
+        <div class="step" [ngClass]="step3">
+            <div class="content">
+                <div class="title">协议文档生成</div>
+                <div class="description">确定生成协议文件</div>
+            </div>
+        </div>
+    </div>
+    <!-- 保密协议简介 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showPro">
+        <h3>股权转让协议简介</h3>
+        <hr>
+        <p>
+            股权转让协议是以股权转让为内容的合同，股权转让是合同项下债的履行。
+            股权转让协议生效与股权转让生效时间是不一致的，股权转让生效是在协议生效之后。
+            股权转让协议的主要内容就是转让股权，实质是处分其所有的股权。
+            公司法第35条是对向股东以外的人转让股权作出了限制，这是对股东处分股权作了限制。
+        </p>
+        <br><br><br>
+        <div class="ui stackable grid">
+            <div class="eight wide column">
+                <i class="reply icon"></i>
+                <a (click)="nav('./TemplateList')">返回文档列表</a>
+            </div>
+            <div class="eight wide column" style="text-align: right">
+                <a class="button button-glow button-border button-rounded button-primary"
+                   (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,2)">开始</a>
+            </div>
+        </div>
+    </div>
+    <!-- 前置问题1 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 50px;margin-bottom: 30px;"  *ngIf = "showQ1">
+        <h3>股权转让两方信息</h3>
+        <hr>
+        <br>
+        <div class="ui stackable grid">
+            <div class="sixteen wide column"  style="margin-top: -20px;">
+                <form class="ui form" style="padding:0 10%;">
+                    <div class="field">
+                        <label>甲方姓名</label>
+                        <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required>
+                    </div>
+                    <div class="field">
+                        <label>甲方身份证号/护照号</label>
+                        <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required>
+                    </div>
+                    <hr>
+                    <div class="field">
+                        <label>乙方姓名</label>
+                        <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required>
+                    </div>
+                    <div class="field">
+                        <label>乙方身份证号/护照号</label>
+                        <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="sixteen wide column" ><!-- 分割线 -->
+          <span style="color: red;"><i class="large red announcement icon"></i>
+            提示：可以通过点击右侧【辅助表单填写栏】的【协议主体信息】，来自动填写甲乙方名称信息。
+          </span>
+            <div class="ui divider"></div>
+        </div>
+
+            <div class="eight wide column"><!-- 按钮 -->
+                <i class="reply icon"></i>
+                <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
+            </div>
+            <div class="eight wide column">
+                <a class="ui right floated teal button" (click)="conclude();">下一步</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- 总结 5 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"  *ngIf = "showQ5">
+        <h3>核对信息是否正确</h3>
+        <hr>
+        <p style="text-indent : 20px;line-height:200%">
+            {{conclusion}}
+        </p>
+        <br>
+        <h3>如果上述信息正确，请输入即将要生成文档的文档名：</h3>
+        <hr>
+        <div class="ui form">
+            <div class="field">
+                <label>股份转让协议名称</label>
+                <input  placeholder="股份转让协议名称" type="text" [(ngModel)]="file.docName" required>
+            </div>
+        </div>
+        <br><br>
+        <div class="ui stackable grid">
+            <div class="four wide column">
+                <i class="reply icon"></i>
+                <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;activeStep(1,2);">返回上一步</a>
+            </div>
+            <div class="right floated four wide column">
+                <a class="button button-glow button-border button-rounded button-primary"
+                   (click)="showQ5 = !showQ5;showQ6 = !showQ6;nextStep1();">是的，继续</a>
+                <!-- 完成一个阶段，保存数据库，显示置于session -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二阶段 -->
+    <!-- 问题6 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ6">
+        <h3>拟议交易</h3>
+        <hr>
+        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToS();showQ6 = !showQ6;showQ7 = !showQ7;">
+            <div class="field">
+                <label>请填写所要转让股份的公司名称</label>
+                <br>
+                <input  placeholder="公司名称" type="text" [(ngModel)]="transfer.companyName" required>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <br>
+            <div class="field">
+                <div class="field">
+                    <label>请填写所要转让股权占比</label>
+                    <br>
+                    <div class="ui right labeled input">
+                        <input  placeholder="股权占比" type="text" [(ngModel)]="transfer.percentage" required>
+                        <div class="ui basic label">%</div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="two fields">
+                <div class="field">
+                </div>
+                <div class="field">
+                    <button class="ui teal right floated  button" type="submit">下一步</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 问题7 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
+        <h3>协议期限和保密期限</h3>
+        <hr>
+        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,3)">
+            <!--<div class="field">-->
+                <!--<label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>-->
+                <!--<input  placeholder="协议期限" type="number" [(ngModel)]="transfer.contractPeriod" required>-->
+            <!--</div>-->
+            <div class="field">
+                <label>股权转让价格</label>
+                <input  placeholder="转让价格" type="number" [(ngModel)]="transfer.totalMoney" required>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <!--<div class="field">-->
+                <!--<label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>-->
+                <!--<input  placeholder="保密期限" type="number" [(ngModel)]="transfer.secrecy" required>-->
+            <!--</div>-->
+            <div class="field">
+                <label>首付金额</label>
+                <input  placeholder="首付金额" type="number" [(ngModel)]="transfer.payMoney" required>
+            </div>
+            <br><br>
+            <div class="field">
+                <label>首付金额</label>
+                <input  placeholder="剩余金额" type="number" [(ngModel)]="transfer.residueMoney" required>
+            </div>
+            <br><br>
+            <div class="two fields">
+                <div class="field">
+                    <i class="reply icon"></i>
+                    <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;activeStep(4,1)">返回上一步</a>
+                </div>
+                <div class="field">
+                    <button class="ui teal right floated  button" type="submit">下一步</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 问题8 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ8">
+        <!--<div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;">-->
+        <h3>股权转让有关费用的负担。</h3>
+        <hr>
+        <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,4)">
+            <div class="two fields">
+                <div class="field">
+                    <p>双方同意办理本合同约定的股权转让手续所产生的有关费用，由</p>
+                </div>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <select [(ngModel)]="transfer.otherExpenses" id="other" name="other">
+                                <option value="甲" selected="selected">甲</option>
+                                <option value="乙">乙</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <p>方承担。</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="two fields">
+                <div class="field">
+                    <i class="reply icon"></i>
+                    <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,2)">返回上一步</a>
+                </div>
+                <div class="field">
+                    <button class="ui teal right floated  button" type="submit">下一步</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 问题9 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
+        <h3>违约责任与争议解决条款</h3>
+        <hr>
+        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(4,5)">
+            <div class="field"> 如果乙方未能按本合同第二条的规定按时支付股权价款，
+                每延迟一天，应按延迟部分价款的
+                <div class="ui right labeled input">
+                    <input  type="text" [(ngModel)]="transfer.delayPercentage" required>
+                    <div class="ui basic label">%</div>
+                </div>支付滞纳金。
+                乙方向甲方支付滞纳金后，如果乙方的违约给甲方造成的损失超过滞纳金数额，
+                或因乙方违约给甲方造成其它损害的，
+                不影响甲方就超过部分或其它损害要求赔偿的权利。</div>
+            <h4 class="ui dividing header"></h4>
+            <br>
+            <br><br>
+            <div class="field">甲乙双方因履行本协议所发生的或与本协议有关的一切争议，应当友好协商解决。
+                如协商不成，任何一方均有权按下列任何一种方式解决：
+            1、将争议提交<input  type="text" [(ngModel)]="transfer.committee" required>仲裁委员会仲裁，按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。
+            2、各自向所在地人民法院起诉。</div>
+
+            <div class="two fields">
+                <div class="field">
+                    <i class="reply icon"></i>
+                    <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,3)">返回上一步</a>
+                </div>
+                <div class="field">
+                    <button class="ui teal right floated  button" type="submit">下一步</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- 问题10 -->
+    <div class="ui segment" style="min-height: 500px;_height:500px;padding: 30px;margin-bottom: 30px;"  *ngIf="showQ10">
+        <h3>请输入双方法定代表人或授权签署人的名字：</h3>
+        <hr>
+        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ11 = !showQ11;showQ10 = !showQ10;setAttrData()">
+            <div class="field">
+                <label>转让方</label>
+                <input placeholder="转让方名字" type="text" [(ngModel)]="transfer.aSiger" required>
+            </div>
+            <div class="field">
+                <label>受让方</label>
+                <input  placeholder="受让方名字" type="text" [(ngModel)]="transfer.bSiger" required>
+            </div>
+            <br><br>
+            <div class="field" ><!-- 分割线 -->
+          <span style="color: red;"><i class="large red announcement icon"></i>
+            提示：可以通过点击右侧【辅助表单填写栏】的【签名信息】，来自动填写甲乙方签名人信息。
+          </span>
+                <div class="ui divider"></div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <i class="reply icon"></i>
+                    <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(4,4)">返回上一步</a>
+                </div>
+                <div class="field">
+                    <button class="ui teal right floated  button" type="submit">确定</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- 问题11 -->
+    <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;" *ngIf = "showQ11">
+        <h3>协议内容已经填写完毕，请选择对文档的操作？ </h3>
+        <hr>
+        <br><br>
+        <div class="ui four column stackable grid">
+            <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('pdf')">
+                <i class="big green download icon"></i>生成文档PDF文件,并下载
+            </a>
+            <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('docx')">
+                <i class="big green download icon"></i>生成文档WORD文件,并下载
+            </a>
+            <a class="column" style="font-size: 14px;font-weight: bolder" (click)="createDocument('show')">
+                <i class="big green file pdf outline icon"></i>生成文档PDF文件,并浏览
+            </a>
+            <a class="column" style="font-size: 14px;font-weight: bolder" (click)="finalConclude()">
+                <i class="big red print icon"></i>暂时不生成文件，先保存数据
+            </a>
+        </div>
+        <br><br><br>
+        <div class="row" style="margin-left:20px; ">
+            <i class="reply icon"></i>
+            <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;activeStep(2,5)">返回上一步</a>
+        </div>
+    </div>
+</div>
+<!-- 右边栏 -->
+
+<div class="col-md-2"></div>
+
+<div class="col-md-2" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
+    <div class="ui styled fluid accordion" style="padding: 10%;">
+        <div class="title" style="text-align: center;font-weight: bolder;font-size: 17px;cursor:help;margin-bottom: 10px;">
+            辅助表单填写
+        </div>
+        <div class="title" [ngClass]="{active: !m1}" (click)="m1 = !m1;">
+            <i class="dropdown icon"></i>
+            协议主体信息
+        </div>
+        <div class="content" [ngClass]="{active: !m1}">
+            <p><a (click)="isModal = !isModal;getHistory('a')">甲方信息</a></p>
+            <p><a (click)="isModal = !isModal;getHistory('b')">乙方信息</a></p>
+        </div>
+        <div class="title" [ngClass]="{active: m2}" (click)="m2 = !m2;">
+            <i class="dropdown icon"></i>
+            协议联系人信息
+        </div>
+        <div class="content" [ngClass]="{active: m2}">
+            <p><a (click)="isModal = !isModal;getHistory('ac')">甲方联系人信息</a></p>
+            <p><a (click)="isModal = !isModal;getHistory('bc')">乙方联系人信息</a></p>
+        </div>
+        <div class="title" [ngClass]="{active: m3}" (click)="m3 = !m3;">
+            <i class="dropdown icon"></i>
+            签名信息
+        </div>
+        <div class="content" [ngClass]="{active: m3}">
+            <p><a (click)="isModal = !isModal;getHistory('as')">甲方签名人</a></p>
+            <p><a (click)="isModal = !isModal;getHistory('bs')">乙方签名人</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- 制作modal -->
+<div class="ui dimmer" [ngClass]="{ active:isModal }" style="position: fixed;top:0;left:0;padding: 10% ;">
+    <div class="ui segment" style="padding: 20px;background-color: #F5F5F5;min-height: 500px;_height:500px;">
+        <dimmer-box [hs]="history" [flag]="isInfo" (modal)="selectRecord($event)"></dimmer-box>
+        <br><br><br>
+        <a class="ui teal button" (click)="isModal = !isModal">关闭</a>
+    </div>
+</div>

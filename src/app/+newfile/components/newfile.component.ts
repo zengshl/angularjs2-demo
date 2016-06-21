@@ -3,7 +3,7 @@ import {RouteConfig,ROUTER_DIRECTIVES,Router} from '@angular/router-deprecated';
 import {ConfidTemplateComponent} from "../../+template/index";
 import {BlankComponent} from "../../+blank/components/blank.component";
 import {TemplateListComponent} from "./templatelist.component";
-
+import {ShareTransferComponent} from "../../+sharetransfer/index";
 
 @Component({
   selector: 'newfile-box',
@@ -22,6 +22,11 @@ import {TemplateListComponent} from "./templatelist.component";
     path: '/confid',  //保密协议
     name: 'ConfidTemplate',
     component: ConfidTemplateComponent
+  },
+  {
+    path: '/sharetransfer',  //股权转让
+    name: 'ShareTransfer',
+    component: ShareTransferComponent
   }
 
 ])

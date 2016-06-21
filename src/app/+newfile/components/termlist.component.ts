@@ -32,6 +32,22 @@ export class TermListComponent implements OnChanges{
     });
   }
   showTemplate(t:Doctype){
+
+    if(t.typeName == '股权转让协议'){
+      this.nav('./ShareTransfer');
+      if(sessionStorage.getItem('user')){
+        this.user = <User>JSON.parse(sessionStorage.getItem('user'));
+        this.file.userId = this.user.id;
+        this.file.docType = "7"; //docType 对应doc_docType表中的id,此处2对应保密协议；待其他模板健全后，改为 t.id+""
+        this.file.templateId = 6; //保密协议 第1个版本
+        //this.file.docName = "股权转让协议";
+        this.file.folderId = 0; //未分类文件夹
+        this.file.status = "0"; //非最终化
+        sessionStorage.setItem("file",JSON.stringify(this.file));
+        this.nav('./ShareTransfer');  //此处到时候，通过if语句判断上面的模板参数，来指定相应的路由
+
+      }
+    }else
     if(t.preId === 0){  //保密协议
       if(sessionStorage.getItem('user')){
         this.user = <User>JSON.parse(sessionStorage.getItem('user'));
