@@ -11,7 +11,6 @@ import {AdminLoginComponent} from '../+adminlogin/index';
 
 import {AdminComponent} from "../+admin/index";
 import {ValidDemoComponent} from "../+validdemo/index";
-import {HomeComponent} from "../+home/home.component";
 
 @Component({
   selector: 'sd-app',
