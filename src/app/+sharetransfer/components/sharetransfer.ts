@@ -1,13 +1,15 @@
 import {Component } from '@angular/core';
 import {ConfidentAgreement,ConfidentTransfer,UtilService,Moudle,Doctype,DocAttr,File,Step,Steps,CheckBox,History} from "../../shared/index";
 import {Router} from '@angular/router-deprecated';
+import {User,UserCompany} from "../../shared/index";
 import  {FORM_DIRECTIVES} from '@angular/common';
+import {DimmerComponent} from "../../+template/components/dimmer.directive";
 declare var jQuery:JQueryStatic;
 
 @Component({
     selector: 'sharetransfer-box',
     providers: [UtilService],
-    directives:[FORM_DIRECTIVES],
+    directives:[FORM_DIRECTIVES,DimmerComponent],
     template: require('app/+sharetransfer/components/sharetransfer.html')
 })
 export class ShareTransferComponent {
@@ -40,16 +42,11 @@ export class ShareTransferComponent {
     conclusion:string; //总结信息
     aIdNo:string;
     bIdNo:string;
-    //liability:boolean = true;
-    //moulds:Array<Moudle> = new Array<Moudle>();
-    //docType:Array<Doctype> = new Array<Doctype>();
-    //differ:any;
-    file:File = new File();
-    //history:History[] = new Array<History>(); //获取历史信息填表
-    //his:History = new History();
-    //isModal:boolean = false;
-    //isInfo:string = "";
 
+    file:File = new File();
+
+    history:History[] = new Array<History>(); //获取历史信息填表
+    his:History = new History();
     //步骤
     step1:string = 'active';
     step2:string = 'disabled';
@@ -60,7 +57,17 @@ export class ShareTransferComponent {
     //组装Attr json对象
     docAttr: DocAttr = new DocAttr();
     attrData : Array<DocAttr> = new Array<DocAttr>();
+    //中转变量
+    midData:any;
+    //用户信息
+    user:User = new User();
+    company:UserCompany = new UserCompany();
 
+    hisFlag:boolean[] = [ true,false,false ]; //控制历史信息显示
+    hisInfo:boolean =false;
+
+    isModal:boolean = false;
+    isInfo:string = "";
 
     constructor(private _util:UtilService,private router:Router){
         this.file = <File>JSON.parse(sessionStorage.getItem('file'));
@@ -70,66 +77,21 @@ export class ShareTransferComponent {
             this.steps =<Steps[]> res.json();
             this.getStepsById(3);
         });
-
-
-        //if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
-        //  //this.nav('./ConfidTemplate');
-        //  this.showPro = false;
-        //  this.showList = false;
-        //  this.showQ6 = true;
-        //  this.step1 = 'completed';
-        //  this.step2 = 'active';
-        //  this.step3 = 'disabled';
-        //  this.activeStep(2,1);
-        //}
-
-
+        //获取用户信息
+        _util.getUserInfoById(this.file.userId).subscribe((res)=>{
+            this.user = <User>res.json().data;
+            this.company = <UserCompany>res.json().company;
+            if(!this.user) this.user = new User();
+            if(!this.company) this.company = new UserCompany();
+        });
+        this.showHistory(0);
     }
-
     //获取历史信息填表
     getHistory(value:string){
-        //this._util.getHistory(this.file.userId,this.file.docType,this.file.templateId,value).subscribe((res)=>{
-        //    this.history = <History[]>res.json();
-        //    this.isInfo = value; //确定是显示什么样的列表
-        //})
-    }
-    //选择记录填表
-    selectRecord(hs:History){
-        //if(this.isInfo == "a"){
-        //    if(this.business){
-        //        this.aCompanyName = hs.aName;
-        //    }else{
-        //        this.aPersonName = hs.aName;
-        //        this.aIdNo = hs.aIdNo;
-        //    }
-        //}else if(this.isInfo == "b"){
-        //    if(this.business){
-        //        this.bCompanyName = hs.bName;
-        //    }else{
-        //        this.bPersonName = hs.bName;
-        //        this.bIdNo = hs.bIdNo;
-        //    }
-        //}else if(this.isInfo == "ac"){
-        //    this.agreement.aContactName = hs.aContactName;
-        //    this.agreement.aContactPhone = hs.aContactPhone;
-        //    this.agreement.aContactEmail = hs.aContactEmail;
-        //    this.agreement.aContactFax = hs.aContactFax;
-        //    this.agreement.aContactAddress = hs.aContactAddress;
-        //}else if(this.isInfo == "bc"){
-        //    this.agreement.bContactName = hs.bContactName;
-        //    this.agreement.bContactPhone = hs.bContactPhone;
-        //    this.agreement.bContactEmail = hs.bContactEmail;
-        //    this.agreement.bContactFax = hs.bContactFax;
-        //    this.agreement.bContactAddress = hs.bContactAddress;
-        //}else if(this.isInfo == "as"){
-        //    this.agreement.aSiger = hs.aSiger;
-        //}else if(this.isInfo == "bs"){
-        //    this.agreement.bSiger = hs.bSiger;
-        //}
-        //
-        //this.isModal = false;
-
-
+        this._util.getHistory(this.file.userId,this.file.docType,this.file.templateId,value).subscribe((res)=>{
+            this.history = <History[]>res.json();
+            this.isInfo = value; //确定是显示什么样的列表
+        })
     }
 
 //输入步骤组的id，获取步骤组
@@ -140,6 +102,24 @@ export class ShareTransferComponent {
                 return;
             }
         })
+    }
+
+    //选择记录填表
+    selectRecord(hs:History){
+        if(this.isInfo == "a"){
+            this.transfer.aName = hs.aName;
+            this.transfer.aIdNo = hs.aIdNo;
+        }else if(this.isInfo == "b"){
+            this.transfer.bName = hs.bName
+            this.transfer.bIdNo = hs.bIdNo
+        }else if(this.isInfo == "as"){
+            this.transfer.aSiger = hs.aSiger;
+        }else if(this.isInfo == "bs"){
+            this.transfer.bSiger = hs.bSiger;
+        }else if(this.isInfo == "cn"){
+            this.transfer.companyName = hs.transferCompany;
+        }
+        this.isModal = false;
     }
     //按钮触发步骤变化
     activeStep(stepsId:number,stepId:number){
@@ -158,14 +138,14 @@ export class ShareTransferComponent {
     //总结
     conclude(){
 
-            if(this.aPersonName == null || this.bPersonName== null || this.aIdNo== null || this.bIdNo== null){
+            if(this.transfer.aName == null || this.transfer.bName== null || this.transfer.aIdNo== null || this.transfer.bIdNo== null){
                 alert("名称不能为空！");
                 return;
             }
-            this.transfer.aName = this.aPersonName;
-            this.transfer.bName = this.bPersonName;
-            this.transfer.aIdNo = this.aIdNo;
-            this.transfer.bIdNo = this.bIdNo;
+            //this.transfer.aName = this.aPersonName;
+            //this.transfer.bName = this.bPersonName;
+            //this.transfer.aIdNo = this.aIdNo;
+            //this.transfer.bIdNo = this.bIdNo;
             this.conclusion = this.transfer.aName+"与"
                 +this.transfer.bName+"签订股份转让协议。在协议规定内，相互遵守和监督彼此股份转让信息。" +
                 "是否确定？"
@@ -266,6 +246,38 @@ export class ShareTransferComponent {
 
     nav(name:string){
         this.router.parent.navigate([name])
+    }
+
+    //设置值
+    setValue(value:string){
+        if(this.midData == 'aName') this.transfer.aName = value;
+        if(this.midData == 'aIdNo') this.transfer.aIdNo = value;
+        if(this.midData == 'bName') this.transfer.bName = value;
+        if(this.midData == 'bIdNo') this.transfer.bIdNo = value;
+        if(this.midData == 'agreement.aContactName') this.agreement.aContactName = value;
+        if(this.midData == 'agreement.bContactName') this.agreement.bContactName = value;
+        if(this.midData == 'agreement.aContactPhone') this.agreement.aContactPhone = value;
+        if(this.midData == 'agreement.bContactPhone') this.agreement.bContactPhone = value;
+        if(this.midData == 'agreement.aContactEmail') this.agreement.aContactEmail = value;
+        if(this.midData == 'agreement.bContactEmail') this.agreement.bContactEmail = value;
+        if(this.midData == 'agreement.aContactFax') this.agreement.aContactFax = value;
+        if(this.midData == 'agreement.bContactFax') this.agreement.bContactFax = value;
+        if(this.midData == 'agreement.aContactAddress') this.agreement.aContactAddress = value;
+        if(this.midData == 'agreement.bContactAddress') this.agreement.bContactAddress = value;
+        if(this.midData == 'agreement.bSiger') this.agreement.aSiger = value;
+        if(this.midData == 'agreement.bSiger') this.agreement.bSiger = value;
+    }
+    //获取值
+    getValue(a:any){
+        this.midData = a;
+    }
+    //显示历史
+    showHistory(index:number){
+        this.hisFlag = [];
+        if(index!=-1) this.hisFlag[index]= true;
+    }
+    hideHistory(index:number){
+        if(index!=-1) this.hisFlag[index]= false;
     }
 }
 

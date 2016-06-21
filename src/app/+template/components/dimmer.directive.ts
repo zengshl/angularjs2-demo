@@ -140,7 +140,22 @@ import {History} from "../../shared/services/entity.service";
       </tr>
       </tbody>
     </table>
-
+     <table class="ui teal celled table" *ngIf = "flag == 'cn' ">
+      <thead>
+      <tr>
+        <th>文档类型</th>
+        <th>创建时间</th>
+        <th>股权转让公司</th>
+      </tr>
+      </thead>
+      <tbody *ngFor = "let h of hs">
+        <tr  (click)="send(h)">
+        <td>{{h.typeName}}</td>
+        <td>{{h.createTime}}</td>
+        <td>{{h.transferCompany}}</td>
+      </tr>
+      </tbody>
+    </table>
   `
 })
 export class DimmerComponent {
