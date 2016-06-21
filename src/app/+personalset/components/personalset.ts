@@ -73,9 +73,19 @@ export class PersonalSetComponent implements AfterViewInit{
       console.log('value');
   }
 
+
+  //modify by zengshl 需要公司的信息也一起更新下
+
   updataUser(){
     if(this.myForm.valid){
-      this._util.updataUser(JSON.stringify(this.user)).subscribe((res:Response)=>{
+
+      //添加公司的信息处理
+      let  updateData = {};
+      updateData.user = this.user;
+      updateData.company = this.company;
+      updateData.companyId = this.company.id;
+      console.log(JSON.stringify(updateData));
+      this._util.updataUser(JSON.stringify(updateData)).subscribe((res:Response)=>{
         this.freshUser();
         if(res.json() !=0){
           alert("更新成功");
