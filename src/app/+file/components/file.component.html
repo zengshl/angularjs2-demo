@@ -2,7 +2,7 @@
 <div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:50px 3%;background-color:ghostwhite">
   <div class="container-fluid">
     <div class="row" style="height: 70px;padding:0 5px">
-      <div class="col-md-3"><h2>我的文件管理</h2></div>
+      <div class="col-md-3"><h2 class="ui header">我的文件管理</h2></div>
       <div class="col-md-2 col-md-offset-7" style="text-align: right;">
         <a (click)="nav('./Personal')"><i class="large sign in icon"></i>返回个人中心</a>
       </div>
@@ -18,7 +18,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
           <h3 class="panel-title" style="color: white" >
-            我的文件夹 （ 双击此处创建新的文件夹 ）
+            <i class="folder Outline icon"></i>我的文件夹 -- 点击此处创建新的文件夹
           </h3>
         </div>
         <div class="panel-body" style="padding: 20px 5%;min-height: 300px;_height:300px; ">
@@ -67,7 +67,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
         <h3 class="panel-title" style="color: white" >
-          创建文件夹 （ 双击此处返回文件夹列表 ）
+          <i class="folder  icon"></i>创建文件夹 -- 点击此处返回文件夹列表
         </h3>
       </div>
       <div class="panel-body" style="padding: 60px 5%;min-height: 300px;_height:300px; ">
@@ -90,7 +90,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showModifyFolder = !showModifyFolder">
         <h3 class="panel-title" style="color: white" >
-          修改文件夹 （ 双击此处返回文件夹列表 ）
+          <i class="file text outline icon"></i> 修改文件夹 --  点击此处返回文件夹列表
         </h3>
       </div>
       <div class="panel-body" style="padding: 60px 5%;min-height: 300px;_height:300px; ">
@@ -116,7 +116,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showMyFiles = !showMyFiles">
         <h3 class="panel-title" style="color: white" >
-          文件夹：{{myFolder.fileName}}（ 双击此处返回文件夹列表 ）
+          <i class="folder icon"></i> 文件夹：{{myFolder.fileName}} -- 双击此处返回文件夹列表
         </h3>
       </div>
       <div class="panel-body" style="padding: 20px 5%;min-height: 100px;_height:100px; ">
@@ -180,7 +180,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="backTo()">
           <h3 class="panel-title" style="color: white" >
-            文档名：{{myFile.docName}}，移动至 （ 双击此处返回文件列表 ）
+            <i class="file text outline icon"></i> 文档名：{{myFile.docName}}，移动至 -- 点击此处返回文件列表
           </h3>
         </div>
         <div class="panel-body" style="padding: 20px 5%;min-height: 300px;_height:300px; ">
@@ -217,7 +217,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="nav('./NewFile')">
         <h3 class="panel-title" style="color: white" >
-          未归类的文件（ 双击此处创建新的文件 ）
+          <i class="file text outline icon"></i> 未归类的文件 -- 点击此处创建新的文件
         </h3>
       </div>
       <div class="panel-body" style="padding: 10px 5%;min-height: 200px;_height:200px; ">
@@ -285,7 +285,7 @@
       <div class="panel panel-default">
         <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand; " (click)="openMyFile = !openMyFile" *ngIf = "modifyList">
           <h3 class="panel-title" style="color: white" >
-            修改文件{{myFile.docName}} （ 双击此处返回文件夹列表 ）
+            <i class="file text outline icon"></i> 修改文件{{myFile.docName}} -- 点击此处返回文件夹列表
           </h3>
         </div>
         <div class="panel-body" style="padding: 60px 5%;min-height: 300px;_height:300px; ">
