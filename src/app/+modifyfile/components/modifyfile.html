@@ -138,13 +138,6 @@
                             </form>
                         </div>
 
-                        <div class="sixteen wide column" ><!-- 分割线 -->
-                          <span style="color: red;"><i class="large red announcement icon"></i>
-                            提示：可以通过点击右侧【辅助表单填写栏】的【协议主体信息】，来自动填写甲乙方名称信息。
-                          </span>
-                            <div class="ui divider"></div>
-                        </div>
-
                         <div class="eight wide column"><!-- 按钮 -->
                             <i class="reply icon"></i>
                             <a (click)="showQ1 = !showQ1;modifyList = !modifyList;">返回修改列表</a>
@@ -308,12 +301,7 @@
                             <input  placeholder="受让方名字" type="text" [(ngModel)]="transfer.bSiger" required>
                         </div>
                         <br><br>
-                        <div class="field" ><!-- 分割线 -->
-                          <span style="color: red;"><i class="large red announcement icon"></i>
-                            提示：可以通过点击右侧【辅助表单填写栏】的【签名信息】，来自动填写甲乙方签名人信息。
-                          </span>
-                            <div class="ui divider"></div>
-                        </div>
+
                         <div class="eight wide column"><!-- 按钮 -->
                             <i class="reply icon"></i>
                             <a (click)="showQ10 = !showQ10;modifyList = !modifyList;">返回修改列表</a>
