@@ -292,4 +292,6 @@ export class History {
   //签名
   aSiger:string = "";
   bSiger:string = "";
+  //股权转让公司名称
+  transferCompany : string = "";
 }
