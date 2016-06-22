@@ -69,11 +69,11 @@
                             </a>
                             <a class="item" (click)="showQ7 = !showQ7;modifyList = !modifyList;">
                                 <h4 class="ui header" >股权转让价格</h4>
-                                <p>点击修改该法律文件甲乙双方的名称或姓名等详细信息</p>
+                                <p>点击修改该法律文件股权转让价格</p>
                             </a>
                             <a class="item" (click)="showQ8 = !showQ8;modifyList = !modifyList;">
                                 <h4 class="ui header">其它费用</h4>
-                                <p>点击修改甲方和乙方指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人的信息</p>
+                                <p>点击修改其它费用的承担者</p>
                             </a>
                             <a class="item" (click)="showQ9 = !showQ9;modifyList = !modifyList;">
                                 <h4 class="ui header">违约与争议</h4>
@@ -81,7 +81,7 @@
                             </a>
                             <a class="item" (click)="showQ10 = !showQ10;modifyList = !modifyList;">
                                 <h4 class="ui header">法人签名</h4>
-                                <p>点击修改争议与违约责任内容</p>
+                                <p>点击修改法人签名</p>
                             </a>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                 </div>
 
                 <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ6">
-                    <h3>拟议交易</h3>
+                    <h3>股权转让拟议交易</h3>
                     <hr>
                     <form class="ui form" style="padding:10px 10%;">
                         <div class="field">
@@ -203,17 +203,13 @@
                             <input  placeholder="转让价格" type="number" [(ngModel)]="transfer.totalMoney" required>
                         </div>
                         <h4 class="ui dividing header"></h4>
-                        <!--<div class="field">-->
-                        <!--<label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>-->
-                        <!--<input  placeholder="保密期限" type="number" [(ngModel)]="transfer.secrecy" required>-->
-                        <!--</div>-->
                         <div class="field">
                             <label>首付金额</label>
                             <input  placeholder="首付金额" type="number" [(ngModel)]="transfer.payMoney" required>
                         </div>
                         <br><br>
                         <div class="field">
-                            <label>首付金额</label>
+                            <label>剩余金额</label>
                             <input  placeholder="剩余金额" type="number" [(ngModel)]="transfer.residueMoney" required>
                         </div>
                         <br><br>
@@ -234,37 +230,6 @@
                     <!--<div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;">-->
                     <h3>股权转让有关费用的负担。</h3>
                     <hr>
-                    <!--<form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,4)">-->
-                        <!--<div class="two fields">-->
-                            <!--<div class="field" style="vertical-align:middle">-->
-                                <!--<p style="text-align:center;font-size:18px">双方同意办理本合同约定的股权转让手续所产生的有关费用，由</p>-->
-                            <!--</div>-->
-                            <!--<div class="field">-->
-                                <!--<div class="two fields">-->
-                                    <!--<div class="field">-->
-                                        <!--<select [(ngModel)]="transfer.otherExpenses" id="other" name="other">-->
-                                            <!--<option value="甲" selected="selected">甲</option>-->
-                                            <!--<option value="乙">乙</option>-->
-                                        <!--</select>-->
-                                    <!--</div>-->
-                                    <!--<div class="field">-->
-                                        <!--<p style="font-size:18px">方承担。</p>-->
-                                    <!--</div>-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br><br>-->
-                        <!--<div class="eight wide column">&lt;!&ndash; 按钮 &ndash;&gt;-->
-                            <!--<i class="reply icon"></i>-->
-                            <!--<a (click)="showQ8 = !showQ8;modifyList = !modifyList;">返回修改列表</a>-->
-                        <!--</div>-->
-                        <!--<div class="eight wide column">-->
-                            <!--<button class="ui right floated teal button" (click)="updateTransfer();" [disabled]="isFinal">修改</button>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                    <!--</form>-->
                     <div class="ui stackable grid">
                         <div class="sixteen wide column">双方同意办理本合同约定的股权转让手续所产生的有关费用，由
                             <select class="ui search dropdown" [(ngModel)]="transfer.otherExpenses" id="other" name="other" style="width:200px">
