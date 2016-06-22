@@ -58,7 +58,7 @@ export class ShareTransferComponent {
     docAttr: DocAttr = new DocAttr();
     attrData : Array<DocAttr> = new Array<DocAttr>();
     //中转变量
-    midData:any;
+    midData:string = "";
     //用户信息
     user:User = new User();
     company:UserCompany = new UserCompany();
@@ -138,8 +138,9 @@ export class ShareTransferComponent {
     //总结
     conclude(){
 
-            if(this.transfer.aName == null || this.transfer.bName== null || this.transfer.aIdNo== null || this.transfer.bIdNo== null){
-                alert("名称不能为空！");
+            if(this.transfer.aName == null || this.transfer.bName== null || this.transfer.aIdNo== null || this.transfer.bIdNo== null
+             || this.transfer.aName == "" || this.transfer.bName== "" || this.transfer.aIdNo== "" || this.transfer.bIdNo== ""){
+                alert("名称或证件号不能为空！");
                 return;
             }
             //this.transfer.aName = this.aPersonName;
@@ -250,22 +251,14 @@ export class ShareTransferComponent {
 
     //设置值
     setValue(value:string){
+        console.log(this.midData);
         if(this.midData == 'aName') this.transfer.aName = value;
         if(this.midData == 'aIdNo') this.transfer.aIdNo = value;
         if(this.midData == 'bName') this.transfer.bName = value;
         if(this.midData == 'bIdNo') this.transfer.bIdNo = value;
-        if(this.midData == 'agreement.aContactName') this.agreement.aContactName = value;
-        if(this.midData == 'agreement.bContactName') this.agreement.bContactName = value;
-        if(this.midData == 'agreement.aContactPhone') this.agreement.aContactPhone = value;
-        if(this.midData == 'agreement.bContactPhone') this.agreement.bContactPhone = value;
-        if(this.midData == 'agreement.aContactEmail') this.agreement.aContactEmail = value;
-        if(this.midData == 'agreement.bContactEmail') this.agreement.bContactEmail = value;
-        if(this.midData == 'agreement.aContactFax') this.agreement.aContactFax = value;
-        if(this.midData == 'agreement.bContactFax') this.agreement.bContactFax = value;
-        if(this.midData == 'agreement.aContactAddress') this.agreement.aContactAddress = value;
-        if(this.midData == 'agreement.bContactAddress') this.agreement.bContactAddress = value;
         if(this.midData == 'agreement.bSiger') this.agreement.aSiger = value;
         if(this.midData == 'agreement.bSiger') this.agreement.bSiger = value;
+        this.midData = '';
     }
     //获取值
     getValue(a:any){

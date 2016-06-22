@@ -21,7 +21,7 @@
 </div>
 
 <div class="col-md-2"></div>
-<div class="col-md-8">
+<div class="col-md-7">
 
     <!-- 步骤 -->
     <div class="ui top attached ordered steps"  *ngIf = "!showList">
@@ -80,16 +80,16 @@
                     </div>
                     <div class="field">
                         <label>甲方身份证号/护照号</label>
-                        <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.aIdNo" required>
+                        <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.aIdNo" (click)="getValue('')"  required>
                     </div>
                     <hr>
                     <div class="field">
                         <label>乙方姓名</label>
-                        <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="transfer.bName" required>
+                        <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="transfer.bName" (click)="getValue('')" required>
                     </div>
                     <div class="field">
                         <label>乙方身份证号/护照号</label>
-                        <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.bIdNo" required>
+                        <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.bIdNo" (click)="getValue('')" required>
                     </div>
                 </form>
             </div>
@@ -346,9 +346,9 @@
 </div>
 <!-- 右边栏 -->
 
-<div class="col-md-2"></div>
+<div class="col-md-3"></div>
 
-<div class="col-md-2" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
+<div class="col-md-3" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
     <div class="ui styled fluid accordion" style="padding: 5% 2%;">
         <div class="active title">
             <i class="dropdown icon"></i>
