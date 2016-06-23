@@ -332,6 +332,7 @@ export class FileComponent {
         this.openList = true;
         this.openMyFile = false;
     }
+    this.refreshFileList(this.myFile.folderId);
   }
 
 }
