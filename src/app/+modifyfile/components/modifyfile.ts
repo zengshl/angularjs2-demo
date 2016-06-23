@@ -2,7 +2,7 @@
  * Created by wss on 2016/6/20.
  */
 import {Component,  DoCheck,KeyValueDiffers,AfterViewInit} from '@angular/core';
-import {Component,EventEmitter } from '@angular/core';
+import {EventEmitter } from '@angular/core';
 import {UtilService} from '../../shared/index';
 import {User,Folder,File,DocAttr,ConfidentTransfer,CheckBox} from "../../shared/index";
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
