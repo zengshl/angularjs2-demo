@@ -435,12 +435,17 @@ export class FileComponent {
   }
   //生成文件
   createDocument(format:string){
-    console.log(format);
     this._util.generateFile(""+this.myFile.id,format);
 
   }
 
 
+  modifyFileComponentClose(name:string){
+    if(name == 'transfer'){
+        this.openList = true;
+        this.openTransfer = false;
+    }
+  }
 
 }
 
