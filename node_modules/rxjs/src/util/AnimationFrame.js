@@ -1,3 +1,4 @@
+"use strict";
 var root_1 = require('./root');
 var RequestAnimationFrameDefinition = (function () {
     function RequestAnimationFrameDefinition(root) {
@@ -27,7 +28,7 @@ var RequestAnimationFrameDefinition = (function () {
         }
     }
     return RequestAnimationFrameDefinition;
-})();
+}());
 exports.RequestAnimationFrameDefinition = RequestAnimationFrameDefinition;
 exports.AnimationFrame = new RequestAnimationFrameDefinition(root_1.root);
 //# sourceMappingURL=AnimationFrame.js.map

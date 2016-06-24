@@ -1,4 +1,5 @@
 // Reflect.decorate ( decorators, target [, propertyKey [, descriptor] ] )
+"use strict";
 require("../../Reflect");
 var assert = require("assert");
 function ReflectDecorateThrowsIfDecoratorsArgumentNotArrayForFunctionOverload() {

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by lenovo on 2016/5/20.
  */
@@ -235,6 +236,6 @@ var SysRoleComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService])
     ], SysRoleComponent);
     return SysRoleComponent;
-})();
+}());
 exports.SysRoleComponent = SysRoleComponent;
 //# sourceMappingURL=sysrole.js.map

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by lenovo on 2016/5/24.
  */
@@ -75,6 +76,6 @@ var FolderComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, router_deprecated_1.RouteParams, router_deprecated_1.Router])
     ], FolderComponent);
     return FolderComponent;
-})();
+}());
 exports.FolderComponent = FolderComponent;
 //# sourceMappingURL=folder.js.map

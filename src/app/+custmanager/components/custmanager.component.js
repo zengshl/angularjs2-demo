@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var datatable_1 = require('angular2-datatable/datatable');
 var index_1 = require("../../shared/index");
@@ -64,6 +65,6 @@ var CustmanagerComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, router_deprecated_1.Router])
     ], CustmanagerComponent);
     return CustmanagerComponent;
-})();
+}());
 exports.CustmanagerComponent = CustmanagerComponent;
 //# sourceMappingURL=custmanager.component.js.map

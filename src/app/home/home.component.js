@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var app_service_1 = require('../app.service');
 var title_1 = require('./title');
@@ -45,6 +46,6 @@ var Home = (function () {
     ], Home);
     return Home;
     var _a;
-})();
+}());
 exports.Home = Home;
 //# sourceMappingURL=home.component.js.map

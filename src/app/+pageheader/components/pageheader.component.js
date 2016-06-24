@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var PageHeaderComponent = (function () {
     function PageHeaderComponent() {
@@ -10,6 +11,6 @@ var PageHeaderComponent = (function () {
         __metadata('design:paramtypes', [])
     ], PageHeaderComponent);
     return PageHeaderComponent;
-})();
+}());
 exports.PageHeaderComponent = PageHeaderComponent;
 //# sourceMappingURL=pageheader.component.js.map

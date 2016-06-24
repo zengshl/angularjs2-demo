@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var AddSysUserComponent = (function () {
     function AddSysUserComponent() {
@@ -21,6 +22,6 @@ var AddSysUserComponent = (function () {
         __metadata('design:paramtypes', [])
     ], AddSysUserComponent);
     return AddSysUserComponent;
-})();
+}());
 exports.AddSysUserComponent = AddSysUserComponent;
 //# sourceMappingURL=addsysuser.component.js.map

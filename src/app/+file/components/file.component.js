@@ -1,9 +1,11 @@
+"use strict";
 var core_1 = require('@angular/core');
 var index_1 = require('../../shared/index');
 var index_2 = require("../../shared/index");
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var index_3 = require('../../+modifyfile/index');
+var index_4 = require('../../+modifyconfid/index');
 var FileComponent = (function () {
     function FileComponent(_util, dragulaService, router) {
         var _this = this;
@@ -18,11 +20,6 @@ var FileComponent = (function () {
         this.openList = true;
         this.openTransfer = false;
         this.modifyList = true;
-        this.showQ1 = false;
-        this.showQ2 = false;
-        this.showQ4 = false;
-        this.showQ5 = false;
-        this.showQ6 = false;
         this.dispute = true; //争议版本切换
         this.liability = true;
         this.isFinal = false; //是否已经最终化
@@ -35,24 +32,8 @@ var FileComponent = (function () {
         this.agreement = new index_2.ConfidentAgreement();
         this.transfer = new index_2.ConfidentTransfer();
         this.attrData = new Array();
-        this.disputeVersion1 = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
-            + "如协商未能解决争议，任何一方可将争议提交（中国国际经济贸易仲裁委员会）仲裁，"
-            + "仲裁应依照该会当时有效的仲裁规则进行。仲裁地点在（北京），仲裁语言为（中文），"
-            + "仲裁裁决是终局的，对双方均有约束力。";
-        this.disputeVersion2 = "甲、乙双方因理解、执行本协议或与本协议有关的任何性质的争议，应首先尽最大努力以友好协商的方式解决。"
-            + "如协商未能解决争议，任何一方可向具有管辖权的法院起诉。";
-        //责任版本
-        this.libVersion1 = " 如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接损失以及因此而支出的合理费用。";
-        this.libVersion2 = "如因接收方违反本协议项下义务披露保密信息对披露方造成损失，接收方应赔偿披露方的全部直接和间接损失以及因此而支出的全部费用。";
         this.user = new index_2.User();
         this.user = JSON.parse(sessionStorage.getItem('user'));
-        _util.getConfinfo().subscribe(function (res) {
-            _this.confinfo = res.json();
-        });
-        //获取保密人员列表
-        _util.getConfreciever().subscribe(function (res) {
-            _this.confreciever = res.json();
-        });
         this.getFolder();
         this.getFile(0);
         //拖拽功能 1
@@ -322,103 +303,28 @@ var FileComponent = (function () {
             this.moveTo = false;
         }
     };
-    //检查协议主体类型
-    FileComponent.prototype.checkOrg = function () {
-        this.modifyList = !this.modifyList;
-        if (this.agreement.organizationType == '企业') {
-            this.showQ1 = !this.showQ1;
+    FileComponent.prototype.modifyFileComponentClose = function (name) {
+        if (name == 'transfer') {
+            this.openList = true;
+            this.openTransfer = false;
         }
-        else {
-            this.showQ2 = !this.showQ2;
+        else if (name == 'confid') {
+            this.openList = true;
+            this.openMyFile = false;
         }
-    };
-    //保密材料选择..........................
-    //全选
-    FileComponent.prototype.selectAll = function () {
-        this.confinfo.forEach(function (c) {
-            c.flag = true;
-        });
-    };
-    ;
-    //全不选
-    FileComponent.prototype.selectNone = function () {
-        this.confinfo.forEach(function (c) {
-            c.flag = false;
-        });
-    };
-    //组装选择对象值为字符串，以分号隔开
-    FileComponent.prototype.oToS = function () {
-        var str = "";
-        this.confinfo.forEach(function (c) {
-            if (c.flag) {
-                str += c.value + "、";
-            }
-        });
-        this.agreement.confDefination = str.substr(0, str.length - 1); //去除最后一个顿号
-        this.updateAgreement();
-    };
-    //保密人员选择..........................
-    //全选
-    FileComponent.prototype.selectAllPerson = function () {
-        this.confreciever.forEach(function (c) {
-            c.flag = true;
-        });
-    };
-    ;
-    //全不选
-    FileComponent.prototype.selectNonePerson = function () {
-        this.confreciever.forEach(function (c) {
-            c.flag = false;
-        });
-    };
-    //组装选择对象值为字符串，以分号隔开
-    FileComponent.prototype.oToSPerson = function () {
-        var str = "";
-        this.confreciever.forEach(function (c) {
-            if (c.flag) {
-                str += c.value + "、";
-            }
-        });
-        this.agreement.recievers = str.substr(0, str.length - 1); //去除最后一个顿号
-        //方案选择
-        if (this.dispute) {
-            this.agreement.dispute = this.disputeVersion1;
-        }
-        else {
-            this.agreement.dispute = this.disputeVersion2;
-        }
-        if (this.liability) {
-            this.agreement.liability = this.libVersion1;
-        }
-        else {
-            this.agreement.liability = this.libVersion2;
-        }
-        this.updateAgreement();
-    };
-    //修改协议
-    FileComponent.prototype.updateAgreement = function () {
-        this.attrData = this._util.setAttrData(this.myFile.id, this.agreement);
-        this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(function () {
-            // alert("修改成功！");
-            swal("Good job!", "修改成功！", "success");
-        });
-    };
-    //生成文件
-    FileComponent.prototype.createDocument = function (format) {
-        console.log(format);
-        this._util.generateFile("" + this.myFile.id, format);
+        this.refreshFileList(this.myFile.folderId);
     };
     FileComponent = __decorate([
         core_1.Component({
             selector: 'file-box',
             providers: [index_1.UtilService, ng2_dragula_1.DragulaService],
-            directives: [ng2_dragula_1.Dragula, index_3.ModifyFileComponent],
+            directives: [ng2_dragula_1.Dragula, index_3.ModifyFileComponent, index_4.ModifyConfidComponent],
             styles: [require('app/+file/components/file.component.css')],
             template: require('app/+file/components/file.component.html')
         }), 
         __metadata('design:paramtypes', [index_1.UtilService, ng2_dragula_1.DragulaService, router_deprecated_1.Router])
     ], FileComponent);
     return FileComponent;
-})();
+}());
 exports.FileComponent = FileComponent;
 //# sourceMappingURL=file.component.js.map

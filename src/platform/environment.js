@@ -1,3 +1,4 @@
+"use strict";
 // Angular 2
 var core_1 = require('@angular/core');
 // Environment Providers

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by wss on 2016/6/20.
  */
@@ -162,6 +163,6 @@ var ModifyConfidComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, ng2_dragula_1.DragulaService, router_deprecated_1.Router])
     ], ModifyConfidComponent);
     return ModifyConfidComponent;
-})();
+}());
 exports.ModifyConfidComponent = ModifyConfidComponent;
 //# sourceMappingURL=modifyconfid.js.map

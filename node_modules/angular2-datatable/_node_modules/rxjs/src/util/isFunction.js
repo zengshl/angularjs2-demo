@@ -1,3 +1,4 @@
+"use strict";
 function isFunction(x) {
     return typeof x === 'function';
 }

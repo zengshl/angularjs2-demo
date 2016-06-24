@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var index_1 = require("../../shared/index");
@@ -45,6 +46,6 @@ var NavbarComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], NavbarComponent);
     return NavbarComponent;
-})();
+}());
 exports.NavbarComponent = NavbarComponent;
 //# sourceMappingURL=navbar.component.js.map

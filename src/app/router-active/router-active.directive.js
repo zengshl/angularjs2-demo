@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var lang_1 = require('@angular/core/src/facade/lang');
 var router_deprecated_1 = require('@angular/router-deprecated');
@@ -63,6 +64,6 @@ var RouterActive = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router, core_1.ElementRef, core_1.Renderer, core_1.QueryList, String])
     ], RouterActive);
     return RouterActive;
-})();
+}());
 exports.RouterActive = RouterActive;
 //# sourceMappingURL=router-active.directive.js.map

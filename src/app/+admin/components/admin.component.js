@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var sysuser_1 = require('../../+sysuser/components/sysuser');
@@ -25,6 +26,9 @@ var AdminComponent = (function () {
         this.router.navigate([name]);
     };
     ;
+    AdminComponent.prototype.navFolder = function () {
+        this.router.navigate(['Folder', { "userId": "0" }]);
+    };
     AdminComponent.prototype.navFile = function () {
         this.router.navigate(['Document', { "userId": "0", "folderId": "0" },]);
     };
@@ -63,7 +67,7 @@ var AdminComponent = (function () {
                 component: sysrole_1.SysRoleComponent,
             },
             {
-                path: '/folder',
+                path: '/folder/:userId',
                 name: 'Folder',
                 component: folder_1.FolderComponent,
             },
@@ -86,6 +90,6 @@ var AdminComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AdminComponent);
     return AdminComponent;
-})();
+}());
 exports.AdminComponent = AdminComponent;
 //# sourceMappingURL=admin.component.js.map

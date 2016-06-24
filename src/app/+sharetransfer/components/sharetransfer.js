@@ -1,7 +1,10 @@
+"use strict";
 var core_1 = require('@angular/core');
 var index_1 = require("../../shared/index");
 var router_deprecated_1 = require('@angular/router-deprecated');
+var index_2 = require("../../shared/index");
 var common_1 = require('@angular/common');
+var dimmer_directive_1 = require("../../+template/components/dimmer.directive");
 var ShareTransferComponent = (function () {
     function ShareTransferComponent(_util, router) {
         var _this = this;
@@ -27,15 +30,9 @@ var ShareTransferComponent = (function () {
         this.business = true; //是否是企业 / 个人
         this.discloseToB = true; //是否向乙方披露
         this.discloseToA = true; //是否向甲方披露
-        //liability:boolean = true;
-        //moulds:Array<Moudle> = new Array<Moudle>();
-        //docType:Array<Doctype> = new Array<Doctype>();
-        //differ:any;
         this.file = new index_1.File();
-        //history:History[] = new Array<History>(); //获取历史信息填表
-        //his:History = new History();
-        //isModal:boolean = false;
-        //isInfo:string = "";
+        this.history = new Array(); //获取历史信息填表
+        this.his = new index_1.History();
         //步骤
         this.step1 = 'active';
         this.step2 = 'disabled';
@@ -46,6 +43,15 @@ var ShareTransferComponent = (function () {
         //组装Attr json对象
         this.docAttr = new index_1.DocAttr();
         this.attrData = new Array();
+        //中转变量
+        this.midData = "";
+        //用户信息
+        this.user = new index_2.User();
+        this.company = new index_2.UserCompany();
+        this.hisFlag = [true, false, false]; //控制历史信息显示
+        this.hisInfo = false;
+        this.isModal = false;
+        this.isInfo = "";
         this.file = JSON.parse(sessionStorage.getItem('file'));
         this.file.docName = "股份转让协议" + _util.getSerialNo();
         //获取步骤组
@@ -53,59 +59,24 @@ var ShareTransferComponent = (function () {
             _this.steps = res.json();
             _this.getStepsById(3);
         });
-        //if(sessionStorage.getItem("nextStep1")){ //如果已经进入了第二个阶段
-        //  //this.nav('./ConfidTemplate');
-        //  this.showPro = false;
-        //  this.showList = false;
-        //  this.showQ6 = true;
-        //  this.step1 = 'completed';
-        //  this.step2 = 'active';
-        //  this.step3 = 'disabled';
-        //  this.activeStep(2,1);
-        //}
+        //获取用户信息
+        _util.getUserInfoById(this.file.userId).subscribe(function (res) {
+            _this.user = res.json().data;
+            _this.company = res.json().company;
+            if (!_this.user)
+                _this.user = new index_2.User();
+            if (!_this.company)
+                _this.company = new index_2.UserCompany();
+        });
+        this.showHistory(0);
     }
     //获取历史信息填表
     ShareTransferComponent.prototype.getHistory = function (value) {
-        //this._util.getHistory(this.file.userId,this.file.docType,this.file.templateId,value).subscribe((res)=>{
-        //    this.history = <History[]>res.json();
-        //    this.isInfo = value; //确定是显示什么样的列表
-        //})
-    };
-    //选择记录填表
-    ShareTransferComponent.prototype.selectRecord = function (hs) {
-        //if(this.isInfo == "a"){
-        //    if(this.business){
-        //        this.aCompanyName = hs.aName;
-        //    }else{
-        //        this.aPersonName = hs.aName;
-        //        this.aIdNo = hs.aIdNo;
-        //    }
-        //}else if(this.isInfo == "b"){
-        //    if(this.business){
-        //        this.bCompanyName = hs.bName;
-        //    }else{
-        //        this.bPersonName = hs.bName;
-        //        this.bIdNo = hs.bIdNo;
-        //    }
-        //}else if(this.isInfo == "ac"){
-        //    this.agreement.aContactName = hs.aContactName;
-        //    this.agreement.aContactPhone = hs.aContactPhone;
-        //    this.agreement.aContactEmail = hs.aContactEmail;
-        //    this.agreement.aContactFax = hs.aContactFax;
-        //    this.agreement.aContactAddress = hs.aContactAddress;
-        //}else if(this.isInfo == "bc"){
-        //    this.agreement.bContactName = hs.bContactName;
-        //    this.agreement.bContactPhone = hs.bContactPhone;
-        //    this.agreement.bContactEmail = hs.bContactEmail;
-        //    this.agreement.bContactFax = hs.bContactFax;
-        //    this.agreement.bContactAddress = hs.bContactAddress;
-        //}else if(this.isInfo == "as"){
-        //    this.agreement.aSiger = hs.aSiger;
-        //}else if(this.isInfo == "bs"){
-        //    this.agreement.bSiger = hs.bSiger;
-        //}
-        //
-        //this.isModal = false;
+        var _this = this;
+        this._util.getHistory(this.file.userId, this.file.docType, this.file.templateId, value).subscribe(function (res) {
+            _this.history = res.json();
+            _this.isInfo = value; //确定是显示什么样的列表
+        });
     };
     //输入步骤组的id，获取步骤组
     ShareTransferComponent.prototype.getStepsById = function (id) {
@@ -116,6 +87,27 @@ var ShareTransferComponent = (function () {
                 return;
             }
         });
+    };
+    //选择记录填表
+    ShareTransferComponent.prototype.selectRecord = function (hs) {
+        if (this.isInfo == "a") {
+            this.transfer.aName = hs.aName;
+            this.transfer.aIdNo = hs.aIdNo;
+        }
+        else if (this.isInfo == "b") {
+            this.transfer.bName = hs.bName;
+            this.transfer.bIdNo = hs.bIdNo;
+        }
+        else if (this.isInfo == "as") {
+            this.transfer.aSiger = hs.aSiger;
+        }
+        else if (this.isInfo == "bs") {
+            this.transfer.bSiger = hs.bSiger;
+        }
+        else if (this.isInfo == "cn") {
+            this.transfer.companyName = hs.transferCompany;
+        }
+        this.isModal = false;
     };
     //按钮触发步骤变化
     ShareTransferComponent.prototype.activeStep = function (stepsId, stepId) {
@@ -134,14 +126,15 @@ var ShareTransferComponent = (function () {
     };
     //总结
     ShareTransferComponent.prototype.conclude = function () {
-        if (this.aPersonName == null || this.bPersonName == null || this.aIdNo == null || this.bIdNo == null) {
-            alert("名称不能为空！");
+        if (this.transfer.aName == null || this.transfer.bName == null || this.transfer.aIdNo == null || this.transfer.bIdNo == null
+            || this.transfer.aName == "" || this.transfer.bName == "" || this.transfer.aIdNo == "" || this.transfer.bIdNo == "") {
+            alert("名称或证件号不能为空！");
             return;
         }
-        this.transfer.aName = this.aPersonName;
-        this.transfer.bName = this.bPersonName;
-        this.transfer.aIdNo = this.aIdNo;
-        this.transfer.bIdNo = this.bIdNo;
+        //this.transfer.aName = this.aPersonName;
+        //this.transfer.bName = this.bPersonName;
+        //this.transfer.aIdNo = this.aIdNo;
+        //this.transfer.bIdNo = this.bIdNo;
         this.conclusion = this.transfer.aName + "与"
             + this.transfer.bName + "签订股份转让协议。在协议规定内，相互遵守和监督彼此股份转让信息。" +
             "是否确定？";
@@ -242,16 +235,47 @@ var ShareTransferComponent = (function () {
     ShareTransferComponent.prototype.nav = function (name) {
         this.router.parent.navigate([name]);
     };
+    //设置值
+    ShareTransferComponent.prototype.setValue = function (value) {
+        console.log(this.midData);
+        if (this.midData == 'aName')
+            this.transfer.aName = value;
+        if (this.midData == 'aIdNo')
+            this.transfer.aIdNo = value;
+        if (this.midData == 'bName')
+            this.transfer.bName = value;
+        if (this.midData == 'bIdNo')
+            this.transfer.bIdNo = value;
+        if (this.midData == 'agreement.bSiger')
+            this.agreement.aSiger = value;
+        if (this.midData == 'agreement.bSiger')
+            this.agreement.bSiger = value;
+        this.midData = '';
+    };
+    //获取值
+    ShareTransferComponent.prototype.getValue = function (a) {
+        this.midData = a;
+    };
+    //显示历史
+    ShareTransferComponent.prototype.showHistory = function (index) {
+        this.hisFlag = [];
+        if (index != -1)
+            this.hisFlag[index] = true;
+    };
+    ShareTransferComponent.prototype.hideHistory = function (index) {
+        if (index != -1)
+            this.hisFlag[index] = false;
+    };
     ShareTransferComponent = __decorate([
         core_1.Component({
             selector: 'sharetransfer-box',
             providers: [index_1.UtilService],
-            directives: [common_1.FORM_DIRECTIVES],
+            directives: [common_1.FORM_DIRECTIVES, dimmer_directive_1.DimmerComponent],
             template: require('app/+sharetransfer/components/sharetransfer.html')
         }), 
         __metadata('design:paramtypes', [index_1.UtilService, router_deprecated_1.Router])
     ], ShareTransferComponent);
     return ShareTransferComponent;
-})();
+}());
 exports.ShareTransferComponent = ShareTransferComponent;
 //# sourceMappingURL=sharetransfer.js.map
