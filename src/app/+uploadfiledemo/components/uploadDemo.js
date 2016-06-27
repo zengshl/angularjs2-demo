@@ -6,6 +6,7 @@ var ng2_uploader_1 = require('ng2-uploader/ng2-uploader'); //文件上传的组�
 var UploadDemo = (function () {
     function UploadDemo() {
         this.options = {
+            allowedExtensions: ['docx'],
             url: 'http://localhost:9000/law/file/upload'
         };
         this.basicProgress = 0;
