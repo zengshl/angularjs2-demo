@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var index_1 = require('../../shared/index');
 var index_2 = require("../../shared/index");
@@ -324,6 +325,6 @@ var FileComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, ng2_dragula_1.DragulaService, router_deprecated_1.Router])
     ], FileComponent);
     return FileComponent;
-})();
+}());
 exports.FileComponent = FileComponent;
 //# sourceMappingURL=file.component.js.map

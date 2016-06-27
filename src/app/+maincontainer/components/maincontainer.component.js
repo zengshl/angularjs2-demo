@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var breadcrumbs_component_1 = require("../../+breadcrumbs/components/breadcrumbs.component");
 var setting_component_1 = require("../../+setting/components/setting.component");
@@ -13,6 +14,6 @@ var MainContainerComponent = (function () {
         __metadata('design:paramtypes', [])
     ], MainContainerComponent);
     return MainContainerComponent;
-})();
+}());
 exports.MainContainerComponent = MainContainerComponent;
 //# sourceMappingURL=maincontainer.component.js.map

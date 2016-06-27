@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var index_1 = require('../../shared/index');
@@ -126,6 +127,6 @@ var SignupComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router, index_1.UtilService])
     ], SignupComponent);
     return SignupComponent;
-})();
+}());
 exports.SignupComponent = SignupComponent;
 //# sourceMappingURL=signup.component.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var http_1 = require('@angular/http');
 var core_1 = require('@angular/core');
 var entity_service_1 = require("./entity.service");
@@ -525,7 +526,7 @@ var UtilService = (function () {
         __metadata('design:paramtypes', [http_1.Http])
     ], UtilService);
     return UtilService;
-})();
+}());
 exports.UtilService = UtilService;
 ;
 //# sourceMappingURL=util.service.js.map

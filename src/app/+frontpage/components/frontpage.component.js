@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var index_1 = require("../../+navbar/index");
 var router_deprecated_1 = require('@angular/router-deprecated');
@@ -66,6 +67,6 @@ var FrontPageComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], FrontPageComponent);
     return FrontPageComponent;
-})();
+}());
 exports.FrontPageComponent = FrontPageComponent;
 //# sourceMappingURL=frontpage.component.js.map

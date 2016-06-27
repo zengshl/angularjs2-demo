@@ -1,3 +1,4 @@
+"use strict";
 var root_1 = require('./root');
 var Object = root_1.root.Object;
 if (typeof Object.assign != 'function') {

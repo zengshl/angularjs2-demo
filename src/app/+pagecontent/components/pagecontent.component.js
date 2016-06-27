@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 //import {AlertComponent} from "../../+alert/components/alert.component";
 //import {ConversationComponent} from "../../+conversation/components/conversation.component";
@@ -20,6 +21,6 @@ var PageContentComponent = (function () {
         __metadata('design:paramtypes', [])
     ], PageContentComponent);
     return PageContentComponent;
-})();
+}());
 exports.PageContentComponent = PageContentComponent;
 //# sourceMappingURL=pagecontent.component.js.map

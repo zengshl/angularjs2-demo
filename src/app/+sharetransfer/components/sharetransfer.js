@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var index_1 = require("../../shared/index");
 var router_deprecated_1 = require('@angular/router-deprecated');
@@ -275,6 +276,6 @@ var ShareTransferComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, router_deprecated_1.Router])
     ], ShareTransferComponent);
     return ShareTransferComponent;
-})();
+}());
 exports.ShareTransferComponent = ShareTransferComponent;
 //# sourceMappingURL=sharetransfer.js.map

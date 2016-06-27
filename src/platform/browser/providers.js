@@ -1,6 +1,7 @@
 /*
  * These are globally available services in any component or any other service
  */
+"use strict";
 // Angular 2
 var common_1 = require('@angular/common');
 // Angular 2 Http

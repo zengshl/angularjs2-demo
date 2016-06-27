@@ -59,7 +59,7 @@ export class SysUserComponent implements AfterViewInit{
   private pdata :PageData;
   private tableShow:boolean = true
   curUser:Admin;
-  userBase:UserBase;
+  userBase:UserBase = new UserBase();
   private ids:Array<number>;//批量删除id组
   userRole: Array<UserRole>;  //发送到后台的角色数组数据
 
@@ -76,8 +76,9 @@ export class SysUserComponent implements AfterViewInit{
   private getRole : Array<Role>;//所有的角色
   private getUserRole : any;//某个用户获取的角色
 
-
   constructor(private _util:UtilService){
+    Date.prototype.toJSON = function () { return this.toLocaleString(); } //初始化日期时区
+
     //实例化分页对象
     this.pdata = new PageData();
     this.pdata.iDisplayStart = 0;
@@ -91,6 +92,7 @@ export class SysUserComponent implements AfterViewInit{
     this.userRole = new Array<UserRole>();
     this.arrayRole = new Array<Array<Role>>();
     this.ids = new Array<number>();
+
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getAdmin(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
       this.data = res.json();
@@ -155,10 +157,14 @@ export class SysUserComponent implements AfterViewInit{
       let getdata = res.json();
 
       this.curUser = getdata.data;
+      if(getdata.base.length>0) this.userBase = getdata.base[0];
 
-      for(var i=0;i<getdata.base.length;i++){
-        this.userBase = getdata.base[i]
-      }
+      //使用datetime插件时，1) 所有日期格式都要经过如下的处理，截取年月日
+      //2) 同时要在主构造器内，对时区进行初始化：Date.prototype.toJSON = function () { return this.toLocaleString(); }
+      // 3) 注意ng2-datetime插件有改动，如若有复原，则需要重新修改
+      // 在ng2-datetime.ts文件的第九行，加入ngModel: <input type="text" class="form-control" [(ngModel)]="date"/>
+      this.userBase.birthday = this.userBase.birthday.substr(0,this.userBase.birthday.lastIndexOf("/")+3);
+
       this.getUserRole = getdata.role;
 
       //有权限的角色打勾
@@ -303,7 +309,6 @@ export class SysUserComponent implements AfterViewInit{
   insertOrUpdata(){
     if(this.myForm.valid){
       var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};
-      Date.prototype.toJSON = function () { return this.toLocaleString(); }
       if(this.isInsert){
         if(this.curUser.password != '' && this.curUser.password == this.secondPSD){
           var data = {'isInsert':this.isInsert,'user':this.curUser,'base':this.userBase,'role':this.userRole};

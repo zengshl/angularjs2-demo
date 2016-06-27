@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require("@angular/core");
 var InquireComponent = (function () {
     function InquireComponent() {
@@ -10,6 +11,6 @@ var InquireComponent = (function () {
         __metadata('design:paramtypes', [])
     ], InquireComponent);
     return InquireComponent;
-})();
+}());
 exports.InquireComponent = InquireComponent;
 //# sourceMappingURL=inquire.component.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var PersonalComponent = (function () {
@@ -23,6 +24,6 @@ var PersonalComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], PersonalComponent);
     return PersonalComponent;
-})();
+}());
 exports.PersonalComponent = PersonalComponent;
 //# sourceMappingURL=personal.component.js.map

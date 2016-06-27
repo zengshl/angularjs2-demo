@@ -1,6 +1,7 @@
 /*
  * These are globally available directives in any template
  */
+"use strict";
 var core_1 = require('@angular/core');
 // Angular 2 Router
 var router_deprecated_1 = require('@angular/router-deprecated');

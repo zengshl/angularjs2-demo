@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var common_1 = require('@angular/common');
@@ -66,6 +67,6 @@ var AdminLoginComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router, http_1.Http, index_2.UtilService])
     ], AdminLoginComponent);
     return AdminLoginComponent;
-})();
+}());
 exports.AdminLoginComponent = AdminLoginComponent;
 //# sourceMappingURL=adminlogin.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_1 = require("@angular/router");
 var NavlistComponent = (function () {
@@ -16,6 +17,6 @@ var NavlistComponent = (function () {
         __metadata('design:paramtypes', [router_1.Router])
     ], NavlistComponent);
     return NavlistComponent;
-})();
+}());
 exports.NavlistComponent = NavlistComponent;
 //# sourceMappingURL=navlist.component.js.map

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by Ping on 2016/5/10.
  */
@@ -18,7 +19,7 @@ var User = (function () {
         this.region = "";
     }
     return User;
-})();
+}());
 exports.User = User;
 //对象必须赋初值，否则scala后台转对象时会报错
 var Admin = (function () {
@@ -33,7 +34,7 @@ var Admin = (function () {
         this.remark = "";
     }
     return Admin;
-})();
+}());
 exports.Admin = Admin;
 var PageData = (function () {
     function PageData() {
@@ -44,7 +45,7 @@ var PageData = (function () {
         this.iDisplayLength = 0;
     }
     return PageData;
-})();
+}());
 exports.PageData = PageData;
 var UserBase = (function () {
     function UserBase() {
@@ -59,7 +60,7 @@ var UserBase = (function () {
         this.modifyTime = "";
     }
     return UserBase;
-})();
+}());
 exports.UserBase = UserBase;
 var UserMember = (function () {
     function UserMember() {
@@ -73,7 +74,7 @@ var UserMember = (function () {
         this.expireTime = "";
     }
     return UserMember;
-})();
+}());
 exports.UserMember = UserMember;
 var UserContact = (function () {
     function UserContact() {
@@ -86,7 +87,7 @@ var UserContact = (function () {
         this.lastContactTime = "";
     }
     return UserContact;
-})();
+}());
 exports.UserContact = UserContact;
 var Folder = (function () {
     function Folder() {
@@ -98,7 +99,7 @@ var Folder = (function () {
         this.remark = "";
     }
     return Folder;
-})();
+}());
 exports.Folder = Folder;
 var File = (function () {
     function File() {
@@ -116,7 +117,7 @@ var File = (function () {
         this.status = "0";
     }
     return File;
-})();
+}());
 exports.File = File;
 var Role = (function () {
     function Role() {
@@ -127,7 +128,7 @@ var Role = (function () {
         this.flag = false;
     }
     return Role;
-})();
+}());
 exports.Role = Role;
 var Menu = (function () {
     function Menu() {
@@ -142,7 +143,7 @@ var Menu = (function () {
         this.flag = false;
     }
     return Menu;
-})();
+}());
 exports.Menu = Menu;
 var Power = (function () {
     function Power() {
@@ -153,7 +154,7 @@ var Power = (function () {
         this.remark = "";
     }
     return Power;
-})();
+}());
 exports.Power = Power;
 var UserRole = (function () {
     function UserRole() {
@@ -163,7 +164,7 @@ var UserRole = (function () {
         this.remark = "";
     }
     return UserRole;
-})();
+}());
 exports.UserRole = UserRole;
 var Moudle = (function () {
     function Moudle() {
@@ -173,7 +174,7 @@ var Moudle = (function () {
         this.remark = "";
     }
     return Moudle;
-})();
+}());
 exports.Moudle = Moudle;
 var Doctype = (function () {
     function Doctype() {
@@ -185,7 +186,7 @@ var Doctype = (function () {
         this.remark = "";
     }
     return Doctype;
-})();
+}());
 exports.Doctype = Doctype;
 var DocTemplate = (function () {
     function DocTemplate() {
@@ -198,7 +199,7 @@ var DocTemplate = (function () {
         this.createTime = "";
     }
     return DocTemplate;
-})();
+}());
 exports.DocTemplate = DocTemplate;
 var ConfidentAgreement = (function () {
     function ConfidentAgreement() {
@@ -235,7 +236,7 @@ var ConfidentAgreement = (function () {
         this.remark = "";
     }
     return ConfidentAgreement;
-})();
+}());
 exports.ConfidentAgreement = ConfidentAgreement;
 var ConfidentTransfer = (function () {
     function ConfidentTransfer() {
@@ -256,7 +257,7 @@ var ConfidentTransfer = (function () {
         this.bSiger = "";
     }
     return ConfidentTransfer;
-})();
+}());
 exports.ConfidentTransfer = ConfidentTransfer;
 var CheckBox = (function () {
     function CheckBox() {
@@ -264,7 +265,7 @@ var CheckBox = (function () {
         this.value = "";
     }
     return CheckBox;
-})();
+}());
 exports.CheckBox = CheckBox;
 var DocAttr = (function () {
     function DocAttr(documentId, n, v) {
@@ -282,13 +283,13 @@ var DocAttr = (function () {
         this.documentId = documentId || 0;
     }
     return DocAttr;
-})();
+}());
 exports.DocAttr = DocAttr;
 var LawCategory = (function () {
     function LawCategory() {
     }
     return LawCategory;
-})();
+}());
 exports.LawCategory = LawCategory;
 var UserCompany = (function () {
     function UserCompany() {
@@ -299,7 +300,7 @@ var UserCompany = (function () {
         this.companyAddress = "";
     }
     return UserCompany;
-})();
+}());
 exports.UserCompany = UserCompany;
 //步骤的实体类
 var Step = (function () {
@@ -310,7 +311,7 @@ var Step = (function () {
         this.status = "";
     }
     return Step;
-})();
+}());
 exports.Step = Step;
 //步骤组的实体类
 var Steps = (function () {
@@ -320,7 +321,7 @@ var Steps = (function () {
         this.data = new Array();
     }
     return Steps;
-})();
+}());
 exports.Steps = Steps;
 //历史信息
 var History = (function () {
@@ -353,6 +354,6 @@ var History = (function () {
         this.transferCompany = "";
     }
     return History;
-})();
+}());
 exports.History = History;
 //# sourceMappingURL=entity.service.js.map

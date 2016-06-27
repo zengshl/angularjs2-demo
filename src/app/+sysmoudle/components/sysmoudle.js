@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by lenovo on 2016/5/30.
  */
@@ -281,6 +282,6 @@ var SysMoudleComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService, router_deprecated_1.Router])
     ], SysMoudleComponent);
     return SysMoudleComponent;
-})();
+}());
 exports.SysMoudleComponent = SysMoudleComponent;
 //# sourceMappingURL=sysmoudle.js.map

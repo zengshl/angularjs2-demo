@@ -1,3 +1,4 @@
+"use strict";
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var sysuser_1 = require('../../+sysuser/components/sysuser');
@@ -89,6 +90,6 @@ var AdminComponent = (function () {
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AdminComponent);
     return AdminComponent;
-})();
+}());
 exports.AdminComponent = AdminComponent;
 //# sourceMappingURL=admin.component.js.map

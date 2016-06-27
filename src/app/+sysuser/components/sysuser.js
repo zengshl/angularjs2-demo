@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Created by lenovo on 2016/5/20.
  */
@@ -15,6 +16,7 @@ var SysUserComponent = (function () {
         var _this = this;
         this._util = _util;
         this.tableShow = true;
+        this.userBase = new entity_service_1.UserBase();
         this.secondPSD = "";
         this.isInsert = false;
         this.isdeletes = true;
@@ -22,6 +24,8 @@ var SysUserComponent = (function () {
         this.phoneSearch = '';
         this.modalContent = '';
         this.modalHeader = '';
+        this.birthday = "";
+        Date.prototype.toJSON = function () { return this.toLocaleString(); }; //初始化日期时区
         //实例化分页对象
         this.pdata = new entity_service_1.PageData();
         this.pdata.iDisplayStart = 0;
@@ -116,9 +120,10 @@ var SysUserComponent = (function () {
         this._util.getAdminInfo(JSON.stringify(user)).subscribe(function (res) {
             var getdata = res.json();
             _this.curUser = getdata.data;
-            for (var i = 0; i < getdata.base.length; i++) {
-                _this.userBase = getdata.base[i];
-            }
+            if (getdata.base.length > 0)
+                _this.userBase = getdata.base[0];
+            _this.birthday = _this.userBase.birthday.substr(0, 8);
+            console.log(_this.userBase.birthday, _this.birthday);
             _this.getUserRole = getdata.role;
             //有权限的角色打勾
             for (var j = 0; j < _this.getRole.length; j++) {
@@ -304,6 +309,6 @@ var SysUserComponent = (function () {
         __metadata('design:paramtypes', [index_1.UtilService])
     ], SysUserComponent);
     return SysUserComponent;
-})();
+}());
 exports.SysUserComponent = SysUserComponent;
 //# sourceMappingURL=sysuser.js.map
