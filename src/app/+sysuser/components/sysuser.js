@@ -258,6 +258,7 @@ var SysUserComponent = (function () {
         var _this = this;
         if (this.myForm.valid) {
             var data = { 'isInsert': this.isInsert, 'user': this.curUser, 'base': this.userBase, 'role': this.userRole };
+            Date.prototype.toJSON = function () { return this.toLocaleString(); };
             if (this.isInsert) {
                 if (this.curUser.password != '' && this.curUser.password == this.secondPSD) {
                     var data = { 'isInsert': this.isInsert, 'user': this.curUser, 'base': this.userBase, 'role': this.userRole };

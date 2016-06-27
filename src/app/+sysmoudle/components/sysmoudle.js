@@ -4,6 +4,7 @@
 var core_1 = require('@angular/core');
 var datatable_1 = require('angular2-datatable/datatable');
 var index_1 = require("../../shared/index");
+var ng2_uploader_1 = require('ng2-uploader/ng2-uploader'); //文件上传的组件
 var router_deprecated_1 = require('@angular/router-deprecated');
 var entity_service_1 = require("../../shared/services/entity.service");
 var SysMoudleComponent = (function () {
@@ -11,6 +12,11 @@ var SysMoudleComponent = (function () {
         var _this = this;
         this._util = _util;
         this.router = router;
+        this.options = {
+            url: 'http://localhost:9000/law/file/upload'
+        };
+        this.basicProgress = 0;
+        this.textName = "";
         this.attrData = { "data": [], page: 0, size: 0 };
         this.tableShow = true;
         this.isInsert = false;
@@ -34,6 +40,7 @@ var SysMoudleComponent = (function () {
             _this.data = res.json();
         });
         this.getAllMoudle();
+        this.zone = new core_1.NgZone({ enableLongStackTrace: false });
     }
     SysMoudleComponent.prototype.ngAfterViewInit = function () {
         jQuery('#text').dropdown();
@@ -137,6 +144,8 @@ var SysMoudleComponent = (function () {
     //返回模板信息界面
     SysMoudleComponent.prototype.goback = function () {
         this.addAttr = false;
+        this.textName = "";
+        this.basicProgress = 0;
     };
     //新增类型模板
     SysMoudleComponent.prototype.insertAttrData = function () {
@@ -146,6 +155,8 @@ var SysMoudleComponent = (function () {
     //重置模板属性
     SysMoudleComponent.prototype.resetAttr = function () {
         this.addTemp = new entity_service_1.DocTemplate();
+        this.textName = "";
+        this.basicProgress = 0;
     };
     SysMoudleComponent.prototype.updataAttr = function (item) {
         this.addAttr = true;
@@ -157,6 +168,8 @@ var SysMoudleComponent = (function () {
         this.attrData.page = 1;
         this.attrData.size = this.temps.length;
         this.addAttr = false;
+        this.textName = "";
+        this.basicProgress = 0;
     };
     //获取全部模块
     SysMoudleComponent.prototype.getAllMoudle = function () {
@@ -242,11 +255,26 @@ var SysMoudleComponent = (function () {
             this.updataAttrData();
         }
     };
+    SysMoudleComponent.prototype.handleBasicUpload = function (data) {
+        var _this = this;
+        this.basicResp = data;
+        this.textName = this.basicResp.originalName;
+        this.addTemp.resourcePath = "C:/law/template/" + this.textName;
+        this.addTemp.resourceTitle = this.textName.split(".")[0];
+        this.zone.run(function () {
+            _this.basicProgress = 50;
+        });
+        setTimeout(function () {
+            _this.zone.run(function () {
+                _this.basicProgress = 100;
+            });
+        }, 500);
+    };
     SysMoudleComponent = __decorate([
         core_1.Component({
             selector: 'sys_moudle',
             providers: [index_1.UtilService],
-            directives: [datatable_1.DataTableDirectives],
+            directives: [datatable_1.DataTableDirectives, ng2_uploader_1.UPLOAD_DIRECTIVES],
             styles: [require('app/+sysmoudle/components/sysmoudle.css')],
             template: require('app/+sysmoudle/components/sysmoudle.html')
         }), 

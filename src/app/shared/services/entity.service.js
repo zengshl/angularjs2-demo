@@ -349,6 +349,8 @@ var History = (function () {
         //签名
         this.aSiger = "";
         this.bSiger = "";
+        //股权转让公司名称
+        this.transferCompany = "";
     }
     return History;
 })();

@@ -2,6 +2,7 @@
  * Created by wss on 2016/6/20.
  */
 var core_1 = require('@angular/core');
+var core_2 = require('@angular/core');
 var index_1 = require('../../shared/index');
 var ng2_dragula_1 = require('ng2-dragula/ng2-dragula');
 var router_deprecated_1 = require('@angular/router-deprecated');
@@ -24,6 +25,7 @@ var ModifyFileComponent = (function () {
         this.attrData = new Array();
         this.modifyList = true;
         this.openMyFile = false;
+        this.openHolderList = new core_2.EventEmitter();
     }
     ModifyFileComponent.prototype.ngAfterViewInit = function () {
     };
@@ -58,12 +60,16 @@ var ModifyFileComponent = (function () {
     ModifyFileComponent.prototype.updateFile = function () {
         this._util.updateFile(JSON.stringify(this.myFile)).subscribe();
     };
+    ModifyFileComponent.prototype.close = function (name) {
+        this.openHolderList.emit(name);
+    };
     ModifyFileComponent = __decorate([
         core_1.Component({
             selector: 'modifyfile-box',
             providers: [index_1.UtilService, ng2_dragula_1.DragulaService],
             directives: [ng2_dragula_1.Dragula],
             inputs: ['myFile', 'transfer', 'isFinal'],
+            outputs: ['openHolderList'],
             template: require('app/+modifyfile/components/modifyfile.html')
         }), 
         __metadata('design:paramtypes', [index_1.UtilService, ng2_dragula_1.DragulaService, router_deprecated_1.Router])

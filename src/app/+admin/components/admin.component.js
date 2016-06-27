@@ -25,6 +25,9 @@ var AdminComponent = (function () {
         this.router.navigate([name]);
     };
     ;
+    AdminComponent.prototype.navFolder = function () {
+        this.router.navigate(['Folder', { "userId": "0" }]);
+    };
     AdminComponent.prototype.navFile = function () {
         this.router.navigate(['Document', { "userId": "0", "folderId": "0" },]);
     };
@@ -63,7 +66,7 @@ var AdminComponent = (function () {
                 component: sysrole_1.SysRoleComponent,
             },
             {
-                path: '/folder',
+                path: '/folder/:userId',
                 name: 'Folder',
                 component: folder_1.FolderComponent,
             },
