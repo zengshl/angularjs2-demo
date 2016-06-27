@@ -44,3 +44,62 @@ table th{
   font-weight: bolder;
 }
 
+.resp {
+  margin: 0 auto;
+  height: 200px;
+  max-width: 860px;
+}
+
+.resp .message-body {
+  font-size: 10px;
+  color: #333;
+  height: 92%;
+  overflow: hidden;
+  text-align: left;
+}
+
+label.tag input {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  outline: none;
+}
+
+.progress {
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 3px;
+  width: 100%;
+  height: 27px;
+}
+
+.progress .percent {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 27px;
+  color: #222342;
+  text-align: center;
+  line-height: 24px;
+}
+
+.progress .progress-bar {
+  display: block;
+  position: absolute;
+  width: 60%;
+  height: 25px;
+  background: #fce473;
+  color: #222342;
+}
+.btn {
+  display: block;
+  margin: 0 auto;
+  padding: 20px 25px 30px 25px;
+}
+
+.btn i {
+  margin-top: -2px;
+}

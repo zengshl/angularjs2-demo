@@ -1,13 +1,15 @@
 /**
  * Created by lenovo on 2016/5/30.
  */
-import {Component} from '@angular/core';
+import {Component,NgZone} from '@angular/core';
 import {AfterViewInit} from "@angular/core";
 import {DataTableDirectives} from 'angular2-datatable/datatable';
 import {UtilService} from "../../shared/index";
+import {UPLOAD_DIRECTIVES} from 'ng2-uploader/ng2-uploader';   //文件上传的组件
 import {Response} from '@angular/http';
 import {Router} from '@angular/router-deprecated';
 import {PageData,Moudle,Doctype,DocTemplate} from "../../shared/services/entity.service";
+import {bootstrap} from "angular2/platform/browser"
 
 //import {AddSysMoudleComponent} from "../../+addsysmoudle/components/addsysmoudle";
 
@@ -17,7 +19,7 @@ declare var jQuery:JQueryStatic;
 @Component({
   selector: 'sys_moudle',
   providers:[UtilService],
-  directives: [DataTableDirectives],
+  directives: [DataTableDirectives,UPLOAD_DIRECTIVES],
   styles: [ require('app/+sysmoudle/components/sysmoudle.css')],
   template: require('app/+sysmoudle/components/sysmoudle.html')
 })
@@ -27,6 +29,15 @@ export class SysMoudleComponent implements AfterViewInit{
     jQuery('#text').dropdown();
     //jQuery('.ui.fluid.search.dropdown').dropdown();
   }
+  zone: NgZone;
+  options: Object = {
+    url: 'http://localhost:9000/law/file/upload'
+  };
+
+  basicProgress: number = 0;
+  basicResp: Object;
+  textName:string = "";
+
   private data: any ;
   private attrData :any = {"data":[],page:0,size:0};
   private pdata :PageData;
@@ -65,6 +76,8 @@ export class SysMoudleComponent implements AfterViewInit{
     });
 
     this.getAllMoudle();
+
+    this.zone = new NgZone({ enableLongStackTrace: false });
   }
   //切换页面，获取表单数据
   getPageData(ds:any){
@@ -159,6 +172,8 @@ export class SysMoudleComponent implements AfterViewInit{
   //返回模板信息界面
   goback(){
     this.addAttr = false;
+    this.textName = "";
+    this.basicProgress = 0;
   }
   //新增类型模板
   insertAttrData(){
@@ -168,6 +183,8 @@ export class SysMoudleComponent implements AfterViewInit{
   //重置模板属性
   resetAttr(){
     this.addTemp = new DocTemplate();
+    this.textName = "";
+    this.basicProgress = 0;
   }
 
   updataAttr(item:any){
@@ -181,6 +198,8 @@ export class SysMoudleComponent implements AfterViewInit{
     this.attrData.page = 1;
     this.attrData.size = this.temps.length;
     this.addAttr = false;
+    this.textName = "";
+    this.basicProgress = 0;
   }
 //获取全部模块
   getAllMoudle(){
@@ -263,5 +282,22 @@ export class SysMoudleComponent implements AfterViewInit{
     }else{
       this.updataAttrData();
       }
+  }
+
+  handleBasicUpload(data): void {
+    this.basicResp = data;
+    this.textName = this.basicResp.originalName;
+    this.addTemp.resourcePath = "C:/law/template/"+this.textName;
+    this.addTemp.resourceTitle = this.textName.split(".")[0];
+    this.zone.run(() => {
+      this.basicProgress = 50;
+    });
+      setTimeout(() => {
+        this.zone.run(() => {
+          this.basicProgress = 100;
+        });
+      }, 500);
+    }
+
   }
 }

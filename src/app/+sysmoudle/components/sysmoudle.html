@@ -144,9 +144,10 @@
 
                 <!--添加模板属性-->
                 <form class="ui form"  *ngIf="addAttr" (ngSubmit)="insertOrUpdataAttr()">
-                    <div class="field" style="padding-top: 20px;">
-                      <div class="three fields">
-                        <div class="field">
+                    <div class="field" style="padding: 10px;">
+                      <div class="two fields"  style="padding: 10px;">
+                        <div class="field"  style="margin : 5px 20px 5px 5px;" >
+                          <div class="field">
                           <label>文档名称  </label>
                           <div class="ui left labeled icon input">
                             <input placeholder="文档名称" [(ngModel)]="addTemp.resourceName" type="text" required>
@@ -154,22 +155,35 @@
                               <i class="icon red asterisk"></i>
                             </div>
                           </div>
+                          </div>
+                          <div class="field" >
+                            <label>文档标题 </label>
+                            <input  placeholder="文档标题" [(ngModel)]="addTemp.resourceTitle" type="text">
+                          </div>
+                          <div class="field">
+                            <label>创建时间  </label>
+                            <input  placeholder="创建时间" [(ngModel)]="addTemp.createTime" type="text">
+                          </div>
+                          <div class="field">
+                            <label>文档路径  </label>
+                            <input  placeholder="文档路径" [(ngModel)]="addTemp.resourcePath" type="text" disabled="disabled">
+                          </div>
                         </div>
-                        <div class="field">
-                          <label>文档标题 </label>
-                          <input  placeholder="文档标题" [(ngModel)]="addTemp.resourceTitle" type="text">
-                        </div>
-                        <div class="field">
-                          <label>创建时间  </label>
-                          <input  placeholder="创建时间" [(ngModel)]="addTemp.createTime" type="text">
-                        </div>
-                      </div>
-                      <div class="three fields" *ngIf="false">
-                        <div class="field">
-                          <label>上传模板 </label>
-                          <div class="ui action input">
-                            <input placeholder="上传模板" type="text">
-                            <button class="ui button">上传</button>
+
+                        <div class="field"  style="margin : 5px 5px 5px 20px;">
+                          <div class="ui segment">
+                            <div class="ui top attached label">模板文件上传</div>
+                            <label class="tag btn is-danger">
+                              <i class="Browser icon"></i> 选择上传文件
+                              <input type="file" [ng-file-select]="options" (onUpload)="handleBasicUpload($event)">
+                              <img src="assets/images/sign.png">
+                              <h3>{{textName}}</h3>
+                            </label>
+
+                            <div class="progress">
+                              <div class="progress-bar" [style.width]="basicProgress + '%'"></div>
+                              <span class="percent">{{ basicProgress }}%</span>
+                            </div>
                           </div>
                         </div>
                       </div>

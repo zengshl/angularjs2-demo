@@ -8,6 +8,7 @@ import {ModifyPasswordComponent} from "../+modifypassword/components/modifypwd.c
 import {FrontPageComponent} from "../+frontpage/index";
 import {DemoComponent} from "../+demo/index";
 import {AdminLoginComponent} from '../+adminlogin/index';
+import {UploadDemo} from '../+uploadfiledemo/index';
 
 import {AdminComponent} from "../+admin/index";
 import {ValidDemoComponent} from "../+validdemo/index";
@@ -59,6 +60,11 @@ import {ValidDemoComponent} from "../+validdemo/index";
     path: '/adminlogin',
     name: 'AdminLogin',
     component: AdminLoginComponent
+  },
+  {
+    path: '/fileupload',
+    name: 'FileUpload',
+    component: UploadDemo
   }
 
 ])
