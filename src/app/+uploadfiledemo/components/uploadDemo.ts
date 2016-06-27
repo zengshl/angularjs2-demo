@@ -39,7 +39,9 @@ import {bootstrap} from "angular2/platform/browser"
 export class UploadDemo {
     zone: NgZone;
     options: Object = {
+        allowedExtensions : ['docx'],
         url: 'http://localhost:9000/law/file/upload'
+
         //url: 'http://ng2-uploader.com:10050/upload'
     };
     basicProgress: number = 0;

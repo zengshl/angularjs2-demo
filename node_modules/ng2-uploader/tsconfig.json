@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "mapRoot": "",
+    "module": "system",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "rootDir": ".",
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "target": "es5"
+  },
+  "files": [
+    "ng2-uploader.ts",
+    "typings/browser/ambient/es6-collections/index.d.ts",
+    "typings/browser/ambient/es6-promise/index.d.ts"
+
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
