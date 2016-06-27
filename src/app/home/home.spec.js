@@ -1,4 +1,3 @@
-"use strict";
 var testing_1 = require('@angular/core/testing');
 var http_1 = require('@angular/http');
 var testing_2 = require('@angular/http/testing');

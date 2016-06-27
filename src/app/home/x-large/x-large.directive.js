@@ -1,4 +1,3 @@
-"use strict";
 var core_1 = require('@angular/core');
 /*
  * Directive
@@ -19,6 +18,6 @@ var XLarge = (function () {
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
     ], XLarge);
     return XLarge;
-}());
+})();
 exports.XLarge = XLarge;
 //# sourceMappingURL=x-large.directive.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Title = (function () {
@@ -19,6 +18,6 @@ var Title = (function () {
         __metadata('design:paramtypes', [http_1.Http])
     ], Title);
     return Title;
-}());
+})();
 exports.Title = Title;
 //# sourceMappingURL=title.service.js.map
