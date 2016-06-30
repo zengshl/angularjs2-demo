@@ -31,7 +31,8 @@ export class SysMoudleComponent implements AfterViewInit{
   }
   zone: NgZone;
   options: Object = {
-    url: 'http://localhost:9000/law/file/upload'
+    //url: 'http://localhost:9000/law/file/upload'
+    url: 'http://192.168.1.55:8080/law/file/upload'
   };
 
   basicProgress: number = 0;
@@ -131,6 +132,7 @@ export class SysMoudleComponent implements AfterViewInit{
     this.curType = new Doctype();
     this.temps = new Array<DocTemplate>();
     this.tableShow = true;
+    this.addAttr = false;
     this.updataTable();
   }
     //重置表单
