@@ -10,7 +10,9 @@ export class UtilService  {
 
 //private url = 'http://120.24.252.170:9000/';
 //  private url = 'http://192.168.1.104:9000/';
-  private url = 'http://localhost:9000/';
+//  private url = 'http://localhost:9000/';
+  private url = 'http://192.168.1.103:9000/';
+//  private url = 'http://192.168.1.55:8080/';
 
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；
@@ -517,6 +519,25 @@ export class UtilService  {
     return this.http.get(str);
   }
 
+  getSuggest(data:string){
+    var str = this.url + 'law/feedback/getFeedBack';
+    return this.http.post(str,data);
+  }
+
+  updataSuggestInfo(data:string){
+    var str = this.url + 'law/feedback/updateFeedBack';
+    return this.http.post(str,data);
+  }
+
+  insertSuggestInfo(data:string){
+    var str = this.url + 'law/feedback/insertFeedBack';
+    return this.http.post(str,data);
+  }
+
+  deleteFeedBack(id:number){
+    var str = this.url + 'law/feedback/removeFeedBack/'+id;
+    return this.http.get(str);
+  }
 };
 
 

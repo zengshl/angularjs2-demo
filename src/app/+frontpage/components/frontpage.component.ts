@@ -9,6 +9,8 @@ import {PersonalComponent} from "../../+personal/components/personal.component";
 import {PersonalSetComponent} from "../../+personalset/components/personalset";
 import {NewFileComponent} from "../../+newfile/index";
 import {ChatComponent} from "../../+chat/components/chat.component";
+import {SuggestComponent} from '../../+suggest/index';
+
 @Component({
   selector: 'front-page',
   directives:[ROUTER_DIRECTIVES,NavbarComponent,ChatComponent],
@@ -46,6 +48,11 @@ import {ChatComponent} from "../../+chat/components/chat.component";
     path: '/personalset',  //个人设置
     name: 'PersonalSet',
     component: PersonalSetComponent
+  },
+  {
+    path: '/suggest',
+    name: 'Suggest',
+    component: SuggestComponent
   }
 ])
 export class FrontPageComponent {

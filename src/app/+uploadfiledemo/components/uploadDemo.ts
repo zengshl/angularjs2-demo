@@ -40,7 +40,8 @@ export class UploadDemo {
     zone: NgZone;
     options: Object = {
         allowedExtensions : ['docx'],
-        url: 'http://localhost:9000/law/file/upload'
+        //url: 'http://localhost:9000/law/file/upload'
+        url: 'http://192.168.1.55:8080/law/file/upload'
 
         //url: 'http://ng2-uploader.com:10050/upload'
     };
