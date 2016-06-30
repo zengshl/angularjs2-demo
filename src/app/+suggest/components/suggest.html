@@ -1,0 +1,86 @@
+<div  class="row" style=" margin-left: 5%; margin-right: 1%; padding-top: 30px;;">
+
+    <div *ngIf="tableShow" class="ui fluid container">
+
+        <form class="ui form">
+            <div class="fields">
+                <div class="three wide field">
+                    <div class="ui icon input">
+                        <input placeholder="标题..." type="text" [(ngModel)]="titleSearch">
+                        <i class="search link icon" (click)="filter()"></i>
+                    </div>
+                </div>
+
+                <div class="three wide field"></div>
+                <div class="three wide field">
+                    <button class="ui teal icon button" (click)="filter()"><i class="search icon"></i>查询</button>
+                </div>
+                <div class="ten wide field">
+                    <div class="right floated ui teal icon button" (click)="insert()"><i class="plus icon"></i>添加反馈</div>
+                </div>
+            </div>
+        </form>
+
+        <table class="ui teal celled table" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="8"
+               (fpage) = "getPageData($event)">
+            <thead>
+            <tr>
+                <th></th>
+                <th>用户名</th>
+                <th>标题</th>
+                <th>反馈内容</th>
+                <th>反馈时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data.data">
+                <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
+                <td>{{item.userName}}</td>
+                <td>{{item.adviceTitle}}</td>
+                <td>{{item.advice}}</td>
+                <td>{{item.createTime}}</td>
+                <td style="text-align: center">
+                    <a (click)="deleteData(item)"><i class="icon remove"></i>删除</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a (click)="updataData(item)"><i class="icon paint brush"></i>修改</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[8,16,24]"></mfBootstrapPaginator>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="ui segment" *ngIf="!tableShow">
+        <div class="container-fluid">
+            <div class="row"  style="height: 400px;padding: 5px">
+                <!--基本信息-->
+                <div class="ui top attached teal  label">
+                    <h3 style="color: white;text-align:left" >建议与反馈</h3>
+                </div>
+
+                <form  class="ui form" style="padding: 5px 20px;" (ngSubmit)="insertOrUpdata()">
+                    <div class="field">
+                        <label>反馈标题</label>
+                        <input placeholder="反馈标题"  [(ngModel)]="fb.adviceTitle" type="text">
+                    </div>
+                        <div class="field">
+                            <label>反馈内容</label>
+                            <textarea placeholder="反馈内容" [(ngModel)]="fb.advice"></textarea>
+                        </div>
+                    <button *ngIf="isInsert" type="submit" class="ui teal labeled icon submit button" >提交<i class="checkmark box icon"></i></button>
+                    <button *ngIf="!isInsert" type="submit" class="ui blue labeled icon submit button" >更新<i class="check circle outline icon"></i></button>
+                    <div class="ui brown  labeled icon submit button" tabindex="0" (click)="reset()" style="text-align: center"><i class="refresh icon"></i>重置</div>
+                    <div class="ui grey  labeled icon submit button" tabindex="0" (click)="backTo()" style="text-align: center"><i class="reply icon"></i>返回</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

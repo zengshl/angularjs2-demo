@@ -8,11 +8,11 @@ import {DocAttr,ConfidentAgreement,ConfidentTransfer} from "./entity.service";
   @Injectable()
 export class UtilService  {
 
-//private url = 'http://120.24.252.170:9000/';
-//  private url = 'http://192.168.1.104:9000/';
-//  private url = 'http://localhost:9000/';
-  private url = 'http://192.168.1.103:9000/';
-//  private url = 'http://192.168.1.55:8080/';
+//private url = 'http://120.24.252.170:9000/'; //阿里云
+//  private url = 'http://192.168.1.104:9000/'; //wss
+  private url = 'http://localhost:9000/'; //本机
+//  private url = 'http://192.168.1.103:9000/';//lhq
+//  private url = 'http://192.168.1.55:8080/';  //台式机
 
   constructor(public http: Http)  {
     //通过构造器解析网页内部的json数据，将原始数据流存储于_promise中，将流的json对象存储到components中；

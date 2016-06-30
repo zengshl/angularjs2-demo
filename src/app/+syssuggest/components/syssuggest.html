@@ -1,0 +1,39 @@
+<div class="row" style="background-color: #F5F5F5;padding-left:6%; height: 40px;">
+    <div class="ui breadcrumb">
+        <a class="section">主页</a>
+        <i class="right angle icon divider"></i>
+        <a class="section">系统管理</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">用户反馈管理</div>
+    </div>
+</div>
+
+
+<div  class="row" style=" margin-left: 5%; margin-right: 1%; padding-top: 30px;;">
+        <input class="ui input" placeholder="标题..."  *ngIf="config.filtering"
+               [ngTableFiltering]="config.filtering.position"
+               (tableChanged)="onChangeTable(config)">
+        <input placeholder="反馈内容..." type="text" *ngIf="config.filtering"
+               [ngTableFiltering]="config.filtering.office"
+               (tableChanged)="onChangeTable(config)">
+    <br>
+    <br>
+    <br>
+    <ng-table [config]="config.sorting"
+              (tableChanged)="onChangeTable(config)"
+              [rows]="rows" [columns]="columns">
+    </ng-table>
+
+    <pagination *ngIf="config.paging"
+                class="pagination-sm"
+                [(ngModel)]="page"
+                [totalItems]="length"
+                [itemsPerPage]="itemsPerPage"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+                [rotate]="false"
+                (pageChanged)="onChangeTable(config, $event)"
+                (numPages)="numPages = $event">
+    </pagination>
+    <pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}} </pre>
+</div>
