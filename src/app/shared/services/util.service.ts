@@ -538,6 +538,10 @@ export class UtilService  {
     var str = this.url + 'law/feedback/removeFeedBack/'+id;
     return this.http.get(str);
   }
+
+  getUrl(){
+    return this.url;
+  }
 };
 
 

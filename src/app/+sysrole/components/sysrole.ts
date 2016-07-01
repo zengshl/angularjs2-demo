@@ -44,6 +44,7 @@ export class SysRoleComponent implements AfterViewInit{
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
     this.pdata.iDisplayLength = 8;
+    this.pdata.sortData = "";
     this.menus = new Array<Menu>();
     this.postPowers = new Array<Power>();
     this.pdata.searchData = {"roleName":this.nameSearch,"roleNo":this.noSearch}
@@ -242,5 +243,11 @@ export class SysRoleComponent implements AfterViewInit{
       this.updataTable();
       swal("批量删除成功", "", "success");
     });
+  }
+
+  //排序
+  sortby(title:string){
+    this.pdata.sortData = title;
+    this.updataTable();
   }
 }

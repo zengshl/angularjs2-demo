@@ -39,9 +39,15 @@
             <thead>
             <tr>
               <th style="text-align:center"></th>
-              <th style="text-align:center">角色名</th>
+              <th style="text-align:center" (click)="sortby('roleName')">
+                角色名
+                <span *ngIf="pdata.sortData=='roleName'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
               <!--<th>                角色编码            </th>-->
-              <th style="text-align:center">描述</th>
+              <th style="text-align:center" (click)="sortby('roleDes')">
+                描述
+                <span *ngIf="pdata.sortData=='roleDes'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
               <th style="text-align:center">操作</th>
             </tr>
             </thead>

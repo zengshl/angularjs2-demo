@@ -31,10 +31,22 @@
             <thead>
             <tr>
               <!--<th>                父亲ID               </th>-->
-              <th>                类型名称             </th>
-              <th>                模块名称               </th>
-              <th>                状态               </th>
-              <th>                备注信息               </th>
+              <th (click)="sortby('typeName')">
+                类型名称
+                <span *ngIf="pdata.sortData=='typeName'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
+              <th (click)="sortby('moudleName')">
+                模块名称
+                <span *ngIf="pdata.sortData=='moudleName'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
+              <th (click)="sortby('status')">
+                状态
+                <span *ngIf="pdata.sortData=='status'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
+              <th (click)="sortby('remark')">
+                备注信息
+                <span *ngIf="pdata.sortData=='remark'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+              </th>
               <th>                操作                   </th>
             </tr>
             </thead>

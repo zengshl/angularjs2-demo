@@ -85,6 +85,8 @@ export class SysUserComponent implements AfterViewInit{
     this.pdata.page = 1;
 	  this.pdata.iDisplayLength = 8;
     this.pdata.searchData = {'account':this.accountSearch,'phone':this.phoneSearch}
+    this.pdata.sortData = "";
+
     //实例化用户对象
     this.curUser = new Admin();
     this.userBase = new UserBase();
@@ -338,5 +340,11 @@ export class SysUserComponent implements AfterViewInit{
     }else{
       //console.log('请完善必填信息');
     }
+  }
+
+  //排序
+  sortby(title:string){
+    this.pdata.sortData = title;
+    this.updataTable();
   }
 }

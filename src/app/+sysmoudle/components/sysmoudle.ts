@@ -24,6 +24,9 @@ declare var jQuery:JQueryStatic;
   template: require('app/+sysmoudle/components/sysmoudle.html')
 })
 export class SysMoudleComponent implements AfterViewInit{
+
+  ip : string = "http://192.168.1.104:9000/";
+
   ngAfterViewInit() {
 
     jQuery('#text').dropdown();
@@ -31,8 +34,8 @@ export class SysMoudleComponent implements AfterViewInit{
   }
   zone: NgZone;
   options: Object = {
-    //url: 'http://localhost:9000/law/file/upload'
-    url: 'http://192.168.1.55:8080/law/file/upload'
+    url: 'http://localhost:9000/law/file/upload'
+    //url: this.ip + 'law/file/upload'
   };
 
   basicProgress: number = 0;
@@ -64,12 +67,15 @@ export class SysMoudleComponent implements AfterViewInit{
     this.pdata.iDisplayStart = 0;
     this.pdata.page = 1;
     this.pdata.iDisplayLength = 10;
+    this.pdata.sortData = "";
     this.curType = new Doctype();
     this.temps = new Array<DocTemplate>();
     this.allMoudle = new Array<Moudle>();
     this.curMoudle = new Moudle();
     this.pdata.searchData = {"moudleName":this.typeSearch}
     //实例化用户对象
+
+    this.ip = _util.getUrl();
 
     //this.router.parent.navigate(['Mainn']); //测试时，直接指定路由
     _util.getMoudle(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
@@ -300,6 +306,9 @@ export class SysMoudleComponent implements AfterViewInit{
         });
       }, 500);
     }
-
+  //排序
+    sortby(title:string){
+      this.pdata.sortData = title;
+      this.updataTable();
+    }
   }
-}

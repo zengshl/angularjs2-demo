@@ -25,17 +25,28 @@
                (fpage) = "getPageData($event)">
             <thead>
             <tr>
-                <th></th>
-                <th>用户名</th>
-                <th>标题</th>
-                <th>反馈内容</th>
-                <th>反馈时间</th>
+                <th (click)="sortby('userName')">
+                    用户名
+                    <span *ngIf="pdata.sortData=='userName'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </th>
+                <th (click)="sortby('adviceTitle')">
+                    标题
+                    <span *ngIf="pdata.sortData=='adviceTitle'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </th>
+                <th (click)="sortby('advice')">
+                    反馈内容
+                    <span *ngIf="pdata.sortData=='advice'" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </th>
+                <th (click)="sortby('createTime')">
+                    反馈时间
+                    <span *ngIf="pdata.sortData=='createTime'" class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                </th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let item of mf.data.data">
-                <td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>
+                <!--<td><input  type="checkbox" (change)="onDelete($event.target,item)"></td>-->
                 <td>{{item.userName}}</td>
                 <td>{{item.adviceTitle}}</td>
                 <td>{{item.advice}}</td>
@@ -49,7 +60,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="6">
+                <th colspan="5">
                     <mfBootstrapPaginator [rowsOnPageSet]="[8,16,24]"></mfBootstrapPaginator>
                 </th>
             </tr>

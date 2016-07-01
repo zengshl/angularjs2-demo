@@ -1,6 +1,5 @@
 // Reflect.metadata ( metadataKey, metadataValue )
 // - https://github.com/jonathandturner/decorators/blob/master/specs/metadata.md#reflectmetadata--metadatakey-metadatavalue-
-"use strict";
 require("../../Reflect");
 var assert = require("assert");
 function ReflectMetadataReturnsDecoratorFunction() {

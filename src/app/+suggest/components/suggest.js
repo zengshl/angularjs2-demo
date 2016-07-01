@@ -23,12 +23,13 @@ var SuggestComponent = (function () {
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
         this.pdata.iDisplayLength = 8;
+        this.pdata.sortData = "";
         this.fb = new index_3.FeedBack();
         if (sessionStorage.getItem('user')) {
             this.user = JSON.parse(sessionStorage.getItem('user'));
             this.fb.userId = this.user.id;
         }
-        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "" };
+        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "", "userName": "" };
         _util.getSuggest(JSON.stringify(this.pdata)).subscribe(function (res) {
             _this.data = res.json();
         });
@@ -48,14 +49,14 @@ var SuggestComponent = (function () {
     //切换页面，获取表单数据
     SuggestComponent.prototype.getPageData = function (ds) {
         var _this = this;
-        ds.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "" };
-        this._util.getAdmin(JSON.stringify(ds)).subscribe(function (res) {
+        ds.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "", "userName": "" };
+        this._util.getSuggest(JSON.stringify(ds)).subscribe(function (res) {
             _this.data = res.json();
         });
     };
     //查询
     SuggestComponent.prototype.filter = function () {
-        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "" };
+        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "", "userName": "" };
         this.updataTable();
     };
     SuggestComponent.prototype.deleteData = function (feedback) {
@@ -88,7 +89,7 @@ var SuggestComponent = (function () {
     //表格刷新
     SuggestComponent.prototype.updataTable = function () {
         var _this = this;
-        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "" };
+        this.pdata.searchData = { 'adviceTitle': this.titleSearch, "userId": this.user.id + "", "userName": "" };
         this._util.getSuggest(JSON.stringify(this.pdata)).subscribe(function (res) {
             _this.data = res.json();
             _this.tableShow = true;
@@ -134,6 +135,10 @@ var SuggestComponent = (function () {
         this.fb = new index_3.FeedBack();
         this.fb.userId = this.user.id;
         this.tableShow = true;
+    };
+    SuggestComponent.prototype.sortby = function (title) {
+        this.pdata.sortData = title;
+        this.updataTable();
     };
     SuggestComponent = __decorate([
         core_1.Component({

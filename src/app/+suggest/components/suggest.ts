@@ -43,6 +43,7 @@ export class SuggestComponent implements AfterViewInit{
         this.pdata.iDisplayStart = 0;
         this.pdata.page = 1;
         this.pdata.iDisplayLength = 8;
+        this.pdata.sortData = "";
 
         this.fb = new FeedBack();
         if(sessionStorage.getItem('user')) {
@@ -50,7 +51,7 @@ export class SuggestComponent implements AfterViewInit{
             this.fb.userId = this.user.id;
         }
 
-        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+""}
+        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+"","userName":""}
 
         _util.getSuggest(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
             this.data = res.json();
@@ -74,8 +75,8 @@ export class SuggestComponent implements AfterViewInit{
 
     //切换页面，获取表单数据
     getPageData(ds:any){
-        ds.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+""}
-        this._util.getAdmin(JSON.stringify(ds)).subscribe((res:Response)=>{
+        ds.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+"","userName":""}
+        this._util.getSuggest(JSON.stringify(ds)).subscribe((res:Response)=>{
             this.data = res.json();
         });
     }
@@ -83,7 +84,7 @@ export class SuggestComponent implements AfterViewInit{
 
     //查询
     filter(){
-        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+""}
+        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+"","userName":""}
         this.updataTable();
     }
 
@@ -120,7 +121,7 @@ export class SuggestComponent implements AfterViewInit{
     //表格刷新
     updataTable(){
 
-        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+""}
+        this.pdata.searchData = {'adviceTitle':this.titleSearch,"userId":this.user.id+"","userName":""}
 
         this._util.getSuggest(JSON.stringify(this.pdata)).subscribe((res:Response)=>{
             this.data = res.json();
@@ -168,5 +169,10 @@ export class SuggestComponent implements AfterViewInit{
         this.fb = new FeedBack();
         this.fb.userId = this.user.id;
         this.tableShow = true;
+    }
+
+    sortby(title:string){
+        this.pdata.sortData = title;
+        this.updataTable();
     }
 }
