@@ -35,6 +35,7 @@
   <button class="ui teal button" (click)="login()" [disabled]="!myForm.valid">提交</button>
   <sui-checkbox>Checkbox example</sui-checkbox>
 
+  <h3>radio测试</h3>
   <div class="ui form">
     <div class="inline fields">
       <label>Radio Button Example</label>
@@ -55,4 +56,33 @@
     </div>
   </div>
   <p>The currently selected value is {{ eRadio | json }}</p>
+</div>
+
+<h3>tab测试</h3>
+<sui-tabset>
+  <div class="ui top attached tabular menu">
+    <a class="item" suiTabHeader="1" [(isActive)]="firstActive" style="width:200px">First</a>
+    <a class="item" suiTabHeader="2" [(isActive)]="secondActive" (onActivate)="alert()">
+      <i class="alarm icon"></i>
+      Second
+    </a>
+    <a class="item" suiTabHeader="3" [(isActive)]="thirdActive" [isDisabled]="thirdDisabled">Third</a>
+
+  </div>
+  <div class="ui bottom attached segment" suiTabContent="1">
+    第1页
+    <button class="ui blue button" (click)="secondActive = true">Activate 2nd Tab</button>
+  </div>
+  <div class="ui bottom attached segment" suiTabContent="2">
+    第2页
+    <button class="ui violet button" (click)="thirdActive = true">Activate 3rd Tab</button>
+  </div>
+  <div class="ui bottom attached segment" suiTabContent="3">
+    第3页
+    当第3页被禁止时，直接跳到第二页
+    <button class="ui purple button" (click)="firstActive = true">Activate 1st Tab</button>
+  </div>
+</sui-tabset>
+<div class="ui segment">
+  <sui-checkbox [(ngModel)]="thirdDisabled">Third tab disabled?</sui-checkbox>
 </div>

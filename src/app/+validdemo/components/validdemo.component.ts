@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Control, ControlGroup } from '@angular/common';
 import { ValidationMessagesComponent } from 'ng2-validate/core';
 import {EmailValidation, MobileValidation, PasswordValidation, PersonIdValidation} from "../../shared/index";
-import {CHECKBOX_DIRECTIVES} from 'ng2-semantic-ui/ng2-semantic-ui';
+import {CHECKBOX_DIRECTIVES,TAB_DIRECTIVES} from 'ng2-semantic-ui/ng2-semantic-ui';
 
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'validdemo-box',
-  directives: [ValidationMessagesComponent,CHECKBOX_DIRECTIVES],
+  directives: [ValidationMessagesComponent,CHECKBOX_DIRECTIVES,TAB_DIRECTIVES],
   styles: [ require('app/+validdemo/components/validdemo.component.css') ],
   template: require('app/+validdemo/components/validdemo.component.html')
 })
@@ -49,6 +49,9 @@ login(){
   console.log(this.myForm.valid);
 }
 
+  alert(){
+    swal("你点击了弹窗页面","","success");
+  }
 
 
 }
