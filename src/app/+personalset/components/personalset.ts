@@ -12,6 +12,7 @@ import {FORM_DIRECTIVES} from '@angular/common';
 import { Control, ControlGroup } from '@angular/common';
 import { ValidationMessagesComponent } from 'ng2-validate/core';
 import {EmailValidation, MobileValidation, PasswordValidation, PersonIdValidation} from "../../shared/index";
+import {CHECKBOX_DIRECTIVES} from 'ng2-semantic-ui/ng2-semantic-ui';
 
 
 declare var jQuery:JQueryStatic;
@@ -19,7 +20,7 @@ declare var jQuery:JQueryStatic;
 @Component({
   selector: 'personal-set',
   providers:[UtilService],
-  directives: [FORM_DIRECTIVES,ValidationMessagesComponent],
+  directives: [FORM_DIRECTIVES,ValidationMessagesComponent,CHECKBOX_DIRECTIVES],
   template: require('app/+personalset/components/personalset.html')
 })
 export class PersonalSetComponent implements AfterViewInit{
@@ -95,7 +96,7 @@ export class PersonalSetComponent implements AfterViewInit{
       updateData.user = this.user;
       updateData.company = this.company;
       updateData.companyId = this.company.id;
-      console.log(JSON.stringify(updateData));
+      //console.log(JSON.stringify(updateData));
       this._util.updataUser(JSON.stringify(updateData)).subscribe((res:Response)=>{
         this.freshUser();
         if(res.json() !=0){
@@ -120,7 +121,7 @@ export class PersonalSetComponent implements AfterViewInit{
   }
 
   stepClick(step:string){
-    console.log(step);
+    //console.log(step);
     //event.target.style.background = 'LightBLue';
     if(step == 'step1'){
       this.step1 = "active";

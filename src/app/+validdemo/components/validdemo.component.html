@@ -33,4 +33,26 @@
   </div>
 
   <button class="ui teal button" (click)="login()" [disabled]="!myForm.valid">提交</button>
+  <sui-checkbox>Checkbox example</sui-checkbox>
+
+  <div class="ui form">
+    <div class="inline fields">
+      <label>Radio Button Example</label>
+      <div class="field">
+        <sui-radio-button value="hello" [(ngModel)]="eRadio">Value: "hello"</sui-radio-button>
+      </div>
+      <div class="field">
+        <sui-radio-button value="world" [(ngModel)]="eRadio">Value: "world"</sui-radio-button>
+      </div>
+      <div class="field">
+        <sui-radio-button value="example" [(ngModel)]="eRadio">Value: "example"</sui-radio-button>
+      </div>
+      <div class="field">
+        <sui-radio-button [value]="{ example: 'object' }" [(ngModel)]="eRadio">
+          Value: { example: "object" }
+        </sui-radio-button>
+      </div>
+    </div>
+  </div>
+  <p>The currently selected value is {{ eRadio | json }}</p>
 </div>

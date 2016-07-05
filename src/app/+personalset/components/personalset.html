@@ -82,39 +82,35 @@
                         </div>
                       </div>
 
-                      <!--<div class="field">-->
-                        <!--<div class="ui grid" >-->
-                          <!--<div class="row" style="padding: 5px 20px;">-->
-                            <!--<div class="two wide column">-->
-                            <!--</div>-->
-                            <!--<div class="four wide column" style="text-align:right">-->
-                              <!--<div class="ui white large label" >-->
-                                <!--性别  ：-->
-                              <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="eight wide column">-->
-                              <!--<div class="two  fields" >-->
-                                <!--<div class="field" style="text-align:center">-->
-                                  <!--&lt;!&ndash;<div class="ui radio checkbox">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input name="sex" checked="checked"  [(ngModel)]="user.sex" type="radio">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<label>男</label>&ndash;&gt;-->
-                                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                  <!--<input  type="radio" value="maleState.value" name="user.sex" [(ngModel)]="user.sex" >男-->
-                                <!--</div>-->
-                                <!--<div class="field" style="text-align:center">-->
-                                  <!--&lt;!&ndash;<div class="ui radio checkbox" >&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input name="sex"    type="radio" [(ngModel)]="user.sex">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<label>女</label>&ndash;&gt;-->
-                                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                  <!--<input type="radio" value="0" name="user.sex"  [(ngModel)]="user.sex">女-->
-                                <!--</div>-->
-                              <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="two wide column">-->
-                            <!--</div>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                      <!--</div>-->
+                      <div class="field">
+                        <div class="ui grid" >
+                          <div class="row" style="padding: 5px 20px;">
+                            <div class="two wide column">
+                            </div>
+                            <div class="four wide column" style="text-align:right">
+                              <div class="ui white large label" >
+                                性别  ：
+                              </div>
+                            </div>
+                            <div class="eight wide column">
+                              <div class="two  fields" >
+                                <div class="field">
+                                  <sui-radio-button [value]="'1'" [(ngModel)]="user.sex">
+                                    男
+                                  </sui-radio-button>
+                                </div>
+                                <div class="field" style="text-align:left">
+                                  <sui-radio-button [value]="'0'" [(ngModel)]="user.sex">
+                                    女
+                                  </sui-radio-button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="two wide column">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                       <div class="field">
                         <div class="ui grid" >

@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Control, ControlGroup } from '@angular/common';
 import { ValidationMessagesComponent } from 'ng2-validate/core';
 import {EmailValidation, MobileValidation, PasswordValidation, PersonIdValidation} from "../../shared/index";
+import {CHECKBOX_DIRECTIVES} from 'ng2-semantic-ui/ng2-semantic-ui';
 
 declare var jQuery:JQueryStatic;
 
 @Component({
   selector: 'validdemo-box',
-  directives: [ValidationMessagesComponent],
+  directives: [ValidationMessagesComponent,CHECKBOX_DIRECTIVES],
   styles: [ require('app/+validdemo/components/validdemo.component.css') ],
   template: require('app/+validdemo/components/validdemo.component.html')
 })
@@ -24,6 +25,8 @@ export class ValidDemoComponent implements OnInit{
   private personid: string;
 
   private isValid:boolean;
+
+  eRadio = "hello";
 
   public ngOnInit(): void {
     this.emailControl = new Control('', new EmailValidation().validator);
