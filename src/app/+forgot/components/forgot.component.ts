@@ -66,7 +66,6 @@ export class ForgotComponent {
   getCode() {
     if (this.account.indexOf("@") !== -1) { //如果邮箱不为空
       this.user.email = this.account;
-      console.log(this.user)
       this._util.getValidMdPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
         if (data.status === "0") {
@@ -77,7 +76,7 @@ export class ForgotComponent {
             this.error = false;
           }, 8000);
         } else if (data.status === "1") {
-          alert('验证码已发送至您的邮箱，请注意查收！');
+          swal("验证码已发送至您的邮箱，请注意查收！", "", "success");
           this.vdcode = data.result;
           this.isRegistered = true;
         }
@@ -98,14 +97,14 @@ export class ForgotComponent {
               this.error = false;
             }, 8000);
           } else if (data.status === "1") {
-            alert('验证码已发送至您的手机，请注意查收！');
+            swal("验证码已发送至您的手机，请注意查收！", "", "success");
             this.vdcode = data.result;
             this.isRegistered = true;
           }
         });
         this.countBack();
       } else {
-        alert("请输入您的手机号或邮箱！")
+        swal("请输入您的手机号或邮箱！", "", "error");
       }
 
     }

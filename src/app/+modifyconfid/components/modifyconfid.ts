@@ -73,7 +73,7 @@ export class ModifyConfidComponent implements AfterViewInit{
                 this.isFinal = true;
                 //最终化后，需要重新刷新文档列表
                 //this.refreshFileList(this.myFile.folderId);
-                alert("成功最终化文档！");
+                swal("成功最终化文档！", "", "success");
             })
             return true;
         }

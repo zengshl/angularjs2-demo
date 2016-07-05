@@ -229,7 +229,7 @@ export class ConfidTemplateComponent {
     if(this.business){  //确定个人还是企业
       console.log(this.aCompanyName,this.bCompanyName);
       if(this.aCompanyName == null || this.bCompanyName ==null){
-        alert("名称不能为空！");
+        swal("名称不能为空!", "", "error");
         return;
       }
       this.agreement.aName = this.aCompanyName;
@@ -237,7 +237,7 @@ export class ConfidTemplateComponent {
       this.agreement.organizationType = "企业";
     }else{
       if(this.aPersonName == null || this.bPersonName== null || this.aIdNo== null || this.bIdNo== null){
-        alert("名称不能为空！");
+        swal("名称不能为空!", "", "error");
         return;
       }
       this.agreement.aName = this.aPersonName;
@@ -261,7 +261,7 @@ export class ConfidTemplateComponent {
       this.conclusion = this.agreement.aName+"与"+this.agreement.bName+"签订保密协议。" +"在协议规定内，"+this.agreement.aName+"可以获取"
           +this.agreement.bName+"披露给本"+this.agreement.organizationType+"的商业信息。" +"是否确定？"
     }else{
-      alert(this.agreement.organizationType+"至少是披露方或者接收方，请重新填写问题答案。");
+      swal(this.agreement.organizationType+"至少是披露方或者接收方，请重新填写问题答案。", "", "error");
       this.showQ1 = !this.showQ1;
       this.showPro = !this.showPro;
       this.activeStep(1,1);
@@ -306,7 +306,6 @@ export class ConfidTemplateComponent {
 
 //测试
   test(){
-    alert("ok")
     //console.log(a,c);
   }
   //保密材料选择..........................
@@ -424,7 +423,7 @@ export class ConfidTemplateComponent {
   //最后总结保存信息
   finalConclude(){
     this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
-      alert("保存成功！");
+      swal("保存成功！", "", "success");
       this.nav("File");
     })
   };

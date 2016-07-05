@@ -152,14 +152,14 @@ export class FileComponent {
     //console.log(fn);
     if(fn){ //不为空的话
       this._util.createFolder(fn,this.user.id).subscribe((res)=>{
-        alert("创建文件夹成功！");
+        swal("创建文件夹成功！", "", "success");
         this.showCreateFolder = false;
         this.getFolder(); //刷新文件夹列表
 
       });
 
     }else{
-      alert("不能为空");
+      swal("不能为空！", "", "error");
     }
   }
 //修改文件夹
@@ -174,12 +174,12 @@ export class FileComponent {
       this.myFolder.fileName = forModify;
       this._util.updateFolder(JSON.stringify(this.myFolder)).subscribe((res)=>{
         this.showModifyFolder = false;
-        alert("修改成功！");
+        swal("修改成功！", "", "success");
         this.getFolder(); //刷新文件夹列表
 
       });
     }else{
-      alert("不能为空");
+      swal("不能为空", "", "error");
     }
   }
 //跳转路由功能
@@ -202,7 +202,7 @@ export class FileComponent {
         }else {
           this.getFile(0);
         }
-        alert("删除成功！");
+        swal("删除成功", "", "success");
       })
       return true;
     }
@@ -219,7 +219,7 @@ export class FileComponent {
     this._util.copyFile(data).subscribe((res)=>{
       var rc = res.json;
       console.log(rc);
-      alert("文件复制成功！");
+      swal("文件复制成功", "", "success");
       //刷新列表
       this.refreshFileList(this.myFile.folderId);
     })
@@ -261,7 +261,7 @@ export class FileComponent {
         this.isFinal = true;
         //最终化后，需要重新刷新文档列表
         this.refreshFileList(this.myFile.folderId);
-        alert("成功最终化文档！");
+        swal("成功最终化文档", "", "success");
       })
       return true;
     }
@@ -294,8 +294,7 @@ export class FileComponent {
         //重新刷新文件列表
         this._util.getFile(0,this.user.id).subscribe((res)=>{
           this.files = <File[]> res.json().data;
-          //console.log(this.files);
-          alert("文件转移成功！");
+          swal("文件转移成功", "", "success");
           this.move = false;
         });
       });
@@ -308,7 +307,7 @@ export class FileComponent {
         //重新刷新文件列表
         this._util.getFile(fdId,this.user.id).subscribe((res)=>{
           this.myFiles = <File[]> res.json().data;
-          alert("文件转移成功！");
+          swal("文件转移成功", "", "success");
         });
         this.moveTo = false;
       });

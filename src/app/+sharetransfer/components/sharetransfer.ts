@@ -140,7 +140,7 @@ export class ShareTransferComponent {
 
             if(this.transfer.aName == null || this.transfer.bName== null || this.transfer.aIdNo== null || this.transfer.bIdNo== null
              || this.transfer.aName == "" || this.transfer.bName== "" || this.transfer.aIdNo== "" || this.transfer.bIdNo== ""){
-                alert("名称或证件号不能为空！");
+                swal("名称或证件号不能为空!", "", "error");
                 return;
             }
             //this.transfer.aName = this.aPersonName;
@@ -156,6 +156,8 @@ export class ShareTransferComponent {
     }
     //下一阶段
     nextStep1(){
+        this.showQ5 = !this.showQ5;
+        this.showQ6 = !this.showQ6;
         this.step1 = 'completed';
         this.step2 = 'active';
         this.step3 = 'disabled';
@@ -174,7 +176,21 @@ export class ShareTransferComponent {
                 this.attrData.push(a);
                 this._util.createDocAttr(JSON.stringify(this.attrData)).subscribe(()=>{
                     //sessionStorage.setItem("nextStep1","token");
-                    swal("Good job!", "第一步完成！", "success");
+                    swal({
+                        title: "Good job!",
+                        text: "第一步完成！",
+                        type: "success",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "继续!",
+                        closeOnConfirm: true
+                    }, function(isConfirm){
+                        if (isConfirm) {
+                            SweetAlert.swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                        } else {
+                            SweetAlert.swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
                 })
                 this.attrData  = new Array<DocAttr>(); //数据归零
             });
@@ -187,7 +203,7 @@ export class ShareTransferComponent {
 
 //测试
     test(){
-        alert("ok")
+        swal("ok！", "", "success");
     }
 
     //组装选择对象值为字符串，以分号隔开

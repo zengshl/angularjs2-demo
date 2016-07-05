@@ -30,7 +30,6 @@ export class SysUserComponent implements AfterViewInit{
   private emailControl: Control;
   ngAfterViewInit() {
     jQuery('#gender').click(function(){
-      alert('11')
 
     });
 

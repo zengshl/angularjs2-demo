@@ -15,7 +15,13 @@ export class User {
   companyNum = "";
   industry = "";
   region = "";
-
+  contactName:string = "";
+  contactPhone:string = "";
+  contactEmail:string = "";
+  contactFax:string = "";
+  contactAddress:string = "";
+  qq :string = "";
+  sex : string = "";
 }
 //对象必须赋初值，否则scala后台转对象时会报错
 export class Admin {
@@ -250,6 +256,12 @@ export class UserCompany {
   companyName:string = "";
   companyScope:string = "";
   companyAddress:string = "";
+  contactName :string = "";
+  contactEmail:string = "";
+  contactAddress:string = "";
+  contactPhone:string = "";
+  contactFox:string = "";
+  bussinessEntity : string = "";
 }
 
 //步骤的实体类

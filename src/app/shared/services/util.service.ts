@@ -66,6 +66,12 @@ export class UtilService  {
     return this.http.post(str,data);
 
   }
+
+  getgetValidChangeMdPassword(data:string):any{
+    var str = this.url + 'law/user/ValidChangeMdPassword';
+    return this.http.post(str,data);
+
+  }
   //注册表单提交
   signUp(data:string)  {
     var str = this.url + 'law/user/register';
@@ -81,6 +87,12 @@ export class UtilService  {
         var str = this.url + 'law/user/forgetPassword';
         return this.http.post(str,data);
     };
+
+  //单纯的修改密码
+  updataPSD(data:string)  {
+    var str = this.url + 'law/user/updataPSD';
+    return this.http.post(str,data);
+  };
 
   //用户管理部分
   //获取管理用户信息

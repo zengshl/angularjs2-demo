@@ -108,10 +108,15 @@ export class SignupComponent implements AfterViewInit{
           this.user.password = form.password;
           this.signup();
         }else{
-          alert("请输入正确的手机号");
+          swal("请输入正确的手机号!", "", "error");
         }
       }else{
-        alert("请输入正确的手机号或邮箱");
+        //swal("请输入正确的手机号或邮箱!", "", "error");
+        swal({
+          title: "注册失败!",
+          text: "请输入正确的手机号或邮箱!",
+          imageUrl: "assets/images/face-sad.png"
+        });
       }
     }
   }
@@ -128,7 +133,8 @@ export class SignupComponent implements AfterViewInit{
           this.error = false;
         }, 10000);
       }else{
-        alert(data.message);
+        //alert(data.message);
+        swal(data.message+"!", "", "success");
         this.toLogin();
       }
     });

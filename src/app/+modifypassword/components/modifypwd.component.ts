@@ -35,10 +35,10 @@ export class ModifyPasswordComponent  {
       this._util.mdfPassword(JSON.stringify(this.user)).subscribe((res:Response)=> {
         var data = res.json();
         if(data.status ==='1') { //修改成功
-          alert('密码修改成功！');
+          swal("密码修改成功密码修改成功！", "", "success");
           this.toLogin();
         }else {
-          alert('密码修改失败！');
+          swal("密码修改失败!", "", "error");
         }
       });
     }
