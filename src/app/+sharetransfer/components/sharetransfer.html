@@ -1,5 +1,5 @@
 <!-- 左边栏 -->
-<div class="col-md-2" id="sidebarLeft" style="position: fixed;top:23%;left:1%;">
+<div class="col-md-2" id="sidebarLeft" style="position: fixed;top:19.5%;left:1%;">
     <!-- 步骤 -->
     <div class="ui fluid vertical steps"  *ngIf = "!showList" >
         <div class="step" style="background-color: grey;color: white">
@@ -28,14 +28,14 @@
 <div class="col-md-7">
 
     <!-- 步骤 -->
-    <div class="ui top attached ordered steps"  *ngIf = "!showList">
+    <div class="ui top attached ordered steps"   *ngIf = "!showList">
         <div class="step" [ngClass]="step1" (click)="stepClick('step1')">
             <div class="content">
                 <div class="title">基本信息</div>
                 <div class="description">前置问题和主体名称</div>
-                <div class="ui tiny progress" style="text-align:center">
-                    <div class="progress-bar" [style.width]="mySteps1.progress + '%'" style="background-color:#7FFF00;">
-                        <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps1.progress}}%</span>
+                <div class="progress" style="margin-bottom:0px;">
+                    <div class="progress-bar" [style.width]="mySteps1.progress + '%'" style="background-color:#21BA45;">
+                        <span class="percent" style="color:#FFFFFF"><h4>{{ mySteps1.progress}}%</h4></span>
                     </div>
 
                 </div>
@@ -45,9 +45,9 @@
             <div class="content">
                 <div class="title">协议内容填写</div>
                 <div class="description">协议相关的内容信息</div>
-                <div class="progress " >
-                    <div class="progress-bar" [style.width]="mySteps2.progress + '%'" style="background-color:#7FFF00">
-                        <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps2.progress}}%</span>
+                <div class="progress"    style="margin-bottom:0px;">
+                    <div class="progress-bar" [style.width]="mySteps2.progress + '%'" style="background-color:#21BA45">
+                        <span class="percent" style="color:#FFFFFF"><h4>{{ mySteps2.progress}}%</h4></span>
                     </div>
                 </div>
             </div>
@@ -377,7 +377,7 @@
 
 <div class="col-md-3"></div>
 
-<div class="col-md-3" id="sidebarRight" style="position: fixed;top:23%;right:1%;">
+<div class="col-md-3" id="sidebarRight" style="position: fixed;top:19.5%;right:1%;">
     <div class="ui styled fluid accordion" style="padding: 5% 2%;">
         <div class="active title">
             <i class="dropdown icon"></i>

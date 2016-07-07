@@ -1,8 +1,8 @@
 
-<div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:50px 3%;background-color:ghostwhite">
+<div class="ui segment" style="min-height: 600px;_height:600px; border: 1px solid grey;padding:30px;background-color:ghostwhite">
   <div class="container-fluid">
-    <div class="row" style="height: 70px;padding:0 5px">
-      <div class="col-md-3"><h2 class="ui header">我的文件管理</h2></div>
+    <div class="row" style="height: 50px;padding:0 5px">
+      <div class="col-md-3"><h2 class="ui header"><i _ngcontent-xts-4="" class="large travel icon"></i>我的文件管理</h2></div>
       <div class="col-md-2 col-md-offset-7" style="text-align: right;">
         <a (click)="nav('./Personal')"><i class="large sign in icon"></i>返回个人中心</a>
       </div>
@@ -16,7 +16,7 @@
     <div class="sixteen wide column" *ngIf = "!showMyFiles && !showCreateFolder && !showModifyFolder">
 
       <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
+        <div class="panel-heading" style="background-color: #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
           <h3 class="panel-title" style="color: white" >
             <i class="folder Outline icon"></i>我的文件夹 -- 点击此处创建新的文件夹
           </h3>
@@ -24,7 +24,7 @@
         <div class="panel-body" style="padding: 20px 5%;min-height: 300px;_height:300px; ">
           <div class="ui relaxed divided list" style="padding: 10px;">
             <div class="item" *ngFor = "let fd of folders" [dragula]='"bag"'>
-              <div class="ui stackable grid">
+              <div class="ui stackable grid"   onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
                 <div class="one wide column">
                   <a class="ui tiny image" (click)="openFolder(fd)">
                     <img src="assets/images/fileimg.png">
@@ -33,16 +33,13 @@
                 <div class="eight wide column">
                   <div class="content">
                     <div class="folderId" style="display: none">{{fd.id}}</div>
-                    <div class="header">{{fd.fileName}}</div>
+                    <div class="header" style="padding:3px;">{{fd.fileName}}</div>
                     <div class="meta">
                       <span>{{fd.createTime}}</span>
                     </div>
                     <div class="description">
                       <p></p>
                     </div>
-                    <!--<div class="extra">-->
-                    <!--<a (click)="modifyFolder(fd)">修改</a>   <a (click)="deleteFolder(fd)">删除</a>-->
-                    <!--</div>-->
                   </div>
                 </div>
                 <div class="seven wide column">
@@ -65,7 +62,7 @@
   <div class="sixteen wide column"  *ngIf = "showCreateFolder">
 
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
+      <div class="panel-heading" style="background-color: #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showCreateFolder = !showCreateFolder">
         <h3 class="panel-title" style="color: white" >
           <i class="folder  icon"></i>创建文件夹 -- 点击此处返回文件夹列表
         </h3>
@@ -88,7 +85,7 @@
   <div class="sixteen wide column"  *ngIf = "showModifyFolder">
 
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showModifyFolder = !showModifyFolder">
+      <div class="panel-heading" style="background-color: #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showModifyFolder = !showModifyFolder">
         <h3 class="panel-title" style="color: white" >
           <i class="file text outline icon"></i> 修改文件夹 --  点击此处返回文件夹列表
         </h3>
@@ -114,7 +111,7 @@
   <div class="sixteen wide column"  *ngIf = "showMyFiles && !moveTo">
 
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showMyFiles = !showMyFiles">
+      <div class="panel-heading" style="background-color: #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="showMyFiles = !showMyFiles">
         <h3 class="panel-title" style="color: white" >
           <i class="folder icon"></i> 文件夹：{{myFolder.fileName}} -- 双击此处返回文件夹列表
         </h3>
@@ -123,7 +120,7 @@
           <div class="folderId" style="display: none">{{myFolder.id}}</div>
           <div class="ui relaxed divided list"  style="padding: 10px;" [dragula]='"bag"'>
             <div class="item"  *ngFor = "let mf of myFiles">
-              <div class="ui stackable grid">
+              <div class="ui stackable grid"  onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
                 <div class="one wide column">
                   <a class="ui mini image">
                     <img src="assets/images/fileimg2.png">
@@ -178,7 +175,7 @@
     <!-- 文档移动至 -->
     <div class="sixteen wide column" *ngIf = "move || moveTo">
       <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="backTo()">
+        <div class="panel-heading" style="background-color:  #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="backTo()">
           <h3 class="panel-title" style="color: white" >
             <i class="file text outline icon"></i> 文档名：{{myFile.docName}}，移动至 -- 点击此处返回文件列表
           </h3>
@@ -215,7 +212,7 @@
   <!-- 未归类文档-->
   <div class="sixteen wide column" *ngIf = "!move">
     <div class="panel panel-default">
-      <div class="panel-heading" style="background-color: lightskyblue;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="nav('./NewFile')">
+      <div class="panel-heading" style="background-color: #F0F0F0;min-height:50px;_height:50px;text-align: center;cursor: pointer;cursor: hand;" (click)="nav('./NewFile')">
         <h3 class="panel-title" style="color: white" >
           <i class="file text outline icon"></i> 未归类的文件 -- 点击此处创建新的文件
         </h3>
@@ -224,7 +221,7 @@
         <div class="folderId" style="display: none">0</div>
         <div class="ui relaxed divided list" style="padding: 10px;" [dragula]='"bag"'>
           <div class="item"  *ngFor = "let fl of files">
-            <div class="ui stackable grid">
+            <div class="ui stackable grid" onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
               <div class="one wide column">
                 <a class="ui mini image" (click)="modifyFile(fl)">
                   <img src="assets/images/fileimg2.png">
@@ -233,7 +230,7 @@
               <div class="eleven wide column">
                 <div class="content">
                   <div class="fileId" style="display: none">{{fl.id}}</div>
-                  <div class="header" [ngStyle]="{color:(fl.status=='1'?'red':'')}">{{fl.docName}}</div>
+                  <div class="header" [ngStyle]="{color:(fl.status=='1'?'#F58D96':'')}">{{fl.docName}}</div>
                   <div class="meta">
                     <span>{{fl.createTime}}</span>
                   </div>
@@ -266,7 +263,7 @@
           </div>
           <div class="item" >
             <br>
-            <span style="color: red;"><i class="large red announcement icon"></i>提示：红色文件名说明该文件已最终化，只能浏览不可修改！</span>
+            <span style="color: #F58D96;"><i class="large  announcement icon"></i>提示：红色文件名说明该文件已最终化，只能浏览不可修改！</span>
           </div>
           <br>
 
