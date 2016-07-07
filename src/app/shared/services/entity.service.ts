@@ -275,6 +275,7 @@ export class Step {
 export class Steps {
   id:number = 0;
   stepName:string = "";
+  progress:number = 0;
   data:Step[] = new Array<Step>();
 }
 

@@ -8,6 +8,10 @@
                 <div class="title">{{mySteps.stepName}}</div>
             </div>
         </div>
+        <!--<div class="progress " >-->
+            <!--<div class="progress-bar" [style.width]="mySteps.progress + '%'" style="background-color:green"></div>-->
+            <!--<span class="percent" style="color:red">{{ mySteps.progress}}%</span>-->
+        <!--</div>-->
         <div *ngFor ="let st of mySteps.data">
             <div class="step" [ngClass]="st.status">
                 <i class="paw icon"></i>
@@ -25,19 +29,30 @@
 
     <!-- 步骤 -->
     <div class="ui top attached ordered steps"  *ngIf = "!showList">
-        <div class="step" [ngClass]="step1">
+        <div class="step" [ngClass]="step1" (click)="stepClick('step1')">
             <div class="content">
                 <div class="title">基本信息</div>
                 <div class="description">前置问题和主体名称</div>
+                <div class="ui tiny progress" style="text-align:center">
+                    <div class="progress-bar" [style.width]="mySteps1.progress + '%'" style="background-color:#7FFF00;">
+                        <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps1.progress}}%</span>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="step" [ngClass]="step2">
+        <div class="step" [ngClass]="step2" (click)="stepClick('step2')">
             <div class="content">
                 <div class="title">协议内容填写</div>
                 <div class="description">协议相关的内容信息</div>
+                <div class="progress " >
+                    <div class="progress-bar" [style.width]="mySteps2.progress + '%'" style="background-color:#7FFF00">
+                        <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps2.progress}}%</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="step" [ngClass]="step3">
+        <div class="step" [ngClass]="step3" (click)="stepClick('step3')">
             <div class="content">
                 <div class="title">协议文档生成</div>
                 <div class="description">确定生成协议文件</div>
@@ -62,7 +77,7 @@
             </div>
             <div class="eight wide column" style="text-align: right">
                 <a class="button button-glow button-border button-rounded button-primary"
-                   (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,2);hisInfo = true;showHistory(0);">开始</a>
+                   (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;showHistory(0);actionTo('showQ1')">开始</a>
             </div>
         </div>
     </div>
@@ -76,20 +91,24 @@
                 <form class="ui form" style="padding:0 10%;">
                     <div class="field">
                         <label>甲方姓名</label>
-                        <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="transfer.aName" (click)="getValue('aName')"  required>
+                        <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="transfer.aName"
+                               (click)="getValue('aName')"  (focus)="focusValue('aName',$event.target)"  (blur)="progerssUp('aName')">
                     </div>
                     <div class="field">
                         <label>甲方身份证号/护照号</label>
-                        <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.aIdNo" (click)="getValue('')"  required>
+                        <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.aIdNo" (click)="getValue('')"
+                               (focus)="focusValue('aIdNo',$event.target)" (blur)="progerssUp('aIdNo')" >
                     </div>
                     <hr>
                     <div class="field">
                         <label>乙方姓名</label>
-                        <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="transfer.bName" (click)="getValue('')" required>
+                        <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="transfer.bName" (click)="getValue('')"
+                               (focus)="focusValue('bName',$event.target)" (blur)="progerssUp('bName')" >
                     </div>
                     <div class="field">
                         <label>乙方身份证号/护照号</label>
-                        <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.bIdNo" (click)="getValue('')" required>
+                        <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="transfer.bIdNo" (click)="getValue('')"
+                               (focus)="focusValue('bIdNo',$event.target)" (blur)="progerssUp('bIdNo')" >
                     </div>
                 </form>
             </div>
@@ -103,7 +122,7 @@
 
             <div class="eight wide column"><!-- 按钮 -->
                 <i class="reply icon"></i>
-                <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
+                <a (click)="showPro = !showPro;showQ1 = !showQ1;actionTo('showPro')">返回上一步</a>
             </div>
             <div class="eight wide column">
                 <a class="ui right floated teal button" (click)="conclude();hideHistory(0)">下一步</a>
@@ -126,14 +145,15 @@
         <div class="ui form">
             <div class="field">
                 <label>股份转让协议名称</label>
-                <input  placeholder="股份转让协议名称" type="text" [(ngModel)]="file.docName" required>
+                <input  placeholder="股份转让协议名称" type="text" [(ngModel)]="file.docName"
+                        (focus)="focusValue('docName',$event.target)" (blur)="progerssUp('docName')">
             </div>
         </div>
         <br><br>
         <div class="ui stackable grid">
             <div class="four wide column">
                 <i class="reply icon"></i>
-                <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;activeStep(1,2);;showHistory(0)">返回上一步</a>
+                <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;actionTo('showQ5');showHistory(0)">返回上一步</a>
             </div>
             <div class="right floated four wide column">
                 <a class="button button-glow button-border button-rounded button-primary"
@@ -152,7 +172,8 @@
             <div class="field">
                 <label>请填写所要转让股份的公司名称</label>
                 <br>
-                <input  placeholder="公司名称" type="text" [(ngModel)]="transfer.companyName" required>
+                <input  placeholder="公司名称" type="text" [(ngModel)]="transfer.companyName"
+                        (focus)="focusValue('companyName',$event.target)"  (blur)="progerssUp('companyName')" >
             </div>
             <h4 class="ui dividing header"></h4>
             <br>
@@ -161,7 +182,8 @@
                     <label>请填写所要转让股权占比</label>
                     <br>
                     <div class="ui right labeled input">
-                        <input  placeholder="股权占比" type="text" [(ngModel)]="transfer.percentage" required>
+                        <input  placeholder="股权占比" type="text" [(ngModel)]="transfer.percentage"
+                                (focus)="focusValue('percentage',$event.target)"  (blur)="progerssUp('percentage')">
                         <div class="ui basic label">%</div>
                     </div>
                 </div>
@@ -180,34 +202,37 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
         <h3>协议期限和保密期限</h3>
         <hr>
-        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,3)">
+        <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;actionTo('showQ7')">
             <!--<div class="field">-->
                 <!--<label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>-->
                 <!--<input  placeholder="协议期限" type="number" [(ngModel)]="transfer.contractPeriod" required>-->
             <!--</div>-->
             <div class="field">
                 <label>股权转让价格</label>
-                <input  placeholder="转让价格" type="number" [(ngModel)]="transfer.totalMoney" required>
+                <input  placeholder="转让价格" type="number" [(ngModel)]="transfer.totalMoney"
+                        (focus)="focusValue('totalMoney',$event.target)"  (blur)="progerssUp('totalMoney')" >
             </div>
             <h4 class="ui dividing header"></h4>
             <!--<div class="field">-->
                 <!--<label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>-->
-                <!--<input  placeholder="保密期限" type="number" [(ngModel)]="transfer.secrecy" required>-->
+                <!--<input  placeholder="保密期限" type="number" [(ngModel)]="transfer.secrecy" >-->
             <!--</div>-->
             <div class="field">
                 <label>首付金额</label>
-                <input  placeholder="首付金额" type="number" [(ngModel)]="transfer.payMoney" required>
+                <input  placeholder="首付金额" type="number" [(ngModel)]="transfer.payMoney"
+                        (focus)="focusValue('payMoney',$event.target)"  (blur)="progerssUp('payMoney')"  >
             </div>
             <br><br>
             <div class="field">
                 <label>剩余金额</label>
-                <input  placeholder="剩余金额" type="number" [(ngModel)]="transfer.residueMoney" required>
+                <input  placeholder="剩余金额" type="number" [(ngModel)]="transfer.residueMoney"
+                        (focus)="focusValue('residueMoney',$event.target)"  (blur)="progerssUp('residueMoney')" >
             </div>
             <br><br>
             <div class="two fields">
                 <div class="field">
                     <i class="reply icon"></i>
-                    <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;activeStep(4,1)">返回上一步</a>
+                    <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;actionTo('showQ6')">返回上一步</a>
                 </div>
                 <div class="field">
                     <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -233,10 +258,10 @@
             <div class="two fields">
                 <div class="field">
                      <i class="reply icon"></i>
-                     <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(4,2)">返回上一步</a>
+                     <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;actionTo('showQ8')">返回上一步</a>
             </div>
             <div class="field">
-                <button class="ui teal right floated  button" (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,4)">下一步</button>
+                <button class="ui teal right floated  button" (click)="showQ9 = !showQ9;showQ8 = !showQ8;actionTo('showQ9')">下一步</button>
             </div>
             </div>
 </div>
@@ -248,7 +273,8 @@
                 <div class="sixteen wide column">如果乙方未能按本合同第二条的规定按时支付股权价款，</div>
                 <div class="sixteen wide column">每延迟一天，应按延迟部分价款的
                     <div class="ui right labeled input">
-                    <input  type="text" [(ngModel)]="transfer.delayPercentage" required>
+                    <input  type="text" [(ngModel)]="transfer.delayPercentage"
+                            (focus)="focusValue('delayPercentage',$event.target)"  (blur)="progerssUp('delayPercentage')" >
                     <div class="ui basic label">%</div>
                     </div>支付滞纳金。
                 </div>
@@ -265,7 +291,8 @@
                 <div class="sixteen wide column">   如协商不成，任何一方均有权按下列任何一种方式解决：</div>
                 <div class="sixteen wide column"> 1、将争议提交
                     <div class="ui input focus">
-                        <input type="text" [(ngModel)]="transfer.committee" required>
+                        <input type="text" [(ngModel)]="transfer.committee"
+                               (focus)="focusValue('committee',$event.target)"  (blur)="progerssUp('committee')">
                     </div>仲裁委员会仲裁，按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。
                 </div>
                 <div class="sixteen wide column"> 按照提交仲裁时该会现行有效的仲裁规则进行仲裁。仲裁裁决是终局的，对甲乙双方均有约束力。</div>
@@ -275,10 +302,10 @@
         <div class="two fields">
             <div class="field">
                 <i class="reply icon"></i>
-                <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(4,3)">返回上一步</a>
+                <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;actionTo('showQ7')">返回上一步</a>
             </div>
             <div class="field">
-                <button class="ui teal right floated  button" (click)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(4,5);showHistory(1)">下一步</button>
+                <button class="ui teal right floated  button" (click)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;actionTo('showQ10');showHistory(1)">下一步</button>
             </div>
         </div>
         <br>
@@ -292,11 +319,13 @@
         <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ11 = !showQ11;showQ10 = !showQ10;setAttrData();hideHistory(1)">
             <div class="field">
                 <label>转让方</label>
-                <input placeholder="转让方名字" type="text" [(ngModel)]="transfer.aSiger" required>
+                <input placeholder="转让方名字" type="text" [(ngModel)]="transfer.aSiger"
+                       (focus)="focusValue('aSiger',$event.target)"  (blur)="progerssUp('aSiger')" >
             </div>
             <div class="field">
                 <label>受让方</label>
-                <input  placeholder="受让方名字" type="text" [(ngModel)]="transfer.bSiger" required>
+                <input  placeholder="受让方名字" type="text" [(ngModel)]="transfer.bSiger"
+                        (focus)="focusValue('bSiger',$event.target)"  (blur)="progerssUp('bSiger')" >
             </div>
             <br><br>
             <div class="field" ><!-- 分割线 -->
@@ -308,7 +337,7 @@
             <div class="two fields">
                 <div class="field">
                     <i class="reply icon"></i>
-                    <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(4,4)">返回上一步</a>
+                    <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;actionTo('showQ9')">返回上一步</a>
                 </div>
                 <div class="field">
                     <button class="ui teal right floated  button" type="submit">确定</button>
@@ -340,7 +369,7 @@
         <br><br><br>
         <div class="row" style="margin-left:20px; ">
             <i class="reply icon"></i>
-            <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;activeStep(2,5);showHistory(1)">返回上一步</a>
+            <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;actionTo('showQ10');showHistory(1)">返回上一步</a>
         </div>
     </div>
 </div>

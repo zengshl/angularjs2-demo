@@ -1,6 +1,7 @@
 [
   { "id":2,
     "stepName":"协议内容",
+    "progress":0,
     "data":[
       {
       "stepId":1,
@@ -37,6 +38,7 @@
   },
   { "id":1,
     "stepName":"基本信息",
+    "progress":0,
     "data":[
       {
         "stepId":1,
@@ -60,6 +62,7 @@
   },
   { "id":3,
     "stepName":"基本信息",
+    "progress":0,
     "data":[
       {
         "stepId":1,
@@ -83,6 +86,7 @@
   },
   { "id":4,
     "stepName":"协议内容",
+    "progress":0,
     "data":[
       {
         "stepId":1,
