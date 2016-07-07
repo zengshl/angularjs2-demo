@@ -24,19 +24,29 @@
 
       <!-- 步骤 -->
       <div class="ui top attached ordered steps"  *ngIf = "!showList">
-        <div class="step" [ngClass]="step1">
+        <div class="step" [ngClass]="step1" (click)="stepClick('step1')">
           <div class="content">
             <div class="title">基本信息</div>
             <div class="description">前置问题和主体名称</div>
+            <div class="ui tiny progress" style="text-align:center">
+              <div class="progress-bar" [style.width]="mySteps1.progress + '%'" style="background-color:#7FFF00;">
+                <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps1.progress}}%</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="step" [ngClass]="step2">
+        <div class="step" [ngClass]="step2" (click)="stepClick('step2')">
           <div class="content">
             <div class="title">协议内容填写</div>
             <div class="description">协议相关的内容信息</div>
+            <div class="progress " >
+              <div class="progress-bar" [style.width]="mySteps2.progress + '%'" style="background-color:#7FFF00">
+                <span class="percent" style="color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ mySteps2.progress}}%</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="step" [ngClass]="step3">
+        <div class="step" [ngClass]="step3" (click)="stepClick('step3')">
           <div class="content">
             <div class="title">协议文档生成</div>
             <div class="description">确定生成协议文件</div>
@@ -60,7 +70,7 @@
         </div>
         <div class="eight wide column" style="text-align: right">
           <a class="button button-glow button-border button-rounded button-primary"
-             (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;activeStep(1,2)">开始</a>
+             (click)="showPro = !showPro;showQ1 = !showQ1;hisInfo = true;actionTo('showQ1')">开始</a>
         </div>
       </div>
     </div>
@@ -94,10 +104,10 @@
         <div class="ten wide column" >
           <h3>签订协议双方是企业还是自然人？ </h3>
         </div>
-        <a class="three wide column" (click)="business = true">
+        <a class="three wide column" (click)="business = true;isBussiness('true')">
           <i class="large university icon" [ngClass]="{green: business}"></i>企业
         </a>
-        <a class="three wide column" (click)="business = false">
+        <a class="three wide column" (click)="business = false;isBussiness('false')">
           <i class="large male icon" [ngClass]="{green: !business}"></i>自然人
         </a>
         <div class="sixteen wide column" ><!-- 分割线 -->
@@ -107,20 +117,24 @@
           <form class="ui form" style="padding:0 10%;">
             <div class="field">
               <label>甲方姓名</label>
-              <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName" required (click)="getValue('aPersonName')">
+              <input name="last-name" placeholder="甲方姓名" type="text" [(ngModel)]="aPersonName"
+                     (focus)="focusValue('aPersonName',$event.target)"  (blur)="progerssUp('aPersonName')" (click)="getValue('aPersonName')">
             </div>
             <div class="field">
               <label>甲方身份证号/护照号</label>
-              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo" required (click)="getValue('aIdNo')">
+              <input name="idno" placeholder="身份证号/护照号" type="text" [(ngModel)]="aIdNo"
+                     (focus)="focusValue('aIdNo',$event.target)"  (blur)="progerssUp('aIdNo')" (click)="getValue('aIdNo')">
             </div>
             <hr>
             <div class="field">
               <label>乙方姓名</label>
-              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName" required (click)="getValue('bPersonName')">
+              <input name="last-name" placeholder="乙方姓名" type="text" [(ngModel)]="bPersonName"
+                     (focus)="focusValue('bPersonName',$event.target)"  (blur)="progerssUp('bPersonName')" (click)="getValue('bPersonName')">
             </div>
             <div class="field">
               <label>乙方身份证号/护照号</label>
-              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo" required (click)="getValue('bIdNo')">
+              <input name="first-name" placeholder="身份证号/护照号" type="text" [(ngModel)]="bIdNo"
+                     (focus)="focusValue('bIdNo',$event.target)"  (blur)="progerssUp('bIdNo')" (click)="getValue('bIdNo')">
             </div>
           </form>
         </div>
@@ -128,11 +142,13 @@
           <form class="ui form" style="padding:0 10%;">
             <div class="field">
               <label>甲方公司名称</label>
-              <input placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName" required (click)="getValue('aCompanyName')">
+              <input placeholder="甲方公司名称" type="text" [(ngModel)]="aCompanyName"
+                     (focus)="focusValue('aCompanyName',$event.target)"  (blur)="progerssUp('aCompanyName')" (click)="getValue('aCompanyName')">
             </div>
             <div class="field">
               <label>乙方公司名称</label>
-              <input placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName" required (click)="getValue('bCompanyName')">
+              <input placeholder="乙方公司名称" type="text" [(ngModel)]="bCompanyName"
+                     (focus)="focusValue('bCompanyName',$event.target)"  (blur)="progerssUp('bCompanyName')" (click)="getValue('bCompanyName')">
             </div>
           </form>
         </div>
@@ -146,7 +162,7 @@
 
         <div class="eight wide column"><!-- 按钮 -->
           <i class="reply icon"></i>
-          <a (click)="showPro = !showPro;showQ1 = !showQ1;activeStep(1,1)">返回上一步</a>
+          <a (click)="showPro = !showPro;showQ1 = !showQ1;actionTo('showPro')">返回上一步</a>
         </div>
         <div class="eight wide column">
           <a class="ui right floated teal button" (click)="conclude();">下一步</a>
@@ -169,14 +185,15 @@
       <div class="ui form">
         <div class="field">
           <label>保密协议名称</label>
-          <input  placeholder="保密协议名称" type="text" [(ngModel)]="file.docName" required>
+          <input  placeholder="保密协议名称" type="text" [(ngModel)]="file.docName"
+                  (focus)="focusValue('docName',$event.target)"  (blur)="progerssUp('docName')" >
         </div>
       </div>
       <br><br>
       <div class="ui stackable grid">
         <div class="four wide column">
           <i class="reply icon"></i>
-          <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;activeStep(1,2);">返回上一步</a>
+          <a (click)="showQ5 = !showQ5;showQ1 = !showQ1;actionTo('showQ1')">返回上一步</a>
         </div>
         <div class="right floated four wide column">
           <a class="button button-glow button-border button-rounded button-primary"
@@ -195,7 +212,8 @@
         <div class="field">
           <label>请填写拟议交易项目的名称</label>
           <br>
-          <input  placeholder="项目名称" type="text" [(ngModel)]="agreement.projectName" required>
+          <input  placeholder="项目名称" type="text" [(ngModel)]="agreement.projectName"
+                  (focus)="focusValue('projectName',$event.target)"  (blur)="progerssUp('projectName')" >
         </div>
         <h4 class="ui dividing header"></h4>
         <br>
@@ -237,21 +255,23 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ7">
       <h3>协议期限和保密期限</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,3)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ7 = !showQ7;showQ8 = !showQ8;actionTo('showQ8')">
         <div class="field">
           <label>自双方签署或盖章之日起算，本协议的有效期为几年？</label>
-          <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod" required>
+          <input  placeholder="协议期限" type="number" [(ngModel)]="agreement.contractPeriod"
+                  (focus)="focusValue('contractPeriod',$event.target)"  (blur)="progerssUp('contractPeriod')" >
         </div>
         <h4 class="ui dividing header"></h4>
         <div class="field">
           <label>本协议有效期届满日后，接收方还应当承担几年的保密义务？</label>
-          <input  placeholder="保密期限" type="number" [(ngModel)]="agreement.secrecy" required>
+          <input  placeholder="保密期限" type="number" [(ngModel)]="agreement.secrecy"
+                  (focus)="focusValue('secrecy',$event.target)"  (blur)="progerssUp('secrecy')" >
         </div>
         <br><br>
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;activeStep(2,1)">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ6 = !showQ6;actionTo('showQ6')">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -263,55 +283,65 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ8">
       <h3>甲方和乙方应指派具体联系人负责保密信息的交换事宜并作为接收通信的负责人。</h3>
       <hr>
-      <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(2,4)">
+      <form class="ui form" style="padding:10px 5%;" (ngSubmit)="showQ9 = !showQ9;showQ8 = !showQ8;actionTo('showQ9')">
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人姓名</label>
-            <input placeholder="姓名" type="text" [(ngModel)]="agreement.aContactName" required (click)="getValue('agreement.aContactName')">
+            <input placeholder="姓名" type="text" [(ngModel)]="agreement.aContactName"
+                   (focus)="focusValue('aContactName',$event.target)"  (blur)="progerssUp('aContactName')" (click)="getValue('agreement.aContactName')">
           </div>
           <div class="field">
             <label>乙方指定联系人姓名</label>
-            <input placeholder="姓名" type="text" [(ngModel)]="agreement.bContactName" required (click)="getValue('agreement.bContactName')">
+            <input placeholder="姓名" type="text" [(ngModel)]="agreement.bContactName"
+                   (focus)="focusValue('bContactName',$event.target)"  (blur)="progerssUp('bContactName')" (click)="getValue('agreement.bContactName')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人手机号</label>
-            <input placeholder="手机号" type="text" [(ngModel)]="agreement.aContactPhone" required (click)="getValue('agreement.aContactPhone')">
+            <input placeholder="手机号" type="text" [(ngModel)]="agreement.aContactPhone"
+                   (focus)="focusValue('aContactPhone',$event.target)"  (blur)="progerssUp('aContactPhone')" (click)="getValue('agreement.aContactPhone')">
           </div>
           <div class="field">
             <label>乙方指定联系人手机号</label>
-            <input placeholder="手机号" type="text" [(ngModel)]="agreement.bContactPhone" required (click)="getValue('agreement.bContactPhone')">
+            <input placeholder="手机号" type="text" [(ngModel)]="agreement.bContactPhone"
+                   (focus)="focusValue('bContactPhone',$event.target)"  (blur)="progerssUp('bContactPhone')"  (click)="getValue('agreement.bContactPhone')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人邮箱</label>
-            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.aContactEmail" required (click)="getValue('agreement.aContactEmail')">
+            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.aContactEmail"
+                   (focus)="focusValue('aContactEmail',$event.target)"  (blur)="progerssUp('aContactEmail')" (click)="getValue('agreement.aContactEmail')">
           </div>
           <div class="field">
             <label>乙方指定联系人邮箱</label>
-            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.bContactEmail" required (click)="getValue('agreement.bContactEmail')">
+            <input placeholder="邮箱" type="text" [(ngModel)]="agreement.bContactEmail"
+                   (focus)="focusValue('bContactEmail',$event.target)"  (blur)="progerssUp('bContactEmail')" (click)="getValue('agreement.bContactEmail')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人传真</label>
-            <input placeholder="传真" type="text" [(ngModel)]="agreement.aContactFax" required (click)="getValue('agreement.aContactFax')">
+            <input placeholder="传真" type="text" [(ngModel)]="agreement.aContactFax"
+                   (focus)="focusValue('aContactFax',$event.target)"  (blur)="progerssUp('aContactFax')" (click)="getValue('agreement.aContactFax')">
           </div>
           <div class="field">
             <label>乙方指定联系人传真</label>
-            <input placeholder="传真" type="text" [(ngModel)]="agreement.bContactFax" required (click)="getValue('agreement.bContactFax')">
+            <input placeholder="传真" type="text" [(ngModel)]="agreement.bContactFax"
+                   (focus)="focusValue('bContactFax',$event.target)"  (blur)="progerssUp('bContactFax')" (click)="getValue('agreement.bContactFax')">
           </div>
         </div>
         <div class="two fields">
           <div class="field">
             <label>甲方指定联系人地址</label>
-            <input placeholder="地址" type="text" [(ngModel)]="agreement.aContactAddress" required (click)="getValue('agreement.aContactAddress')">
+            <input placeholder="地址" type="text" [(ngModel)]="agreement.aContactAddress"
+                   (focus)="focusValue('aContactAddress',$event.target)"  (blur)="progerssUp('aContactAddress')" (click)="getValue('agreement.aContactAddress')">
           </div>
           <div class="field">
             <label>乙方指定联系人地址</label>
-            <input placeholder="地址" type="text" [(ngModel)]="agreement.bContactAddress" required (click)="getValue('agreement.bContactAddress')">
+            <input placeholder="地址" type="text" [(ngModel)]="agreement.bContactAddress"
+                   (focus)="focusValue('bContactAddress',$event.target)"  (blur)="progerssUp('bContactAddress')" (click)="getValue('agreement.bContactAddress')">
           </div>
         </div>
         <br><br>
@@ -324,7 +354,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;activeStep(2,2);">返回上一步</a>
+            <a (click)="showQ7 = !showQ7;showQ8 = !showQ8;actionTo('showQ7')">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -336,7 +366,7 @@
     <div class="ui segment" style="min-height: 300px;_height:300px;padding: 30px;margin-bottom: 30px;"   *ngIf="showQ9">
       <h3>争议与违约责任</h3>
       <hr>
-      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;activeStep(2,5)">
+      <form class="ui form" style="padding:10px 10%;" (ngSubmit)="oToSPerson();showQ10 = !showQ10;showQ9 = !showQ9;actionTo('showQ10')">
         <div class="field">
           <label>争议解决方案：</label>
           <br>
@@ -407,7 +437,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;activeStep(2,3)">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ8 = !showQ8;actionTo('showQ8')">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">下一步</button>
@@ -423,11 +453,13 @@
       <form class="ui form" style="padding:10px 10%;" (ngSubmit)="showQ11 = !showQ11;showQ10 = !showQ10;setAttrData()">
         <div class="field">
           <label>甲方法定代表人或授权签署人</label>
-          <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger" required (click)="getValue('agreement.aSiger')">
+          <input placeholder="名字" type="text" [(ngModel)]="agreement.aSiger"
+                 (focus)="focusValue('aSiger',$event.target)"  (blur)="progerssUp('aSiger')" (click)="getValue('agreement.aSiger')">
         </div>
         <div class="field">
           <label>乙方法定代表人或授权签署人</label>
-          <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger" required (click)="getValue('agreement.bSiger')">
+          <input  placeholder="名字" type="text" [(ngModel)]="agreement.bSiger"
+                  (focus)="focusValue('bSiger',$event.target)"  (blur)="progerssUp('bSiger')" (click)="getValue('agreement.bSiger')">
         </div>
         <br><br>
         <div class="field" ><!-- 分割线 -->
@@ -439,7 +471,7 @@
         <div class="two fields">
           <div class="field">
             <i class="reply icon"></i>
-            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;activeStep(2,4)">返回上一步</a>
+            <a (click)="showQ9 = !showQ9;showQ10 = !showQ10;actionTo('showQ9')">返回上一步</a>
           </div>
           <div class="field">
             <button class="ui teal right floated  button" type="submit">确定</button>
@@ -471,7 +503,7 @@
       <br><br><br>
       <div class="row" style="margin-left:20px; ">
         <i class="reply icon"></i>
-        <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;activeStep(2,5)">返回上一步</a>
+        <a (click)="showQ10 = !showQ10;showQ11 = !showQ11;actionTo('showQ10')">返回上一步</a>
       </div>
     </div>
     </div>

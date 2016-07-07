@@ -78,6 +78,8 @@ export class ShareTransferComponent {
     isModal:boolean = false;
     isInfo:string = "";
 
+    canFileNameUp : boolean = true;
+
     constructor(private _util:UtilService,private router:Router){
         this.zone1 = new NgZone({ enableLongStackTrace: false });
         this.zone2 = new NgZone({ enableLongStackTrace: false });
@@ -159,33 +161,30 @@ export class ShareTransferComponent {
 
     //总结
     conclude(){
-
-            //if(this.transfer.aName == null || this.transfer.bName== null || this.transfer.aIdNo== null || this.transfer.bIdNo== null
-            // || this.transfer.aName == "" || this.transfer.bName== "" || this.transfer.aIdNo== "" || this.transfer.bIdNo== ""){
-            //    swal("名称或证件号不能为空!", "", "error");
-            //    return;
-            //}
             this.conclusion = this.transfer.aName+"与"
                 +this.transfer.bName+"签订股份转让协议。在协议规定内，相互遵守和监督彼此股份转让信息。" +
                 "是否确定？"
             this.showQ5 = !this.showQ5;
             this.showQ1 = !this.showQ1;
-            this.zone1.run(() => {
-                if(this.mySteps1.progress >  80){
-                    this. mySteps1.progress = 100;
-                }else{
-                    this. mySteps1.progress += 20;
-                }
-        });
+            if(this.canFileNameUp) {
+                this.zone1.run(() => {
+                    if (this.mySteps1.progress > 80) {
+                        this.mySteps1.progress = 100;
+                    } else {
+                        this.mySteps1.progress += 20;
+                    }
+                });
+                this.canFileNameUp = false;
+            }
         this.activeStep(3,3,this.mySteps1);
     }
     //下一阶段
     nextStep1(){
         this.showQ5 = !this.showQ5;
         this.showQ6 = !this.showQ6;
-        this.step1 = 'completed';
+        this.step1 = '';
         this.step2 = 'active';
-        this.step3 = 'disabled';
+        this.step3 = '';
         this.activeStep(4,1,this.mySteps2);
         if(sessionStorage.getItem("file")){
             this._util.createFile(JSON.stringify(this.file)).subscribe((res)=>{
@@ -370,6 +369,7 @@ export class ShareTransferComponent {
 
     //输入框获得焦点时，判断输入框是否已经填写过
     focusValue(name:any,target:any){
+
         //判断值是否能转成int
         if(isNaN(parseInt(target.value))){
             //不能转成int，判断是否为空字符串
