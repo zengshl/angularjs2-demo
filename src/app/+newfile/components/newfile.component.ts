@@ -35,4 +35,7 @@ export class NewFileComponent{
   nav(name:string){
     this.router.parent.navigate([name]);
   }
+  navSelf(name:string){
+    this.router.navigate([name]);
+  }
 }
