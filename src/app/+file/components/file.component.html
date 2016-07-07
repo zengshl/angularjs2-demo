@@ -24,7 +24,7 @@
         <div class="panel-body" style="padding: 20px 5%;min-height: 300px;_height:300px; ">
           <div class="ui relaxed divided list" style="padding: 10px;">
             <div class="item" *ngFor = "let fd of folders" [dragula]='"bag"'>
-              <div class="ui stackable grid">
+              <div class="ui stackable grid"   onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
                 <div class="one wide column">
                   <a class="ui tiny image" (click)="openFolder(fd)">
                     <img src="assets/images/fileimg.png">
@@ -120,7 +120,7 @@
           <div class="folderId" style="display: none">{{myFolder.id}}</div>
           <div class="ui relaxed divided list"  style="padding: 10px;" [dragula]='"bag"'>
             <div class="item"  *ngFor = "let mf of myFiles">
-              <div class="ui stackable grid">
+              <div class="ui stackable grid"  onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
                 <div class="one wide column">
                   <a class="ui mini image">
                     <img src="assets/images/fileimg2.png">
@@ -221,7 +221,7 @@
         <div class="folderId" style="display: none">0</div>
         <div class="ui relaxed divided list" style="padding: 10px;" [dragula]='"bag"'>
           <div class="item"  *ngFor = "let fl of files">
-            <div class="ui stackable grid">
+            <div class="ui stackable grid" onmouseover="this.style.background='#F0F0F0'" onmouseout="this.style.background=''">
               <div class="one wide column">
                 <a class="ui mini image" (click)="modifyFile(fl)">
                   <img src="assets/images/fileimg2.png">
